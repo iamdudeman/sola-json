@@ -8,6 +8,73 @@ class ParserTest {
   @Nested
   class parse {
     @Nested
+    class rootObject {
+      @Test
+      void shouldHandleSinglePair() {
+        String input = """
+          {
+            "test": "value"
+          }
+          """;
+
+        createTest(input)
+          .assertCurrentNode(AstNodeType.OBJECT)
+          .child(0).assertCurrentNode(AstNodeType.PAIR, TokenType.STRING, "test")
+          .child(0, 0).assertCurrentNode(AstNodeType.VALUE, TokenType.STRING, "value")
+          ;
+      }
+
+      @Test
+      void shouldHandleNestedObjects() {
+        String input = """
+          {
+            "test": {
+              "test2": "value"
+            }
+          }
+          """;
+
+        createTest(input)
+          .assertCurrentNode(AstNodeType.OBJECT)
+          .child(0).assertCurrentNode(AstNodeType.PAIR, TokenType.STRING, "test")
+          .child(0, 0).assertCurrentNode(AstNodeType.OBJECT)
+          .child(0, 0, 0).assertCurrentNode(AstNodeType.PAIR, TokenType.STRING, "test2")
+          .child(0, 0, 0, 0).assertCurrentNode(AstNodeType.VALUE, TokenType.STRING, "value")
+        ;
+      }
+
+      @Test
+      void shouldHandlePairsOfAllValueTypes() {
+        String input = """
+          {
+            "string": "test",
+            "object": {},
+            "array": [],
+            "true": true,
+            "false": false,
+            "null": null
+          }
+          """;
+
+        createTest(input)
+          .assertCurrentNode(AstNodeType.OBJECT)
+          .child(0).assertCurrentNode(AstNodeType.PAIR, TokenType.STRING, "string")
+          .child(0, 0).assertCurrentNode(AstNodeType.VALUE, TokenType.STRING, "test")
+          .child(1).assertCurrentNode(AstNodeType.PAIR, TokenType.STRING, "object")
+          .child(1, 0).assertCurrentNode(AstNodeType.OBJECT)
+          .child(2).assertCurrentNode(AstNodeType.PAIR, TokenType.STRING, "array")
+          .child(2, 0).assertCurrentNode(AstNodeType.ARRAY)
+          .child(3).assertCurrentNode(AstNodeType.PAIR, TokenType.STRING, "true")
+          .child(3, 0).assertCurrentNode(AstNodeType.VALUE, TokenType.TRUE)
+          .child(4).assertCurrentNode(AstNodeType.PAIR, TokenType.STRING, "false")
+          .child(4, 0).assertCurrentNode(AstNodeType.VALUE, TokenType.FALSE)
+          .child(5).assertCurrentNode(AstNodeType.PAIR, TokenType.STRING, "null")
+          .child(5, 0).assertCurrentNode(AstNodeType.VALUE, TokenType.NULL)
+          ;
+      }
+    }
+
+    @Nested
     class rootArray {
       @Test
       void shouldHandleEmptyArray() {
@@ -49,16 +116,17 @@ class ParserTest {
       @Test
       void shouldHandleArrayWithAllTypes() {
         String input = """
-            ["testString", [], true, false, null]
+            ["testString", {}, [], true, false, null]
             """;
 
         createTest(input)
           .assertCurrentNode(AstNodeType.ARRAY)
           .child(0).assertCurrentNode(AstNodeType.VALUE, TokenType.STRING, "testString")
-          .child(1).assertCurrentNode(AstNodeType.ARRAY)
-          .child(2).assertCurrentNode(AstNodeType.VALUE, TokenType.TRUE)
-          .child(3).assertCurrentNode(AstNodeType.VALUE, TokenType.FALSE)
-          .child(4).assertCurrentNode(AstNodeType.VALUE, TokenType.NULL)
+          .child(1).assertCurrentNode(AstNodeType.OBJECT)
+          .child(2).assertCurrentNode(AstNodeType.ARRAY)
+          .child(3).assertCurrentNode(AstNodeType.VALUE, TokenType.TRUE)
+          .child(4).assertCurrentNode(AstNodeType.VALUE, TokenType.FALSE)
+          .child(5).assertCurrentNode(AstNodeType.VALUE, TokenType.NULL)
         ;
       }
     }

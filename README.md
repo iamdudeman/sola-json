@@ -5,17 +5,22 @@ Parser definition based on [json.org](https://www.json.org/json-en.html)
 ```
 COLON      : :
 COMMA      : ,
+FALSE      : false
 L_BRACKET  : [
 L_CURLY    : {
+NULL       : null
 R_BRACKET  : ]
 R_CURLY    : }
+STRING     :
+TRUE       : true
 ```
 
 ## Rules
 ```
-# todo "root" needs "object"
-root   : array
-array  : L_CURLY (value (COMMA value)*)? R_CURLY
-# todo "value" needs "number|object"
-value  : string|array|true|false|null
+root    : object|array
+object  : L_CURLY (pair (COMMA pair)*? R_BRACKET
+array   : L_BRACKET (value (COMMA value)*)? R_BRACKET
+pair    : STRING COLON value
+# todo "value" needs "number"
+value   : STRING|object|array|TRUE|FALSE|NULL
 ```

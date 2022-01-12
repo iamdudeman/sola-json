@@ -33,12 +33,24 @@ public class Parser {
   }
 
   private AstNode ruleObject() {
-    throw new UnsupportedOperationException("Not yet implemented");
+    eat(TokenType.L_CURLY);
+    List<AstNode> pairs = new ArrayList<>();
+
+    if (currentToken.type() != TokenType.R_CURLY) {
+      pairs.add(rulePair());
+    }
+
+    while (currentToken.type() == TokenType.COMMA) {
+      eat(TokenType.COMMA);
+      pairs.add(rulePair());
+    }
+
+    eat(TokenType.R_CURLY);
+    return AstNode.object(pairs.toArray(new AstNode[0]));
   }
 
   private AstNode ruleArray() {
     eat(TokenType.L_BRACKET);
-
     List<AstNode> children = new ArrayList<>();
 
     if (currentToken.type() != TokenType.R_BRACKET) {
@@ -51,8 +63,15 @@ public class Parser {
     }
 
     eat(TokenType.R_BRACKET);
+    return AstNode.array(children.toArray(new AstNode[0]));
+  }
 
-    return AstNode.arrayNode(children.toArray(new AstNode[0]));
+  private AstNode rulePair() {
+    Token nameToken = currentToken;
+    eat(TokenType.STRING);
+    eat(TokenType.COLON);
+
+    return AstNode.pair(nameToken, ruleValue());
   }
 
   private AstNode ruleValue() {
@@ -60,21 +79,22 @@ public class Parser {
 
     return switch (currentToken.type()) {
       case L_BRACKET -> ruleArray();
+      case L_CURLY -> ruleObject();
       case TRUE -> {
         eat(TokenType.TRUE);
-        yield AstNode.valueNode(token);
+        yield AstNode.value(token);
       }
       case FALSE -> {
         eat(TokenType.FALSE);
-        yield AstNode.valueNode(token);
+        yield AstNode.value(token);
       }
       case NULL -> {
         eat(TokenType.NULL);
-        yield AstNode.valueNode(token);
+        yield AstNode.value(token);
       }
       case STRING -> {
         eat(TokenType.STRING);
-        yield AstNode.valueNode(token);
+        yield AstNode.value(token);
       }
       default -> throw new RuntimeException("Unrecognized value type " + token.type());
     };
