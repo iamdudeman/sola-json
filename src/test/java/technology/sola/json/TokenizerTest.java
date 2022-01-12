@@ -2,6 +2,7 @@ package technology.sola.json;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import technology.sola.json.exception.InvalidNumberException;
 import technology.sola.json.exception.StringNotClosedException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -93,20 +94,93 @@ class TokenizerTest {
         .assertNextToken(TokenType.EOF);
     }
 
-    @Test
-    void shouldRecognizeString() {
-      var input = " \"test_string\" \"test\" ";
+    @Nested
+    class string {
+      @Test
+      void whenValid_shouldRecognize() {
+        var input = " \"test_string\" \"test\" ";
 
-      createTest(input)
-        .assertNextToken(TokenType.STRING, "test_string")
-        .assertNextToken(TokenType.STRING, "test");
+        createTest(input)
+          .assertNextToken(TokenType.STRING, "test_string")
+          .assertNextToken(TokenType.STRING, "test");
+      }
+
+      @Test
+      void whenNotClosed_shouldThrowException() {
+        var input = " \"test ";
+
+        assertThrows(StringNotClosedException.class, () -> createTest(input).assertNextToken(TokenType.STRING));
+      }
     }
 
-    @Test
-    void whenStringNotClosed_shouldThrowException() {
-      var input = " \"test ";
+    @Nested
+    class number {
+      @Test
+      void whenOnlyMinus_ShouldThrowException() {
+        var input = " - ";
 
-      assertThrows(StringNotClosedException.class, () -> createTest(input).assertNextToken(TokenType.STRING));
+        assertThrows(InvalidNumberException.class, () -> createTest(input).assertNextToken(TokenType.NUMBER));
+      }
+
+      @Test
+      void whenDotWithNoFraction_ShouldThrowException() {
+        var input = " 2. ";
+
+        assertThrows(InvalidNumberException.class, () -> createTest(input).assertNextToken(TokenType.NUMBER));
+      }
+
+      @Test
+      void whenZero_ShouldRecognize() {
+        var input = " 0 0";
+
+        createTest(input)
+          .assertNextToken(TokenType.NUMBER, "0")
+          .assertNextToken(TokenType.NUMBER, "0")
+          .assertNextToken(TokenType.EOF);
+      }
+
+      @Test
+      void whenNegative_ShouldRecognize() {
+        var input = " -2 -3 ";
+
+        createTest(input)
+          .assertNextToken(TokenType.NUMBER, "-2")
+          .assertNextToken(TokenType.NUMBER, "-3")
+          .assertNextToken(TokenType.EOF);
+      }
+
+      @Test
+      void whenFraction_ShouldRecognize() {
+        var input = " 2.3 -2.3";
+
+        createTest(input)
+          .assertNextToken(TokenType.NUMBER, "2.3")
+          .assertNextToken(TokenType.NUMBER, "-2.3")
+          .assertNextToken(TokenType.EOF);
+      }
+
+      @Test
+      void whenExponent_ShouldRecognize() {
+        var input = " 2e3 2E3 -2e3 2e+3 2e-3";
+
+        createTest(input)
+          .assertNextToken(TokenType.NUMBER, "2e3")
+          .assertNextToken(TokenType.NUMBER, "2E3")
+          .assertNextToken(TokenType.NUMBER, "-2e3")
+          .assertNextToken(TokenType.NUMBER, "2e+3")
+          .assertNextToken(TokenType.NUMBER, "2e-3")
+          .assertNextToken(TokenType.EOF);
+      }
+
+      @Test
+      void whenFractionAndExponent_ShouldRecognize() {
+        var input = " 2.3e5 -3.2e-3";
+
+        createTest(input)
+          .assertNextToken(TokenType.NUMBER, "2.3e5")
+          .assertNextToken(TokenType.NUMBER, "-3.2e-3")
+          .assertNextToken(TokenType.EOF);
+      }
     }
   }
 

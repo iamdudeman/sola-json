@@ -8,6 +8,7 @@ public enum TokenType {
   L_BRACKET,
   L_CURLY,
   NULL,
+  NUMBER,
   R_BRACKET,
   R_CURLY,
   STRING,

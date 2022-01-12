@@ -1,6 +1,7 @@
 package technology.sola.json;
 
 import technology.sola.json.exception.InvalidCharacterException;
+import technology.sola.json.exception.InvalidNumberException;
 import technology.sola.json.exception.StringNotClosedException;
 
 public class Tokenizer {
@@ -57,6 +58,10 @@ public class Tokenizer {
       return tokenString();
     }
 
+    if (currentChar == '-' || Character.isDigit(currentChar)) {
+      return tokenNumber();
+    }
+
     if (currentChar == 't' && isExpectedPeek('r', 'u', 'e')) {
       advance();
       advance();
@@ -87,12 +92,12 @@ public class Tokenizer {
 
   private Token tokenString() {
     advance();
-    StringBuilder characters = new StringBuilder();
+    StringBuilder stringBuilder = new StringBuilder();
 
     // TODO handle control characters
 
     while (currentChar != null && currentChar != '\"') {
-      characters.append(currentChar);
+      stringBuilder.append(currentChar);
       advance();
     }
 
@@ -101,7 +106,56 @@ public class Tokenizer {
     }
 
     advance();
-    return new Token(TokenType.STRING, characters.toString());
+    return new Token(TokenType.STRING, stringBuilder.toString());
+  }
+
+  private Token tokenNumber() {
+    StringBuilder numberBuilder = new StringBuilder();
+    numberBuilder.append(currentChar);
+    advance();
+
+    // number
+    while (currentChar != null && Character.isDigit(currentChar)) {
+      numberBuilder.append(currentChar);
+      advance();
+    }
+
+    // fraction
+    if (currentChar != null && currentChar == '.') {
+      numberBuilder.append(currentChar);
+      advance();
+
+      while (currentChar != null && Character.isDigit(currentChar)) {
+        numberBuilder.append(currentChar);
+        advance();
+      }
+    }
+
+    if (numberBuilder.charAt(numberBuilder.length() - 1) == '.') {
+      throw new InvalidNumberException();
+    }
+
+    // exponent
+    if (currentChar != null && (currentChar == 'e' || currentChar == 'E')) {
+      numberBuilder.append(currentChar);
+      advance();
+
+      if (currentChar == '+' || currentChar == '-') {
+        numberBuilder.append(currentChar);
+        advance();
+      }
+
+      while (currentChar != null && Character.isDigit(currentChar)) {
+        numberBuilder.append(currentChar);
+        advance();
+      }
+    }
+
+    if (numberBuilder.length() == 1 && numberBuilder.charAt(0) == '-') {
+      throw new InvalidNumberException();
+    }
+
+    return new Token(TokenType.NUMBER, numberBuilder.toString());
   }
 
   private boolean isExpectedPeek(char... chars) {
