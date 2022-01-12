@@ -1,6 +1,9 @@
-package technology.sola.json;
+package technology.sola.json.parser;
 
 import technology.sola.json.exception.InvalidSyntaxException;
+import technology.sola.json.token.Token;
+import technology.sola.json.token.TokenType;
+import technology.sola.json.token.Tokenizer;
 
 import java.util.ArrayList;
 import java.util.List;

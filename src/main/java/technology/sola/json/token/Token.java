@@ -1,4 +1,4 @@
-package technology.sola.json;
+package technology.sola.json.token;
 
 public record Token(TokenType type, String value) {
   @Override

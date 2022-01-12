@@ -1,4 +1,4 @@
-package technology.sola.json;
+package technology.sola.json.token;
 
 import technology.sola.json.exception.InvalidCharacterException;
 import technology.sola.json.exception.InvalidNumberException;

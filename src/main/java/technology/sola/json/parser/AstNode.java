@@ -1,4 +1,6 @@
-package technology.sola.json;
+package technology.sola.json.parser;
+
+import technology.sola.json.token.Token;
 
 import java.util.Arrays;
 

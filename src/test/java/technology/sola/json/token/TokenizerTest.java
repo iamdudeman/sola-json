@@ -1,4 +1,4 @@
-package technology.sola.json;
+package technology.sola.json.token;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

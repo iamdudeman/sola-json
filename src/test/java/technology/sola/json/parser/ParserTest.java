@@ -1,8 +1,10 @@
-package technology.sola.json;
+package technology.sola.json.parser;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import technology.sola.json.token.TokenType;
+import technology.sola.json.token.Tokenizer;
 
 class ParserTest {
   @Nested
