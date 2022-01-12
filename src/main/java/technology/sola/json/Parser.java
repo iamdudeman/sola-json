@@ -55,6 +55,7 @@ public class Parser {
     Token token = currentToken;
 
     return switch (currentToken.type()) {
+      case L_BRACKET -> ruleArray();
       case TRUE -> {
         eat(TokenType.TRUE);
         yield AstNode.valueNode(token);

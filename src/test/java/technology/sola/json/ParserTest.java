@@ -1,20 +1,57 @@
 package technology.sola.json;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 class ParserTest {
+  @Nested
+  class parse {
+    @Nested
+    class rootArray {
+      @Test
+      void shouldHandleBasicArray() {
+        String input = """
+            [true, null, false]
+            """;
+
+        createTest(input)
+          .assertCurrentNode(AstNodeType.ARRAY)
+          .child(0).assertCurrentNode(AstNodeType.VALUE, TokenType.TRUE, "true")
+          .child(1).assertCurrentNode(AstNodeType.VALUE, TokenType.NULL, "null")
+          .child(2).assertCurrentNode(AstNodeType.VALUE, TokenType.FALSE, "false")
+          ;
+      }
+
+      @Test
+      void shouldHandleNestedArray() {
+        String input = """
+            [true, [false]]
+            """;
+
+        createTest(input)
+          .assertCurrentNode(AstNodeType.ARRAY)
+          .child(0).assertCurrentNode(AstNodeType.VALUE, TokenType.TRUE, "true")
+          .child(1).assertCurrentNode(AstNodeType.ARRAY)
+          .child(1, 0).assertCurrentNode(AstNodeType.VALUE, TokenType.FALSE, "false")
+          ;
+      }
+    }
+  }
+
   @Test
   void test() {
     String input = """
-      [true, null, false]
+      [true, [true], null, false]
       """;
 
     createTest(input)
       .assertCurrentNode(AstNodeType.ARRAY)
       .child(0).assertCurrentNode(AstNodeType.VALUE, TokenType.TRUE, "true")
-      .child(1).assertCurrentNode(AstNodeType.VALUE, TokenType.NULL, "null")
-      .child(2).assertCurrentNode(AstNodeType.VALUE, TokenType.FALSE, "false")
+      .child(1).assertCurrentNode(AstNodeType.ARRAY)
+      .child(1, 0).assertCurrentNode(AstNodeType.VALUE, TokenType.TRUE, "true")
+      .child(2).assertCurrentNode(AstNodeType.VALUE, TokenType.NULL, "null")
+      .child(3).assertCurrentNode(AstNodeType.VALUE, TokenType.FALSE, "false")
     ;
   }
 

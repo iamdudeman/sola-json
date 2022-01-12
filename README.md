@@ -13,8 +13,9 @@ R_CURLY    : }
 
 ## Rules
 ```
-root   : object|array
+# todo "root" needs "object"
+root   : array
 array  : L_CURLY value (COMMA value)* R_CURLY
-# todo value needs   string|number|object
+# todo "value" needs "string|number|object"
 value  : array|true|false|null
 ```
