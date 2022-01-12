@@ -54,6 +54,33 @@ class TokenizerTest {
         .assertNextToken(TokenType.R_BRACKET)
         .assertNextToken(TokenType.EOF);
     }
+
+    @Test
+    void shouldRecognizeTrue() {
+      var input = " true ";
+
+      createTest(input)
+        .assertNextToken(TokenType.TRUE)
+        .assertNextToken(TokenType.EOF);
+    }
+
+    @Test
+    void shouldRecognizeFalse() {
+      var input = " false ";
+
+      createTest(input)
+        .assertNextToken(TokenType.FALSE)
+        .assertNextToken(TokenType.EOF);
+    }
+
+    @Test
+    void shouldRecognizeNull() {
+      var input = " null ";
+
+      createTest(input)
+        .assertNextToken(TokenType.NULL)
+        .assertNextToken(TokenType.EOF);
+    }
   }
 
   private TokenizerTester createTest(String input) {

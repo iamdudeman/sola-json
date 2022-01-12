@@ -52,11 +52,52 @@ public class Tokenizer {
       return new Token(TokenType.R_CURLY, "}");
     }
 
+    if (currentChar == 't' && isExpectedPeek('r', 'u', 'e')) {
+      advance();
+      advance();
+      advance();
+      advance();
+      return new Token(TokenType.TRUE, "true");
+    }
+
+    if (currentChar == 'f' && isExpectedPeek('a', 'l', 's', 'e')) {
+      advance();
+      advance();
+      advance();
+      advance();
+      advance();
+      return new Token(TokenType.FALSE, "false");
+    }
+
+    if (currentChar == 'n' && isExpectedPeek('u', 'l', 'l')) {
+      advance();
+      advance();
+      advance();
+      advance();
+      return new Token(TokenType.NULL, "null");
+    }
+
     throw new InvalidCharacterException(currentChar);
   }
 
-  private Character peek() {
-    int peekIndex = textIndex + 1;
+  private boolean isExpectedPeek(char... chars) {
+    int offset = 1;
+    for (char peekChar : chars) {
+      if (!peekAndCheck(offset, peekChar)) {
+        return false;
+      }
+      offset++;
+    }
+
+    return true;
+  }
+
+  private boolean peekAndCheck(int offset, char expectedChar) {
+    return Character.valueOf(expectedChar).equals(peek(offset));
+  }
+
+  private Character peek(int offset) {
+    int peekIndex = textIndex + offset;
 
     return peekIndex < text.length() ? text.charAt(peekIndex) : null;
   }
