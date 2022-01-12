@@ -52,7 +52,8 @@ class ParserTest {
             "array": [],
             "true": true,
             "false": false,
-            "null": null
+            "null": null,
+            "number": -2.3e2
           }
           """;
 
@@ -70,6 +71,8 @@ class ParserTest {
           .child(4, 0).assertCurrentNode(AstNodeType.VALUE, TokenType.FALSE)
           .child(5).assertCurrentNode(AstNodeType.PAIR, TokenType.STRING, "null")
           .child(5, 0).assertCurrentNode(AstNodeType.VALUE, TokenType.NULL)
+          .child(6).assertCurrentNode(AstNodeType.PAIR, TokenType.STRING, "number")
+          .child(6, 0).assertCurrentNode(AstNodeType.VALUE, TokenType.NUMBER, "-2.3e2")
           ;
       }
     }
@@ -116,7 +119,7 @@ class ParserTest {
       @Test
       void shouldHandleArrayWithAllTypes() {
         String input = """
-            ["testString", {}, [], true, false, null]
+            ["testString", {}, [], true, false, null, -2.3e2]
             """;
 
         createTest(input)
@@ -127,6 +130,7 @@ class ParserTest {
           .child(3).assertCurrentNode(AstNodeType.VALUE, TokenType.TRUE)
           .child(4).assertCurrentNode(AstNodeType.VALUE, TokenType.FALSE)
           .child(5).assertCurrentNode(AstNodeType.VALUE, TokenType.NULL)
+          .child(6).assertCurrentNode(AstNodeType.VALUE, TokenType.NUMBER, "-2.3e2")
         ;
       }
     }

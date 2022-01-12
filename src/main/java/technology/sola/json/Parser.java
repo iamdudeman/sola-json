@@ -96,6 +96,10 @@ public class Parser {
         eat(TokenType.STRING);
         yield AstNode.value(token);
       }
+      case NUMBER -> {
+        eat(TokenType.NUMBER);
+        yield AstNode.value(token);
+      }
       default -> throw new RuntimeException("Unrecognized value type " + token.type());
     };
   }
