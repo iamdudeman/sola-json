@@ -10,6 +10,15 @@ class ParserTest {
     @Nested
     class rootArray {
       @Test
+      void shouldHandleEmptyArray() {
+        String input = """
+          []
+          """;
+
+        createTest(input).assertCurrentNode(AstNodeType.ARRAY);
+      }
+
+      @Test
       void shouldHandleBasicArray() {
         String input = """
             [true, null, false]
@@ -35,6 +44,22 @@ class ParserTest {
           .child(1).assertCurrentNode(AstNodeType.ARRAY)
           .child(1, 0).assertCurrentNode(AstNodeType.VALUE, TokenType.FALSE, "false")
           ;
+      }
+
+      @Test
+      void shouldHandleArrayWithAllTypes() {
+        String input = """
+            ["testString", [], true, false, null]
+            """;
+
+        createTest(input)
+          .assertCurrentNode(AstNodeType.ARRAY)
+          .child(0).assertCurrentNode(AstNodeType.VALUE, TokenType.STRING, "testString")
+          .child(1).assertCurrentNode(AstNodeType.ARRAY)
+          .child(2).assertCurrentNode(AstNodeType.VALUE, TokenType.TRUE)
+          .child(3).assertCurrentNode(AstNodeType.VALUE, TokenType.FALSE)
+          .child(4).assertCurrentNode(AstNodeType.VALUE, TokenType.NULL)
+        ;
       }
     }
   }

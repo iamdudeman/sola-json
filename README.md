@@ -15,7 +15,7 @@ R_CURLY    : }
 ```
 # todo "root" needs "object"
 root   : array
-array  : L_CURLY value (COMMA value)* R_CURLY
-# todo "value" needs "string|number|object"
-value  : array|true|false|null
+array  : L_CURLY (value (COMMA value)*)? R_CURLY
+# todo "value" needs "number|object"
+value  : string|array|true|false|null
 ```

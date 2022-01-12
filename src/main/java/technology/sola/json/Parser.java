@@ -38,8 +38,12 @@ public class Parser {
 
   private AstNode ruleArray() {
     eat(TokenType.L_BRACKET);
+
     List<AstNode> children = new ArrayList<>();
-    children.add(ruleValue());
+
+    if (currentToken.type() != TokenType.R_BRACKET) {
+      children.add(ruleValue());
+    }
 
     while (currentToken.type() == TokenType.COMMA) {
       eat(TokenType.COMMA);
@@ -68,7 +72,11 @@ public class Parser {
         eat(TokenType.NULL);
         yield AstNode.valueNode(token);
       }
-      default -> throw new RuntimeException("Unrecognized value type");
+      case STRING -> {
+        eat(TokenType.STRING);
+        yield AstNode.valueNode(token);
+      }
+      default -> throw new RuntimeException("Unrecognized value type " + token.type());
     };
   }
 

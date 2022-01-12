@@ -1,6 +1,7 @@
 package technology.sola.json;
 
 import technology.sola.json.exception.InvalidCharacterException;
+import technology.sola.json.exception.StringNotClosedException;
 
 public class Tokenizer {
   private final String text;
@@ -52,6 +53,10 @@ public class Tokenizer {
       return new Token(TokenType.R_CURLY, "}");
     }
 
+    if (currentChar == '"') {
+      return tokenString();
+    }
+
     if (currentChar == 't' && isExpectedPeek('r', 'u', 'e')) {
       advance();
       advance();
@@ -78,6 +83,25 @@ public class Tokenizer {
     }
 
     throw new InvalidCharacterException(currentChar);
+  }
+
+  private Token tokenString() {
+    advance();
+    StringBuilder characters = new StringBuilder();
+
+    // TODO handle control characters
+
+    while (currentChar != null && currentChar != '\"') {
+      characters.append(currentChar);
+      advance();
+    }
+
+    if (currentChar == null) {
+      throw new StringNotClosedException();
+    }
+
+    advance();
+    return new Token(TokenType.STRING, characters.toString());
   }
 
   private boolean isExpectedPeek(char... chars) {

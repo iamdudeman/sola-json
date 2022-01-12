@@ -10,5 +10,6 @@ public enum TokenType {
   NULL,
   R_BRACKET,
   R_CURLY,
+  STRING,
   TRUE,
 }
