@@ -1,5 +1,7 @@
 package technology.sola.json;
 
+import java.util.Arrays;
+
 public record AstNode(AstNodeType type, Token token, AstNode... children) {
   public static AstNode array(AstNode... children) {
     return new AstNode(AstNodeType.ARRAY, null, children);
@@ -15,5 +17,14 @@ public record AstNode(AstNodeType type, Token token, AstNode... children) {
 
   public static AstNode value(Token token, AstNode... children) {
     return new AstNode(AstNodeType.VALUE, token, children);
+  }
+
+  @Override
+  public String toString() {
+    return "AstNode{" +
+      "type=" + type +
+      ", token=" + token +
+      ", children=" + Arrays.toString(children) +
+      '}';
   }
 }

@@ -132,22 +132,6 @@ class ParserTest {
     }
   }
 
-  @Test
-  void test() {
-    String input = """
-      [true, [true], null, false]
-      """;
-
-    createTest(input)
-      .assertCurrentNode(AstNodeType.ARRAY)
-      .child(0).assertCurrentNode(AstNodeType.VALUE, TokenType.TRUE, "true")
-      .child(1).assertCurrentNode(AstNodeType.ARRAY)
-      .child(1, 0).assertCurrentNode(AstNodeType.VALUE, TokenType.TRUE, "true")
-      .child(2).assertCurrentNode(AstNodeType.VALUE, TokenType.NULL, "null")
-      .child(3).assertCurrentNode(AstNodeType.VALUE, TokenType.FALSE, "false")
-    ;
-  }
-
   private AstTester createTest(String input) {
     Tokenizer tokenizer = new Tokenizer(input);
     Parser parser = new Parser(tokenizer);
@@ -183,7 +167,7 @@ class ParserTest {
     }
 
     public AstTester assertCurrentNode(AstNodeType expectedNodeType, TokenType expectedTokenType, String expectedValue) {
-      Assertions.assertEquals(expectedNodeType, currentNode.type(), "" + currentNode.token());
+      Assertions.assertEquals(expectedNodeType, currentNode.type(), "" + currentNode);
 
       if (expectedTokenType != null) {
         Assertions.assertEquals(expectedTokenType, currentNode.token().type(), "" + currentNode.token());
