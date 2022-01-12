@@ -44,14 +44,7 @@ public class SolaJson {
     JsonArray jsonArray = new JsonArray();
 
     for (AstNode childNode : astNode.children()) {
-      JsonValue childValue = switch (childNode.type()) {
-        case OBJECT -> visitObject(childNode);
-        case ARRAY -> visitArray(childNode);
-        case VALUE -> visitValue(childNode);
-        default -> throw new RuntimeException("Invalid AST");
-      };
-
-      jsonArray.add(childValue);
+      jsonArray.add(visit(childNode));
     }
 
     return new JsonValue(jsonArray);
