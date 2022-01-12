@@ -25,6 +25,35 @@ class TokenizerTest {
         .assertNextToken(TokenType.COLON)
         .assertNextToken(TokenType.EOF);
     }
+
+    @Test
+    void shouldRecognizeComma() {
+      var input = " , ";
+
+      createTest(input)
+        .assertNextToken(TokenType.COMMA)
+        .assertNextToken(TokenType.EOF);
+    }
+
+    @Test
+    void shouldRecognizeCurly() {
+      var input = " { } ";
+
+      createTest(input)
+        .assertNextToken(TokenType.L_CURLY)
+        .assertNextToken(TokenType.R_CURLY)
+        .assertNextToken(TokenType.EOF);
+    }
+
+    @Test
+    void shouldRecognizeBracket() {
+      var input = " [ ] ";
+
+      createTest(input)
+        .assertNextToken(TokenType.L_BRACKET)
+        .assertNextToken(TokenType.R_BRACKET)
+        .assertNextToken(TokenType.EOF);
+    }
   }
 
   private TokenizerTester createTest(String input) {

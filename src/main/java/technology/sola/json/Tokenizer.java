@@ -27,6 +27,31 @@ public class Tokenizer {
       return new Token(TokenType.COLON, ":");
     }
 
+    if (currentChar == ',') {
+      advance();
+      return new Token(TokenType.COMMA, ",");
+    }
+
+    if (currentChar == '[') {
+      advance();
+      return new Token(TokenType.L_BRACKET, "[");
+    }
+
+    if (currentChar == ']') {
+      advance();
+      return new Token(TokenType.R_BRACKET, "]");
+    }
+
+    if (currentChar == '{') {
+      advance();
+      return new Token(TokenType.L_CURLY, "{");
+    }
+
+    if (currentChar == '}') {
+      advance();
+      return new Token(TokenType.R_CURLY, "}");
+    }
+
     throw new InvalidCharacterException(currentChar);
   }
 
