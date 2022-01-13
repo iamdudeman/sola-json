@@ -24,7 +24,7 @@ public class SolaJson {
   }
 
   private JsonValue visitObject(AstNode astNode) {
-    JsonObject jsonObject = new JsonObject();
+    JsonObject jsonObject = new JsonObject(astNode.children().length);
 
     for (AstNode pairNode : astNode.children()) {
       if (pairNode.type() != AstNodeType.PAIR) {
@@ -41,7 +41,7 @@ public class SolaJson {
   }
 
   private JsonValue visitArray(AstNode astNode) {
-    JsonArray jsonArray = new JsonArray();
+    JsonArray jsonArray = new JsonArray(astNode.children().length);
 
     for (AstNode childNode : astNode.children()) {
       jsonArray.add(visit(childNode));

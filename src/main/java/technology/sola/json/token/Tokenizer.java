@@ -5,12 +5,12 @@ import technology.sola.json.exception.InvalidNumberException;
 import technology.sola.json.exception.StringNotClosedException;
 
 public class Tokenizer {
-  private final String text;
+  private final char[] characters;
   private Character currentChar;
   private int textIndex;
 
   public Tokenizer(String text) {
-    this.text = text;
+    characters = text.toCharArray();
     currentChar = text.charAt(textIndex);
   }
 
@@ -63,26 +63,19 @@ public class Tokenizer {
     }
 
     if (currentChar == 't' && isExpectedPeek('r', 'u', 'e')) {
-      advance();
-      advance();
-      advance();
+      textIndex += 3;
       advance();
       return new Token(TokenType.TRUE, "true");
     }
 
     if (currentChar == 'f' && isExpectedPeek('a', 'l', 's', 'e')) {
-      advance();
-      advance();
-      advance();
-      advance();
+      textIndex += 4;
       advance();
       return new Token(TokenType.FALSE, "false");
     }
 
     if (currentChar == 'n' && isExpectedPeek('u', 'l', 'l')) {
-      advance();
-      advance();
-      advance();
+      textIndex += 3;
       advance();
       return new Token(TokenType.NULL, "null");
     }
@@ -92,12 +85,11 @@ public class Tokenizer {
 
   private Token tokenString() {
     advance();
-    StringBuilder stringBuilder = new StringBuilder();
+    int start = textIndex;
 
     // TODO handle control characters
 
     while (currentChar != null && currentChar != '\"') {
-      stringBuilder.append(currentChar);
       advance();
     }
 
@@ -106,7 +98,7 @@ public class Tokenizer {
     }
 
     advance();
-    return new Token(TokenType.STRING, stringBuilder.toString());
+    return new Token(TokenType.STRING, new String(characters, start, textIndex - start - 1));
   }
 
   private Token tokenNumber() {
@@ -177,11 +169,11 @@ public class Tokenizer {
   private Character peek(int offset) {
     int peekIndex = textIndex + offset;
 
-    return peekIndex < text.length() ? text.charAt(peekIndex) : null;
+    return peekIndex < characters.length ? characters[peekIndex] : null;
   }
 
   private void advance() {
     textIndex++;
-    currentChar = textIndex < text.length() ? text.charAt(textIndex) : null;
+    currentChar = textIndex < characters.length ? characters[textIndex] : null;
   }
 }
