@@ -9,10 +9,10 @@ FALSE      : false
 L_BRACKET  : [
 L_CURLY    : {
 NULL       : null
-NUMBER     :
+NUMBER     : ((-[1-9])|0)[0-9]+(.[0-9]+)?([eE][-+]?[0-9]+)
 R_BRACKET  : ]
 R_CURLY    : }
-STRING     :
+STRING     : " (Any codepoint exception " or \ or control characters) "
 TRUE       : true
 ```
 

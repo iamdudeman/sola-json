@@ -102,60 +102,65 @@ public class Tokenizer {
   }
 
   private Token tokenNumber() {
-    StringBuilder numberBuilder = new StringBuilder();
-    numberBuilder.append(currentChar);
-    advance();
+    int startIndex = textIndex;
 
-    // number
-    while (currentChar != null && Character.isDigit(currentChar)) {
-      numberBuilder.append(currentChar);
-      advance();
-    }
+    advanceNumber();
+    advanceFraction();
+    advanceExponent();
 
-    // fraction
-    if (currentChar != null && currentChar == '.') {
-      numberBuilder.append(currentChar);
-      advance();
+    int characterCount = textIndex - startIndex;
 
-      while (currentChar != null && Character.isDigit(currentChar)) {
-        numberBuilder.append(currentChar);
-        advance();
-      }
-    }
-
-    if (numberBuilder.charAt(numberBuilder.length() - 1) == '.') {
+    if (characterCount == 1 && characters[startIndex] == '-') {
       throw new InvalidNumberException();
     }
 
-    // exponent
+    return new Token(TokenType.NUMBER, new String(characters, startIndex, characterCount));
+  }
+
+  private void advanceNumber() {
+    advance();
+
+    while (currentChar != null && Character.isDigit(currentChar)) {
+      advance();
+    }
+  }
+
+  private void advanceFraction() {
+    int startFraction = textIndex;
+    if (currentChar != null && currentChar == '.') {
+      advance();
+
+      while (currentChar != null && Character.isDigit(currentChar)) {
+        advance();
+      }
+    }
+    if (textIndex - startFraction == 1) {
+      throw new InvalidNumberException();
+    }
+  }
+
+  private void advanceExponent() {
     if (currentChar != null && (currentChar == 'e' || currentChar == 'E')) {
-      numberBuilder.append(currentChar);
       advance();
 
       if (currentChar == '+' || currentChar == '-') {
-        numberBuilder.append(currentChar);
         advance();
       }
 
       while (currentChar != null && Character.isDigit(currentChar)) {
-        numberBuilder.append(currentChar);
         advance();
       }
     }
-
-    if (numberBuilder.length() == 1 && numberBuilder.charAt(0) == '-') {
-      throw new InvalidNumberException();
-    }
-
-    return new Token(TokenType.NUMBER, numberBuilder.toString());
   }
 
   private boolean isExpectedPeek(char... chars) {
     int offset = 1;
+
     for (char peekChar : chars) {
       if (!peekAndCheck(offset, peekChar)) {
         return false;
       }
+
       offset++;
     }
 
