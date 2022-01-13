@@ -2,12 +2,7 @@ package technology.sola.json;
 
 public class JsonValue {
   private final JsonValueType type;
-  private boolean booleanValue;
-  private long longValue;
-  private double doubleValue;
-  private String stringValue;
-  private JsonObject jsonObjectValue;
-  private JsonArray jsonArrayValue;
+  private Object value;
 
   public JsonValue() {
     type = JsonValueType.NULL;
@@ -15,47 +10,47 @@ public class JsonValue {
 
   public JsonValue(int value) {
     type = JsonValueType.LONG;
-    longValue = value;
+    this.value = value;
   }
 
   public JsonValue(long value) {
     type = JsonValueType.LONG;
-    longValue = value;
+    this.value = value;
   }
 
   public JsonValue(float value) {
     type = JsonValueType.DOUBLE;
-    doubleValue = value;
+    this.value = value;
   }
 
   public JsonValue(double value) {
     type = JsonValueType.DOUBLE;
-    doubleValue = value;
+    this.value = value;
   }
 
   public JsonValue(String value) {
     type = JsonValueType.STRING;
-    stringValue = value;
+    this.value = value;
   }
 
   public JsonValue(JsonObject value) {
     type = JsonValueType.JSON_OBJECT;
-    jsonObjectValue = value;
+    this.value = value;
   }
 
   public JsonValue(JsonArray value) {
     type = JsonValueType.JSON_ARRAY;
-    jsonArrayValue = value;
+    this.value = value;
   }
 
   public JsonValue(boolean value) {
     type = JsonValueType.BOOLEAN;
-    booleanValue = value;
+    this.value = value;
   }
 
   public boolean asBoolean() {
     assertType(JsonValueType.BOOLEAN);
-    return booleanValue;
+    return (boolean) this.value;
   }
 
   public int asInt() {
@@ -64,7 +59,7 @@ public class JsonValue {
 
   public long asLong() {
     assertType(JsonValueType.LONG);
-    return longValue;
+    return (long) this.value;
   }
 
   public float asFloat() {
@@ -73,22 +68,22 @@ public class JsonValue {
 
   public double asDouble() {
     assertType(JsonValueType.DOUBLE);
-    return doubleValue;
+    return (double) this.value;
   }
 
   public String asString() {
     assertType(JsonValueType.STRING);
-    return stringValue;
+    return (String) this.value;
   }
 
   public JsonObject asObject() {
     assertType(JsonValueType.JSON_OBJECT);
-    return jsonObjectValue;
+    return (JsonObject) this.value;
   }
 
   public JsonArray asArray() {
     assertType(JsonValueType.JSON_ARRAY);
-    return jsonArrayValue;
+    return (JsonArray) this.value;
   }
 
   public boolean isNull() {
