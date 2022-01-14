@@ -110,15 +110,11 @@ public class Tokenizer {
 
     advance();
 
-    String tokenValue = stringTokenWithEscapesBuilder == null ? new String(characters, start, textIndex - start - 1) : stringTokenWithEscapesBuilder.toString();
+    String tokenValue = stringTokenWithEscapesBuilder == null
+      ? new String(characters, start, textIndex - start - 1)
+      : stringTokenWithEscapesBuilder.toString();
 
     return new Token(TokenType.STRING, tokenValue);
-
-//    if (stringBuilder == null) {
-//      return new Token(TokenType.STRING, new String(characters, start, textIndex - start - 1));
-//    } else {
-//      return new Token(TokenType.STRING, stringBuilder.toString());
-//    }
   }
 
   private void advanceControlCharacter(StringBuilder stringBuilder) {
@@ -133,12 +129,20 @@ public class Tokenizer {
       case 'r' -> '\r';
       case 't' -> '\t';
       case 'u' -> {
-        // TODO need to do length and type checks for next 4 values
         advance();
-        int codePoint = Integer.parseInt(new String(characters, textIndex, 4), 16);
-        textIndex += 2;
-        advance();
-        yield (char) codePoint;
+
+        if (textIndex + 4 > characters.length) {
+          throw new InvalidControlCharacterException();
+        }
+
+        try {
+          int codePoint = Integer.parseInt(new String(characters, textIndex, 4), 16);
+          textIndex += 2;
+          advance();
+          yield (char) codePoint;
+        } catch (NumberFormatException ex) {
+          throw new InvalidControlCharacterException();
+        }
       }
       default -> throw new InvalidControlCharacterException();
     };

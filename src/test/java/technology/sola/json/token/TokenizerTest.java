@@ -114,49 +114,70 @@ class TokenizerTest {
         assertThrows(StringNotClosedException.class, () -> createTest(input).assertNextToken(TokenType.STRING));
       }
 
-      @Test
-      void whenEscapedQuote_shouldRecognize() {
-        var input = " \"te\\\"st\" \"te\\\"st\"  ";
-
-        createTest(input)
-          .assertNextToken(TokenType.STRING, "te\"st")
-          .assertNextToken(TokenType.STRING, "te\"st")
-          .assertNextToken(TokenType.EOF);
-      }
-
-      @Test
-      void whenControlCharacterNotFinished_shouldThrowException() {
-        var input = """
+      @Nested
+      class withControlCharacters {
+        @Test
+        void whenControlCharacterNotFinished_shouldThrowException() {
+          var input = """
           " \\ "
           """;
 
-        assertThrows(InvalidControlCharacterException.class, () -> createTest(input).assertNextToken(TokenType.STRING));
-      }
+          assertThrows(InvalidControlCharacterException.class, () -> createTest(input).assertNextToken(TokenType.STRING));
+        }
 
-      @Test
-      void whenControlCharacter_shouldRecognize() {
-        var input = """
+        @Test
+        void whenInvalidUnicode_shouldThrowException() {
+          var input = """
+          "\\u12r3"
+          """;
+
+          assertThrows(InvalidControlCharacterException.class, () -> createTest(input).assertNextToken(TokenType.STRING));
+        }
+
+        @Test
+        void whenIncompleteUnicode_shouldThrowException() {
+          var input = """
+          "\\u12"
+          """;
+
+          assertThrows(InvalidControlCharacterException.class, () -> createTest(input).assertNextToken(TokenType.STRING));
+        }
+
+        @Test
+        void whenEscapedQuote_shouldRecognize() {
+          var input = " \"te\\\"st\" \"te\\\"st\"  ";
+
+          createTest(input)
+            .assertNextToken(TokenType.STRING, "te\"st")
+            .assertNextToken(TokenType.STRING, "te\"st")
+            .assertNextToken(TokenType.EOF);
+        }
+
+        @Test
+        void whenNonUnicodeControlCharacter_shouldRecognize() {
+          var input = """
           "\\" \\/ \\\\ \\b \\f \\n \\r \\t"
           "\\" \\/ \\\\ \\b \\f \\n \\r \\t"
           """;
 
-        createTest(input)
-          .assertNextToken(TokenType.STRING, "\" / \\ \b \f \n \r \t")
-          .assertNextToken(TokenType.STRING, "\" / \\ \b \f \n \r \t")
-          .assertNextToken(TokenType.EOF);
-      }
+          createTest(input)
+            .assertNextToken(TokenType.STRING, "\" / \\ \b \f \n \r \t")
+            .assertNextToken(TokenType.STRING, "\" / \\ \b \f \n \r \t")
+            .assertNextToken(TokenType.EOF);
+        }
 
-      @Test
-      void whenUnicode_shouldRecognize() {
-        var input = """
+        @Test
+        void whenUnicode_shouldRecognize() {
+          var input = """
           "\\u1234 \\uabcd \\u0000 \\uffff"
           "\\u1234 \\uabcd \\u0000 \\uffff"
           """;
 
-        createTest(input)
-          .assertNextToken(TokenType.STRING, "\u1234 \uabcd \u0000 \uffff")
-          .assertNextToken(TokenType.STRING, "\u1234 \uabcd \u0000 \uffff")
-          .assertNextToken(TokenType.EOF);
+          createTest(input)
+            .assertNextToken(TokenType.STRING, "\u1234 \uabcd \u0000 \uffff")
+            .assertNextToken(TokenType.STRING, "\u1234 \uabcd \u0000 \uffff")
+            .assertNextToken(TokenType.EOF);
+        }
       }
     }
 
