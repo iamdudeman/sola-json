@@ -1,6 +1,7 @@
 package technology.sola.json.token;
 
 import technology.sola.json.exception.InvalidCharacterException;
+import technology.sola.json.exception.InvalidControlCharacterException;
 import technology.sola.json.exception.InvalidNumberException;
 import technology.sola.json.exception.StringNotClosedException;
 
@@ -84,12 +85,22 @@ public class Tokenizer {
   }
 
   private Token tokenString() {
+    StringBuilder stringTokenWithEscapesBuilder = null;
     advance();
     int start = textIndex;
 
-    // TODO handle control characters
-
     while (currentChar != null && currentChar != '\"') {
+      if (currentChar == '\\') {
+        if (stringTokenWithEscapesBuilder == null) {
+          stringTokenWithEscapesBuilder = new StringBuilder();
+          stringTokenWithEscapesBuilder.append(characters, start, textIndex - start);
+        }
+
+        advanceControlCharacter(stringTokenWithEscapesBuilder);
+      } else if (stringTokenWithEscapesBuilder != null) {
+        stringTokenWithEscapesBuilder.append(currentChar);
+      }
+
       advance();
     }
 
@@ -98,7 +109,41 @@ public class Tokenizer {
     }
 
     advance();
-    return new Token(TokenType.STRING, new String(characters, start, textIndex - start - 1));
+
+    String tokenValue = stringTokenWithEscapesBuilder == null ? new String(characters, start, textIndex - start - 1) : stringTokenWithEscapesBuilder.toString();
+
+    return new Token(TokenType.STRING, tokenValue);
+
+//    if (stringBuilder == null) {
+//      return new Token(TokenType.STRING, new String(characters, start, textIndex - start - 1));
+//    } else {
+//      return new Token(TokenType.STRING, stringBuilder.toString());
+//    }
+  }
+
+  private void advanceControlCharacter(StringBuilder stringBuilder) {
+    advance();
+    char result = switch (currentChar) {
+      case '"' -> '\"';
+      case '\\' -> '\\';
+      case '/' -> '/';
+      case 'b' -> '\b';
+      case 'f' -> '\f';
+      case 'n' -> '\n';
+      case 'r' -> '\r';
+      case 't' -> '\t';
+      case 'u' -> {
+        // TODO need to do length and type checks for next 4 values
+        advance();
+        int codePoint = Integer.parseInt(new String(characters, textIndex, 4), 16);
+        textIndex += 2;
+        advance();
+        yield (char) codePoint;
+      }
+      default -> throw new InvalidControlCharacterException();
+    };
+
+    stringBuilder.append(result);
   }
 
   private Token tokenNumber() {
