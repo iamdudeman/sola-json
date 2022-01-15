@@ -59,10 +59,10 @@ public class SolaJson {
       case NUMBER -> {
         String value = astNode.token().value();
 
-        if (value.matches("-?[0-9]+")) {
-          yield new JsonValue(Long.parseLong(value));
-        } else {
+        if (value.contains(".")) {
           yield new JsonValue(Double.parseDouble(value));
+        } else {
+          yield new JsonValue(Long.parseLong(value));
         }
       }
       default -> throw new RuntimeException("Invalid AST");

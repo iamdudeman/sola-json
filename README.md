@@ -1,6 +1,9 @@
 # sola-json
 Parser definition based on [json.org](https://www.json.org/json-en.html)
 
+SolaJson is a lightweight JSON parsing library for Java that is reflection free.
+It started as a project to continue learning more about grammars and parsing.
+
 ## Terminals
 ```
 COLON      : :

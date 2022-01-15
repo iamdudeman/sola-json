@@ -1,9 +1,6 @@
 package technology.sola.json.token;
 
-import technology.sola.json.exception.InvalidCharacterException;
-import technology.sola.json.exception.InvalidControlCharacterException;
-import technology.sola.json.exception.InvalidNumberException;
-import technology.sola.json.exception.StringNotClosedException;
+import technology.sola.json.exception.*;
 
 public class Tokenizer {
   private final char[] characters;
@@ -17,7 +14,7 @@ public class Tokenizer {
 
   public Token getNextToken() {
     if (currentChar == null) {
-      return new Token(TokenType.EOF, null);
+      return new Token(TokenType.EOF);
     }
 
     if (Character.isWhitespace(currentChar)) {
@@ -27,32 +24,32 @@ public class Tokenizer {
 
     if (currentChar == ':') {
       advance();
-      return new Token(TokenType.COLON, ":");
+      return new Token(TokenType.COLON);
     }
 
     if (currentChar == ',') {
       advance();
-      return new Token(TokenType.COMMA, ",");
+      return new Token(TokenType.COMMA);
     }
 
     if (currentChar == '[') {
       advance();
-      return new Token(TokenType.L_BRACKET, "[");
+      return new Token(TokenType.L_BRACKET);
     }
 
     if (currentChar == ']') {
       advance();
-      return new Token(TokenType.R_BRACKET, "]");
+      return new Token(TokenType.R_BRACKET);
     }
 
     if (currentChar == '{') {
       advance();
-      return new Token(TokenType.L_CURLY, "{");
+      return new Token(TokenType.L_CURLY);
     }
 
     if (currentChar == '}') {
       advance();
-      return new Token(TokenType.R_CURLY, "}");
+      return new Token(TokenType.R_CURLY);
     }
 
     if (currentChar == '"') {
@@ -63,22 +60,19 @@ public class Tokenizer {
       return tokenNumber();
     }
 
-    if (currentChar == 't' && isExpectedPeek('r', 'u', 'e')) {
-      textIndex += 3;
-      advance();
-      return new Token(TokenType.TRUE, "true");
+    if (currentChar == 't') {
+      advanceKeywordTrue();
+      return new Token(TokenType.TRUE);
     }
 
-    if (currentChar == 'f' && isExpectedPeek('a', 'l', 's', 'e')) {
-      textIndex += 4;
-      advance();
-      return new Token(TokenType.FALSE, "false");
+    if (currentChar == 'f') {
+      advanceKeywordFalse();
+      return new Token(TokenType.FALSE);
     }
 
-    if (currentChar == 'n' && isExpectedPeek('u', 'l', 'l')) {
-      textIndex += 3;
-      advance();
-      return new Token(TokenType.NULL, "null");
+    if (currentChar == 'n') {
+      advanceKeywordNull();
+      return new Token(TokenType.NULL);
     }
 
     throw new InvalidCharacterException(currentChar);
@@ -96,7 +90,7 @@ public class Tokenizer {
           stringTokenWithEscapesBuilder.append(characters, start, textIndex - start);
         }
 
-        advanceControlCharacter(stringTokenWithEscapesBuilder);
+        advanceEscapeCharacter(stringTokenWithEscapesBuilder);
       } else if (stringTokenWithEscapesBuilder != null) {
         stringTokenWithEscapesBuilder.append(currentChar);
       }
@@ -117,7 +111,55 @@ public class Tokenizer {
     return new Token(TokenType.STRING, tokenValue);
   }
 
-  private void advanceControlCharacter(StringBuilder stringBuilder) {
+  private Token tokenNumber() {
+    int startIndex = textIndex;
+
+    advanceNumber();
+    advanceFraction();
+    advanceExponent();
+
+    int characterCount = textIndex - startIndex;
+
+    if (characterCount == 1 && characters[startIndex] == '-') {
+      throw new InvalidNumberException();
+    }
+
+    return new Token(TokenType.NUMBER, new String(characters, startIndex, characterCount));
+  }
+
+  private void advanceKeywordTrue() {
+    advance();
+    if (currentChar != 'r') throw new InvalidKeywordException("true", "t", currentChar);
+    advance();
+    if (currentChar != 'u') throw new InvalidKeywordException("true", "tr", currentChar);
+    advance();
+    if (currentChar != 'e') throw new InvalidKeywordException("true", "tru", currentChar);
+    advance();
+  }
+
+  private void advanceKeywordNull() {
+    advance();
+    if (currentChar != 'u') throw new InvalidKeywordException("null", "n", currentChar);
+    advance();
+    if (currentChar != 'l') throw new InvalidKeywordException("null", "nu", currentChar);
+    advance();
+    if (currentChar != 'l') throw new InvalidKeywordException("null", "nul", currentChar);
+    advance();
+  }
+
+  private void advanceKeywordFalse() {
+    advance();
+    if (currentChar != 'a') throw new InvalidKeywordException("false", "f", currentChar);
+    advance();
+    if (currentChar != 'l') throw new InvalidKeywordException("false", "fa", currentChar);
+    advance();
+    if (currentChar != 's') throw new InvalidKeywordException("false", "fal", currentChar);
+    advance();
+    if (currentChar != 'e') throw new InvalidKeywordException("false", "fals", currentChar);
+    advance();
+  }
+
+  private void advanceEscapeCharacter(StringBuilder stringBuilder) {
     advance();
     char result = switch (currentChar) {
       case '"' -> '\"';
@@ -148,22 +190,6 @@ public class Tokenizer {
     };
 
     stringBuilder.append(result);
-  }
-
-  private Token tokenNumber() {
-    int startIndex = textIndex;
-
-    advanceNumber();
-    advanceFraction();
-    advanceExponent();
-
-    int characterCount = textIndex - startIndex;
-
-    if (characterCount == 1 && characters[startIndex] == '-') {
-      throw new InvalidNumberException();
-    }
-
-    return new Token(TokenType.NUMBER, new String(characters, startIndex, characterCount));
   }
 
   private void advanceNumber() {
@@ -200,30 +226,6 @@ public class Tokenizer {
         advance();
       }
     }
-  }
-
-  private boolean isExpectedPeek(char... chars) {
-    int offset = 1;
-
-    for (char peekChar : chars) {
-      if (!peekAndCheck(offset, peekChar)) {
-        return false;
-      }
-
-      offset++;
-    }
-
-    return true;
-  }
-
-  private boolean peekAndCheck(int offset, char expectedChar) {
-    return Character.valueOf(expectedChar).equals(peek(offset));
-  }
-
-  private Character peek(int offset) {
-    int peekIndex = textIndex + offset;
-
-    return peekIndex < characters.length ? characters[peekIndex] : null;
   }
 
   private void advance() {

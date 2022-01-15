@@ -98,9 +98,9 @@ class ParserTest {
 
         createTest(input)
           .assertCurrentNode(AstNodeType.ARRAY)
-          .child(0).assertCurrentNode(AstNodeType.VALUE, TokenType.TRUE, "true")
-          .child(1).assertCurrentNode(AstNodeType.VALUE, TokenType.NULL, "null")
-          .child(2).assertCurrentNode(AstNodeType.VALUE, TokenType.FALSE, "false")
+          .child(0).assertCurrentNode(AstNodeType.VALUE, TokenType.TRUE)
+          .child(1).assertCurrentNode(AstNodeType.VALUE, TokenType.NULL)
+          .child(2).assertCurrentNode(AstNodeType.VALUE, TokenType.FALSE)
           ;
       }
 
@@ -112,9 +112,9 @@ class ParserTest {
 
         createTest(input)
           .assertCurrentNode(AstNodeType.ARRAY)
-          .child(0).assertCurrentNode(AstNodeType.VALUE, TokenType.TRUE, "true")
+          .child(0).assertCurrentNode(AstNodeType.VALUE, TokenType.TRUE)
           .child(1).assertCurrentNode(AstNodeType.ARRAY)
-          .child(1, 0).assertCurrentNode(AstNodeType.VALUE, TokenType.FALSE, "false")
+          .child(1, 0).assertCurrentNode(AstNodeType.VALUE, TokenType.FALSE)
           ;
       }
 
