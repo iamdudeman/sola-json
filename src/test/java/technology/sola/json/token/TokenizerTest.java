@@ -2,6 +2,7 @@ package technology.sola.json.token;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import technology.sola.json.exception.InvalidControlCharacterException;
 import technology.sola.json.exception.InvalidNumberException;
 import technology.sola.json.exception.StringNotClosedException;
 
@@ -102,7 +103,8 @@ class TokenizerTest {
 
         createTest(input)
           .assertNextToken(TokenType.STRING, "test_string")
-          .assertNextToken(TokenType.STRING, "test");
+          .assertNextToken(TokenType.STRING, "test")
+          .assertNextToken(TokenType.EOF);
       }
 
       @Test
@@ -110,6 +112,72 @@ class TokenizerTest {
         var input = " \"test ";
 
         assertThrows(StringNotClosedException.class, () -> createTest(input).assertNextToken(TokenType.STRING));
+      }
+
+      @Nested
+      class withControlCharacters {
+        @Test
+        void whenControlCharacterNotFinished_shouldThrowException() {
+          var input = """
+          " \\ "
+          """;
+
+          assertThrows(InvalidControlCharacterException.class, () -> createTest(input).assertNextToken(TokenType.STRING));
+        }
+
+        @Test
+        void whenInvalidUnicode_shouldThrowException() {
+          var input = """
+          "\\u12r3"
+          """;
+
+          assertThrows(InvalidControlCharacterException.class, () -> createTest(input).assertNextToken(TokenType.STRING));
+        }
+
+        @Test
+        void whenIncompleteUnicode_shouldThrowException() {
+          var input = """
+          "\\u12"
+          """;
+
+          assertThrows(InvalidControlCharacterException.class, () -> createTest(input).assertNextToken(TokenType.STRING));
+        }
+
+        @Test
+        void whenEscapedQuote_shouldRecognize() {
+          var input = " \"te\\\"st\" \"te\\\"st\"  ";
+
+          createTest(input)
+            .assertNextToken(TokenType.STRING, "te\"st")
+            .assertNextToken(TokenType.STRING, "te\"st")
+            .assertNextToken(TokenType.EOF);
+        }
+
+        @Test
+        void whenNonUnicodeControlCharacter_shouldRecognize() {
+          var input = """
+          "\\" \\/ \\\\ \\b \\f \\n \\r \\t"
+          "\\" \\/ \\\\ \\b \\f \\n \\r \\t"
+          """;
+
+          createTest(input)
+            .assertNextToken(TokenType.STRING, "\" / \\ \b \f \n \r \t")
+            .assertNextToken(TokenType.STRING, "\" / \\ \b \f \n \r \t")
+            .assertNextToken(TokenType.EOF);
+        }
+
+        @Test
+        void whenUnicode_shouldRecognize() {
+          var input = """
+          "\\u1234 \\uabcd \\u0000 \\uffff"
+          "\\u1234 \\uabcd \\u0000 \\uffff"
+          """;
+
+          createTest(input)
+            .assertNextToken(TokenType.STRING, "\u1234 \uabcd \u0000 \uffff")
+            .assertNextToken(TokenType.STRING, "\u1234 \uabcd \u0000 \uffff")
+            .assertNextToken(TokenType.EOF);
+        }
       }
     }
 
@@ -190,13 +258,7 @@ class TokenizerTest {
     return new TokenizerTester(tokenizer);
   }
 
-  private static class TokenizerTester {
-    private final Tokenizer tokenizer;
-
-    public TokenizerTester(Tokenizer tokenizer) {
-      this.tokenizer = tokenizer;
-    }
-
+  private static record TokenizerTester(Tokenizer tokenizer) {
     TokenizerTester assertNextToken(TokenType expectedType) {
       assertNextToken(expectedType, null);
 
