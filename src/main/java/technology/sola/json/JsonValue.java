@@ -90,6 +90,15 @@ public class JsonValue {
     return type == JsonValueType.NULL;
   }
 
+  @Override
+  public String toString() {
+    if (type == JsonValueType.STRING) {
+      return "\"" + value + "\"";
+    }
+
+    return value == null ? "null" : value.toString();
+  }
+
   private void assertType(JsonValueType assertionType) {
     if (type != assertionType) {
       throw new RuntimeException("Json value is not of desired type");
