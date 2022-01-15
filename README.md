@@ -27,3 +27,20 @@ array   : L_BRACKET (value (COMMA value)*)? R_BRACKET
 pair    : STRING COLON value
 value   : STRING|NUMBER|object|array|TRUE|FALSE|NULL
 ```
+
+
+## TODO List
+* Error handling
+  * Line + character count for where bad characters found
+  * Better messages for why parsing fails
+* Performance
+  * Continue to improve Tokenizer#tokenString method
+  * Research improvements to Tokenizer#tokenNumber method
+  * Improve Parser performance
+  * Research alternative ways of getting initial character array for Tokenizer (maybe not using String#toCharArray())
+* API
+  * Pretty serializing of JsonElement, JsonObject and JsonArray
+  * Add methods for manually constructing JsonObjects and JsonArrays easier
+* JavaDoc all the things
+* Pipeline
+  * Add github actions for builds to main

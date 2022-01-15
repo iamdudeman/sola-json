@@ -28,11 +28,11 @@ class SolaJsonTest {
 
     JsonObject root = solaJson.parse(jsonString).asObject();
 
-    assertEquals("test2", root.get("test").asString());
-    assertTrue(root.get("null").isNull());
-    assertTrue(root.get("true").asBoolean());
-    assertFalse(root.get("false").asBoolean());
-    assertEquals("value", root.getObject("testObject").get("test").asString());
-    assertEquals("value", root.getArray("testArray").get(0).asObject().get("test").asString());
+    assertEquals("test2", root.getString("test"));
+    assertTrue(root.isNull("null"));
+    assertTrue(root.getBoolean("true"));
+    assertFalse(root.getBoolean("false"));
+    assertEquals("value", root.getObject("testObject").getString("test"));
+    assertEquals("value", root.getArray("testArray").getObject(0).getString("test"));
   }
 }
