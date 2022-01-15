@@ -2,7 +2,7 @@ package technology.sola.json;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class SolaJsonTest {
   @Test
@@ -13,9 +13,12 @@ class SolaJsonTest {
         "testObject": {
           "test": "value"
         },
+        "null": null,
+        "true": true,
+        "false": false,
         "testArray": [
           {
-            "test": "woot"
+            "test": "value"
           }
         ]
       }
@@ -26,7 +29,10 @@ class SolaJsonTest {
     JsonObject root = solaJson.parse(jsonString).asObject();
 
     assertEquals("test2", root.get("test").asString());
+    assertTrue(root.get("null").isNull());
+    assertTrue(root.get("true").asBoolean());
+    assertFalse(root.get("false").asBoolean());
     assertEquals("value", root.getObject("testObject").get("test").asString());
-    assertEquals("woot", root.getArray("testArray").get(0).asObject().get("test").asString());
+    assertEquals("value", root.getArray("testArray").get(0).asObject().get("test").asString());
   }
 }

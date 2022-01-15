@@ -2,7 +2,7 @@ package technology.sola.json;
 
 import java.util.HashMap;
 
-public class JsonObject extends HashMap<String, JsonValue> {
+public class JsonObject extends HashMap<String, JsonElement> {
   public JsonObject() {
   }
 

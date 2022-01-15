@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class JsonValueTest {
+public class JsonElementTest {
   @Test
   void toString_shouldSerializeTree() {
     String input = """
@@ -22,11 +22,11 @@ public class JsonValueTest {
       }
       """;
 
-    JsonValue jsonValue = new SolaJson().parse(input);
+    JsonElement jsonElement = new SolaJson().parse(input);
 
     assertEquals(
       "{\"key2\":false,\"array\":[null,{\"key\":\"value\"},true],\"key\":\"value\",\"object\":{}}",
-      jsonValue.toString()
+      jsonElement.toString()
     );
   }
 }

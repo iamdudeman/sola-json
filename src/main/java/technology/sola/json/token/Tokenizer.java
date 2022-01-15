@@ -9,7 +9,7 @@ public class Tokenizer {
 
   public Tokenizer(String text) {
     characters = text.toCharArray();
-    currentChar = text.charAt(textIndex);
+    currentChar = characters[textIndex];
   }
 
   public Token getNextToken() {
@@ -79,34 +79,41 @@ public class Tokenizer {
   }
 
   private Token tokenString() {
+    // StringBuilder required if escaped character is present
     StringBuilder stringTokenWithEscapesBuilder = null;
-    advance();
-    int start = textIndex;
 
-    while (currentChar != null && currentChar != '\"') {
-      if (currentChar == '\\') {
+    // These local fields save a lot of time from field lookups
+    char[] buffer = characters;
+    int localPos = textIndex + 1;
+    char localChar = buffer[localPos];
+    int start = localPos;
+
+    while (localChar != '\"') {
+      if (localChar == '\\') {
         if (stringTokenWithEscapesBuilder == null) {
           stringTokenWithEscapesBuilder = new StringBuilder();
-          stringTokenWithEscapesBuilder.append(characters, start, textIndex - start);
+          stringTokenWithEscapesBuilder.append(buffer, start, localPos - start);
         }
 
-        advanceEscapeCharacter(stringTokenWithEscapesBuilder);
+        localPos = advanceEscapeCharacter(buffer, localPos, stringTokenWithEscapesBuilder);
       } else if (stringTokenWithEscapesBuilder != null) {
-        stringTokenWithEscapesBuilder.append(currentChar);
+        stringTokenWithEscapesBuilder.append(localChar);
       }
 
-      advance();
+      localPos++;
+      if (localPos >= buffer.length) {
+        throw new StringNotClosedException();
+      }
+      localChar = buffer[localPos];
     }
-
-    if (currentChar == null) {
-      throw new StringNotClosedException();
-    }
-
-    advance();
 
     String tokenValue = stringTokenWithEscapesBuilder == null
-      ? new String(characters, start, textIndex - start - 1)
+      ? new String(buffer, start, localPos - start)
       : stringTokenWithEscapesBuilder.toString();
+
+    localPos++;
+    textIndex = localPos;
+    currentChar = buffer[localPos];
 
     return new Token(TokenType.STRING, tokenValue);
   }
@@ -159,8 +166,10 @@ public class Tokenizer {
     advance();
   }
 
-  private void advanceEscapeCharacter(StringBuilder stringBuilder) {
-    advance();
+  private int advanceEscapeCharacter(char[] buffer, int pos, StringBuilder stringBuilder) {
+    int localPos = pos + 1;
+    currentChar = buffer[localPos];
+
     char result = switch (currentChar) {
       case '"' -> '\"';
       case '\\' -> '\\';
@@ -171,16 +180,15 @@ public class Tokenizer {
       case 'r' -> '\r';
       case 't' -> '\t';
       case 'u' -> {
-        advance();
+        localPos++;
 
-        if (textIndex + 4 > characters.length) {
+        if (localPos + 4 > buffer.length) {
           throw new InvalidControlCharacterException();
         }
 
         try {
-          int codePoint = Integer.parseInt(new String(characters, textIndex, 4), 16);
-          textIndex += 2;
-          advance();
+          int codePoint = Integer.parseInt(new String(buffer, localPos, 4), 16);
+          localPos += 3;
           yield (char) codePoint;
         } catch (NumberFormatException ex) {
           throw new InvalidControlCharacterException();
@@ -190,6 +198,7 @@ public class Tokenizer {
     };
 
     stringBuilder.append(result);
+    return localPos;
   }
 
   private void advanceNumber() {
