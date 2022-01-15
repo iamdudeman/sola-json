@@ -5,13 +5,52 @@ import technology.sola.json.parser.AstNodeType;
 import technology.sola.json.parser.Parser;
 import technology.sola.json.token.Tokenizer;
 
+/**
+ * SolaJson contains methods for parsing strings into {@link JsonElement}s and serializing {@code JsonElement}s into strings.
+ */
 public class SolaJson {
+  /**
+   * Parses a JSON string into a {@link JsonElement}.
+   *
+   * @param jsonString  the JSON string to parse
+   * @return the parsed {@code JsonElement}
+   */
   public JsonElement parse(String jsonString) {
     Tokenizer tokenizer = new Tokenizer(jsonString);
     Parser parser = new Parser(tokenizer);
     AstNode root = parser.parse();
 
     return visit(root);
+  }
+
+  /**
+   * Serializes as {@link JsonElement}.
+   *
+   * @param jsonElement  the {@code JsonElement} to serialize
+   * @return serialized JSON string
+   */
+  public String serialize(JsonElement jsonElement) {
+    return jsonElement.toString();
+  }
+
+  /**
+   * Serializes as {@link JsonObject}.
+   *
+   * @param jsonObject  the {@code JsonObject} to serialize
+   * @return serialized JSON string
+   */
+  public String serialize(JsonObject jsonObject) {
+    return jsonObject.toString();
+  }
+
+  /**
+   * Serializes as {@link JsonArray}.
+   *
+   * @param jsonArray  the {@code JsonArray} to serialize
+   * @return serialized JSON string
+   */
+  public String serialize(JsonArray jsonArray) {
+    return jsonArray.toString();
   }
 
   private JsonElement visit(AstNode astNode) {

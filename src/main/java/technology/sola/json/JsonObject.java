@@ -58,6 +58,58 @@ public class JsonObject extends HashMap<String, JsonElement> {
     return jsonElement;
   }
 
+  public JsonElement put(String key, JsonObject value) {
+    if (value == null) return putNull(key);
+
+    return put(key, new JsonElement(value));
+  }
+
+  public JsonElement put(String key, JsonArray value) {
+    if (value == null) return putNull(key);
+
+    return put(key, new JsonElement(value));
+  }
+
+  public JsonElement put(String key, String value) {
+    if (value == null) return putNull(key);
+
+    return put(key, new JsonElement(value));
+  }
+
+  public JsonElement put(String key, Integer value) {
+    if (value == null) return putNull(key);
+
+    return put(key, new JsonElement(value));
+  }
+
+  public JsonElement put(String key, Long value) {
+    if (value == null) return putNull(key);
+
+    return put(key, new JsonElement(value));
+  }
+
+  public JsonElement put(String key, Double value) {
+    if (value == null) return putNull(key);
+
+    return put(key, new JsonElement(value));
+  }
+
+  public JsonElement put(String key, Float value) {
+    if (value == null) return putNull(key);
+
+    return put(key, new JsonElement(value));
+  }
+
+  public JsonElement put(String key, Boolean value) {
+    if (value == null) return putNull(key);
+
+    return put(key, new JsonElement(value));
+  }
+
+  public JsonElement putNull(String key) {
+    return put(key, new JsonElement());
+  }
+
   @Override
   public String toString() {
     StringBuilder stringBuilder = new StringBuilder();

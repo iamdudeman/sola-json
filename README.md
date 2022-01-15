@@ -40,7 +40,6 @@ value   : STRING|NUMBER|object|array|TRUE|FALSE|NULL
   * Research alternative ways of getting initial character array for Tokenizer (maybe not using String#toCharArray())
 * API
   * Pretty serializing of JsonElement, JsonObject and JsonArray
-  * Add methods for manually constructing JsonObjects and JsonArrays easier
 * JavaDoc all the things
 * Pipeline
   * Add github actions for builds to main

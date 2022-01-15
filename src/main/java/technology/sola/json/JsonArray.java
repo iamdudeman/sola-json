@@ -46,6 +46,58 @@ public class JsonArray extends ArrayList<JsonElement> {
     return get(index).isNull();
   }
 
+  public boolean add(JsonObject value) {
+    if (value == null) return addNull();
+
+    return add(new JsonElement(value));
+  }
+
+  public boolean add(JsonArray value) {
+    if (value == null) return addNull();
+
+    return add(new JsonElement(value));
+  }
+
+  public boolean add(String value) {
+    if (value == null) return addNull();
+
+    return add(new JsonElement(value));
+  }
+
+  public boolean add(Integer value) {
+    if (value == null) return addNull();
+
+    return add(new JsonElement(value));
+  }
+
+  public boolean add(Long value) {
+    if (value == null) return addNull();
+
+    return add(new JsonElement(value));
+  }
+
+  public boolean add(Float value) {
+    if (value == null) return addNull();
+
+    return add(new JsonElement(value));
+  }
+
+  public boolean add(Double value) {
+    if (value == null) return addNull();
+
+    return add(new JsonElement(value));
+  }
+
+  public boolean add(Boolean value) {
+    if (value == null) return addNull();
+
+    return add(new JsonElement(value));
+  }
+
+  public boolean addNull() {
+    return add(new JsonElement());
+  }
+
   @Override
   public String toString() {
     StringBuilder stringBuilder = new StringBuilder();
