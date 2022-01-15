@@ -119,8 +119,6 @@ public class Tokenizer {
   }
 
   private Token tokenNumber() {
-    // TODO probably should use local char[] buffer here as well
-
     int startIndex = textIndex;
 
     advanceNumber();

@@ -1,49 +1,49 @@
 package technology.sola.json;
 
-public class JsonValue {
+public class JsonElement {
   private final JsonValueType type;
   private Object value;
 
-  public JsonValue() {
+  public JsonElement() {
     type = JsonValueType.NULL;
   }
 
-  public JsonValue(int value) {
+  public JsonElement(int value) {
     type = JsonValueType.LONG;
     this.value = value;
   }
 
-  public JsonValue(long value) {
+  public JsonElement(long value) {
     type = JsonValueType.LONG;
     this.value = value;
   }
 
-  public JsonValue(float value) {
+  public JsonElement(float value) {
     type = JsonValueType.DOUBLE;
     this.value = value;
   }
 
-  public JsonValue(double value) {
+  public JsonElement(double value) {
     type = JsonValueType.DOUBLE;
     this.value = value;
   }
 
-  public JsonValue(String value) {
+  public JsonElement(String value) {
     type = JsonValueType.STRING;
     this.value = value;
   }
 
-  public JsonValue(JsonObject value) {
+  public JsonElement(JsonObject value) {
     type = JsonValueType.JSON_OBJECT;
     this.value = value;
   }
 
-  public JsonValue(JsonArray value) {
+  public JsonElement(JsonArray value) {
     type = JsonValueType.JSON_ARRAY;
     this.value = value;
   }
 
-  public JsonValue(boolean value) {
+  public JsonElement(boolean value) {
     type = JsonValueType.BOOLEAN;
     this.value = value;
   }

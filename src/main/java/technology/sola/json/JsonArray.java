@@ -2,7 +2,7 @@ package technology.sola.json;
 
 import java.util.ArrayList;
 
-public class JsonArray extends ArrayList<JsonValue> {
+public class JsonArray extends ArrayList<JsonElement> {
   public JsonArray() {
   }
 

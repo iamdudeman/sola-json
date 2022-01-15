@@ -6,7 +6,7 @@ import technology.sola.json.parser.Parser;
 import technology.sola.json.token.Tokenizer;
 
 public class SolaJson {
-  public JsonValue parse(String jsonString) {
+  public JsonElement parse(String jsonString) {
     Tokenizer tokenizer = new Tokenizer(jsonString);
     Parser parser = new Parser(tokenizer);
     AstNode root = parser.parse();
@@ -14,7 +14,7 @@ public class SolaJson {
     return visit(root);
   }
 
-  private JsonValue visit(AstNode astNode) {
+  private JsonElement visit(AstNode astNode) {
     return switch (astNode.type()) {
       case OBJECT -> visitObject(astNode);
       case ARRAY -> visitArray(astNode);
@@ -23,7 +23,7 @@ public class SolaJson {
     };
   }
 
-  private JsonValue visitObject(AstNode astNode) {
+  private JsonElement visitObject(AstNode astNode) {
     JsonObject jsonObject = new JsonObject(astNode.children().length);
 
     for (AstNode pairNode : astNode.children()) {
@@ -32,37 +32,37 @@ public class SolaJson {
       }
 
       String key = pairNode.token().value();
-      JsonValue value = visit(pairNode.children()[0]);
+      JsonElement value = visit(pairNode.children()[0]);
 
       jsonObject.put(key, value);
     }
 
-    return new JsonValue(jsonObject);
+    return new JsonElement(jsonObject);
   }
 
-  private JsonValue visitArray(AstNode astNode) {
+  private JsonElement visitArray(AstNode astNode) {
     JsonArray jsonArray = new JsonArray(astNode.children().length);
 
     for (AstNode childNode : astNode.children()) {
       jsonArray.add(visit(childNode));
     }
 
-    return new JsonValue(jsonArray);
+    return new JsonElement(jsonArray);
   }
 
-  private JsonValue visitValue(AstNode astNode) {
+  private JsonElement visitValue(AstNode astNode) {
     return switch (astNode.token().type()) {
-      case STRING -> new JsonValue(astNode.token().value());
-      case TRUE -> new JsonValue(true);
-      case FALSE -> new JsonValue(false);
-      case NULL -> new JsonValue();
+      case STRING -> new JsonElement(astNode.token().value());
+      case TRUE -> new JsonElement(true);
+      case FALSE -> new JsonElement(false);
+      case NULL -> new JsonElement();
       case NUMBER -> {
         String value = astNode.token().value();
 
         if (value.contains(".")) {
-          yield new JsonValue(Double.parseDouble(value));
+          yield new JsonElement(Double.parseDouble(value));
         } else {
-          yield new JsonValue(Long.parseLong(value));
+          yield new JsonElement(Long.parseLong(value));
         }
       }
       default -> throw new RuntimeException("Invalid AST");
