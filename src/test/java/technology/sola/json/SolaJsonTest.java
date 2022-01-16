@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SolaJsonTest {
   @Test
-  void test() {
+  void deserialize() {
     String jsonString = """
       {
         "test": "test2",
@@ -34,5 +34,25 @@ class SolaJsonTest {
     assertFalse(root.getBoolean("false"));
     assertEquals("value", root.getObject("testObject").getString("test"));
     assertEquals("value", root.getArray("testArray").getObject(0).getString("test"));
+  }
+
+  @Test
+  void serialize() {
+    JsonArray jsonArray = new JsonArray();
+    jsonArray.addNull();
+    jsonArray.add(true);
+    jsonArray.add(new JsonObject());
+
+    JsonObject jsonObject = new JsonObject();
+    jsonObject.put("key", "value");
+    jsonObject.put("key2", false);
+    jsonObject.put("array", jsonArray);
+
+    String serialized = new SolaJson().serialize(jsonObject);
+
+    assertEquals(
+      "{\"key2\":false,\"array\":[null,true,{}],\"key\":\"value\"}",
+      serialized
+    );
   }
 }
