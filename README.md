@@ -2,7 +2,7 @@
 SolaJson is a lightweight JSON parsing library for Java.
 It started as a project to continue learning about building parsers based on language grammars.
 
-![](https://github.com/iamdudeman/sola-json/workflows/Java%20CI/badge.svg)
+[![Java CI](https://github.com/iamdudeman/sola-json/actions/workflows/gradle.yml/badge.svg)](https://github.com/iamdudeman/sola-json/actions/workflows/gradle.yml)
 
 Parser definition based on [json.org](https://www.json.org/json-en.html)
 
