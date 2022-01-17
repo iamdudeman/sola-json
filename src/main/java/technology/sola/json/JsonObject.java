@@ -32,7 +32,7 @@ public class JsonObject extends HashMap<String, JsonElement> {
     return get(key).asFloat();
   }
 
-  public double getInt(String key) {
+  public int getInt(String key) {
     return get(key).asInt();
   }
 
