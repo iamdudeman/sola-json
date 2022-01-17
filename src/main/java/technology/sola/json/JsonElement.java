@@ -1,5 +1,7 @@
 package technology.sola.json;
 
+import technology.sola.json.exception.JsonElementTypeException;
+
 public class JsonElement {
   private final JsonValueType type;
   private Object value;
@@ -103,7 +105,7 @@ public class JsonElement {
 
   private void assertType(JsonValueType assertionType) {
     if (type != assertionType) {
-      throw new RuntimeException("Json value is not of desired type");
+      throw new JsonElementTypeException(assertionType.name(), type.name());
     }
   }
 
