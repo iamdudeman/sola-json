@@ -1,5 +1,7 @@
 package technology.sola.json;
 
+import technology.sola.json.exception.JsonElementTypeException;
+
 public class JsonElement {
   private final JsonValueType type;
   private Object value;
@@ -54,7 +56,8 @@ public class JsonElement {
   }
 
   public int asInt() {
-    return (int) asLong();
+    assertType(JsonValueType.LONG);
+    return ((Number) this.value).intValue();
   }
 
   public long asLong() {
@@ -63,7 +66,8 @@ public class JsonElement {
   }
 
   public float asFloat() {
-    return (float) asDouble();
+    assertType(JsonValueType.DOUBLE);
+    return ((Number) this.value).floatValue();
   }
 
   public double asDouble() {
@@ -101,7 +105,7 @@ public class JsonElement {
 
   private void assertType(JsonValueType assertionType) {
     if (type != assertionType) {
-      throw new RuntimeException("Json value is not of desired type");
+      throw new JsonElementTypeException(assertionType.name(), type.name());
     }
   }
 
