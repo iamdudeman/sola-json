@@ -44,3 +44,5 @@ value   : STRING|NUMBER|object|array|TRUE|FALSE|NULL
 * API
   * Pretty serializing of JsonElement, JsonObject and JsonArray
 * JavaDoc all the things
+* Bugs
+  * JsonElement#toString (and SolaJson#serialize) doesn't support unicode characters
