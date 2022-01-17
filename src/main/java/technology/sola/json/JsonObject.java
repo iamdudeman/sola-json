@@ -12,6 +12,10 @@ public class JsonObject extends HashMap<String, JsonElement> {
     super(initialCapacity);
   }
 
+  public JsonElement asElement() {
+    return new JsonElement(this);
+  }
+
   public JsonObject getObject(String key) {
     return get(key).asObject();
   }
@@ -61,13 +65,13 @@ public class JsonObject extends HashMap<String, JsonElement> {
   public JsonElement put(String key, JsonObject value) {
     if (value == null) return putNull(key);
 
-    return put(key, new JsonElement(value));
+    return put(key, value.asElement());
   }
 
   public JsonElement put(String key, JsonArray value) {
     if (value == null) return putNull(key);
 
-    return put(key, new JsonElement(value));
+    return put(key, value.asElement());
   }
 
   public JsonElement put(String key, String value) {

@@ -10,6 +10,10 @@ public class JsonArray extends ArrayList<JsonElement> {
     super(initialCapacity);
   }
 
+  public JsonElement asElement() {
+    return new JsonElement(this);
+  }
+
   public JsonObject getObject(int index) {
     return get(index).asObject();
   }
@@ -49,13 +53,13 @@ public class JsonArray extends ArrayList<JsonElement> {
   public boolean add(JsonObject value) {
     if (value == null) return addNull();
 
-    return add(new JsonElement(value));
+    return add(value.asElement());
   }
 
   public boolean add(JsonArray value) {
     if (value == null) return addNull();
 
-    return add(new JsonElement(value));
+    return add(value.asElement());
   }
 
   public boolean add(String value) {
