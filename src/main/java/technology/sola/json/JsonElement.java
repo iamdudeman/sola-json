@@ -57,7 +57,7 @@ public class JsonElement {
 
   public int asInt() {
     assertType(JsonValueType.LONG);
-    return (int) this.value;
+    return ((Number) this.value).intValue();
   }
 
   public long asLong() {
@@ -67,7 +67,7 @@ public class JsonElement {
 
   public float asFloat() {
     assertType(JsonValueType.DOUBLE);
-    return (float) this.value;
+    return ((Number) this.value).floatValue();
   }
 
   public double asDouble() {

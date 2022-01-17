@@ -5,6 +5,8 @@ import technology.sola.json.parser.AstNodeType;
 import technology.sola.json.parser.Parser;
 import technology.sola.json.token.Tokenizer;
 
+import java.util.List;
+
 /**
  * SolaJson contains methods for parsing strings into {@link JsonElement}s and serializing {@code JsonElement}s into strings.
  */
@@ -21,6 +23,30 @@ public class SolaJson {
     AstNode root = parser.parse();
 
     return visit(root);
+  }
+
+  /**
+   * Parses a JSON string into an object of type T using a {@link JsonMapper}.
+   *
+   * @param jsonString  the JSON string to parse
+   * @param jsonMapper  the {@code JsonMapper} to use during conversion
+   * @param <T>  the type of the object to convert to
+   * @return the converted Java object of type T
+   */
+  public <T> T parse(String jsonString, JsonMapper<T> jsonMapper) {
+    return jsonMapper.toObject(parse(jsonString).asObject());
+  }
+
+  /**
+   * Parses a JSON string into a {@link List} of type T using a {@link JsonMapper}.
+   *
+   * @param jsonString  the JSON string to parse
+   * @param jsonMapper  the {@code JsonMapper} to use during conversion
+   * @param <T>  the type of the object to convert to
+   * @return the converted List of Java object of type T
+   */
+  public <T> List<T> parseList(String jsonString, JsonMapper<T> jsonMapper) {
+    return jsonMapper.toList(parse(jsonString).asArray());
   }
 
   /**
@@ -51,6 +77,30 @@ public class SolaJson {
    */
   public String serialize(JsonArray jsonArray) {
     return jsonArray.toString();
+  }
+
+  /**
+   * Serializes an object of type T to a string using a {@link JsonMapper}.
+   *
+   * @param object  the object to serialize
+   * @param jsonMapper  the {@code JsonMapper} to use during conversion
+   * @param <T>  the type of the object to serialize
+   * @return serialized JSON string
+   */
+  public <T> String serialize(T object, JsonMapper<T> jsonMapper) {
+    return serialize(jsonMapper.toJson(object));
+  }
+
+  /**
+   * Serializes a list of objects of type T to a string using a {@link JsonMapper}.
+   *
+   * @param list  the list of objects to serialize
+   * @param jsonMapper  the {@code JsonMapper} to use during conversion
+   * @param <T>  the type of the object to serialize
+   * @return serialized JSON string
+   */
+  public <T> String serializeList(List<T> list, JsonMapper<T> jsonMapper) {
+    return serialize(jsonMapper.toJson(list));
   }
 
   private JsonElement visit(AstNode astNode) {
