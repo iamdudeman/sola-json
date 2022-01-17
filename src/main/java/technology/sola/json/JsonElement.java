@@ -97,10 +97,20 @@ public class JsonElement {
   @Override
   public String toString() {
     if (type == JsonValueType.STRING) {
-      return "\"" + value + "\"";
+      return "\"" + escapeNonUnicode(value.toString()) + "\"";
     }
 
     return value == null ? "null" : value.toString();
+  }
+
+  private static String escapeNonUnicode(String s){
+    return s.replace("\\", "\\\\")
+      .replace("\t", "\\t")
+      .replace("\b", "\\b")
+      .replace("\n", "\\n")
+      .replace("\r", "\\r")
+      .replace("\f", "\\f")
+      .replace("\"", "\\\"");
   }
 
   private void assertType(JsonValueType assertionType) {
