@@ -1,4 +1,5 @@
 # sola-json
+
 SolaJson is a lightweight JSON parsing library for Java.
 It started as a project to continue learning about building parsers based on language grammars.
 
@@ -6,7 +7,81 @@ It started as a project to continue learning about building parsers based on lan
 
 Parser definition based on [json.org](https://www.json.org/json-en.html)
 
+## Example Usages
+
+### Basic Usage
+
+```java
+public class BasicUsage {
+  public static void main(String[] args) {
+    String jsonString = """
+      {
+        "key": "value"
+      }
+      """;
+    SolaJson solaJson = new SolaJson();
+    JsonObject root = solaJson.parse(jsonString).asObject();
+    System.out.println(root.getString("key"));
+
+    root.put("key2", 10);
+    System.out.println(solaJson.serialize(root));
+  }
+}
+```
+
+```shell
+# Output
+value
+{"key":"value","key2":10}
+```
+
+### Usage with JsonMapper
+
+```java
+public class JsonMapperUsage {
+  public static void main(String[] args) {
+    String input = """
+      {
+        "value": 1
+      }
+      """;
+    SolaJson solaJson = new SolaJson();
+    Pojo result = solaJson.parse(input, JSON_MAPPER);
+    System.out.println(result.value());
+
+    Pojo pojo = new Pojo(10);
+    System.out.println(solaJson.serialize(pojo, JSON_MAPPER));
+  }
+
+  public record Pojo(int value) {
+  }
+
+  static JsonMapper<Pojo> JSON_MAPPER = new JsonMapper<>() {
+    @Override
+    public JsonObject toJson(Pojo object) {
+      JsonObject jsonObject = new JsonObject();
+
+      jsonObject.put("value", object.value());
+
+      return jsonObject;
+    }
+
+    @Override
+    public TestPojo toObject(JsonObject jsonObject) {
+      return new Pojo(jsonObject.getInt("value"));
+    }
+  };
+}
+```
+
+```shell
+# Output
+1
+{"value":1}
+```
+
 ## Terminals
+
 ```
 COLON      : :
 COMMA      : ,
@@ -21,8 +96,8 @@ STRING     : " (Any codepoint except " or \ or control characters) "
 TRUE       : true
 ```
 
-
 ## Rules
+
 ```
 root    : object|array
 object  : L_CURLY (pair (COMMA pair)*? R_BRACKET
@@ -31,8 +106,8 @@ pair    : STRING COLON value
 value   : STRING|NUMBER|object|array|TRUE|FALSE|NULL
 ```
 
-
 ## TODO List
+
 * Error handling
   * Line + character count for where bad characters found
   * Better messages for why parsing fails
