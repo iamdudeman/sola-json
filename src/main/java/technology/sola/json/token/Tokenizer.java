@@ -135,34 +135,37 @@ public class Tokenizer {
   }
 
   private void advanceKeywordTrue() {
+    int keywordStartIndex = textIndex;
     advance();
-    if (currentChar != 'r') throw new InvalidKeywordException("true", "t", currentChar);
+    if (currentChar != 'r') throw new InvalidKeywordException("true", "t", currentChar, keywordStartIndex);
     advance();
-    if (currentChar != 'u') throw new InvalidKeywordException("true", "tr", currentChar);
+    if (currentChar != 'u') throw new InvalidKeywordException("true", "tr", currentChar, keywordStartIndex);
     advance();
-    if (currentChar != 'e') throw new InvalidKeywordException("true", "tru", currentChar);
+    if (currentChar != 'e') throw new InvalidKeywordException("true", "tru", currentChar, keywordStartIndex);
     advance();
   }
 
   private void advanceKeywordNull() {
+    int keywordStartIndex = textIndex;
     advance();
-    if (currentChar != 'u') throw new InvalidKeywordException("null", "n", currentChar);
+    if (currentChar != 'u') throw new InvalidKeywordException("null", "n", currentChar, keywordStartIndex);
     advance();
-    if (currentChar != 'l') throw new InvalidKeywordException("null", "nu", currentChar);
+    if (currentChar != 'l') throw new InvalidKeywordException("null", "nu", currentChar, keywordStartIndex);
     advance();
-    if (currentChar != 'l') throw new InvalidKeywordException("null", "nul", currentChar);
+    if (currentChar != 'l') throw new InvalidKeywordException("null", "nul", currentChar, keywordStartIndex);
     advance();
   }
 
   private void advanceKeywordFalse() {
+    int keywordStartIndex = textIndex;
     advance();
-    if (currentChar != 'a') throw new InvalidKeywordException("false", "f", currentChar);
+    if (currentChar != 'a') throw new InvalidKeywordException("false", "f", currentChar, keywordStartIndex);
     advance();
-    if (currentChar != 'l') throw new InvalidKeywordException("false", "fa", currentChar);
+    if (currentChar != 'l') throw new InvalidKeywordException("false", "fa", currentChar, keywordStartIndex);
     advance();
-    if (currentChar != 's') throw new InvalidKeywordException("false", "fal", currentChar);
+    if (currentChar != 's') throw new InvalidKeywordException("false", "fal", currentChar, keywordStartIndex);
     advance();
-    if (currentChar != 'e') throw new InvalidKeywordException("false", "fals", currentChar);
+    if (currentChar != 'e') throw new InvalidKeywordException("false", "fals", currentChar, keywordStartIndex);
     advance();
   }
 

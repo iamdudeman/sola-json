@@ -73,34 +73,67 @@ class TokenizerTest {
         .assertNextToken(TokenType.EOF);
     }
 
-    @Test
-    void shouldRecognizeTrue() {
-      var input = " true true ";
+    @Nested
+    class keyword {
+      @Test
+      void shouldRecognizeTrue() {
+        var input = " true true ";
 
-      createTest(input)
-        .assertNextToken(TokenType.TRUE)
-        .assertNextToken(TokenType.TRUE)
-        .assertNextToken(TokenType.EOF);
-    }
+        createTest(input)
+          .assertNextToken(TokenType.TRUE)
+          .assertNextToken(TokenType.TRUE)
+          .assertNextToken(TokenType.EOF);
+      }
 
-    @Test
-    void shouldRecognizeFalse() {
-      var input = " false false ";
+      @Test
+      void whenInvalidTrue_shouldThrowException() {
+        var input = " tru ";
 
-      createTest(input)
-        .assertNextToken(TokenType.FALSE)
-        .assertNextToken(TokenType.FALSE)
-        .assertNextToken(TokenType.EOF);
-    }
+        InvalidKeywordException exception = assertThrows(InvalidKeywordException.class, () -> new Tokenizer(input).getNextToken());
+        assertEquals("true", exception.getExpectedKeyword());
+        assertEquals("tru ", exception.getReceivedKeyword());
+        assertEquals(1, exception.getStartIndex());
+      }
 
-    @Test
-    void shouldRecognizeNull() {
-      var input = " null null ";
+      @Test
+      void shouldRecognizeFalse() {
+        var input = " false false ";
 
-      createTest(input)
-        .assertNextToken(TokenType.NULL)
-        .assertNextToken(TokenType.NULL)
-        .assertNextToken(TokenType.EOF);
+        createTest(input)
+          .assertNextToken(TokenType.FALSE)
+          .assertNextToken(TokenType.FALSE)
+          .assertNextToken(TokenType.EOF);
+      }
+
+      @Test
+      void whenInvalidFalse_shouldThrowException() {
+        var input = " fals ";
+
+        InvalidKeywordException exception = assertThrows(InvalidKeywordException.class, () -> new Tokenizer(input).getNextToken());
+        assertEquals("false", exception.getExpectedKeyword());
+        assertEquals("fals ", exception.getReceivedKeyword());
+        assertEquals(1, exception.getStartIndex());
+      }
+
+      @Test
+      void shouldRecognizeNull() {
+        var input = " null null ";
+
+        createTest(input)
+          .assertNextToken(TokenType.NULL)
+          .assertNextToken(TokenType.NULL)
+          .assertNextToken(TokenType.EOF);
+      }
+
+      @Test
+      void whenInvalidNull_shouldThrowException() {
+        var input = " nul ";
+
+        InvalidKeywordException exception = assertThrows(InvalidKeywordException.class, () -> new Tokenizer(input).getNextToken());
+        assertEquals("null", exception.getExpectedKeyword());
+        assertEquals("nul ", exception.getReceivedKeyword());
+        assertEquals(1, exception.getStartIndex());
+      }
     }
 
     @Nested
