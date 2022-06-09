@@ -186,7 +186,7 @@ public class Tokenizer {
         localPos++;
 
         if (localPos + 4 > buffer.length) {
-          throw new InvalidControlCharacterException();
+          throw new InvalidUnicodeCharacterException(localPos);
         }
 
         try {
@@ -194,10 +194,10 @@ public class Tokenizer {
           localPos += 3;
           yield (char) codePoint;
         } catch (NumberFormatException ex) {
-          throw new InvalidControlCharacterException();
+          throw new InvalidUnicodeCharacterException(localPos);
         }
       }
-      default -> throw new InvalidControlCharacterException();
+      default -> throw new InvalidControlCharacterException(localPos);
     };
 
     stringBuilder.append(result);

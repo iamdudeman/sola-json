@@ -165,7 +165,11 @@ class TokenizerTest {
             " \\ "
             """;
 
-          assertThrows(InvalidControlCharacterException.class, () -> createTest(input).assertNextToken(TokenType.STRING));
+          InvalidControlCharacterException exception = assertThrows(
+            InvalidControlCharacterException.class,
+            () -> createTest(input).assertNextToken(TokenType.STRING)
+          );
+          assertEquals(3, exception.getStartIndex());
         }
 
         @Test
@@ -174,7 +178,11 @@ class TokenizerTest {
             "\\u12r3"
             """;
 
-          assertThrows(InvalidControlCharacterException.class, () -> createTest(input).assertNextToken(TokenType.STRING));
+          InvalidUnicodeCharacterException exception = assertThrows(
+            InvalidUnicodeCharacterException.class,
+            () -> createTest(input).assertNextToken(TokenType.STRING)
+          );
+          assertEquals(3, exception.getStartIndex());
         }
 
         @Test
@@ -183,7 +191,11 @@ class TokenizerTest {
             "\\u12"
             """;
 
-          assertThrows(InvalidControlCharacterException.class, () -> createTest(input).assertNextToken(TokenType.STRING));
+          InvalidUnicodeCharacterException exception = assertThrows(
+            InvalidUnicodeCharacterException.class,
+            () -> createTest(input).assertNextToken(TokenType.STRING)
+          );
+          assertEquals(3, exception.getStartIndex());
         }
 
         @Test

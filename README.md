@@ -109,7 +109,6 @@ value   : STRING|NUMBER|object|array|TRUE|FALSE|NULL
 ## TODO List
 
 * Error handling
-  * Line + character count for where bad characters found
   * Better messages for why parsing fails
 * Performance
   * Continue to improve Tokenizer#tokenString method
