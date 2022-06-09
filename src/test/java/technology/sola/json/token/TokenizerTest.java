@@ -2,10 +2,7 @@ package technology.sola.json.token;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import technology.sola.json.exception.InvalidCharacterException;
-import technology.sola.json.exception.InvalidControlCharacterException;
-import technology.sola.json.exception.InvalidNumberException;
-import technology.sola.json.exception.StringNotClosedException;
+import technology.sola.json.exception.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -132,8 +129,8 @@ class TokenizerTest {
         @Test
         void whenControlCharacterNotFinished_shouldThrowException() {
           var input = """
-          " \\ "
-          """;
+            " \\ "
+            """;
 
           assertThrows(InvalidControlCharacterException.class, () -> createTest(input).assertNextToken(TokenType.STRING));
         }
@@ -141,8 +138,8 @@ class TokenizerTest {
         @Test
         void whenInvalidUnicode_shouldThrowException() {
           var input = """
-          "\\u12r3"
-          """;
+            "\\u12r3"
+            """;
 
           assertThrows(InvalidControlCharacterException.class, () -> createTest(input).assertNextToken(TokenType.STRING));
         }
@@ -150,8 +147,8 @@ class TokenizerTest {
         @Test
         void whenIncompleteUnicode_shouldThrowException() {
           var input = """
-          "\\u12"
-          """;
+            "\\u12"
+            """;
 
           assertThrows(InvalidControlCharacterException.class, () -> createTest(input).assertNextToken(TokenType.STRING));
         }
@@ -169,9 +166,9 @@ class TokenizerTest {
         @Test
         void whenNonUnicodeControlCharacter_shouldRecognize() {
           var input = """
-          "\\" \\/ \\\\ \\b \\f \\n \\r \\t"
-          "\\" \\/ \\\\ \\b \\f \\n \\r \\t"
-          """;
+            "\\" \\/ \\\\ \\b \\f \\n \\r \\t"
+            "\\" \\/ \\\\ \\b \\f \\n \\r \\t"
+            """;
 
           createTest(input)
             .assertNextToken(TokenType.STRING, "\" / \\ \b \f \n \r \t")
@@ -182,9 +179,9 @@ class TokenizerTest {
         @Test
         void whenUnicode_shouldRecognize() {
           var input = """
-          "\\u1234 \\uabcd \\u0000 \\uffff"
-          "\\u1234 \\uabcd \\u0000 \\uffff"
-          """;
+            "\\u1234 \\uabcd \\u0000 \\uffff"
+            "\\u1234 \\uabcd \\u0000 \\uffff"
+            """;
 
           createTest(input)
             .assertNextToken(TokenType.STRING, "\u1234 \uabcd \u0000 \uffff")
@@ -200,14 +197,22 @@ class TokenizerTest {
       void whenOnlyMinus_ShouldThrowException() {
         var input = " - ";
 
-        assertThrows(InvalidNumberException.class, () -> createTest(input).assertNextToken(TokenType.NUMBER));
+        InvalidNegativeNumberException exception = assertThrows(
+          InvalidNegativeNumberException.class,
+          () -> createTest(input).assertNextToken(TokenType.NUMBER)
+        );
+        assertEquals(1, exception.getStartIndex());
       }
 
       @Test
       void whenDotWithNoFraction_ShouldThrowException() {
         var input = " 2. ";
 
-        assertThrows(InvalidNumberException.class, () -> createTest(input).assertNextToken(TokenType.NUMBER));
+        InvalidDecimalNumberException exception = assertThrows(
+          InvalidDecimalNumberException.class,
+          () -> createTest(input).assertNextToken(TokenType.NUMBER)
+        );
+        assertEquals(2, exception.getStartIndex());
       }
 
       @Test

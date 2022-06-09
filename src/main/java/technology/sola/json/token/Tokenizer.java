@@ -128,7 +128,7 @@ public class Tokenizer {
     int characterCount = textIndex - startIndex;
 
     if (characterCount == 1 && characters[startIndex] == '-') {
-      throw new InvalidNumberException();
+      throw new InvalidNegativeNumberException(startIndex);
     }
 
     return new Token(TokenType.NUMBER, new String(characters, startIndex, characterCount));
@@ -219,7 +219,7 @@ public class Tokenizer {
       }
     }
     if (textIndex - startFraction == 1) {
-      throw new InvalidNumberException();
+      throw new InvalidDecimalNumberException(startFraction);
     }
   }
 
