@@ -12,6 +12,10 @@ public class Tokenizer {
     currentChar = characters[textIndex];
   }
 
+  public int getTextIndex() {
+    return textIndex;
+  }
+
   public Token getNextToken() {
     if (currentChar == null) {
       return new Token(TokenType.EOF);

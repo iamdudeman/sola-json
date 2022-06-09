@@ -21,7 +21,7 @@ public class Parser {
     AstNode node = ruleRoot();
 
     if (currentToken.type() != TokenType.EOF) {
-      throw new InvalidSyntaxException();
+      throw new InvalidSyntaxException(currentToken.type(), tokenizer.getTextIndex(), TokenType.EOF);
     }
 
     return node;
@@ -31,7 +31,7 @@ public class Parser {
     return switch (currentToken.type()) {
       case L_BRACKET -> ruleArray();
       case L_CURLY -> ruleObject();
-      default -> throw new InvalidSyntaxException();
+      default -> throw new InvalidSyntaxException(currentToken.type(), tokenizer.getTextIndex(), TokenType.L_BRACKET, TokenType.L_CURLY);
     };
   }
 
@@ -103,7 +103,10 @@ public class Parser {
         eat(TokenType.NUMBER);
         yield AstNode.value(token);
       }
-      default -> throw new RuntimeException("Unrecognized value type " + token.type());
+      default -> throw new InvalidSyntaxException(
+        token.type(), tokenizer.getTextIndex(),
+        TokenType.L_BRACKET, TokenType.L_CURLY, TokenType.TRUE, TokenType.FALSE, TokenType.NULL, TokenType.STRING, TokenType.NUMBER
+      );
     };
   }
 
@@ -111,7 +114,7 @@ public class Parser {
     if (currentToken.type() == tokenType) {
       currentToken = tokenizer.getNextToken();
     } else {
-      throw new InvalidSyntaxException();
+      throw new InvalidSyntaxException(currentToken.type(), tokenizer.getTextIndex(), tokenType);
     }
   }
 }

@@ -108,8 +108,6 @@ value   : STRING|NUMBER|object|array|TRUE|FALSE|NULL
 
 ## TODO List
 
-* Error handling
-  * Better messages for why parsing fails
 * Performance
   * Continue to improve Tokenizer#tokenString method
   * Research improvements to Tokenizer#tokenNumber method
