@@ -111,7 +111,9 @@ class TokenizerTest {
       void whenNotClosed_shouldThrowException() {
         var input = " \"test ";
 
-        assertThrows(StringNotClosedException.class, () -> createTest(input).assertNextToken(TokenType.STRING));
+        StringNotClosedException exception = assertThrows(StringNotClosedException.class, () -> createTest(input).assertNextToken(TokenType.STRING));
+
+        assertEquals(2, exception.getStartIndex());
       }
 
       @Nested

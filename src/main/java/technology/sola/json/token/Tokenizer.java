@@ -102,7 +102,7 @@ public class Tokenizer {
 
       localPos++;
       if (localPos >= buffer.length) {
-        throw new StringNotClosedException();
+        throw new StringNotClosedException(start);
       }
       localChar = buffer[localPos];
     }
