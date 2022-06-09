@@ -109,12 +109,10 @@ value   : STRING|NUMBER|object|array|TRUE|FALSE|NULL
 ## TODO List
 
 * Performance
-  * Continue to improve Tokenizer#tokenString method
+  * Research improvements to Tokenizer#tokenString method
   * Research improvements to Tokenizer#tokenNumber method
-  * Improve Parser performance
+  * Research improving Parser performance
   * Research alternative ways of getting initial character array for Tokenizer (maybe not using String#toCharArray())
 * API
   * Pretty serializing of JsonElement, JsonObject and JsonArray
 * JavaDoc all the things
-* Bugs
-  * JsonElement#toString (and SolaJson#serialize) doesn't support unicode characters
