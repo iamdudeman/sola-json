@@ -75,7 +75,7 @@ public class Tokenizer {
       return new Token(TokenType.NULL);
     }
 
-    throw new InvalidCharacterException(currentChar);
+    throw new InvalidCharacterException(currentChar, textIndex);
   }
 
   private Token tokenString() {

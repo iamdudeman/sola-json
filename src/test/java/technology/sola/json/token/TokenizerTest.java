@@ -2,6 +2,7 @@ package technology.sola.json.token;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import technology.sola.json.exception.InvalidCharacterException;
 import technology.sola.json.exception.InvalidControlCharacterException;
 import technology.sola.json.exception.InvalidNumberException;
 import technology.sola.json.exception.StringNotClosedException;
@@ -12,6 +13,16 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class TokenizerTest {
   @Nested
   class getNextToken {
+    @Test
+    void whenInvalidCharacter_shouldThrowException() {
+      var input = " invalid ";
+
+      InvalidCharacterException exception = assertThrows(InvalidCharacterException.class, () -> new Tokenizer(input).getNextToken());
+
+      assertEquals('i', exception.getInvalidCharacter());
+      assertEquals(1, exception.getStartIndex());
+    }
+
     @Test
     void shouldEndWithEof() {
       var input = "  ";
@@ -260,7 +271,7 @@ class TokenizerTest {
     return new TokenizerTester(tokenizer);
   }
 
-  private static record TokenizerTester(Tokenizer tokenizer) {
+  private record TokenizerTester(Tokenizer tokenizer) {
     TokenizerTester assertNextToken(TokenType expectedType) {
       assertNextToken(expectedType, null);
 
