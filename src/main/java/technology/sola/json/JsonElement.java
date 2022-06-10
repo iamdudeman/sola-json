@@ -110,7 +110,12 @@ public class JsonElement {
       .replace("\n", "\\n")
       .replace("\r", "\\r")
       .replace("\f", "\\f")
-      .replace("\"", "\\\"");
+      .replace("\"", "\\\"")
+      // line separator
+      .replace("\u2028", "\\u2028")
+      // paragraph separator
+      .replace("\u2029", "\\u2029")
+      ;
   }
 
   private void assertType(JsonValueType assertionType) {

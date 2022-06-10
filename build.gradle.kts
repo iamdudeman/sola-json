@@ -2,11 +2,12 @@ plugins {
   id("java-library")
 }
 
-version = "1.0.2"
+version = "2.0.0"
 
 java {
-  sourceCompatibility = JavaVersion.VERSION_16
-  targetCompatibility = JavaVersion.VERSION_16
+  toolchain {
+    languageVersion.set(JavaLanguageVersion.of(18))
+  }
 }
 
 repositories {

@@ -12,6 +12,10 @@ public class Tokenizer {
     currentChar = characters[textIndex];
   }
 
+  public int getTextIndex() {
+    return textIndex;
+  }
+
   public Token getNextToken() {
     if (currentChar == null) {
       return new Token(TokenType.EOF);
@@ -75,7 +79,7 @@ public class Tokenizer {
       return new Token(TokenType.NULL);
     }
 
-    throw new InvalidCharacterException(currentChar);
+    throw new InvalidCharacterException(currentChar, textIndex);
   }
 
   private Token tokenString() {
@@ -102,7 +106,7 @@ public class Tokenizer {
 
       localPos++;
       if (localPos >= buffer.length) {
-        throw new StringNotClosedException();
+        throw new StringNotClosedException(start);
       }
       localChar = buffer[localPos];
     }
@@ -128,41 +132,44 @@ public class Tokenizer {
     int characterCount = textIndex - startIndex;
 
     if (characterCount == 1 && characters[startIndex] == '-') {
-      throw new InvalidNumberException();
+      throw new InvalidNegativeNumberException(startIndex);
     }
 
     return new Token(TokenType.NUMBER, new String(characters, startIndex, characterCount));
   }
 
   private void advanceKeywordTrue() {
+    int keywordStartIndex = textIndex;
     advance();
-    if (currentChar != 'r') throw new InvalidKeywordException("true", "t", currentChar);
+    if (currentChar != 'r') throw new InvalidKeywordException("true", "t", currentChar, keywordStartIndex);
     advance();
-    if (currentChar != 'u') throw new InvalidKeywordException("true", "tr", currentChar);
+    if (currentChar != 'u') throw new InvalidKeywordException("true", "tr", currentChar, keywordStartIndex);
     advance();
-    if (currentChar != 'e') throw new InvalidKeywordException("true", "tru", currentChar);
+    if (currentChar != 'e') throw new InvalidKeywordException("true", "tru", currentChar, keywordStartIndex);
     advance();
   }
 
   private void advanceKeywordNull() {
+    int keywordStartIndex = textIndex;
     advance();
-    if (currentChar != 'u') throw new InvalidKeywordException("null", "n", currentChar);
+    if (currentChar != 'u') throw new InvalidKeywordException("null", "n", currentChar, keywordStartIndex);
     advance();
-    if (currentChar != 'l') throw new InvalidKeywordException("null", "nu", currentChar);
+    if (currentChar != 'l') throw new InvalidKeywordException("null", "nu", currentChar, keywordStartIndex);
     advance();
-    if (currentChar != 'l') throw new InvalidKeywordException("null", "nul", currentChar);
+    if (currentChar != 'l') throw new InvalidKeywordException("null", "nul", currentChar, keywordStartIndex);
     advance();
   }
 
   private void advanceKeywordFalse() {
+    int keywordStartIndex = textIndex;
     advance();
-    if (currentChar != 'a') throw new InvalidKeywordException("false", "f", currentChar);
+    if (currentChar != 'a') throw new InvalidKeywordException("false", "f", currentChar, keywordStartIndex);
     advance();
-    if (currentChar != 'l') throw new InvalidKeywordException("false", "fa", currentChar);
+    if (currentChar != 'l') throw new InvalidKeywordException("false", "fa", currentChar, keywordStartIndex);
     advance();
-    if (currentChar != 's') throw new InvalidKeywordException("false", "fal", currentChar);
+    if (currentChar != 's') throw new InvalidKeywordException("false", "fal", currentChar, keywordStartIndex);
     advance();
-    if (currentChar != 'e') throw new InvalidKeywordException("false", "fals", currentChar);
+    if (currentChar != 'e') throw new InvalidKeywordException("false", "fals", currentChar, keywordStartIndex);
     advance();
   }
 
@@ -183,7 +190,7 @@ public class Tokenizer {
         localPos++;
 
         if (localPos + 4 > buffer.length) {
-          throw new InvalidControlCharacterException();
+          throw new InvalidUnicodeCharacterException(localPos);
         }
 
         try {
@@ -191,10 +198,10 @@ public class Tokenizer {
           localPos += 3;
           yield (char) codePoint;
         } catch (NumberFormatException ex) {
-          throw new InvalidControlCharacterException();
+          throw new InvalidUnicodeCharacterException(localPos);
         }
       }
-      default -> throw new InvalidControlCharacterException();
+      default -> throw new InvalidControlCharacterException(localPos);
     };
 
     stringBuilder.append(result);
@@ -219,7 +226,7 @@ public class Tokenizer {
       }
     }
     if (textIndex - startFraction == 1) {
-      throw new InvalidNumberException();
+      throw new InvalidDecimalNumberException(startFraction);
     }
   }
 

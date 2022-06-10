@@ -2,9 +2,7 @@ package technology.sola.json.token;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import technology.sola.json.exception.InvalidControlCharacterException;
-import technology.sola.json.exception.InvalidNumberException;
-import technology.sola.json.exception.StringNotClosedException;
+import technology.sola.json.exception.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -12,6 +10,16 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class TokenizerTest {
   @Nested
   class getNextToken {
+    @Test
+    void whenInvalidCharacter_shouldThrowException() {
+      var input = " invalid ";
+
+      InvalidCharacterException exception = assertThrows(InvalidCharacterException.class, () -> new Tokenizer(input).getNextToken());
+
+      assertEquals('i', exception.getInvalidCharacter());
+      assertEquals(1, exception.getStartIndex());
+    }
+
     @Test
     void shouldEndWithEof() {
       var input = "  ";
@@ -65,34 +73,67 @@ class TokenizerTest {
         .assertNextToken(TokenType.EOF);
     }
 
-    @Test
-    void shouldRecognizeTrue() {
-      var input = " true true ";
+    @Nested
+    class keyword {
+      @Test
+      void shouldRecognizeTrue() {
+        var input = " true true ";
 
-      createTest(input)
-        .assertNextToken(TokenType.TRUE)
-        .assertNextToken(TokenType.TRUE)
-        .assertNextToken(TokenType.EOF);
-    }
+        createTest(input)
+          .assertNextToken(TokenType.TRUE)
+          .assertNextToken(TokenType.TRUE)
+          .assertNextToken(TokenType.EOF);
+      }
 
-    @Test
-    void shouldRecognizeFalse() {
-      var input = " false false ";
+      @Test
+      void whenInvalidTrue_shouldThrowException() {
+        var input = " tru ";
 
-      createTest(input)
-        .assertNextToken(TokenType.FALSE)
-        .assertNextToken(TokenType.FALSE)
-        .assertNextToken(TokenType.EOF);
-    }
+        InvalidKeywordException exception = assertThrows(InvalidKeywordException.class, () -> new Tokenizer(input).getNextToken());
+        assertEquals("true", exception.getExpectedKeyword());
+        assertEquals("tru ", exception.getReceivedKeyword());
+        assertEquals(1, exception.getStartIndex());
+      }
 
-    @Test
-    void shouldRecognizeNull() {
-      var input = " null null ";
+      @Test
+      void shouldRecognizeFalse() {
+        var input = " false false ";
 
-      createTest(input)
-        .assertNextToken(TokenType.NULL)
-        .assertNextToken(TokenType.NULL)
-        .assertNextToken(TokenType.EOF);
+        createTest(input)
+          .assertNextToken(TokenType.FALSE)
+          .assertNextToken(TokenType.FALSE)
+          .assertNextToken(TokenType.EOF);
+      }
+
+      @Test
+      void whenInvalidFalse_shouldThrowException() {
+        var input = " fals ";
+
+        InvalidKeywordException exception = assertThrows(InvalidKeywordException.class, () -> new Tokenizer(input).getNextToken());
+        assertEquals("false", exception.getExpectedKeyword());
+        assertEquals("fals ", exception.getReceivedKeyword());
+        assertEquals(1, exception.getStartIndex());
+      }
+
+      @Test
+      void shouldRecognizeNull() {
+        var input = " null null ";
+
+        createTest(input)
+          .assertNextToken(TokenType.NULL)
+          .assertNextToken(TokenType.NULL)
+          .assertNextToken(TokenType.EOF);
+      }
+
+      @Test
+      void whenInvalidNull_shouldThrowException() {
+        var input = " nul ";
+
+        InvalidKeywordException exception = assertThrows(InvalidKeywordException.class, () -> new Tokenizer(input).getNextToken());
+        assertEquals("null", exception.getExpectedKeyword());
+        assertEquals("nul ", exception.getReceivedKeyword());
+        assertEquals(1, exception.getStartIndex());
+      }
     }
 
     @Nested
@@ -111,7 +152,9 @@ class TokenizerTest {
       void whenNotClosed_shouldThrowException() {
         var input = " \"test ";
 
-        assertThrows(StringNotClosedException.class, () -> createTest(input).assertNextToken(TokenType.STRING));
+        StringNotClosedException exception = assertThrows(StringNotClosedException.class, () -> createTest(input).assertNextToken(TokenType.STRING));
+
+        assertEquals(2, exception.getStartIndex());
       }
 
       @Nested
@@ -119,28 +162,40 @@ class TokenizerTest {
         @Test
         void whenControlCharacterNotFinished_shouldThrowException() {
           var input = """
-          " \\ "
-          """;
+            " \\ "
+            """;
 
-          assertThrows(InvalidControlCharacterException.class, () -> createTest(input).assertNextToken(TokenType.STRING));
+          InvalidControlCharacterException exception = assertThrows(
+            InvalidControlCharacterException.class,
+            () -> createTest(input).assertNextToken(TokenType.STRING)
+          );
+          assertEquals(3, exception.getStartIndex());
         }
 
         @Test
         void whenInvalidUnicode_shouldThrowException() {
           var input = """
-          "\\u12r3"
-          """;
+            "\\u12r3"
+            """;
 
-          assertThrows(InvalidControlCharacterException.class, () -> createTest(input).assertNextToken(TokenType.STRING));
+          InvalidUnicodeCharacterException exception = assertThrows(
+            InvalidUnicodeCharacterException.class,
+            () -> createTest(input).assertNextToken(TokenType.STRING)
+          );
+          assertEquals(3, exception.getStartIndex());
         }
 
         @Test
         void whenIncompleteUnicode_shouldThrowException() {
           var input = """
-          "\\u12"
-          """;
+            "\\u12"
+            """;
 
-          assertThrows(InvalidControlCharacterException.class, () -> createTest(input).assertNextToken(TokenType.STRING));
+          InvalidUnicodeCharacterException exception = assertThrows(
+            InvalidUnicodeCharacterException.class,
+            () -> createTest(input).assertNextToken(TokenType.STRING)
+          );
+          assertEquals(3, exception.getStartIndex());
         }
 
         @Test
@@ -156,9 +211,9 @@ class TokenizerTest {
         @Test
         void whenNonUnicodeControlCharacter_shouldRecognize() {
           var input = """
-          "\\" \\/ \\\\ \\b \\f \\n \\r \\t"
-          "\\" \\/ \\\\ \\b \\f \\n \\r \\t"
-          """;
+            "\\" \\/ \\\\ \\b \\f \\n \\r \\t"
+            "\\" \\/ \\\\ \\b \\f \\n \\r \\t"
+            """;
 
           createTest(input)
             .assertNextToken(TokenType.STRING, "\" / \\ \b \f \n \r \t")
@@ -169,9 +224,9 @@ class TokenizerTest {
         @Test
         void whenUnicode_shouldRecognize() {
           var input = """
-          "\\u1234 \\uabcd \\u0000 \\uffff"
-          "\\u1234 \\uabcd \\u0000 \\uffff"
-          """;
+            "\\u1234 \\uabcd \\u0000 \\uffff"
+            "\\u1234 \\uabcd \\u0000 \\uffff"
+            """;
 
           createTest(input)
             .assertNextToken(TokenType.STRING, "\u1234 \uabcd \u0000 \uffff")
@@ -187,14 +242,22 @@ class TokenizerTest {
       void whenOnlyMinus_ShouldThrowException() {
         var input = " - ";
 
-        assertThrows(InvalidNumberException.class, () -> createTest(input).assertNextToken(TokenType.NUMBER));
+        InvalidNegativeNumberException exception = assertThrows(
+          InvalidNegativeNumberException.class,
+          () -> createTest(input).assertNextToken(TokenType.NUMBER)
+        );
+        assertEquals(1, exception.getStartIndex());
       }
 
       @Test
       void whenDotWithNoFraction_ShouldThrowException() {
         var input = " 2. ";
 
-        assertThrows(InvalidNumberException.class, () -> createTest(input).assertNextToken(TokenType.NUMBER));
+        InvalidDecimalNumberException exception = assertThrows(
+          InvalidDecimalNumberException.class,
+          () -> createTest(input).assertNextToken(TokenType.NUMBER)
+        );
+        assertEquals(2, exception.getStartIndex());
       }
 
       @Test
@@ -258,7 +321,7 @@ class TokenizerTest {
     return new TokenizerTester(tokenizer);
   }
 
-  private static record TokenizerTester(Tokenizer tokenizer) {
+  private record TokenizerTester(Tokenizer tokenizer) {
     TokenizerTester assertNextToken(TokenType expectedType) {
       assertNextToken(expectedType, null);
 
