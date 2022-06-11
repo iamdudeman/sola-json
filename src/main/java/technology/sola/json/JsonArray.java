@@ -104,17 +104,33 @@ public class JsonArray extends ArrayList<JsonElement> {
 
   @Override
   public String toString() {
+    return toString(0);
+  }
+
+  public String toString(int spaces) {
+    return toString(spaces, 0);
+  }
+
+  String toString(int spaces, int depth) {
     StringBuilder stringBuilder = new StringBuilder();
 
     stringBuilder.append("[");
 
     forEach(item -> {
-      stringBuilder.append(item.toString());
+      if (spaces > 0) {
+        stringBuilder.append("\n");
+        stringBuilder.append(" ".repeat(spaces * (depth + 1)));
+      }
+      stringBuilder.append(item.toString(spaces, depth + 1));
       stringBuilder.append(",");
     });
 
     if (stringBuilder.charAt(stringBuilder.length() - 1) == ',') {
       stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+    }
+    if (spaces > 0) {
+      stringBuilder.append("\n");
+      stringBuilder.append(" ".repeat(spaces * depth));
     }
     stringBuilder.append("]");
 

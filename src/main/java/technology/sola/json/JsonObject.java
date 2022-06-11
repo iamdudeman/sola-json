@@ -116,14 +116,35 @@ public class JsonObject extends HashMap<String, JsonElement> {
 
   @Override
   public String toString() {
+    return toString(0);
+  }
+
+  public String toString(int spaces) {
+    return toString(spaces, 0);
+  }
+
+  String toString(int spaces, int depth) {
     StringBuilder stringBuilder = new StringBuilder();
 
     stringBuilder.append("{");
 
-    forEach((key, value) -> stringBuilder.append(String.format("\"%s\":%s,", key, value.toString())));
+    String separator = spaces > 0 ? ": " : ":";
+
+    forEach((key, value) -> {
+      if (spaces > 0) {
+        stringBuilder.append("\n");
+        stringBuilder.append(" ".repeat(spaces * (depth + 1)));
+      }
+
+      stringBuilder.append(String.format("\"%s\"%s%s,", key, separator, value.toString(spaces, depth + 1)));
+    });
 
     if (stringBuilder.charAt(stringBuilder.length() - 1) == ',') {
       stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+    }
+    if (spaces > 0) {
+      stringBuilder.append("\n");
+      stringBuilder.append(" ".repeat(spaces * depth));
     }
     stringBuilder.append("}");
 
