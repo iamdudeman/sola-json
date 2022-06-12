@@ -2,6 +2,10 @@ package technology.sola.json;
 
 import technology.sola.json.exception.JsonElementTypeException;
 
+/**
+ * JsonElement represents any valid JSON value. Valid JSON values include {@link JsonObject}, {@link JsonArray}, string,
+ * number, true, false and null.
+ */
 public class JsonElement {
   private final JsonValueType type;
   private Object value;
@@ -96,14 +100,30 @@ public class JsonElement {
 
   @Override
   public String toString() {
+    return toString(0);
+  }
+
+  public String toString(int spaces) {
+    return toString(spaces, 0);
+  }
+
+  String toString(int spaces, int depth) {
     if (type == JsonValueType.STRING) {
       return "\"" + escapeNonUnicode(value.toString()) + "\"";
+    }
+
+    if (type == JsonValueType.JSON_ARRAY) {
+      return asArray().toString(spaces, depth);
+    }
+
+    if (type == JsonValueType.JSON_OBJECT) {
+      return asObject().toString(spaces, depth);
     }
 
     return value == null ? "null" : value.toString();
   }
 
-  private static String escapeNonUnicode(String s){
+  private static String escapeNonUnicode(String s) {
     return s.replace("\\", "\\\\")
       .replace("\t", "\\t")
       .replace("\b", "\\b")

@@ -31,7 +31,8 @@ public class Parser {
     return switch (currentToken.type()) {
       case L_BRACKET -> ruleArray();
       case L_CURLY -> ruleObject();
-      default -> throw new InvalidSyntaxException(currentToken.type(), tokenizer.getTextIndex(), TokenType.L_BRACKET, TokenType.L_CURLY);
+      default ->
+        throw new InvalidSyntaxException(currentToken.type(), tokenizer.getTextIndex(), TokenType.L_BRACKET, TokenType.L_CURLY);
     };
   }
 

@@ -11,7 +11,7 @@ public interface JsonMapper<T> {
   /**
    * Converts object of type T into a {@link JsonObject}.
    *
-   * @param object  the object to convert
+   * @param object the object to convert
    * @return the {@code JsonObject} representing the converted object
    */
   JsonObject toJson(T object);
@@ -33,7 +33,7 @@ public interface JsonMapper<T> {
   /**
    * Converts a {@link JsonObject} into an object of type T.
    *
-   * @param jsonObject  the {@code JsonObject} to convert
+   * @param jsonObject the {@code JsonObject} to convert
    * @return the converted object of type T
    */
   T toObject(JsonObject jsonObject);
@@ -42,7 +42,7 @@ public interface JsonMapper<T> {
    * Converts a {@link JsonArray} into a {@link List} of desired type T. This assumes that each child of {@code jsonArray}
    * is a {@link JsonObject} and of type T.
    *
-   * @param jsonArray  the {@code JsonArray} to convert
+   * @param jsonArray the {@code JsonArray} to convert
    * @return the converted {@code List<T>}
    */
   default List<T> toList(JsonArray jsonArray) {

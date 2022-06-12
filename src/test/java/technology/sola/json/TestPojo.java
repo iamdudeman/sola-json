@@ -3,11 +3,11 @@ package technology.sola.json;
 record TestPojo(int value, String value2) {
   static JsonMapper<TestPojo> JSON_MAPPER = new JsonMapper<>() {
     @Override
-    public JsonObject toJson(TestPojo object) {
+    public JsonObject toJson(TestPojo testPojo) {
       JsonObject jsonObject = new JsonObject();
 
-      jsonObject.put("value", object.value());
-      jsonObject.put("value2", object.value2());
+      jsonObject.put("value", testPojo.value());
+      jsonObject.put("value2", testPojo.value2());
 
       return jsonObject;
     }

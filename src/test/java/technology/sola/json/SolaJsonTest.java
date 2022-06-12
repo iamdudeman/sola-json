@@ -65,6 +65,43 @@ class SolaJsonTest {
     );
   }
 
+  @Test
+  void serialize_withSpaces() {
+    JsonArray jsonArray = new JsonArray();
+    jsonArray.addNull();
+    jsonArray.add(true);
+    JsonObject nestedObject = new JsonObject();
+    nestedObject.put("key", "value");
+    jsonArray.add(nestedObject);
+
+    JsonObject jsonObject = new JsonObject();
+    jsonObject.put("key", "value");
+    jsonObject.put("key2", false);
+    jsonObject.put("array", jsonArray);
+    jsonObject.put("key3", new JsonObject());
+    jsonObject.put("key4", new JsonArray());
+
+    String serialized = solaJson.serialize(jsonObject, 2);
+
+    assertEquals(
+        """
+        {
+          "key2": false,
+          "array": [
+            null,
+            true,
+            {
+              "key": "value"
+            }
+          ],
+          "key3": {},
+          "key4": [],
+          "key": "value"
+        }""",
+      serialized
+    );
+  }
+
   @Nested
   class withMapper {
     @Test
@@ -109,12 +146,40 @@ class SolaJsonTest {
     }
 
     @Test
+    void serialize_withSpaces() {
+      TestPojo testPojo = new TestPojo(1, "test");
+
+      String result = solaJson.serialize(testPojo, TestPojo.JSON_MAPPER, 2);
+
+      assertEquals("""
+        {
+          "value2": "test",
+          "value": 1
+        }""", result);
+    }
+
+    @Test
     void serializeList() {
       List<TestPojo> list = List.of(new TestPojo(1, "test"));
 
       String result = solaJson.serializeList(list, TestPojo.JSON_MAPPER);
 
       assertEquals("[{\"value2\":\"test\",\"value\":1}]", result);
+    }
+
+    @Test
+    void serializeList_withSpaces() {
+      List<TestPojo> list = List.of(new TestPojo(1, "test"));
+
+      String result = solaJson.serializeList(list, TestPojo.JSON_MAPPER, 2);
+
+      assertEquals("""
+        [
+          {
+            "value2": "test",
+            "value": 1
+          }
+        ]""", result);
     }
   }
 }
