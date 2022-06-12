@@ -128,7 +128,7 @@ public class JsonArray extends ArrayList<JsonElement> {
     if (stringBuilder.charAt(stringBuilder.length() - 1) == ',') {
       stringBuilder.deleteCharAt(stringBuilder.length() - 1);
     }
-    if (spaces > 0) {
+    if (spaces > 0 && size() > 0) {
       stringBuilder.append("\n");
       stringBuilder.append(" ".repeat(spaces * depth));
     }

@@ -50,33 +50,66 @@ public class SolaJson {
   }
 
   /**
-   * Serializes as {@link JsonElement}.
+   * Serializes a {@link JsonElement}.
    *
    * @param jsonElement  the {@code JsonElement} to serialize
    * @return serialized JSON string
    */
   public String serialize(JsonElement jsonElement) {
-    return jsonElement.toString();
+    return serialize(jsonElement, 0);
   }
 
   /**
-   * Serializes as {@link JsonObject}.
+   * Serializes a {@link JsonElement} with spaces for indentation.
+   *
+   * @param jsonElement  the {@code JsonElement} to serialize
+   * @param spaces the spaces for indentation
+   * @return serialized JSON string
+   */
+  public String serialize(JsonElement jsonElement, int spaces) {
+    return jsonElement.toString(spaces);
+  }
+
+  /**
+   * Serializes a {@link JsonObject}.
    *
    * @param jsonObject  the {@code JsonObject} to serialize
    * @return serialized JSON string
    */
   public String serialize(JsonObject jsonObject) {
-    return jsonObject.toString();
+    return serialize(jsonObject, 0);
   }
 
   /**
-   * Serializes as {@link JsonArray}.
+   * Serializes a {@link JsonObject} with spaces for indentation.
+   *
+   * @param jsonObject  the {@code JsonObject} to serialize
+   * @param spaces the spaces for indentation
+   * @return serialized JSON string
+   */
+  public String serialize(JsonObject jsonObject, int spaces) {
+    return jsonObject.toString(spaces);
+  }
+
+  /**
+   * Serializes a {@link JsonArray}.
    *
    * @param jsonArray  the {@code JsonArray} to serialize
    * @return serialized JSON string
    */
   public String serialize(JsonArray jsonArray) {
-    return jsonArray.toString();
+    return serialize(jsonArray, 0);
+  }
+
+  /**
+   * Serializes a {@link JsonArray} with spaces for indentation.
+   *
+   * @param jsonArray  the {@code JsonArray} to serialize
+   * @param spaces the spaces for indentation
+   * @return serialized JSON string
+   */
+  public String serialize(JsonArray jsonArray, int spaces) {
+    return jsonArray.toString(spaces);
   }
 
   /**
@@ -88,7 +121,20 @@ public class SolaJson {
    * @return serialized JSON string
    */
   public <T> String serialize(T object, JsonMapper<T> jsonMapper) {
-    return serialize(jsonMapper.toJson(object));
+    return serialize(object, jsonMapper, 0);
+  }
+
+  /**
+   * Serializes an object of type T to a string using a {@link JsonMapper} with spaces for indentation.
+   *
+   * @param object  the object to serialize
+   * @param jsonMapper  the {@code JsonMapper} to use during conversion
+   * @param spaces the spaces for indentation
+   * @param <T>  the type of the object to serialize
+   * @return serialized JSON string
+   */
+  public <T> String serialize(T object, JsonMapper<T> jsonMapper, int spaces) {
+    return serialize(jsonMapper.toJson(object), spaces);
   }
 
   /**
@@ -100,7 +146,20 @@ public class SolaJson {
    * @return serialized JSON string
    */
   public <T> String serializeList(List<T> list, JsonMapper<T> jsonMapper) {
-    return serialize(jsonMapper.toJson(list));
+    return serializeList(list, jsonMapper, 0);
+  }
+
+  /**
+   * Serializes a list of objects of type T to a string using a {@link JsonMapper} with spaces for indentation.
+   *
+   * @param list  the list of objects to serialize
+   * @param jsonMapper  the {@code JsonMapper} to use during conversion
+   * @param spaces the spaces for indentation
+   * @param <T>  the type of the object to serialize
+   * @return serialized JSON string
+   */
+  public <T> String serializeList(List<T> list, JsonMapper<T> jsonMapper, int spaces) {
+    return serialize(jsonMapper.toJson(list), spaces);
   }
 
   private JsonElement visit(AstNode astNode) {
