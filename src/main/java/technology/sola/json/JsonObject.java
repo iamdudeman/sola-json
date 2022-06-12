@@ -4,6 +4,10 @@ import technology.sola.json.exception.PropertyNotFoundException;
 
 import java.util.HashMap;
 
+/**
+ * JsonObject is a {@link java.util.Map} of {@link JsonElement}. It includes methods for accessing members as various
+ * Java types.
+ */
 public class JsonObject extends HashMap<String, JsonElement> {
   public JsonObject() {
   }

@@ -14,7 +14,7 @@ public class SolaJson {
   /**
    * Parses a JSON string into a {@link JsonElement}.
    *
-   * @param jsonString  the JSON string to parse
+   * @param jsonString the JSON string to parse
    * @return the parsed {@code JsonElement}
    */
   public JsonElement parse(String jsonString) {
@@ -28,9 +28,9 @@ public class SolaJson {
   /**
    * Parses a JSON string into an object of type T using a {@link JsonMapper}.
    *
-   * @param jsonString  the JSON string to parse
-   * @param jsonMapper  the {@code JsonMapper} to use during conversion
-   * @param <T>  the type of the object to convert to
+   * @param jsonString the JSON string to parse
+   * @param jsonMapper the {@code JsonMapper} to use during conversion
+   * @param <T>        the type of the object to convert to
    * @return the converted Java object of type T
    */
   public <T> T parse(String jsonString, JsonMapper<T> jsonMapper) {
@@ -40,9 +40,9 @@ public class SolaJson {
   /**
    * Parses a JSON string into a {@link List} of type T using a {@link JsonMapper}.
    *
-   * @param jsonString  the JSON string to parse
-   * @param jsonMapper  the {@code JsonMapper} to use during conversion
-   * @param <T>  the type of the object to convert to
+   * @param jsonString the JSON string to parse
+   * @param jsonMapper the {@code JsonMapper} to use during conversion
+   * @param <T>        the type of the object to convert to
    * @return the converted List of Java object of type T
    */
   public <T> List<T> parseList(String jsonString, JsonMapper<T> jsonMapper) {
@@ -52,7 +52,7 @@ public class SolaJson {
   /**
    * Serializes a {@link JsonElement}.
    *
-   * @param jsonElement  the {@code JsonElement} to serialize
+   * @param jsonElement the {@code JsonElement} to serialize
    * @return serialized JSON string
    */
   public String serialize(JsonElement jsonElement) {
@@ -62,8 +62,8 @@ public class SolaJson {
   /**
    * Serializes a {@link JsonElement} with spaces for indentation.
    *
-   * @param jsonElement  the {@code JsonElement} to serialize
-   * @param spaces the spaces for indentation
+   * @param jsonElement the {@code JsonElement} to serialize
+   * @param spaces      the spaces for indentation
    * @return serialized JSON string
    */
   public String serialize(JsonElement jsonElement, int spaces) {
@@ -73,7 +73,7 @@ public class SolaJson {
   /**
    * Serializes a {@link JsonObject}.
    *
-   * @param jsonObject  the {@code JsonObject} to serialize
+   * @param jsonObject the {@code JsonObject} to serialize
    * @return serialized JSON string
    */
   public String serialize(JsonObject jsonObject) {
@@ -83,8 +83,8 @@ public class SolaJson {
   /**
    * Serializes a {@link JsonObject} with spaces for indentation.
    *
-   * @param jsonObject  the {@code JsonObject} to serialize
-   * @param spaces the spaces for indentation
+   * @param jsonObject the {@code JsonObject} to serialize
+   * @param spaces     the spaces for indentation
    * @return serialized JSON string
    */
   public String serialize(JsonObject jsonObject, int spaces) {
@@ -94,7 +94,7 @@ public class SolaJson {
   /**
    * Serializes a {@link JsonArray}.
    *
-   * @param jsonArray  the {@code JsonArray} to serialize
+   * @param jsonArray the {@code JsonArray} to serialize
    * @return serialized JSON string
    */
   public String serialize(JsonArray jsonArray) {
@@ -104,8 +104,8 @@ public class SolaJson {
   /**
    * Serializes a {@link JsonArray} with spaces for indentation.
    *
-   * @param jsonArray  the {@code JsonArray} to serialize
-   * @param spaces the spaces for indentation
+   * @param jsonArray the {@code JsonArray} to serialize
+   * @param spaces    the spaces for indentation
    * @return serialized JSON string
    */
   public String serialize(JsonArray jsonArray, int spaces) {
@@ -115,9 +115,9 @@ public class SolaJson {
   /**
    * Serializes an object of type T to a string using a {@link JsonMapper}.
    *
-   * @param object  the object to serialize
-   * @param jsonMapper  the {@code JsonMapper} to use during conversion
-   * @param <T>  the type of the object to serialize
+   * @param object     the object to serialize
+   * @param jsonMapper the {@code JsonMapper} to use during conversion
+   * @param <T>        the type of the object to serialize
    * @return serialized JSON string
    */
   public <T> String serialize(T object, JsonMapper<T> jsonMapper) {
@@ -127,10 +127,10 @@ public class SolaJson {
   /**
    * Serializes an object of type T to a string using a {@link JsonMapper} with spaces for indentation.
    *
-   * @param object  the object to serialize
-   * @param jsonMapper  the {@code JsonMapper} to use during conversion
-   * @param spaces the spaces for indentation
-   * @param <T>  the type of the object to serialize
+   * @param object     the object to serialize
+   * @param jsonMapper the {@code JsonMapper} to use during conversion
+   * @param spaces     the spaces for indentation
+   * @param <T>        the type of the object to serialize
    * @return serialized JSON string
    */
   public <T> String serialize(T object, JsonMapper<T> jsonMapper, int spaces) {
@@ -140,9 +140,9 @@ public class SolaJson {
   /**
    * Serializes a list of objects of type T to a string using a {@link JsonMapper}.
    *
-   * @param list  the list of objects to serialize
-   * @param jsonMapper  the {@code JsonMapper} to use during conversion
-   * @param <T>  the type of the object to serialize
+   * @param list       the list of objects to serialize
+   * @param jsonMapper the {@code JsonMapper} to use during conversion
+   * @param <T>        the type of the object to serialize
    * @return serialized JSON string
    */
   public <T> String serializeList(List<T> list, JsonMapper<T> jsonMapper) {
@@ -152,10 +152,10 @@ public class SolaJson {
   /**
    * Serializes a list of objects of type T to a string using a {@link JsonMapper} with spaces for indentation.
    *
-   * @param list  the list of objects to serialize
-   * @param jsonMapper  the {@code JsonMapper} to use during conversion
-   * @param spaces the spaces for indentation
-   * @param <T>  the type of the object to serialize
+   * @param list       the list of objects to serialize
+   * @param jsonMapper the {@code JsonMapper} to use during conversion
+   * @param spaces     the spaces for indentation
+   * @param <T>        the type of the object to serialize
    * @return serialized JSON string
    */
   public <T> String serializeList(List<T> list, JsonMapper<T> jsonMapper, int spaces) {

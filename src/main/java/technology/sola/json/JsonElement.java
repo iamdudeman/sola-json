@@ -2,6 +2,10 @@ package technology.sola.json;
 
 import technology.sola.json.exception.JsonElementTypeException;
 
+/**
+ * JsonElement represents any valid JSON value. Valid JSON values include {@link JsonObject}, {@link JsonArray}, string,
+ * number, true, false and null.
+ */
 public class JsonElement {
   private final JsonValueType type;
   private Object value;
@@ -119,7 +123,7 @@ public class JsonElement {
     return value == null ? "null" : value.toString();
   }
 
-  private static String escapeNonUnicode(String s){
+  private static String escapeNonUnicode(String s) {
     return s.replace("\\", "\\\\")
       .replace("\t", "\\t")
       .replace("\b", "\\b")

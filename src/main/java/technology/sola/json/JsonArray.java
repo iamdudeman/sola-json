@@ -2,6 +2,10 @@ package technology.sola.json;
 
 import java.util.ArrayList;
 
+/**
+ * JsonArray is an array of {@link JsonElement}s. It includes methods for accessing members as various
+ * Java types.
+ */
 public class JsonArray extends ArrayList<JsonElement> {
   public JsonArray() {
   }
