@@ -3,8 +3,7 @@ package technology.sola.json;
 import org.junit.jupiter.api.Test;
 import technology.sola.json.exception.JsonElementTypeException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class JsonElementTest {
   @Test
@@ -12,6 +11,13 @@ class JsonElementTest {
     JsonElement jsonElement = new JsonElement();
 
     assertThrows(JsonElementTypeException.class, jsonElement::asArray);
+  }
+
+  @Test
+  void whenPassingNull_shouldBeNull() {
+    assertTrue(new JsonElement((String) null).isNull());
+    assertTrue(new JsonElement((JsonObject) null).isNull());
+    assertTrue(new JsonElement((JsonArray) null).isNull());
   }
 
   @Test

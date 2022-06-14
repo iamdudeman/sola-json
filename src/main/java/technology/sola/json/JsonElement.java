@@ -35,17 +35,17 @@ public class JsonElement {
   }
 
   public JsonElement(String value) {
-    type = JsonValueType.STRING;
+    type = value == null ? JsonValueType.NULL : JsonValueType.STRING;
     this.value = value;
   }
 
   public JsonElement(JsonObject value) {
-    type = JsonValueType.JSON_OBJECT;
+    type = value == null ? JsonValueType.NULL : JsonValueType.JSON_OBJECT;
     this.value = value;
   }
 
   public JsonElement(JsonArray value) {
-    type = JsonValueType.JSON_ARRAY;
+    type = value == null ? JsonValueType.NULL : JsonValueType.JSON_ARRAY;
     this.value = value;
   }
 
