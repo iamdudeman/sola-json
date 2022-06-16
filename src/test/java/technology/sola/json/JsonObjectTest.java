@@ -34,78 +34,99 @@ class JsonObjectTest {
     @Test
     void arrayMethods() {
       JsonArray expected = new JsonArray();
+      JsonArray defaultValue = new JsonArray();
 
       root.put(TEST_KEY, expected);
       assertEquals(expected, root.getArray(TEST_KEY));
+      assertEquals(expected, root.getArray(TEST_KEY, defaultValue));
 
       root.put(TEST_KEY, (JsonArray) null);
       assertTrue(root.isNull(TEST_KEY));
+      assertEquals(defaultValue, root.getArray(TEST_KEY, defaultValue));
     }
 
     @Test
     void stringMethods() {
       String expected = "";
+      String defaultValue = "default";
 
       root.put(TEST_KEY, expected);
       assertEquals(expected, root.getString(TEST_KEY));
+      assertEquals(expected, root.getString(TEST_KEY, defaultValue));
 
       root.put(TEST_KEY, (String) null);
       assertTrue(root.isNull(TEST_KEY));
+      assertEquals(defaultValue, root.getString(TEST_KEY, defaultValue));
     }
 
     @Test
     void doubleMethods() {
       double expected = 0.0;
+      double defaultValue = 10.0;
 
       root.put(TEST_KEY, expected);
       assertEquals(expected, root.getDouble(TEST_KEY));
+      assertEquals(expected, root.getDouble(TEST_KEY, defaultValue));
 
       root.put(TEST_KEY, (Double) null);
       assertTrue(root.isNull(TEST_KEY));
+      assertEquals(defaultValue, root.getDouble(TEST_KEY, defaultValue));
     }
 
     @Test
     void floatMethods() {
       float expected = 0.0f;
+      float defaultValue = 10.0f;
 
       root.put(TEST_KEY, expected);
       assertEquals(expected, root.getFloat(TEST_KEY));
+      assertEquals(expected, root.getFloat(TEST_KEY, defaultValue));
 
       root.put(TEST_KEY, (Float) null);
       assertTrue(root.isNull(TEST_KEY));
+      assertEquals(defaultValue, root.getFloat(TEST_KEY, defaultValue));
     }
 
     @Test
     void integerMethods() {
       int expected = 0;
+      int defaultValue = 10;
 
       root.put(TEST_KEY, expected);
       assertEquals(expected, root.getInt(TEST_KEY));
+      assertEquals(expected, root.getInt(TEST_KEY, defaultValue));
 
       root.put(TEST_KEY, (Integer) null);
       assertTrue(root.isNull(TEST_KEY));
+      assertEquals(defaultValue, root.getInt(TEST_KEY, defaultValue));
     }
 
     @Test
     void longMethods() {
       long expected = 0L;
+      long defaultValue = 10L;
 
       root.put(TEST_KEY, expected);
       assertEquals(expected, root.getLong(TEST_KEY));
+      assertEquals(expected, root.getLong(TEST_KEY, defaultValue));
 
       root.put(TEST_KEY, (Long) null);
       assertTrue(root.isNull(TEST_KEY));
+      assertEquals(defaultValue, root.getLong(TEST_KEY, defaultValue));
     }
 
     @Test
     void booleanMethods() {
       boolean expected = true;
+      boolean defaultValue = false;
 
       root.put(TEST_KEY, expected);
       assertEquals(expected, root.getBoolean(TEST_KEY));
+      assertEquals(expected, root.getBoolean(TEST_KEY, defaultValue));
 
       root.put(TEST_KEY, (Boolean) null);
       assertTrue(root.isNull(TEST_KEY));
+      assertEquals(defaultValue, root.getBoolean(TEST_KEY, defaultValue));
     }
 
     @Test
