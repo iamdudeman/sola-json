@@ -54,51 +54,45 @@ public class JsonArray extends ArrayList<JsonElement> {
     return get(index).isNull();
   }
 
-  public boolean add(JsonObject value) {
-    if (value == null) return addNull();
+  @Override
+  public boolean add(JsonElement jsonElement) {
+    return super.add(jsonElement == null ? new JsonElement() : jsonElement);
+  }
 
-    return add(value.asElement());
+  @Override
+  public void add(int index, JsonElement element) {
+    super.add(index, element == null ? new JsonElement() : element);
+  }
+
+  public boolean add(JsonObject value) {
+    return add(new JsonElement(value));
   }
 
   public boolean add(JsonArray value) {
-    if (value == null) return addNull();
-
-    return add(value.asElement());
+    return add(new JsonElement(value));
   }
 
   public boolean add(String value) {
-    if (value == null) return addNull();
-
     return add(new JsonElement(value));
   }
 
   public boolean add(Integer value) {
-    if (value == null) return addNull();
-
     return add(new JsonElement(value));
   }
 
   public boolean add(Long value) {
-    if (value == null) return addNull();
-
     return add(new JsonElement(value));
   }
 
   public boolean add(Float value) {
-    if (value == null) return addNull();
-
     return add(new JsonElement(value));
   }
 
   public boolean add(Double value) {
-    if (value == null) return addNull();
-
     return add(new JsonElement(value));
   }
 
   public boolean add(Boolean value) {
-    if (value == null) return addNull();
-
     return add(new JsonElement(value));
   }
 
