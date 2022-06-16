@@ -7,95 +7,99 @@ import technology.sola.json.exception.JsonElementTypeException;
  * number, true, false and null.
  */
 public class JsonElement {
-  private final JsonValueType type;
+  private final JsonElementType type;
   private Object value;
 
   public JsonElement() {
-    type = JsonValueType.NULL;
+    type = JsonElementType.NULL;
   }
 
-  public JsonElement(int value) {
-    type = JsonValueType.LONG;
+  public JsonElement(Integer value) {
+    type = value == null ? JsonElementType.NULL : JsonElementType.LONG;
     this.value = value;
   }
 
-  public JsonElement(long value) {
-    type = JsonValueType.LONG;
+  public JsonElement(Long value) {
+    type = value == null ? JsonElementType.NULL : JsonElementType.LONG;
     this.value = value;
   }
 
-  public JsonElement(float value) {
-    type = JsonValueType.DOUBLE;
+  public JsonElement(Float value) {
+    type = value == null ? JsonElementType.NULL : JsonElementType.DOUBLE;
     this.value = value;
   }
 
-  public JsonElement(double value) {
-    type = JsonValueType.DOUBLE;
+  public JsonElement(Double value) {
+    type = value == null ? JsonElementType.NULL : JsonElementType.DOUBLE;
     this.value = value;
   }
 
   public JsonElement(String value) {
-    type = value == null ? JsonValueType.NULL : JsonValueType.STRING;
+    type = value == null ? JsonElementType.NULL : JsonElementType.STRING;
     this.value = value;
   }
 
   public JsonElement(JsonObject value) {
-    type = value == null ? JsonValueType.NULL : JsonValueType.JSON_OBJECT;
+    type = value == null ? JsonElementType.NULL : JsonElementType.JSON_OBJECT;
     this.value = value;
   }
 
   public JsonElement(JsonArray value) {
-    type = value == null ? JsonValueType.NULL : JsonValueType.JSON_ARRAY;
+    type = value == null ? JsonElementType.NULL : JsonElementType.JSON_ARRAY;
     this.value = value;
   }
 
-  public JsonElement(boolean value) {
-    type = JsonValueType.BOOLEAN;
+  public JsonElement(Boolean value) {
+    type = value == null ? JsonElementType.NULL : JsonElementType.BOOLEAN;
     this.value = value;
   }
 
   public boolean asBoolean() {
-    assertType(JsonValueType.BOOLEAN);
+    assertType(JsonElementType.BOOLEAN);
     return (boolean) this.value;
   }
 
   public int asInt() {
-    assertType(JsonValueType.LONG);
+    assertType(JsonElementType.LONG);
     return ((Number) this.value).intValue();
   }
 
   public long asLong() {
-    assertType(JsonValueType.LONG);
+    assertType(JsonElementType.LONG);
     return (long) this.value;
   }
 
   public float asFloat() {
-    assertType(JsonValueType.DOUBLE);
+    assertType(JsonElementType.DOUBLE);
     return ((Number) this.value).floatValue();
   }
 
   public double asDouble() {
-    assertType(JsonValueType.DOUBLE);
+    assertType(JsonElementType.DOUBLE);
     return (double) this.value;
   }
 
   public String asString() {
-    assertType(JsonValueType.STRING);
+    assertType(JsonElementType.STRING);
     return (String) this.value;
   }
 
   public JsonObject asObject() {
-    assertType(JsonValueType.JSON_OBJECT);
+    assertType(JsonElementType.JSON_OBJECT);
     return (JsonObject) this.value;
   }
 
   public JsonArray asArray() {
-    assertType(JsonValueType.JSON_ARRAY);
+    assertType(JsonElementType.JSON_ARRAY);
     return (JsonArray) this.value;
   }
 
   public boolean isNull() {
-    return type == JsonValueType.NULL;
+    return type == JsonElementType.NULL;
+  }
+
+  public JsonElementType getType() {
+    return type;
   }
 
   @Override
@@ -108,15 +112,15 @@ public class JsonElement {
   }
 
   String toString(int spaces, int depth) {
-    if (type == JsonValueType.STRING) {
+    if (type == JsonElementType.STRING) {
       return "\"" + escapeNonUnicode(value.toString()) + "\"";
     }
 
-    if (type == JsonValueType.JSON_ARRAY) {
+    if (type == JsonElementType.JSON_ARRAY) {
       return asArray().toString(spaces, depth);
     }
 
-    if (type == JsonValueType.JSON_OBJECT) {
+    if (type == JsonElementType.JSON_OBJECT) {
       return asObject().toString(spaces, depth);
     }
 
@@ -138,19 +142,9 @@ public class JsonElement {
       ;
   }
 
-  private void assertType(JsonValueType assertionType) {
+  private void assertType(JsonElementType assertionType) {
     if (type != assertionType) {
       throw new JsonElementTypeException(assertionType.name(), type.name());
     }
-  }
-
-  private enum JsonValueType {
-    BOOLEAN,
-    DOUBLE,
-    JSON_ARRAY,
-    JSON_OBJECT,
-    LONG,
-    NULL,
-    STRING,
   }
 }

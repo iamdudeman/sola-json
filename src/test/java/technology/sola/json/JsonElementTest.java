@@ -15,6 +15,11 @@ class JsonElementTest {
 
   @Test
   void whenPassingNull_shouldBeNull() {
+    assertTrue(new JsonElement((Integer) null).isNull());
+    assertTrue(new JsonElement((Long) null).isNull());
+    assertTrue(new JsonElement((Float) null).isNull());
+    assertTrue(new JsonElement((Double) null).isNull());
+    assertTrue(new JsonElement((Boolean) null).isNull());
     assertTrue(new JsonElement((String) null).isNull());
     assertTrue(new JsonElement((JsonObject) null).isNull());
     assertTrue(new JsonElement((JsonArray) null).isNull());
