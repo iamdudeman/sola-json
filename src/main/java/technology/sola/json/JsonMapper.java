@@ -9,6 +9,11 @@ import java.util.List;
  */
 public interface JsonMapper<T> {
   /**
+   * @return the {@link Class} that will be converted to and from {@link JsonObject}s
+   */
+  Class<T> getObjectClass();
+
+  /**
    * Converts object of type T into a {@link JsonObject}.
    *
    * @param object the object to convert

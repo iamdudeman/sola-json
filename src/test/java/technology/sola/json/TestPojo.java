@@ -3,6 +3,11 @@ package technology.sola.json;
 record TestPojo(int value, String value2) {
   static JsonMapper<TestPojo> JSON_MAPPER = new JsonMapper<>() {
     @Override
+    public Class<TestPojo> getObjectClass() {
+      return TestPojo.class;
+    }
+
+    @Override
     public JsonObject toJson(TestPojo testPojo) {
       JsonObject jsonObject = new JsonObject();
 
