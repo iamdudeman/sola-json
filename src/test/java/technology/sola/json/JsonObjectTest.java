@@ -3,7 +3,6 @@ package technology.sola.json;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import technology.sola.json.exception.PropertyNotFoundException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,22 +15,20 @@ class JsonObjectTest {
     root = new JsonObject();
   }
 
-  @Test
-  void get_whenMissing_shouldThrowException() {
-    assertThrows(PropertyNotFoundException.class, () -> root.get("test"));
-  }
-
   @Nested
   class convenience {
     @Test
     void objectMethods() {
       JsonObject expected = new JsonObject();
+      JsonObject defaultValue = new JsonObject();
 
       root.put(TEST_KEY, expected);
       assertEquals(expected, root.getObject(TEST_KEY));
+      assertEquals(expected, root.getObject(TEST_KEY, defaultValue));
 
       root.put(TEST_KEY, (JsonObject) null);
       assertTrue(root.isNull(TEST_KEY));
+      assertEquals(defaultValue, root.getObject(TEST_KEY, defaultValue));
     }
 
     @Test

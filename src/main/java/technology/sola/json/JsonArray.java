@@ -14,10 +14,6 @@ public class JsonArray extends ArrayList<JsonElement> {
     super(initialCapacity);
   }
 
-  public JsonElement asElement() {
-    return new JsonElement(this);
-  }
-
   public JsonObject getObject(int index) {
     return get(index).asObject();
   }
