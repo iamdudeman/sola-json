@@ -1,4 +1,7 @@
-package technology.sola.json;
+package technology.sola.json.mapper;
+
+import technology.sola.json.JsonArray;
+import technology.sola.json.JsonObject;
 
 import java.util.List;
 

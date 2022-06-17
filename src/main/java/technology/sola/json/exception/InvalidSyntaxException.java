@@ -1,6 +1,6 @@
 package technology.sola.json.exception;
 
-import technology.sola.json.token.TokenType;
+import technology.sola.json.tokenizer.TokenType;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;

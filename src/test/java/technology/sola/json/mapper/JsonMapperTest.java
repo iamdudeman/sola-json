@@ -1,6 +1,9 @@
-package technology.sola.json;
+package technology.sola.json.mapper;
 
 import org.junit.jupiter.api.Test;
+import technology.sola.json.JsonArray;
+import technology.sola.json.JsonObject;
+import technology.sola.json.TestPojo;
 
 import java.util.List;
 

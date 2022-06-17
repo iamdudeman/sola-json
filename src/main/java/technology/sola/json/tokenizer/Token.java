@@ -1,4 +1,4 @@
-package technology.sola.json.token;
+package technology.sola.json.tokenizer;
 
 public record Token(TokenType type, String value) {
   public Token(TokenType type) {

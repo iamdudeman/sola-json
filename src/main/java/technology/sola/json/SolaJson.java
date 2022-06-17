@@ -1,9 +1,10 @@
 package technology.sola.json;
 
+import technology.sola.json.mapper.JsonMapper;
 import technology.sola.json.parser.AstNode;
 import technology.sola.json.parser.AstNodeType;
 import technology.sola.json.parser.Parser;
-import technology.sola.json.token.Tokenizer;
+import technology.sola.json.tokenizer.Tokenizer;
 
 import java.util.List;
 
