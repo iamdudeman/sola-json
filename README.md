@@ -24,7 +24,7 @@ public class BasicUsage {
     System.out.println(root.getString("key"));
 
     root.put("key2", 10);
-    System.out.println(solaJson.serialize(root));
+    System.out.println(solaJson.stringify(root));
   }
 }
 ```
@@ -50,7 +50,7 @@ public class JsonMapperUsage {
     System.out.println(result.value());
 
     Pojo pojo = new Pojo(10);
-    System.out.println(solaJson.serialize(pojo, JSON_MAPPER));
+    System.out.println(solaJson.stringify(pojo, JSON_MAPPER));
   }
 
   public record Pojo(int value) {
