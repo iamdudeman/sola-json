@@ -3,25 +3,30 @@ package technology.sola.json.parser;
 import technology.sola.json.exception.InvalidSyntaxException;
 import technology.sola.json.tokenizer.Token;
 import technology.sola.json.tokenizer.TokenType;
-import technology.sola.json.tokenizer.Tokenizer;
+import technology.sola.json.tokenizer.SolaJsonTokenizer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Parser {
-  private final Tokenizer tokenizer;
+/**
+ * A JSON parser implementation.
+ */
+public class SolaJsonParser {
+  private final SolaJsonTokenizer solaJsonTokenizer;
   private Token currentToken;
+  private int textIndex;
 
-  public Parser(Tokenizer tokenizer) {
-    this.tokenizer = tokenizer;
-    currentToken = tokenizer.getNextToken();
+  public SolaJsonParser(SolaJsonTokenizer solaJsonTokenizer) {
+    this.solaJsonTokenizer = solaJsonTokenizer;
+    textIndex = solaJsonTokenizer.getTextIndex();
+    currentToken = solaJsonTokenizer.getNextToken();
   }
 
   public AstNode parse() {
     AstNode node = ruleRoot();
 
     if (currentToken.type() != TokenType.EOF) {
-      throw new InvalidSyntaxException(currentToken.type(), tokenizer.getTextIndex(), TokenType.EOF);
+      throw new InvalidSyntaxException(currentToken.type(), textIndex, TokenType.EOF);
     }
 
     return node;
@@ -32,7 +37,7 @@ public class Parser {
       case L_BRACKET -> ruleArray();
       case L_CURLY -> ruleObject();
       default ->
-        throw new InvalidSyntaxException(currentToken.type(), tokenizer.getTextIndex(), TokenType.L_BRACKET, TokenType.L_CURLY);
+        throw new InvalidSyntaxException(currentToken.type(), textIndex, TokenType.L_BRACKET, TokenType.L_CURLY);
     };
   }
 
@@ -105,7 +110,7 @@ public class Parser {
         yield AstNode.value(token);
       }
       default -> throw new InvalidSyntaxException(
-        token.type(), tokenizer.getTextIndex(),
+        token.type(), textIndex,
         TokenType.L_BRACKET, TokenType.L_CURLY, TokenType.TRUE, TokenType.FALSE, TokenType.NULL, TokenType.STRING, TokenType.NUMBER
       );
     };
@@ -113,9 +118,10 @@ public class Parser {
 
   private void eat(TokenType tokenType) {
     if (currentToken.type() == tokenType) {
-      currentToken = tokenizer.getNextToken();
+      textIndex = solaJsonTokenizer.getTextIndex();
+      currentToken = solaJsonTokenizer.getNextToken();
     } else {
-      throw new InvalidSyntaxException(currentToken.type(), tokenizer.getTextIndex(), tokenType);
+      throw new InvalidSyntaxException(currentToken.type(), textIndex, tokenType);
     }
   }
 }

@@ -2,12 +2,15 @@ package technology.sola.json.tokenizer;
 
 import technology.sola.json.exception.*;
 
-public class Tokenizer {
+/**
+ * A JSON tokenizer implementation.
+ */
+public class SolaJsonTokenizer {
   private final char[] characters;
   private Character currentChar;
   private int textIndex;
 
-  public Tokenizer(String text) {
+  public SolaJsonTokenizer(String text) {
     characters = text.toCharArray();
     currentChar = characters[textIndex];
   }

@@ -7,14 +7,14 @@ import technology.sola.json.exception.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class TokenizerTest {
+class SolaJsonTokenizerTest {
   @Nested
   class getNextToken {
     @Test
     void whenInvalidCharacter_shouldThrowException() {
       var input = " invalid ";
 
-      InvalidCharacterException exception = assertThrows(InvalidCharacterException.class, () -> new Tokenizer(input).getNextToken());
+      InvalidCharacterException exception = assertThrows(InvalidCharacterException.class, () -> new SolaJsonTokenizer(input).getNextToken());
 
       assertEquals('i', exception.getInvalidCharacter());
       assertEquals(1, exception.getStartIndex());
@@ -89,7 +89,7 @@ class TokenizerTest {
       void whenInvalidTrue_shouldThrowException() {
         var input = " tru ";
 
-        InvalidKeywordException exception = assertThrows(InvalidKeywordException.class, () -> new Tokenizer(input).getNextToken());
+        InvalidKeywordException exception = assertThrows(InvalidKeywordException.class, () -> new SolaJsonTokenizer(input).getNextToken());
         assertEquals("true", exception.getExpectedKeyword());
         assertEquals("tru ", exception.getReceivedKeyword());
         assertEquals(1, exception.getStartIndex());
@@ -109,7 +109,7 @@ class TokenizerTest {
       void whenInvalidFalse_shouldThrowException() {
         var input = " fals ";
 
-        InvalidKeywordException exception = assertThrows(InvalidKeywordException.class, () -> new Tokenizer(input).getNextToken());
+        InvalidKeywordException exception = assertThrows(InvalidKeywordException.class, () -> new SolaJsonTokenizer(input).getNextToken());
         assertEquals("false", exception.getExpectedKeyword());
         assertEquals("fals ", exception.getReceivedKeyword());
         assertEquals(1, exception.getStartIndex());
@@ -129,7 +129,7 @@ class TokenizerTest {
       void whenInvalidNull_shouldThrowException() {
         var input = " nul ";
 
-        InvalidKeywordException exception = assertThrows(InvalidKeywordException.class, () -> new Tokenizer(input).getNextToken());
+        InvalidKeywordException exception = assertThrows(InvalidKeywordException.class, () -> new SolaJsonTokenizer(input).getNextToken());
         assertEquals("null", exception.getExpectedKeyword());
         assertEquals("nul ", exception.getReceivedKeyword());
         assertEquals(1, exception.getStartIndex());
@@ -316,12 +316,12 @@ class TokenizerTest {
   }
 
   private TokenizerTester createTest(String input) {
-    Tokenizer tokenizer = new Tokenizer(input);
+    SolaJsonTokenizer solaJsonTokenizer = new SolaJsonTokenizer(input);
 
-    return new TokenizerTester(tokenizer);
+    return new TokenizerTester(solaJsonTokenizer);
   }
 
-  private record TokenizerTester(Tokenizer tokenizer) {
+  private record TokenizerTester(SolaJsonTokenizer solaJsonTokenizer) {
     TokenizerTester assertNextToken(TokenType expectedType) {
       assertNextToken(expectedType, null);
 
@@ -329,7 +329,7 @@ class TokenizerTest {
     }
 
     TokenizerTester assertNextToken(TokenType expectedType, String expectedValue) {
-      Token token = tokenizer.getNextToken();
+      Token token = solaJsonTokenizer.getNextToken();
       assertEquals(expectedType, token.type(), token::toString);
 
       if (expectedValue != null) {

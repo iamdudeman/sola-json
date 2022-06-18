@@ -3,8 +3,8 @@ package technology.sola.json;
 import technology.sola.json.mapper.JsonMapper;
 import technology.sola.json.parser.AstNode;
 import technology.sola.json.parser.AstNodeType;
-import technology.sola.json.parser.Parser;
-import technology.sola.json.tokenizer.Tokenizer;
+import technology.sola.json.parser.SolaJsonParser;
+import technology.sola.json.tokenizer.SolaJsonTokenizer;
 
 import java.util.List;
 
@@ -19,9 +19,9 @@ public class SolaJson {
    * @return the parsed {@code JsonElement}
    */
   public JsonElement parse(String jsonString) {
-    Tokenizer tokenizer = new Tokenizer(jsonString);
-    Parser parser = new Parser(tokenizer);
-    AstNode root = parser.parse();
+    SolaJsonTokenizer solaJsonTokenizer = new SolaJsonTokenizer(jsonString);
+    SolaJsonParser solaJsonParser = new SolaJsonParser(solaJsonTokenizer);
+    AstNode root = solaJsonParser.parse();
 
     return visit(root);
   }
