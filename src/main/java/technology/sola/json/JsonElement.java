@@ -1,101 +1,211 @@
 package technology.sola.json;
 
 import technology.sola.json.exception.JsonElementTypeException;
+import technology.sola.json.serializer.SolaJsonSerializer;
 
 /**
  * JsonElement represents any valid JSON value. Valid JSON values include {@link JsonObject}, {@link JsonArray}, string,
  * number, true, false and null.
  */
 public class JsonElement {
-  private final JsonValueType type;
+  private final JsonElementType type;
   private Object value;
 
+  /**
+   * Creates a JsonElement with type {@link JsonElementType#NULL}.
+   */
   public JsonElement() {
-    type = JsonValueType.NULL;
+    type = JsonElementType.NULL;
   }
 
-  public JsonElement(int value) {
-    type = JsonValueType.LONG;
+  /**
+   * Creates a JsonElement with type {@link JsonElementType#LONG} if value is non-null or {@link JsonElementType#NULL}
+   * if null.
+   *
+   * @param value the value of the JsonElement
+   */
+  public JsonElement(Integer value) {
+    type = value == null ? JsonElementType.NULL : JsonElementType.LONG;
     this.value = value;
   }
 
-  public JsonElement(long value) {
-    type = JsonValueType.LONG;
+  /**
+   * Creates a JsonElement with type {@link JsonElementType#LONG} if value is non-null or {@link JsonElementType#NULL}
+   * if null.
+   *
+   * @param value the value of the JsonElement
+   */
+  public JsonElement(Long value) {
+    type = value == null ? JsonElementType.NULL : JsonElementType.LONG;
     this.value = value;
   }
 
-  public JsonElement(float value) {
-    type = JsonValueType.DOUBLE;
+  /**
+   * Creates a JsonElement with type {@link JsonElementType#DOUBLE} if value is non-null or {@link JsonElementType#NULL}
+   * if null.
+   *
+   * @param value the value of the JsonElement
+   */
+  public JsonElement(Float value) {
+    type = value == null ? JsonElementType.NULL : JsonElementType.DOUBLE;
     this.value = value;
   }
 
-  public JsonElement(double value) {
-    type = JsonValueType.DOUBLE;
+  /**
+   * Creates a JsonElement with type {@link JsonElementType#DOUBLE} if value is non-null or {@link JsonElementType#NULL}
+   * if null.
+   *
+   * @param value the value of the JsonElement
+   */
+  public JsonElement(Double value) {
+    type = value == null ? JsonElementType.NULL : JsonElementType.DOUBLE;
     this.value = value;
   }
 
+  /**
+   * Creates a JsonElement with type {@link JsonElementType#STRING} if value is non-null or {@link JsonElementType#NULL}
+   * if null.
+   *
+   * @param value the value of the JsonElement
+   */
   public JsonElement(String value) {
-    type = JsonValueType.STRING;
+    type = value == null ? JsonElementType.NULL : JsonElementType.STRING;
     this.value = value;
   }
 
+  /**
+   * Creates a JsonElement with type {@link JsonElementType#JSON_OBJECT} if value is non-null or {@link JsonElementType#NULL}
+   * if null.
+   *
+   * @param value the value of the JsonElement
+   */
   public JsonElement(JsonObject value) {
-    type = JsonValueType.JSON_OBJECT;
+    type = value == null ? JsonElementType.NULL : JsonElementType.JSON_OBJECT;
     this.value = value;
   }
 
+  /**
+   * Creates a JsonElement with type {@link JsonElementType#JSON_ARRAY} if value is non-null or {@link JsonElementType#NULL}
+   * if null.
+   *
+   * @param value the value of the JsonElement
+   */
   public JsonElement(JsonArray value) {
-    type = JsonValueType.JSON_ARRAY;
+    type = value == null ? JsonElementType.NULL : JsonElementType.JSON_ARRAY;
     this.value = value;
   }
 
-  public JsonElement(boolean value) {
-    type = JsonValueType.BOOLEAN;
+  /**
+   * Creates a JsonElement with type {@link JsonElementType#BOOLEAN} if value is non-null or {@link JsonElementType#NULL}
+   * if null.
+   *
+   * @param value the value of the JsonElement
+   */
+  public JsonElement(Boolean value) {
+    type = value == null ? JsonElementType.NULL : JsonElementType.BOOLEAN;
     this.value = value;
   }
 
+  /**
+   * Returns this JsonElement's value as a boolean if its type is {@link JsonElementType#BOOLEAN} or else throws
+   * {@link JsonElementTypeException}.
+   *
+   * @return value as boolean
+   */
   public boolean asBoolean() {
-    assertType(JsonValueType.BOOLEAN);
+    assertType(JsonElementType.BOOLEAN);
     return (boolean) this.value;
   }
 
+  /**
+   * Returns this JsonElement's value as an int if its type is {@link JsonElementType#LONG} or else throws
+   * {@link JsonElementTypeException}.
+   *
+   * @return value as int
+   */
   public int asInt() {
-    assertType(JsonValueType.LONG);
+    assertType(JsonElementType.LONG);
     return ((Number) this.value).intValue();
   }
 
+  /**
+   * Returns this JsonElement's value as a long if its type is {@link JsonElementType#LONG} or else throws
+   * {@link JsonElementTypeException}.
+   *
+   * @return value as long
+   */
   public long asLong() {
-    assertType(JsonValueType.LONG);
-    return (long) this.value;
+    assertType(JsonElementType.LONG);
+    return ((Number) this.value).longValue();
   }
 
+  /**
+   * Returns this JsonElement's value as a float if its type is {@link JsonElementType#DOUBLE} or else throws
+   * {@link JsonElementTypeException}.
+   *
+   * @return value as float
+   */
   public float asFloat() {
-    assertType(JsonValueType.DOUBLE);
+    assertType(JsonElementType.DOUBLE);
     return ((Number) this.value).floatValue();
   }
 
+  /**
+   * Returns this JsonElement's value as a double if its type is {@link JsonElementType#DOUBLE} or else throws
+   * {@link JsonElementTypeException}.
+   *
+   * @return value as double
+   */
   public double asDouble() {
-    assertType(JsonValueType.DOUBLE);
-    return (double) this.value;
+    assertType(JsonElementType.DOUBLE);
+    return ((Number) this.value).doubleValue();
   }
 
+  /**
+   * Returns this JsonElement's value as a String if its type is {@link JsonElementType#STRING} or else throws
+   * {@link JsonElementTypeException}.
+   *
+   * @return value as String
+   */
   public String asString() {
-    assertType(JsonValueType.STRING);
+    assertType(JsonElementType.STRING);
     return (String) this.value;
   }
 
+  /**
+   * Returns this JsonElement's value as a {@link JsonObject} if its type is {@link JsonElementType#JSON_OBJECT} or else throws
+   * {@link JsonElementTypeException}.
+   *
+   * @return value as {@code JsonObject}
+   */
   public JsonObject asObject() {
-    assertType(JsonValueType.JSON_OBJECT);
+    assertType(JsonElementType.JSON_OBJECT);
     return (JsonObject) this.value;
   }
 
+  /**
+   * Returns this JsonElement's value as a {@link JsonArray} if its type is {@link JsonElementType#JSON_ARRAY} or else throws
+   * {@link JsonElementTypeException}.
+   *
+   * @return value as {@code JsonArray}
+   */
   public JsonArray asArray() {
-    assertType(JsonValueType.JSON_ARRAY);
+    assertType(JsonElementType.JSON_ARRAY);
     return (JsonArray) this.value;
   }
 
+  /**
+   * @return true if this JsonElement's type is {@link JsonElementType#NULL}
+   */
   public boolean isNull() {
-    return type == JsonValueType.NULL;
+    return type == JsonElementType.NULL;
+  }
+
+  /**
+   * @return the type of this JsonElement
+   */
+  public JsonElementType getType() {
+    return type;
   }
 
   @Override
@@ -104,53 +214,15 @@ public class JsonElement {
   }
 
   public String toString(int spaces) {
-    return toString(spaces, 0);
-  }
+    SolaJsonSerializer solaJsonSerializer = new SolaJsonSerializer();
 
-  String toString(int spaces, int depth) {
-    if (type == JsonValueType.STRING) {
-      return "\"" + escapeNonUnicode(value.toString()) + "\"";
-    }
+    solaJsonSerializer.getConfig().setSpaces(spaces);
 
-    if (type == JsonValueType.JSON_ARRAY) {
-      return asArray().toString(spaces, depth);
-    }
+    return solaJsonSerializer.serialize(this);  }
 
-    if (type == JsonValueType.JSON_OBJECT) {
-      return asObject().toString(spaces, depth);
-    }
-
-    return value == null ? "null" : value.toString();
-  }
-
-  private static String escapeNonUnicode(String s) {
-    return s.replace("\\", "\\\\")
-      .replace("\t", "\\t")
-      .replace("\b", "\\b")
-      .replace("\n", "\\n")
-      .replace("\r", "\\r")
-      .replace("\f", "\\f")
-      .replace("\"", "\\\"")
-      // line separator
-      .replace("\u2028", "\\u2028")
-      // paragraph separator
-      .replace("\u2029", "\\u2029")
-      ;
-  }
-
-  private void assertType(JsonValueType assertionType) {
+  private void assertType(JsonElementType assertionType) {
     if (type != assertionType) {
       throw new JsonElementTypeException(assertionType.name(), type.name());
     }
-  }
-
-  private enum JsonValueType {
-    BOOLEAN,
-    DOUBLE,
-    JSON_ARRAY,
-    JSON_OBJECT,
-    LONG,
-    NULL,
-    STRING,
   }
 }

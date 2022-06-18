@@ -1,4 +1,7 @@
-package technology.sola.json;
+package technology.sola.json.mapper;
+
+import technology.sola.json.JsonArray;
+import technology.sola.json.JsonObject;
 
 import java.util.List;
 
@@ -8,6 +11,11 @@ import java.util.List;
  * @param <T> the type to define a JSON mapping for
  */
 public interface JsonMapper<T> {
+  /**
+   * @return the {@link Class} that will be converted to and from {@link JsonObject}s
+   */
+  Class<T> getObjectClass();
+
   /**
    * Converts object of type T into a {@link JsonObject}.
    *

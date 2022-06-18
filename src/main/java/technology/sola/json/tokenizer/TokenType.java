@@ -1,4 +1,4 @@
-package technology.sola.json.token;
+package technology.sola.json.tokenizer;
 
 public enum TokenType {
   COLON,

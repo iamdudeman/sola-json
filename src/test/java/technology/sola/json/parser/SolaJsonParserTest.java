@@ -3,10 +3,50 @@ package technology.sola.json.parser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import technology.sola.json.token.TokenType;
-import technology.sola.json.token.Tokenizer;
+import technology.sola.json.exception.InvalidSyntaxException;
+import technology.sola.json.tokenizer.TokenType;
+import technology.sola.json.tokenizer.SolaJsonTokenizer;
 
-class ParserTest {
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class SolaJsonParserTest {
+  @Test
+  void whenInvalidRoot_shouldThrowException() {
+    String input = """
+      "test"
+      """;
+
+    InvalidSyntaxException invalidSyntaxException = assertThrows(InvalidSyntaxException.class, () -> createTest(input));
+    assertEquals(0, invalidSyntaxException.getStartIndex());
+    assertEquals(TokenType.STRING, invalidSyntaxException.getActual());
+    var expectedList = List.of(invalidSyntaxException.getExpected());
+    assertTrue(expectedList.contains(TokenType.L_BRACKET));
+    assertTrue(expectedList.contains(TokenType.L_CURLY));
+  }
+
+  @Test
+  void whenInvalidValue_shouldThrowException() {
+    String input = """
+      {
+        "key": }
+      }
+      """;
+
+    InvalidSyntaxException invalidSyntaxException = assertThrows(InvalidSyntaxException.class, () -> createTest(input));
+    assertEquals(10, invalidSyntaxException.getStartIndex());
+    assertEquals(TokenType.R_CURLY, invalidSyntaxException.getActual());
+    var expectedList = List.of(invalidSyntaxException.getExpected());
+    assertTrue(expectedList.contains(TokenType.L_BRACKET));
+    assertTrue(expectedList.contains(TokenType.L_CURLY));
+    assertTrue(expectedList.contains(TokenType.TRUE));
+    assertTrue(expectedList.contains(TokenType.FALSE));
+    assertTrue(expectedList.contains(TokenType.NULL));
+    assertTrue(expectedList.contains(TokenType.STRING));
+    assertTrue(expectedList.contains(TokenType.NUMBER));
+  }
+
   @Nested
   class parse {
     @Nested
@@ -139,10 +179,10 @@ class ParserTest {
   }
 
   private AstTester createTest(String input) {
-    Tokenizer tokenizer = new Tokenizer(input);
-    Parser parser = new Parser(tokenizer);
+    SolaJsonTokenizer solaJsonTokenizer = new SolaJsonTokenizer(input);
+    SolaJsonParser solaJsonParser = new SolaJsonParser(solaJsonTokenizer);
 
-    return new AstTester(parser.parse());
+    return new AstTester(solaJsonParser.parse());
   }
 
   private static class AstTester {

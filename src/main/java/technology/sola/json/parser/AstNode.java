@@ -1,6 +1,6 @@
 package technology.sola.json.parser;
 
-import technology.sola.json.token.Token;
+import technology.sola.json.tokenizer.Token;
 
 import java.util.Arrays;
 

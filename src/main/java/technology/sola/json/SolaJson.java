@@ -1,9 +1,13 @@
 package technology.sola.json;
 
+import technology.sola.json.exception.InvalidAbstractSyntaxTreeException;
+import technology.sola.json.mapper.JsonMapper;
 import technology.sola.json.parser.AstNode;
 import technology.sola.json.parser.AstNodeType;
-import technology.sola.json.parser.Parser;
-import technology.sola.json.token.Tokenizer;
+import technology.sola.json.parser.SolaJsonParser;
+import technology.sola.json.serializer.SolaJsonSerializer;
+import technology.sola.json.serializer.SolaJsonSerializerConfig;
+import technology.sola.json.tokenizer.SolaJsonTokenizer;
 
 import java.util.List;
 
@@ -11,6 +15,8 @@ import java.util.List;
  * SolaJson contains methods for parsing strings into {@link JsonElement}s and serializing {@code JsonElement}s into strings.
  */
 public class SolaJson {
+  private final SolaJsonSerializer solaJsonSerializer = new SolaJsonSerializer();
+
   /**
    * Parses a JSON string into a {@link JsonElement}.
    *
@@ -18,9 +24,9 @@ public class SolaJson {
    * @return the parsed {@code JsonElement}
    */
   public JsonElement parse(String jsonString) {
-    Tokenizer tokenizer = new Tokenizer(jsonString);
-    Parser parser = new Parser(tokenizer);
-    AstNode root = parser.parse();
+    SolaJsonTokenizer solaJsonTokenizer = new SolaJsonTokenizer(jsonString);
+    SolaJsonParser solaJsonParser = new SolaJsonParser(solaJsonTokenizer);
+    AstNode root = solaJsonParser.parse();
 
     return visit(root);
   }
@@ -50,24 +56,10 @@ public class SolaJson {
   }
 
   /**
-   * Serializes a {@link JsonElement}.
-   *
-   * @param jsonElement the {@code JsonElement} to serialize
-   * @return serialized JSON string
+   * @return the {@link SolaJsonSerializerConfig} used for serialization
    */
-  public String serialize(JsonElement jsonElement) {
-    return serialize(jsonElement, 0);
-  }
-
-  /**
-   * Serializes a {@link JsonElement} with spaces for indentation.
-   *
-   * @param jsonElement the {@code JsonElement} to serialize
-   * @param spaces      the spaces for indentation
-   * @return serialized JSON string
-   */
-  public String serialize(JsonElement jsonElement, int spaces) {
-    return jsonElement.toString(spaces);
+  public SolaJsonSerializerConfig getSerializerConfig() {
+    return solaJsonSerializer.getConfig();
   }
 
   /**
@@ -76,19 +68,8 @@ public class SolaJson {
    * @param jsonObject the {@code JsonObject} to serialize
    * @return serialized JSON string
    */
-  public String serialize(JsonObject jsonObject) {
-    return serialize(jsonObject, 0);
-  }
-
-  /**
-   * Serializes a {@link JsonObject} with spaces for indentation.
-   *
-   * @param jsonObject the {@code JsonObject} to serialize
-   * @param spaces     the spaces for indentation
-   * @return serialized JSON string
-   */
-  public String serialize(JsonObject jsonObject, int spaces) {
-    return jsonObject.toString(spaces);
+  public String stringify(JsonObject jsonObject) {
+    return solaJsonSerializer.serialize(jsonObject);
   }
 
   /**
@@ -97,19 +78,8 @@ public class SolaJson {
    * @param jsonArray the {@code JsonArray} to serialize
    * @return serialized JSON string
    */
-  public String serialize(JsonArray jsonArray) {
-    return serialize(jsonArray, 0);
-  }
-
-  /**
-   * Serializes a {@link JsonArray} with spaces for indentation.
-   *
-   * @param jsonArray the {@code JsonArray} to serialize
-   * @param spaces    the spaces for indentation
-   * @return serialized JSON string
-   */
-  public String serialize(JsonArray jsonArray, int spaces) {
-    return jsonArray.toString(spaces);
+  public String stringify(JsonArray jsonArray) {
+    return solaJsonSerializer.serialize(jsonArray);
   }
 
   /**
@@ -120,22 +90,10 @@ public class SolaJson {
    * @param <T>        the type of the object to serialize
    * @return serialized JSON string
    */
-  public <T> String serialize(T object, JsonMapper<T> jsonMapper) {
-    return serialize(object, jsonMapper, 0);
+  public <T> String stringify(T object, JsonMapper<T> jsonMapper) {
+    return stringify(jsonMapper.toJson(object));
   }
 
-  /**
-   * Serializes an object of type T to a string using a {@link JsonMapper} with spaces for indentation.
-   *
-   * @param object     the object to serialize
-   * @param jsonMapper the {@code JsonMapper} to use during conversion
-   * @param spaces     the spaces for indentation
-   * @param <T>        the type of the object to serialize
-   * @return serialized JSON string
-   */
-  public <T> String serialize(T object, JsonMapper<T> jsonMapper, int spaces) {
-    return serialize(jsonMapper.toJson(object), spaces);
-  }
 
   /**
    * Serializes a list of objects of type T to a string using a {@link JsonMapper}.
@@ -145,21 +103,8 @@ public class SolaJson {
    * @param <T>        the type of the object to serialize
    * @return serialized JSON string
    */
-  public <T> String serializeList(List<T> list, JsonMapper<T> jsonMapper) {
-    return serializeList(list, jsonMapper, 0);
-  }
-
-  /**
-   * Serializes a list of objects of type T to a string using a {@link JsonMapper} with spaces for indentation.
-   *
-   * @param list       the list of objects to serialize
-   * @param jsonMapper the {@code JsonMapper} to use during conversion
-   * @param spaces     the spaces for indentation
-   * @param <T>        the type of the object to serialize
-   * @return serialized JSON string
-   */
-  public <T> String serializeList(List<T> list, JsonMapper<T> jsonMapper, int spaces) {
-    return serialize(jsonMapper.toJson(list), spaces);
+  public <T> String stringify(List<T> list, JsonMapper<T> jsonMapper) {
+    return stringify(jsonMapper.toJson(list));
   }
 
   private JsonElement visit(AstNode astNode) {
@@ -167,7 +112,7 @@ public class SolaJson {
       case OBJECT -> visitObject(astNode);
       case ARRAY -> visitArray(astNode);
       case VALUE -> visitValue(astNode);
-      default -> throw new RuntimeException("Invalid AST");
+      default -> throw new InvalidAbstractSyntaxTreeException();
     };
   }
 
@@ -176,7 +121,7 @@ public class SolaJson {
 
     for (AstNode pairNode : astNode.children()) {
       if (pairNode.type() != AstNodeType.PAIR) {
-        throw new RuntimeException("Invalid AST");
+        throw new InvalidAbstractSyntaxTreeException();
       }
 
       String key = pairNode.token().value();
@@ -213,7 +158,7 @@ public class SolaJson {
           yield new JsonElement(Long.parseLong(value));
         }
       }
-      default -> throw new RuntimeException("Invalid AST");
+      default -> throw new InvalidAbstractSyntaxTreeException();
     };
   }
 }

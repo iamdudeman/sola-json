@@ -1,5 +1,7 @@
 package technology.sola.json;
 
+import technology.sola.json.serializer.SolaJsonSerializer;
+
 import java.util.ArrayList;
 
 /**
@@ -12,10 +14,6 @@ public class JsonArray extends ArrayList<JsonElement> {
 
   public JsonArray(int initialCapacity) {
     super(initialCapacity);
-  }
-
-  public JsonElement asElement() {
-    return new JsonElement(this);
   }
 
   public JsonObject getObject(int index) {
@@ -54,51 +52,45 @@ public class JsonArray extends ArrayList<JsonElement> {
     return get(index).isNull();
   }
 
-  public boolean add(JsonObject value) {
-    if (value == null) return addNull();
+  @Override
+  public boolean add(JsonElement jsonElement) {
+    return super.add(jsonElement == null ? new JsonElement() : jsonElement);
+  }
 
-    return add(value.asElement());
+  @Override
+  public void add(int index, JsonElement element) {
+    super.add(index, element == null ? new JsonElement() : element);
+  }
+
+  public boolean add(JsonObject value) {
+    return add(new JsonElement(value));
   }
 
   public boolean add(JsonArray value) {
-    if (value == null) return addNull();
-
-    return add(value.asElement());
+    return add(new JsonElement(value));
   }
 
   public boolean add(String value) {
-    if (value == null) return addNull();
-
     return add(new JsonElement(value));
   }
 
   public boolean add(Integer value) {
-    if (value == null) return addNull();
-
     return add(new JsonElement(value));
   }
 
   public boolean add(Long value) {
-    if (value == null) return addNull();
-
     return add(new JsonElement(value));
   }
 
   public boolean add(Float value) {
-    if (value == null) return addNull();
-
     return add(new JsonElement(value));
   }
 
   public boolean add(Double value) {
-    if (value == null) return addNull();
-
     return add(new JsonElement(value));
   }
 
   public boolean add(Boolean value) {
-    if (value == null) return addNull();
-
     return add(new JsonElement(value));
   }
 
@@ -112,32 +104,10 @@ public class JsonArray extends ArrayList<JsonElement> {
   }
 
   public String toString(int spaces) {
-    return toString(spaces, 0);
-  }
+    SolaJsonSerializer solaJsonSerializer = new SolaJsonSerializer();
 
-  String toString(int spaces, int depth) {
-    StringBuilder stringBuilder = new StringBuilder();
+    solaJsonSerializer.getConfig().setSpaces(spaces);
 
-    stringBuilder.append("[");
-
-    forEach(item -> {
-      if (spaces > 0) {
-        stringBuilder.append("\n");
-        stringBuilder.append(" ".repeat(spaces * (depth + 1)));
-      }
-      stringBuilder.append(item.toString(spaces, depth + 1));
-      stringBuilder.append(",");
-    });
-
-    if (stringBuilder.charAt(stringBuilder.length() - 1) == ',') {
-      stringBuilder.deleteCharAt(stringBuilder.length() - 1);
-    }
-    if (spaces > 0 && size() > 0) {
-      stringBuilder.append("\n");
-      stringBuilder.append(" ".repeat(spaces * depth));
-    }
-    stringBuilder.append("]");
-
-    return stringBuilder.toString();
+    return solaJsonSerializer.serialize(this);
   }
 }
