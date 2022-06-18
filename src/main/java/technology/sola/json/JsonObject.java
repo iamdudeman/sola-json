@@ -1,5 +1,7 @@
 package technology.sola.json;
 
+import technology.sola.json.serializer.SolaJsonSerializer;
+
 import java.util.HashMap;
 
 /**
@@ -172,34 +174,9 @@ public class JsonObject extends HashMap<String, JsonElement> {
   }
 
   public String toString(int spaces) {
-    return toString(spaces, 0);
-  }
+    SolaJsonSerializer solaJsonSerializer = new SolaJsonSerializer();
 
-  String toString(int spaces, int depth) {
-    StringBuilder stringBuilder = new StringBuilder();
+    solaJsonSerializer.getConfig().setSpaces(spaces);
 
-    stringBuilder.append("{");
-
-    String separator = spaces > 0 ? ": " : ":";
-
-    forEach((key, value) -> {
-      if (spaces > 0) {
-        stringBuilder.append("\n");
-        stringBuilder.append(" ".repeat(spaces * (depth + 1)));
-      }
-
-      stringBuilder.append(String.format("\"%s\"%s%s,", key, separator, value.toString(spaces, depth + 1)));
-    });
-
-    if (stringBuilder.charAt(stringBuilder.length() - 1) == ',') {
-      stringBuilder.deleteCharAt(stringBuilder.length() - 1);
-    }
-    if (spaces > 0 && size() > 0) {
-      stringBuilder.append("\n");
-      stringBuilder.append(" ".repeat(spaces * depth));
-    }
-    stringBuilder.append("}");
-
-    return stringBuilder.toString();
-  }
+    return solaJsonSerializer.serialize(this);  }
 }

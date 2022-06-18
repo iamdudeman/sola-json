@@ -57,7 +57,7 @@ class SolaJsonTest {
     jsonObject.put("key2", false);
     jsonObject.put("array", jsonArray);
 
-    String serialized = solaJson.serialize(jsonObject);
+    String serialized = solaJson.stringify(jsonObject);
 
     assertEquals(
       "{\"key2\":false,\"array\":[null,true,{}],\"key\":\"value\"}",
@@ -81,7 +81,9 @@ class SolaJsonTest {
     jsonObject.put("key3", new JsonObject());
     jsonObject.put("key4", new JsonArray());
 
-    String serialized = solaJson.serialize(jsonObject, 2);
+    solaJson.getSerializerConfig().setSpaces(2);
+
+    String serialized = solaJson.stringify(jsonObject);
 
     assertEquals(
         """
@@ -137,19 +139,20 @@ class SolaJsonTest {
     }
 
     @Test
-    void serialize() {
+    void stringify() {
       TestPojo testPojo = new TestPojo(1, "test");
 
-      String result = solaJson.serialize(testPojo, TestPojo.JSON_MAPPER);
+      String result = solaJson.stringify(testPojo, TestPojo.JSON_MAPPER);
 
       assertEquals("{\"value2\":\"test\",\"value\":1}", result);
     }
 
     @Test
-    void serialize_withSpaces() {
+    void stringify_withSpaces() {
       TestPojo testPojo = new TestPojo(1, "test");
 
-      String result = solaJson.serialize(testPojo, TestPojo.JSON_MAPPER, 2);
+      solaJson.getSerializerConfig().setSpaces(2);
+      String result = solaJson.stringify(testPojo, TestPojo.JSON_MAPPER);
 
       assertEquals("""
         {
@@ -159,19 +162,20 @@ class SolaJsonTest {
     }
 
     @Test
-    void serializeList() {
+    void stringifyList() {
       List<TestPojo> list = List.of(new TestPojo(1, "test"));
 
-      String result = solaJson.serializeList(list, TestPojo.JSON_MAPPER);
+      String result = solaJson.stringify(list, TestPojo.JSON_MAPPER);
 
       assertEquals("[{\"value2\":\"test\",\"value\":1}]", result);
     }
 
     @Test
-    void serializeList_withSpaces() {
+    void stringifyList_withSpaces() {
       List<TestPojo> list = List.of(new TestPojo(1, "test"));
 
-      String result = solaJson.serializeList(list, TestPojo.JSON_MAPPER, 2);
+      solaJson.getSerializerConfig().setSpaces(2);
+      String result = solaJson.stringify(list, TestPojo.JSON_MAPPER);
 
       assertEquals("""
         [

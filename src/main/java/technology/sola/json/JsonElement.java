@@ -1,6 +1,7 @@
 package technology.sola.json;
 
 import technology.sola.json.exception.JsonElementTypeException;
+import technology.sola.json.serializer.SolaJsonSerializer;
 
 /**
  * JsonElement represents any valid JSON value. Valid JSON values include {@link JsonObject}, {@link JsonArray}, string,
@@ -135,7 +136,7 @@ public class JsonElement {
    */
   public long asLong() {
     assertType(JsonElementType.LONG);
-    return (long) this.value;
+    return ((Number) this.value).longValue();
   }
 
   /**
@@ -157,7 +158,7 @@ public class JsonElement {
    */
   public double asDouble() {
     assertType(JsonElementType.DOUBLE);
-    return (double) this.value;
+    return ((Number) this.value).doubleValue();
   }
 
   /**
@@ -213,39 +214,11 @@ public class JsonElement {
   }
 
   public String toString(int spaces) {
-    return toString(spaces, 0);
-  }
+    SolaJsonSerializer solaJsonSerializer = new SolaJsonSerializer();
 
-  String toString(int spaces, int depth) {
-    if (type == JsonElementType.STRING) {
-      return "\"" + escapeNonUnicode(value.toString()) + "\"";
-    }
+    solaJsonSerializer.getConfig().setSpaces(spaces);
 
-    if (type == JsonElementType.JSON_ARRAY) {
-      return asArray().toString(spaces, depth);
-    }
-
-    if (type == JsonElementType.JSON_OBJECT) {
-      return asObject().toString(spaces, depth);
-    }
-
-    return value == null ? "null" : value.toString();
-  }
-
-  private static String escapeNonUnicode(String s) {
-    return s.replace("\\", "\\\\")
-      .replace("\t", "\\t")
-      .replace("\b", "\\b")
-      .replace("\n", "\\n")
-      .replace("\r", "\\r")
-      .replace("\f", "\\f")
-      .replace("\"", "\\\"")
-      // line separator
-      .replace("\u2028", "\\u2028")
-      // paragraph separator
-      .replace("\u2029", "\\u2029")
-      ;
-  }
+    return solaJsonSerializer.serialize(this);  }
 
   private void assertType(JsonElementType assertionType) {
     if (type != assertionType) {
