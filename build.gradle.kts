@@ -2,11 +2,11 @@ plugins {
   id("java-library")
 }
 
-version = "2.1.0"
+version = "2.1.1"
 
 java {
   toolchain {
-    languageVersion.set(JavaLanguageVersion.of(18))
+    languageVersion.set(JavaLanguageVersion.of(17))
   }
 }
 
