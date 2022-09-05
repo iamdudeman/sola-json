@@ -8,7 +8,7 @@ public class JsonElementTypeException extends RuntimeException {
    * Creates a new instance of this exception.
    *
    * @param desiredType {@link technology.sola.json.JsonElementType} attempted to use as
-   * @param actualType actual {@code JsonElementType} for this JsonElement
+   * @param actualType  actual {@code JsonElementType} for this JsonElement
    */
   public JsonElementTypeException(String desiredType, String actualType) {
     super(String.format("JsonElement type is [%s] but attempted to use as [%s]", actualType, desiredType));

@@ -173,6 +173,12 @@ public class JsonObject extends HashMap<String, JsonElement> {
     return toString(0);
   }
 
+  /**
+   * Formats this {@link JsonObject} as a string with desired spaces for indentation.
+   *
+   * @param spaces the spaces for each indentation
+   * @return formatted JSON string with spaces for indentation
+   */
   public String toString(int spaces) {
     SolaJsonSerializer solaJsonSerializer = new SolaJsonSerializer();
 

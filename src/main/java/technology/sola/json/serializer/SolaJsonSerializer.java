@@ -10,6 +10,9 @@ import technology.sola.json.JsonObject;
 public class SolaJsonSerializer {
   private final SolaJsonSerializerConfig config = new SolaJsonSerializerConfig();
 
+  /**
+   * @return current {@link SolaJsonSerializerConfig} for this {@link SolaJsonSerializer}
+   */
   public SolaJsonSerializerConfig getConfig() {
     return config;
   }
