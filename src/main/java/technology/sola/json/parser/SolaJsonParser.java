@@ -16,12 +16,22 @@ public class SolaJsonParser {
   private Token currentToken;
   private int textIndex;
 
+  /**
+   * Creates a new instance utilizing the provided {@link SolaJsonTokenizer}.
+   *
+   * @param solaJsonTokenizer the tokenizer to use for parsing
+   */
   public SolaJsonParser(SolaJsonTokenizer solaJsonTokenizer) {
     this.solaJsonTokenizer = solaJsonTokenizer;
     textIndex = solaJsonTokenizer.getTextIndex();
     currentToken = solaJsonTokenizer.getNextToken();
   }
 
+  /**
+   * Parses utilizing the provided {@link SolaJsonTokenizer}.
+   *
+   * @return the root {@link AstNode}
+   */
   public AstNode parse() {
     AstNode node = ruleRoot();
 
