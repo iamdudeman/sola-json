@@ -1,5 +1,7 @@
 plugins {
+  id("idea")
   id("java-library")
+  id("maven-publish")
 }
 
 version = "2.1.2"
@@ -26,5 +28,24 @@ tasks.test {
   useJUnitPlatform()
   testLogging {
     events("passed", "skipped", "failed")
+  }
+}
+
+publishing {
+  publications {
+    create<MavenPublication>("maven") {
+      groupId = "technology.sola.json"
+      artifactId = "sola-json"
+      version = version
+
+      from(components["java"])
+    }
+  }
+}
+
+idea {
+  module {
+    isDownloadJavadoc = true
+    isDownloadSources = true
   }
 }
