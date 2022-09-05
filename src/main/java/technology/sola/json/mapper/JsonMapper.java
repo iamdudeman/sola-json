@@ -1,8 +1,10 @@
 package technology.sola.json.mapper;
 
 import technology.sola.json.JsonArray;
+import technology.sola.json.JsonElement;
 import technology.sola.json.JsonObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -54,6 +56,12 @@ public interface JsonMapper<T> {
    * @return the converted {@code List<T>}
    */
   default List<T> toList(JsonArray jsonArray) {
-    return jsonArray.stream().map(item -> toObject(item.asObject())).toList();
+    List<T> list = new ArrayList<>(jsonArray.size());
+
+    for (JsonElement jsonElement : jsonArray) {
+      list.add(toObject(jsonElement.asObject()));
+    }
+
+    return list;
   }
 }
