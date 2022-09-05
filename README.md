@@ -108,10 +108,10 @@ value   : STRING|NUMBER|object|array|TRUE|FALSE|NULL
 
 ## TODO List
 
-* Publish to maven
+* (Publish to maven)[https://docs.gradle.org/current/userguide/publishing_maven.html]
+* JavaDoc all the things
 * Research possible performance improvements
   * Tokenizer#tokenString method
   * Tokenizer#tokenNumber method
   * General parser performance
   * Alternative ways of getting initial character array for Tokenizer (maybe not using String#toCharArray())
-* JavaDoc all the things
