@@ -1,13 +1,18 @@
 plugins {
+  id("idea")
   id("java-library")
+  id("maven-publish")
 }
 
-version = "2.1.1"
+version = "2.1.2"
 
 java {
   toolchain {
     languageVersion.set(JavaLanguageVersion.of(17))
   }
+
+  withSourcesJar()
+  withJavadocJar()
 }
 
 repositories {
@@ -23,5 +28,28 @@ tasks.test {
   useJUnitPlatform()
   testLogging {
     events("passed", "skipped", "failed")
+  }
+}
+
+tasks.javadoc {
+  options.memberLevel = JavadocMemberLevel.PROTECTED
+}
+
+publishing {
+  publications {
+    create<MavenPublication>("maven") {
+      groupId = "technology.sola.json"
+      artifactId = "sola-json"
+      version = version
+
+      from(components["java"])
+    }
+  }
+}
+
+idea {
+  module {
+    isDownloadJavadoc = true
+    isDownloadSources = true
   }
 }

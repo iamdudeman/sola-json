@@ -4,8 +4,26 @@ SolaJson is a lightweight JSON parsing library for Java 17+ that uses no additio
 It started as a project to continue learning about building parsers based on language grammars.
 
 [![Java CI](https://github.com/iamdudeman/sola-json/actions/workflows/gradle.yml/badge.svg)](https://github.com/iamdudeman/sola-json/actions/workflows/gradle.yml)
+[![Javadocs Link](https://img.shields.io/badge/Javadocs-blue.svg)](https://iamdudeman.github.io/sola-json/)
 
 Parser definition based on [json.org](https://www.json.org/json-en.html)
+
+## Download
+### Gradle + Jitpack:
+```kotlin
+repositories {
+  maven {
+    url = uri("https://jitpack.io")
+  }
+}
+
+dependencies {
+  implementation("com.github.iamdudeman:sola-json:SOLA_JSON_VERSION")
+}
+```
+
+### GitHub Releases:
+[sola-json jar downloads](https://github.com/iamdudeman/sola-json/releases) hosted on GitHub.
 
 ## Example Usages
 
@@ -108,10 +126,9 @@ value   : STRING|NUMBER|object|array|TRUE|FALSE|NULL
 
 ## TODO List
 
-* Publish to maven
+* Javadoc more things
 * Research possible performance improvements
   * Tokenizer#tokenString method
   * Tokenizer#tokenNumber method
   * General parser performance
   * Alternative ways of getting initial character array for Tokenizer (maybe not using String#toCharArray())
-* JavaDoc all the things

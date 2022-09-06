@@ -103,6 +103,12 @@ public class JsonArray extends ArrayList<JsonElement> {
     return toString(0);
   }
 
+  /**
+   * Formats this {@link JsonArray} as a string with desired spaces for indentation.
+   *
+   * @param spaces the spaces for each indentation
+   * @return formatted JSON string with spaces for indentation
+   */
   public String toString(int spaces) {
     SolaJsonSerializer solaJsonSerializer = new SolaJsonSerializer();
 

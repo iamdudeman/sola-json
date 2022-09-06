@@ -10,15 +10,26 @@ public class SolaJsonTokenizer {
   private Character currentChar;
   private int textIndex;
 
+  /**
+   * Creates a {@link SolaJsonTokenizer} for the desired string.
+   *
+   * @param text the string to tokenize
+   */
   public SolaJsonTokenizer(String text) {
     characters = text.toCharArray();
     currentChar = characters[textIndex];
   }
 
+  /**
+   * @return the current index the tokenizer is at
+   */
   public int getTextIndex() {
     return textIndex;
   }
 
+  /**
+   * @return finds and returns the next valid token in the string
+   */
   public Token getNextToken() {
     if (currentChar == null) {
       return new Token(TokenType.EOF);
