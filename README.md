@@ -7,6 +7,19 @@ It started as a project to continue learning about building parsers based on lan
 
 Parser definition based on [json.org](https://www.json.org/json-en.html)
 
+## Include dependency via Jitpack
+```kotlin
+repositories {
+  maven {
+    url = uri("https://jitpack.io")
+  }
+}
+
+dependencies {
+  implementation("com.github.iamdudeman:sola-json:SOLA_JSON_VERSION")
+}
+```
+
 ## Example Usages
 
 ### Basic Usage
@@ -109,7 +122,7 @@ value   : STRING|NUMBER|object|array|TRUE|FALSE|NULL
 ## TODO List
 
 * (Publish to maven)[https://docs.gradle.org/current/userguide/publishing_maven.html]
-* JavaDoc all the things
+* Javadoc all the things
 * Research possible performance improvements
   * Tokenizer#tokenString method
   * Tokenizer#tokenNumber method
