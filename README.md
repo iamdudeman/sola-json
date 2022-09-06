@@ -126,8 +126,7 @@ value   : STRING|NUMBER|object|array|TRUE|FALSE|NULL
 
 ## TODO List
 
-* (Publish to maven)[https://docs.gradle.org/current/userguide/publishing_maven.html]
-* Javadoc all the things
+* Javadoc more things
 * Research possible performance improvements
   * Tokenizer#tokenString method
   * Tokenizer#tokenNumber method
