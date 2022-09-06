@@ -31,6 +31,10 @@ tasks.test {
   }
 }
 
+tasks.javadoc {
+  options.memberLevel = JavadocMemberLevel.PROTECTED
+}
+
 publishing {
   publications {
     create<MavenPublication>("maven") {

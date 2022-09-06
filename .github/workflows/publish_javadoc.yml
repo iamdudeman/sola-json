@@ -2,7 +2,7 @@ name: Deploy Javadoc
 
 on:
   push:
-    branches: [ main, feature/maven-publish ]
+    branches: [ main ]
 
 permissions:
   contents: write
