@@ -5,6 +5,7 @@ It started as a project to continue learning about building parsers based on lan
 
 [![Java CI](https://github.com/iamdudeman/sola-json/actions/workflows/ci_build.yml/badge.svg)](https://github.com/iamdudeman/sola-json/actions/workflows/ci_build.yml)
 [![Javadocs Link](https://img.shields.io/badge/Javadocs-blue.svg)](https://iamdudeman.github.io/sola-json/)
+[![](https://jitpack.io/v/iamdudeman/sola-json.svg)](https://jitpack.io/#iamdudeman/sola-json)
 
 Parser definition based on [json.org](https://www.json.org/json-en.html)
 
