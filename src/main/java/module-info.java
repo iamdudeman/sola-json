@@ -1,7 +1,7 @@
 /**
  * Defines the sola-json API.
  */
-module sola.json.main {
+module technology.sola.json {
   exports technology.sola.json;
   exports technology.sola.json.builder;
   exports technology.sola.json.exception;
