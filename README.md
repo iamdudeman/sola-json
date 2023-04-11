@@ -10,41 +10,42 @@ It started as a project to continue learning about building parsers based on lan
 Parser definition based on [json.org](https://www.json.org/json-en.html)
 
 ## Download
+
 ### Gradle + Jitpack:
+
 ```kotlin
 repositories {
-  maven {
-    url = uri("https://jitpack.io")
-  }
+    maven {
+        url = uri("https://jitpack.io")
+    }
 }
 
 dependencies {
-  implementation("com.github.iamdudeman:sola-json:SOLA_JSON_VERSION")
+    implementation("com.github.iamdudeman:sola-json:2.1.3")
 }
 ```
 
-### GitHub Releases:
-[sola-json jar downloads](https://github.com/iamdudeman/sola-json/releases) hosted on GitHub.
+[sola-json jar downloads](https://github.com/iamdudeman/sola-json/releases) hosted on GitHub releases.
 
-## Example Usages
+## Example usages
 
 ### Basic Usage
 
 ```java
 public class BasicUsage {
-  public static void main(String[] args) {
-    String jsonString = """
-      {
-        "key": "value"
-      }
-      """;
-    SolaJson solaJson = new SolaJson();
-    JsonObject root = solaJson.parse(jsonString).asObject();
-    System.out.println(root.getString("key"));
+    public static void main(String[] args) {
+        String jsonString = """
+            {
+              "key": "value"
+            }
+            """;
+        SolaJson solaJson = new SolaJson();
+        JsonObject root = solaJson.parse(jsonString).asObject();
+        System.out.println(root.getString("key"));
 
-    root.put("key2", 10);
-    System.out.println(solaJson.stringify(root));
-  }
+        root.put("key2", 10);
+        System.out.println(solaJson.stringify(root));
+    }
 }
 ```
 
@@ -58,38 +59,38 @@ value
 
 ```java
 public class JsonMapperUsage {
-  public static void main(String[] args) {
-    String input = """
-      {
-        "value": 1
-      }
-      """;
-    SolaJson solaJson = new SolaJson();
-    Pojo result = solaJson.parse(input, JSON_MAPPER);
-    System.out.println(result.value());
+    public static void main(String[] args) {
+        String input = """
+            {
+              "value": 1
+            }
+            """;
+        SolaJson solaJson = new SolaJson();
+        Pojo result = solaJson.parse(input, JSON_MAPPER);
+        System.out.println(result.value());
 
-    Pojo pojo = new Pojo(10);
-    System.out.println(solaJson.stringify(pojo, JSON_MAPPER));
-  }
-
-  public record Pojo(int value) {
-  }
-
-  static JsonMapper<Pojo> JSON_MAPPER = new JsonMapper<>() {
-    @Override
-    public JsonObject toJson(Pojo object) {
-      JsonObject jsonObject = new JsonObject();
-
-      jsonObject.put("value", object.value());
-
-      return jsonObject;
+        Pojo pojo = new Pojo(10);
+        System.out.println(solaJson.stringify(pojo, JSON_MAPPER));
     }
 
-    @Override
-    public TestPojo toObject(JsonObject jsonObject) {
-      return new Pojo(jsonObject.getInt("value"));
+    public record Pojo(int value) {
     }
-  };
+
+    static JsonMapper<Pojo> JSON_MAPPER = new JsonMapper<>() {
+        @Override
+        public JsonObject toJson(Pojo object) {
+            JsonObject jsonObject = new JsonObject();
+
+            jsonObject.put("value", object.value());
+
+            return jsonObject;
+        }
+
+        @Override
+        public TestPojo toObject(JsonObject jsonObject) {
+            return new Pojo(jsonObject.getInt("value"));
+        }
+    };
 }
 ```
 
@@ -124,15 +125,3 @@ array   : L_BRACKET (value (COMMA value)*)? R_BRACKET
 pair    : STRING COLON value
 value   : STRING|NUMBER|object|array|TRUE|FALSE|NULL
 ```
-
-## TODO List
-
-* Javadoc more things
-* Research possible performance improvements
-  * Tokenizer#tokenString method
-  * Tokenizer#tokenNumber method
-  * General parser performance
-  * Alternative ways of getting initial character array for Tokenizer (maybe not using String#toCharArray())
-* Consider adding performance testing
-  * https://github.com/clarkware/junitperf
-  * compare vs GSON

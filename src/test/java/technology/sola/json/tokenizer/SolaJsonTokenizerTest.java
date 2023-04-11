@@ -90,8 +90,8 @@ class SolaJsonTokenizerTest {
         var input = " tru ";
 
         InvalidKeywordException exception = assertThrows(InvalidKeywordException.class, () -> new SolaJsonTokenizer(input).getNextToken());
-        assertEquals("true", exception.getExpectedKeyword());
-        assertEquals("tru ", exception.getReceivedKeyword());
+        assertEquals("true", exception.getExpected());
+        assertEquals("tru ", exception.getActual());
         assertEquals(1, exception.getStartIndex());
       }
 
@@ -110,8 +110,8 @@ class SolaJsonTokenizerTest {
         var input = " fals ";
 
         InvalidKeywordException exception = assertThrows(InvalidKeywordException.class, () -> new SolaJsonTokenizer(input).getNextToken());
-        assertEquals("false", exception.getExpectedKeyword());
-        assertEquals("fals ", exception.getReceivedKeyword());
+        assertEquals("false", exception.getExpected());
+        assertEquals("fals ", exception.getActual());
         assertEquals(1, exception.getStartIndex());
       }
 
@@ -130,8 +130,8 @@ class SolaJsonTokenizerTest {
         var input = " nul ";
 
         InvalidKeywordException exception = assertThrows(InvalidKeywordException.class, () -> new SolaJsonTokenizer(input).getNextToken());
-        assertEquals("null", exception.getExpectedKeyword());
-        assertEquals("nul ", exception.getReceivedKeyword());
+        assertEquals("null", exception.getExpected());
+        assertEquals("nul ", exception.getActual());
         assertEquals(1, exception.getStartIndex());
       }
     }
