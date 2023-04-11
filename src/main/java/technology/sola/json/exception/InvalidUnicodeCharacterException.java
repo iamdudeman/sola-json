@@ -4,6 +4,9 @@ package technology.sola.json.exception;
  * Exception thrown when an invalid unicode character is found during tokenization.
  */
 public class InvalidUnicodeCharacterException extends RuntimeException {
+  /**
+   * Index where the error was found.
+   */
   private final int startIndex;
 
   /**

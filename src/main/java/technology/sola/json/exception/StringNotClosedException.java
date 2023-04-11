@@ -4,6 +4,9 @@ package technology.sola.json.exception;
  * Exception thrown when a string was discovered to be not closed during tokenization.
  */
 public class StringNotClosedException extends RuntimeException {
+  /**
+   * Index where the error was found.
+   */
   private final int startIndex;
 
   /**
