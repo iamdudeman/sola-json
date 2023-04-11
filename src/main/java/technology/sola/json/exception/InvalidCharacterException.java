@@ -4,7 +4,13 @@ package technology.sola.json.exception;
  * Exception for when an invalid character is found during tokenization.
  */
 public class InvalidCharacterException extends RuntimeException {
+  /**
+   * The character that is invalid.
+   */
   private final char invalidCharacter;
+  /**
+   * Index where the error was found.
+   */
   private final int startIndex;
 
   /**

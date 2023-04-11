@@ -9,8 +9,17 @@ import java.util.stream.Collectors;
  * Exception thrown when invalid syntax is discovered during parsing.
  */
 public class InvalidSyntaxException extends RuntimeException {
+  /**
+   * Index where the error was found.
+   */
   private final int startIndex;
+  /**
+   * The actual {@link TokenType} seen.
+   */
   private final TokenType actual;
+  /**
+   * The expected {@link TokenType}.
+   */
   private final TokenType[] expected;
 
   /**
