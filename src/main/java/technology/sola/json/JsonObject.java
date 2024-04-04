@@ -164,6 +164,12 @@ public class JsonObject extends HashMap<String, JsonElement> {
     return put(key, new JsonElement(value));
   }
 
+  /**
+   * Puts {@link JsonElement} of type {@link JsonElementType#NULL} into this {@link JsonObject}.
+   *
+   * @param key the key to put a NULL JSON value into
+   * @return the previous {@link JsonElement} associated with this key
+   */
   public JsonElement putNull(String key) {
     return put(key, new JsonElement());
   }
@@ -176,12 +182,40 @@ public class JsonObject extends HashMap<String, JsonElement> {
    *   <li>If key in this only, then this value is added to result</li>
    *   <li>If key in other only, then other value is added to result</li>
    * </ol>
+   * This does not create a deep copy of nested arrays and objects.
    *
-   * @param jsonObject the object to merge with
+   * @param other the object to merge with
    * @return a new {@code JsonObject} with merged properties
    */
-  public JsonObject merge(JsonObject jsonObject) {
-    throw new RuntimeException("not yet implemented");
+  public JsonObject merge(JsonObject other) {
+    JsonObject result = new JsonObject();
+
+    forEach((key, value) -> {
+      var otherValue = other.get(key);
+
+      // add in any unique keys from this object
+      if (otherValue == null) {
+        result.put(key, value);
+      } else {
+        // nested merge if value in both is an object
+        if (value.getType() == JsonElementType.JSON_OBJECT && otherValue.getType() == JsonElementType.JSON_OBJECT) {
+          result.put(key, value.asObject().merge(otherValue.asObject()));
+        } else {
+          result.put(key, otherValue);
+        }
+      }
+    });
+
+    // add in any unique keys from the other object
+    other.forEach((key, value) -> {
+      var thisValue = this.get(key);
+
+      if (thisValue == null) {
+        result.put(key, value);
+      }
+    });
+
+    return result;
   }
 
   @Override

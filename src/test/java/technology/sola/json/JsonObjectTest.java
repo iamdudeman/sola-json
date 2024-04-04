@@ -135,4 +135,48 @@ class JsonObjectTest {
       assertTrue(root.isNull(TEST_KEY));
     }
   }
+
+  @Nested
+  class merge {
+    @Test
+    void shouldHaveUniqueKeysFromBothObjects() {
+      JsonObject objectOne = new JsonObject();
+
+      objectOne.put("test", 1);
+      JsonObject objectTwo = new JsonObject();
+      objectTwo.put("test2", 2);
+
+      JsonObject result = objectOne.merge(objectTwo);
+
+      assertEquals(1, result.getInt("test"));
+      assertEquals(2, result.getInt("test2"));
+    }
+
+    @Test
+    void shouldReplaceDuplicateKeysIfNotObjects() {
+      JsonObject objectOne = new JsonObject();
+      objectOne.put("test", 1);
+      JsonObject objectTwo = new JsonObject();
+      objectTwo.put("test", 2);
+
+      assertEquals(2, objectOne.merge(objectTwo).getInt("test"));
+      assertEquals(1, objectTwo.merge(objectOne).getInt("test"));
+    }
+
+    @Test
+    void shouldMergeNestedObjects() {
+      JsonObject objectOne = new JsonObject();
+      JsonObject objectOneNested = new JsonObject();
+      objectOne.put("test", objectOneNested);
+      objectOneNested.put("test", 1);
+
+      JsonObject objectTwo = new JsonObject();
+      JsonObject objectTwoNested = new JsonObject();
+      objectTwo.put("test", objectTwoNested);
+      objectTwoNested.put("test", 2);
+
+      assertEquals(2, objectOne.merge(objectTwo).getObject("test").getInt("test"));
+      assertEquals(1, objectTwo.merge(objectOne).getObject("test").getInt("test"));
+    }
+  }
 }
