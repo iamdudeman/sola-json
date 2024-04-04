@@ -168,6 +168,22 @@ public class JsonObject extends HashMap<String, JsonElement> {
     return put(key, new JsonElement());
   }
 
+  /**
+   * Merges this {@link JsonObject} with another resulting in a new {@code JsonObject}.
+   * <ol>
+   *   <li>If key in both and each value is an object then it will recursively merge and add to result</li>
+   *   <li>If key in both and each value is not an object, value from the right is added to the result</li>
+   *   <li>If key in this only, then this value is added to result</li>
+   *   <li>If key in other only, then other value is added to result</li>
+   * </ol>
+   *
+   * @param jsonObject the object to merge with
+   * @return a new {@code JsonObject} with merged properties
+   */
+  public JsonObject merge(JsonObject jsonObject) {
+    throw new RuntimeException("not yet implemented");
+  }
+
   @Override
   public String toString() {
     return toString(0);
@@ -184,5 +200,6 @@ public class JsonObject extends HashMap<String, JsonElement> {
 
     solaJsonSerializer.getConfig().setSpaces(spaces);
 
-    return solaJsonSerializer.serialize(this);  }
+    return solaJsonSerializer.serialize(this);
+  }
 }
