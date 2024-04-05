@@ -49,6 +49,14 @@ public class JsonObject extends HashMap<String, JsonElement> {
     return get(key).asObject();
   }
 
+  /**
+   * Returns the {@link JsonObject} for the specified key. Default value is returned if key is missing.
+   *
+   * @param key          the key of the {@link JsonObject} to be returned
+   * @param defaultValue the default value to return if key is missing
+   * @return the {@link JsonObject} to which the specified key is mapped
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#JSON_OBJECT}
+   */
   public JsonObject getObject(String key, JsonObject defaultValue) {
     var value = get(key);
 
@@ -70,6 +78,14 @@ public class JsonObject extends HashMap<String, JsonElement> {
     return get(key).asArray();
   }
 
+  /**
+   * Returns the {@link JsonArray} for the specified key. Default value is returned if key is missing.
+   *
+   * @param key the key of the {@link JsonArray} to be returned
+   * @param defaultValue the default value to return if key is missing
+   * @return the {@link JsonArray} to which the specified key is mapped
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#JSON_ARRAY}
+   */
   public JsonArray getArray(String key, JsonArray defaultValue) {
     var value = get(key);
 
@@ -91,6 +107,14 @@ public class JsonObject extends HashMap<String, JsonElement> {
     return get(key).asString();
   }
 
+  /**
+   * Returns the string for the specified key. Default value is returned if key is missing.
+   *
+   * @param key the key of the string to be returned
+   * @param defaultValue the default value to return if key is missing
+   * @return the string to which the specified key is mapped
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#STRING}
+   */
   public String getString(String key, String defaultValue) {
     var value = get(key);
 
@@ -112,6 +136,14 @@ public class JsonObject extends HashMap<String, JsonElement> {
     return get(key).asDouble();
   }
 
+  /**
+   * Returns the double for the specified key. Default value is returned if key is missing.
+   *
+   * @param key the key of the double to be returned
+   * @param defaultValue the default value to return if key is missing
+   * @return the double to which the specified key is mapped
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#DOUBLE}
+   */
   public Double getDouble(String key, Double defaultValue) {
     var value = get(key);
 
@@ -133,6 +165,14 @@ public class JsonObject extends HashMap<String, JsonElement> {
     return get(key).asFloat();
   }
 
+  /**
+   * Returns the float for the specified key. Default value is returned if key is missing.
+   *
+   * @param key the key of the float to be returned
+   * @param defaultValue the default value to return if key is missing
+   * @return the float to which the specified key is mapped
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#DOUBLE}
+   */
   public Float getFloat(String key, Float defaultValue) {
     var value = get(key);
 
@@ -154,6 +194,14 @@ public class JsonObject extends HashMap<String, JsonElement> {
     return get(key).asInt();
   }
 
+  /**
+   * Returns the integer for the specified key. Default value is returned if key is missing.
+   *
+   * @param key the key of the integer to be returned
+   * @param defaultValue the default value to return if key is missing
+   * @return the integer to which the specified key is mapped
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#LONG}
+   */
   public Integer getInt(String key, Integer defaultValue) {
     var value = get(key);
 
@@ -175,6 +223,14 @@ public class JsonObject extends HashMap<String, JsonElement> {
     return get(key).asLong();
   }
 
+  /**
+   * Returns the long for the specified key. Default value is returned if key is missing.
+   *
+   * @param key the key of the long to be returned
+   * @param defaultValue the default value to return if key is missing
+   * @return the long to which the specified key is mapped
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#LONG}
+   */
   public Long getLong(String key, Long defaultValue) {
     var value = get(key);
 
@@ -196,6 +252,14 @@ public class JsonObject extends HashMap<String, JsonElement> {
     return get(key).asBoolean();
   }
 
+  /**
+   * Returns the boolean for the specified key. Default value is returned if key is missing.
+   *
+   * @param key the key of the boolean to be returned
+   * @param defaultValue the default value to return if key is missing
+   * @return the boolean to which the specified key is mapped
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#BOOLEAN}
+   */
   public Boolean getBoolean(String key, Boolean defaultValue) {
     var value = get(key);
 
@@ -216,46 +280,125 @@ public class JsonObject extends HashMap<String, JsonElement> {
     return get(key).isNull();
   }
 
-  public JsonElement put(String key, JsonObject value) {
-    return put(key, new JsonElement(value));
+  @Override
+  public JsonElement put(String key, JsonElement value) {
+    return super.put(key, value == null ? new JsonElement() : value);
   }
 
-  public JsonElement put(String key, JsonArray value) {
-    return put(key, new JsonElement(value));
+  /**
+   * Associates a {@link JsonObject} with specified key.
+   *
+   * @param key   the key to associate the {@link JsonObject} with
+   * @param value the {@link JsonObject} to associate
+   * @return this
+   */
+  public JsonObject put(String key, JsonObject value) {
+    put(key, new JsonElement(value));
+
+    return this;
   }
 
-  public JsonElement put(String key, String value) {
-    return put(key, new JsonElement(value));
+  /**
+   * Associates a {@link JsonArray} with specified key.
+   *
+   * @param key   the key to associate the {@link JsonArray} with
+   * @param value the {@link JsonArray} to associate
+   * @return this
+   */
+  public JsonObject put(String key, JsonArray value) {
+    put(key, new JsonElement(value));
+
+    return this;
   }
 
-  public JsonElement put(String key, Integer value) {
-    return put(key, new JsonElement(value));
+  /**
+   * Associates a string with specified key.
+   *
+   * @param key   the key to associate the string with
+   * @param value the string to associate
+   * @return this
+   */
+  public JsonObject put(String key, String value) {
+    put(key, new JsonElement(value));
+
+    return this;
   }
 
-  public JsonElement put(String key, Long value) {
-    return put(key, new JsonElement(value));
+  /**
+   * Associates a integer with specified key.
+   *
+   * @param key   the key to associate the integer with
+   * @param value the integer to associate
+   * @return this
+   */
+  public JsonObject put(String key, Integer value) {
+    put(key, new JsonElement(value));
+
+    return this;
   }
 
-  public JsonElement put(String key, Double value) {
-    return put(key, new JsonElement(value));
+  /**
+   * Associates a long with specified key.
+   *
+   * @param key   the key to associate the long with
+   * @param value the long to associate
+   * @return this
+   */
+  public JsonObject put(String key, Long value) {
+    put(key, new JsonElement(value));
+
+    return this;
   }
 
-  public JsonElement put(String key, Float value) {
-    return put(key, new JsonElement(value));
+  /**
+   * Associates a double with specified key.
+   *
+   * @param key   the key to associate the double with
+   * @param value the double to associate
+   * @return this
+   */
+  public JsonObject put(String key, Double value) {
+    put(key, new JsonElement(value));
+
+    return this;
   }
 
-  public JsonElement put(String key, Boolean value) {
-    return put(key, new JsonElement(value));
+  /**
+   * Associates a float with specified key.
+   *
+   * @param key   the key to associate the float with
+   * @param value the float to associate
+   * @return this
+   */
+  public JsonObject put(String key, Float value) {
+    put(key, new JsonElement(value));
+
+    return this;
+  }
+
+  /**
+   * Associates a boolean with specified key.
+   *
+   * @param key   the key to associate the boolean with
+   * @param value the boolean to associate
+   * @return this
+   */
+  public JsonObject put(String key, Boolean value) {
+    put(key, new JsonElement(value));
+
+    return this;
   }
 
   /**
    * Puts {@link JsonElement} of type {@link JsonElementType#NULL} into this {@link JsonObject}.
    *
    * @param key the key to put a NULL JSON value into
-   * @return the previous {@link JsonElement} associated with this key
+   * @return this
    */
-  public JsonElement putNull(String key) {
-    return put(key, new JsonElement());
+  public JsonObject putNull(String key) {
+    put(key, new JsonElement());
+
+    return this;
   }
 
   /**

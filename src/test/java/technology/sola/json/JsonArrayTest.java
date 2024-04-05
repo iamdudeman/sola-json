@@ -3,7 +3,6 @@ package technology.sola.json;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import technology.sola.json.builder.JsonObjectBuilder;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -123,7 +122,7 @@ class JsonArrayTest {
         .add("value")
         .addNull()
         .add(new JsonArray().add("test"))
-        .add(new JsonObjectBuilder().addString("string", "value").build());
+        .add(new JsonObject().put("string", "value"));
 
       assertEquals(2, result.getInt(0));
       assertEquals(3L, result.getLong(1));

@@ -1,4 +1,3 @@
-* Javadoc more things
 * Consider adding performance testing
     * https://github.com/clarkware/junitperf
     * compare vs GSON

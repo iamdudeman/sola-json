@@ -3,7 +3,6 @@
  */
 module technology.sola.json {
   exports technology.sola.json;
-  exports technology.sola.json.builder;
   exports technology.sola.json.exception;
   exports technology.sola.json.mapper;
   exports technology.sola.json.parser;
