@@ -3,6 +3,7 @@ package technology.sola.json;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import technology.sola.json.builder.JsonObjectBuilder;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -109,6 +110,30 @@ class JsonArrayTest {
     void nullMethods() {
       root.addNull();
       assertTrue(root.isNull(0));
+    }
+
+    @Test
+    void builder() {
+      JsonArray result = new JsonArray()
+        .add(2)
+        .add(3L)
+        .add(1.5f)
+        .add(2.5)
+        .add(true)
+        .add("value")
+        .addNull()
+        .add(new JsonArray().add("test"))
+        .add(new JsonObjectBuilder().addString("string", "value").build());
+
+      assertEquals(2, result.getInt(0));
+      assertEquals(3L, result.getLong(1));
+      assertEquals(1.5f, result.getFloat(2));
+      assertEquals(2.5, result.getDouble(3));
+      assertTrue(result.getBoolean(4));
+      assertEquals("value", result.getString(5));
+      assertTrue(result.isNull(6));
+      assertEquals("test", result.getArray(7).getString(0));
+      assertEquals("value", result.getObject(8).getString("string"));
     }
   }
 }

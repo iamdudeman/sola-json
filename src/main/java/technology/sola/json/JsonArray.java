@@ -135,40 +135,58 @@ public class JsonArray extends ArrayList<JsonElement> {
     super.add(index, element == null ? new JsonElement() : element);
   }
 
-  public boolean add(JsonObject value) {
-    return super.add(new JsonElement(value));
+  public JsonArray add(JsonObject value) {
+    super.add(new JsonElement(value));
+
+    return this;
   }
 
-  public boolean add(JsonArray value) {
-    return add(new JsonElement(value));
+  public JsonArray add(JsonArray value) {
+    add(new JsonElement(value));
+
+    return this;
   }
 
-  public boolean add(String value) {
-    return add(new JsonElement(value));
+  public JsonArray add(String value) {
+    add(new JsonElement(value));
+
+    return this;
   }
 
-  public boolean add(Integer value) {
-    return add(new JsonElement(value));
+  public JsonArray add(Integer value) {
+    add(new JsonElement(value));
+
+    return this;
   }
 
-  public boolean add(Long value) {
-    return add(new JsonElement(value));
+  public JsonArray add(Long value) {
+    add(new JsonElement(value));
+
+    return this;
   }
 
-  public boolean add(Float value) {
-    return add(new JsonElement(value));
+  public JsonArray add(Float value) {
+    add(new JsonElement(value));
+
+    return this;
   }
 
-  public boolean add(Double value) {
-    return add(new JsonElement(value));
+  public JsonArray add(Double value) {
+    add(new JsonElement(value));
+
+    return this;
   }
 
-  public boolean add(Boolean value) {
-    return add(new JsonElement(value));
+  public JsonArray add(Boolean value) {
+    add(new JsonElement(value));
+
+    return this;
   }
 
-  public boolean addNull() {
-    return add(new JsonElement());
+  public JsonArray addNull() {
+    add(new JsonElement());
+
+    return this;
   }
 
   /**

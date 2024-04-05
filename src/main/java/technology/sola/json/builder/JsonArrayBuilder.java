@@ -8,6 +8,7 @@ import java.util.function.Function;
 /**
  * JsonArrayBuilder provides convenient methods for creating a new {@link JsonArray}.
  */
+@Deprecated
 public class JsonArrayBuilder {
   private final JsonArray jsonArray;
 
