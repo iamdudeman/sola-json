@@ -120,9 +120,18 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">JsonObject</a>()</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Constructs an empty <a href="JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a> with the default initial capacity (16) and the default load factor (0.75).</div>
+</div>
 <div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(int)" class="member-name-link">JsonObject</a><wbr>(int&nbsp;initialCapacity)</code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Constructs an empty <a href="JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a> with the specified initial capacity and the default load factor (0.75).</div>
+</div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,float)" class="member-name-link">JsonObject</a><wbr>(int&nbsp;initialCapacity,
+ float&nbsp;loadFactor)</code></div>
+<div class="col-last even-row-color">
+<div class="block">Constructs an empty <a href="JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a> with the specified initial capacity and the specified load factor.</div>
+</div>
 </div>
 </section>
 </li>
@@ -139,113 +148,167 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="JsonArray.html" title="class in technology.sola.json">JsonArray</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getArray(java.lang.String)" class="member-name-link">getArray</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the <a href="JsonArray.html" title="class in technology.sola.json"><code>JsonArray</code></a> for the specified key.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="JsonArray.html" title="class in technology.sola.json">JsonArray</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getArray(java.lang.String,technology.sola.json.JsonArray)" class="member-name-link">getArray</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="JsonArray.html" title="class in technology.sola.json">JsonArray</a>&nbsp;defaultValue)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the <a href="JsonArray.html" title="class in technology.sola.json"><code>JsonArray</code></a> for the specified key.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getBoolean(java.lang.String)" class="member-name-link">getBoolean</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the boolean for the specified key.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getBoolean(java.lang.String,java.lang.Boolean)" class="member-name-link">getBoolean</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&nbsp;defaultValue)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the boolean for the specified key.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDouble(java.lang.String)" class="member-name-link">getDouble</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the double for the specified key.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDouble(java.lang.String,java.lang.Double)" class="member-name-link">getDouble</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&nbsp;defaultValue)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the double for the specified key.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>float</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getFloat(java.lang.String)" class="member-name-link">getFloat</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the float for the specified key.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getFloat(java.lang.String,java.lang.Float)" class="member-name-link">getFloat</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a>&nbsp;defaultValue)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the float for the specified key.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getInt(java.lang.String)" class="member-name-link">getInt</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the integer for the specified key.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getInt(java.lang.String,java.lang.Integer)" class="member-name-link">getInt</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&nbsp;defaultValue)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the integer for the specified key.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>long</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getLong(java.lang.String)" class="member-name-link">getLong</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the long for the specified key.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getLong(java.lang.String,java.lang.Long)" class="member-name-link">getLong</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;defaultValue)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the long for the specified key.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getObject(java.lang.String)" class="member-name-link">getObject</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the <a href="JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a> for the specified key.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getObject(java.lang.String,technology.sola.json.JsonObject)" class="member-name-link">getObject</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a>&nbsp;defaultValue)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the <a href="JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a> for the specified key.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getString(java.lang.String)" class="member-name-link">getString</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the string for the specified key.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getString(java.lang.String,java.lang.String)" class="member-name-link">getString</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;defaultValue)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the string for the specified key.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isNull(java.lang.String)" class="member-name-link">isNull</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns true if <a href="JsonElementType.html#NULL"><code>JsonElementType.NULL</code></a> is at specified key.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#merge(technology.sola.json.JsonObject)" class="member-name-link">merge</a><wbr>(<a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a>&nbsp;other)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Merges this <a href="JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a> with another resulting in a new <code>JsonObject</code>.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="JsonElement.html" title="class in technology.sola.json">JsonElement</a></code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#put(java.lang.String,java.lang.Boolean)" class="member-name-link">put</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&nbsp;value)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="JsonElement.html" title="class in technology.sola.json">JsonElement</a></code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Associates a boolean with specified key.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#put(java.lang.String,java.lang.Double)" class="member-name-link">put</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&nbsp;value)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="JsonElement.html" title="class in technology.sola.json">JsonElement</a></code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Associates a double with specified key.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#put(java.lang.String,java.lang.Float)" class="member-name-link">put</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a>&nbsp;value)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="JsonElement.html" title="class in technology.sola.json">JsonElement</a></code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Associates a float with specified key.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#put(java.lang.String,java.lang.Integer)" class="member-name-link">put</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&nbsp;value)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="JsonElement.html" title="class in technology.sola.json">JsonElement</a></code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Associates a integer with specified key.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#put(java.lang.String,java.lang.Long)" class="member-name-link">put</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;value)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="JsonElement.html" title="class in technology.sola.json">JsonElement</a></code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Associates a long with specified key.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#put(java.lang.String,java.lang.String)" class="member-name-link">put</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;value)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="JsonElement.html" title="class in technology.sola.json">JsonElement</a></code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Associates a string with specified key.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#put(java.lang.String,technology.sola.json.JsonArray)" class="member-name-link">put</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="JsonArray.html" title="class in technology.sola.json">JsonArray</a>&nbsp;value)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="JsonElement.html" title="class in technology.sola.json">JsonElement</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#put(java.lang.String,technology.sola.json.JsonObject)" class="member-name-link">put</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
- <a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a>&nbsp;value)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="JsonElement.html" title="class in technology.sola.json">JsonElement</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#putNull(java.lang.String)" class="member-name-link">putNull</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Associates a <a href="JsonArray.html" title="class in technology.sola.json"><code>JsonArray</code></a> with specified key.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="JsonElement.html" title="class in technology.sola.json">JsonElement</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#put(java.lang.String,technology.sola.json.JsonElement)" class="member-name-link">put</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
+ <a href="JsonElement.html" title="class in technology.sola.json">JsonElement</a>&nbsp;value)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#put(java.lang.String,technology.sola.json.JsonObject)" class="member-name-link">put</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
+ <a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a>&nbsp;value)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Associates a <a href="JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a> with specified key.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#putNull(java.lang.String)" class="member-name-link">putNull</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Puts <a href="JsonElement.html" title="class in technology.sola.json"><code>JsonElement</code></a> of type <a href="JsonElementType.html#NULL"><code>JsonElementType.NULL</code></a> into this <a href="JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a>.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Formats this <a href="JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a> as a string with no indentation.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString(int)" class="member-name-link">toString</a><wbr>(int&nbsp;spaces)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString(int)" class="member-name-link">toString</a><wbr>(int&nbsp;spaces)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Formats this <a href="JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a> as a string with specified spaces for indentation.</div>
 </div>
 </div>
@@ -253,7 +316,7 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.util.HashMap">Methods inherited from class&nbsp;java.util.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html" title="class or interface in java.util" class="external-link">HashMap</a></h3>
-<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#clear()" title="class or interface in java.util" class="external-link">clear</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#clone()" title="class or interface in java.util" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#compute(K,java.util.function.BiFunction)" title="class or interface in java.util" class="external-link">compute</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#computeIfAbsent(K,java.util.function.Function)" title="class or interface in java.util" class="external-link">computeIfAbsent</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#computeIfPresent(K,java.util.function.BiFunction)" title="class or interface in java.util" class="external-link">computeIfPresent</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#containsKey(java.lang.Object)" title="class or interface in java.util" class="external-link">containsKey</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#containsValue(java.lang.Object)" title="class or interface in java.util" class="external-link">containsValue</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#entrySet()" title="class or interface in java.util" class="external-link">entrySet</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#forEach(java.util.function.BiConsumer)" title="class or interface in java.util" class="external-link">forEach</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#get(java.lang.Object)" title="class or interface in java.util" class="external-link">get</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#getOrDefault(java.lang.Object,V)" title="class or interface in java.util" class="external-link">getOrDefault</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#isEmpty()" title="class or interface in java.util" class="external-link">isEmpty</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#keySet()" title="class or interface in java.util" class="external-link">keySet</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#merge(K,V,java.util.function.BiFunction)" title="class or interface in java.util" class="external-link">merge</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#put(K,V)" title="class or interface in java.util" class="external-link">put</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#putAll(java.util.Map)" title="class or interface in java.util" class="external-link">putAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#putIfAbsent(K,V)" title="class or interface in java.util" class="external-link">putIfAbsent</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#remove(java.lang.Object)" title="class or interface in java.util" class="external-link">remove</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#remove(java.lang.Object,java.lang.Object)" title="class or interface in java.util" class="external-link">remove</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#replace(K,V)" title="class or interface in java.util" class="external-link">replace</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#replace(K,V,V)" title="class or interface in java.util" class="external-link">replace</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#replaceAll(java.util.function.BiFunction)" title="class or interface in java.util" class="external-link">replaceAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#size()" title="class or interface in java.util" class="external-link">size</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#values()" title="class or interface in java.util" class="external-link">values</a></code></div>
+<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#clear()" title="class or interface in java.util" class="external-link">clear</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#clone()" title="class or interface in java.util" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#compute(K,java.util.function.BiFunction)" title="class or interface in java.util" class="external-link">compute</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#computeIfAbsent(K,java.util.function.Function)" title="class or interface in java.util" class="external-link">computeIfAbsent</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#computeIfPresent(K,java.util.function.BiFunction)" title="class or interface in java.util" class="external-link">computeIfPresent</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#containsKey(java.lang.Object)" title="class or interface in java.util" class="external-link">containsKey</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#containsValue(java.lang.Object)" title="class or interface in java.util" class="external-link">containsValue</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#entrySet()" title="class or interface in java.util" class="external-link">entrySet</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#forEach(java.util.function.BiConsumer)" title="class or interface in java.util" class="external-link">forEach</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#get(java.lang.Object)" title="class or interface in java.util" class="external-link">get</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#getOrDefault(java.lang.Object,V)" title="class or interface in java.util" class="external-link">getOrDefault</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#isEmpty()" title="class or interface in java.util" class="external-link">isEmpty</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#keySet()" title="class or interface in java.util" class="external-link">keySet</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#merge(K,V,java.util.function.BiFunction)" title="class or interface in java.util" class="external-link">merge</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#putAll(java.util.Map)" title="class or interface in java.util" class="external-link">putAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#putIfAbsent(K,V)" title="class or interface in java.util" class="external-link">putIfAbsent</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#remove(java.lang.Object)" title="class or interface in java.util" class="external-link">remove</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#remove(java.lang.Object,java.lang.Object)" title="class or interface in java.util" class="external-link">remove</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#replace(K,V)" title="class or interface in java.util" class="external-link">replace</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#replace(K,V,V)" title="class or interface in java.util" class="external-link">replace</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#replaceAll(java.util.function.BiFunction)" title="class or interface in java.util" class="external-link">replaceAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#size()" title="class or interface in java.util" class="external-link">size</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#values()" title="class or interface in java.util" class="external-link">values</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.util.AbstractMap">Methods inherited from class&nbsp;java.util.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/AbstractMap.html" title="class or interface in java.util" class="external-link">AbstractMap</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/AbstractMap.html#equals(java.lang.Object)" title="class or interface in java.util" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/AbstractMap.html#hashCode()" title="class or interface in java.util" class="external-link">hashCode</a></code></div>
@@ -278,12 +341,35 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;()">
 <h3>JsonObject</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">JsonObject</span>()</div>
+<div class="block">Constructs an empty <a href="JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a> with the default initial capacity (16) and the default load factor (0.75).</div>
 </section>
 </li>
 <li>
 <section class="detail" id="&lt;init&gt;(int)">
 <h3>JsonObject</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">JsonObject</span><wbr><span class="parameters">(int&nbsp;initialCapacity)</span></div>
+<div class="block">Constructs an empty <a href="JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a> with the specified initial capacity and the default load factor (0.75).</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>initialCapacity</code> - the initial capacity</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the initial capacity is negative.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="&lt;init&gt;(int,float)">
+<h3>JsonObject</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">JsonObject</span><wbr><span class="parameters">(int&nbsp;initialCapacity,
+ float&nbsp;loadFactor)</span></div>
+<div class="block">Constructs an empty <a href="JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a> with the specified initial capacity and the specified load factor.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>initialCapacity</code> - the initial capacity</dd>
+<dd><code>loadFactor</code> - the load factor</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if the initial capacity is negative or the load factor is non-positive</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -298,6 +384,15 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getObject(java.lang.String)">
 <h3>getObject</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a></span>&nbsp;<span class="element-name">getObject</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</span></div>
+<div class="block">Returns the <a href="JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a> for the specified key.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - the key of the <a href="JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a> to be returned</dd>
+<dt>Returns:</dt>
+<dd>the <a href="JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a> to which the specified key is mapped</dd>
+<dt>Throws:</dt>
+<dd><code><a href="exception/JsonElementTypeException.html" title="class in technology.sola.json.exception">JsonElementTypeException</a></code> - if <a href="JsonElement.html" title="class in technology.sola.json"><code>JsonElement</code></a> at index is not of type <a href="JsonElementType.html#JSON_OBJECT"><code>JsonElementType.JSON_OBJECT</code></a></dd>
+</dl>
 </section>
 </li>
 <li>
@@ -305,12 +400,31 @@ loadScripts(document, 'script');</script>
 <h3>getObject</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a></span>&nbsp;<span class="element-name">getObject</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a>&nbsp;defaultValue)</span></div>
+<div class="block">Returns the <a href="JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a> for the specified key. Default value is returned if key is missing.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - the key of the <a href="JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a> to be returned</dd>
+<dd><code>defaultValue</code> - the default value to return if key is missing</dd>
+<dt>Returns:</dt>
+<dd>the <a href="JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a> to which the specified key is mapped</dd>
+<dt>Throws:</dt>
+<dd><code><a href="exception/JsonElementTypeException.html" title="class in technology.sola.json.exception">JsonElementTypeException</a></code> - if <a href="JsonElement.html" title="class in technology.sola.json"><code>JsonElement</code></a> at index is not of type <a href="JsonElementType.html#JSON_OBJECT"><code>JsonElementType.JSON_OBJECT</code></a></dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getArray(java.lang.String)">
 <h3>getArray</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="JsonArray.html" title="class in technology.sola.json">JsonArray</a></span>&nbsp;<span class="element-name">getArray</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</span></div>
+<div class="block">Returns the <a href="JsonArray.html" title="class in technology.sola.json"><code>JsonArray</code></a> for the specified key.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - the key of the <a href="JsonArray.html" title="class in technology.sola.json"><code>JsonArray</code></a> to be returned</dd>
+<dt>Returns:</dt>
+<dd>the <a href="JsonArray.html" title="class in technology.sola.json"><code>JsonArray</code></a> to which the specified key is mapped</dd>
+<dt>Throws:</dt>
+<dd><code><a href="exception/JsonElementTypeException.html" title="class in technology.sola.json.exception">JsonElementTypeException</a></code> - if <a href="JsonElement.html" title="class in technology.sola.json"><code>JsonElement</code></a> at index is not of type <a href="JsonElementType.html#JSON_ARRAY"><code>JsonElementType.JSON_ARRAY</code></a></dd>
+</dl>
 </section>
 </li>
 <li>
@@ -318,12 +432,31 @@ loadScripts(document, 'script');</script>
 <h3>getArray</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="JsonArray.html" title="class in technology.sola.json">JsonArray</a></span>&nbsp;<span class="element-name">getArray</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="JsonArray.html" title="class in technology.sola.json">JsonArray</a>&nbsp;defaultValue)</span></div>
+<div class="block">Returns the <a href="JsonArray.html" title="class in technology.sola.json"><code>JsonArray</code></a> for the specified key. Default value is returned if key is missing.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - the key of the <a href="JsonArray.html" title="class in technology.sola.json"><code>JsonArray</code></a> to be returned</dd>
+<dd><code>defaultValue</code> - the default value to return if key is missing</dd>
+<dt>Returns:</dt>
+<dd>the <a href="JsonArray.html" title="class in technology.sola.json"><code>JsonArray</code></a> to which the specified key is mapped</dd>
+<dt>Throws:</dt>
+<dd><code><a href="exception/JsonElementTypeException.html" title="class in technology.sola.json.exception">JsonElementTypeException</a></code> - if <a href="JsonElement.html" title="class in technology.sola.json"><code>JsonElement</code></a> at index is not of type <a href="JsonElementType.html#JSON_ARRAY"><code>JsonElementType.JSON_ARRAY</code></a></dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getString(java.lang.String)">
 <h3>getString</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getString</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</span></div>
+<div class="block">Returns the string for the specified key.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - the key of the string to be returned</dd>
+<dt>Returns:</dt>
+<dd>the string to which the specified key is mapped</dd>
+<dt>Throws:</dt>
+<dd><code><a href="exception/JsonElementTypeException.html" title="class in technology.sola.json.exception">JsonElementTypeException</a></code> - if <a href="JsonElement.html" title="class in technology.sola.json"><code>JsonElement</code></a> at index is not of type <a href="JsonElementType.html#STRING"><code>JsonElementType.STRING</code></a></dd>
+</dl>
 </section>
 </li>
 <li>
@@ -331,12 +464,31 @@ loadScripts(document, 'script');</script>
 <h3>getString</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getString</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;defaultValue)</span></div>
+<div class="block">Returns the string for the specified key. Default value is returned if key is missing.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - the key of the string to be returned</dd>
+<dd><code>defaultValue</code> - the default value to return if key is missing</dd>
+<dt>Returns:</dt>
+<dd>the string to which the specified key is mapped</dd>
+<dt>Throws:</dt>
+<dd><code><a href="exception/JsonElementTypeException.html" title="class in technology.sola.json.exception">JsonElementTypeException</a></code> - if <a href="JsonElement.html" title="class in technology.sola.json"><code>JsonElement</code></a> at index is not of type <a href="JsonElementType.html#STRING"><code>JsonElementType.STRING</code></a></dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getDouble(java.lang.String)">
 <h3>getDouble</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getDouble</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</span></div>
+<div class="block">Returns the double for the specified key.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - the key of the double to be returned</dd>
+<dt>Returns:</dt>
+<dd>the double to which the specified key is mapped</dd>
+<dt>Throws:</dt>
+<dd><code><a href="exception/JsonElementTypeException.html" title="class in technology.sola.json.exception">JsonElementTypeException</a></code> - if <a href="JsonElement.html" title="class in technology.sola.json"><code>JsonElement</code></a> at index is not of type <a href="JsonElementType.html#DOUBLE"><code>JsonElementType.DOUBLE</code></a></dd>
+</dl>
 </section>
 </li>
 <li>
@@ -344,12 +496,31 @@ loadScripts(document, 'script');</script>
 <h3>getDouble</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a></span>&nbsp;<span class="element-name">getDouble</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&nbsp;defaultValue)</span></div>
+<div class="block">Returns the double for the specified key. Default value is returned if key is missing.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - the key of the double to be returned</dd>
+<dd><code>defaultValue</code> - the default value to return if key is missing</dd>
+<dt>Returns:</dt>
+<dd>the double to which the specified key is mapped</dd>
+<dt>Throws:</dt>
+<dd><code><a href="exception/JsonElementTypeException.html" title="class in technology.sola.json.exception">JsonElementTypeException</a></code> - if <a href="JsonElement.html" title="class in technology.sola.json"><code>JsonElement</code></a> at index is not of type <a href="JsonElementType.html#DOUBLE"><code>JsonElementType.DOUBLE</code></a></dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getFloat(java.lang.String)">
 <h3>getFloat</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">getFloat</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</span></div>
+<div class="block">Returns the float for the specified key.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - the key of the float to be returned</dd>
+<dt>Returns:</dt>
+<dd>the float to which the specified key is mapped</dd>
+<dt>Throws:</dt>
+<dd><code><a href="exception/JsonElementTypeException.html" title="class in technology.sola.json.exception">JsonElementTypeException</a></code> - if <a href="JsonElement.html" title="class in technology.sola.json"><code>JsonElement</code></a> at index is not of type <a href="JsonElementType.html#DOUBLE"><code>JsonElementType.DOUBLE</code></a></dd>
+</dl>
 </section>
 </li>
 <li>
@@ -357,12 +528,31 @@ loadScripts(document, 'script');</script>
 <h3>getFloat</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a></span>&nbsp;<span class="element-name">getFloat</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a>&nbsp;defaultValue)</span></div>
+<div class="block">Returns the float for the specified key. Default value is returned if key is missing.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - the key of the float to be returned</dd>
+<dd><code>defaultValue</code> - the default value to return if key is missing</dd>
+<dt>Returns:</dt>
+<dd>the float to which the specified key is mapped</dd>
+<dt>Throws:</dt>
+<dd><code><a href="exception/JsonElementTypeException.html" title="class in technology.sola.json.exception">JsonElementTypeException</a></code> - if <a href="JsonElement.html" title="class in technology.sola.json"><code>JsonElement</code></a> at index is not of type <a href="JsonElementType.html#DOUBLE"><code>JsonElementType.DOUBLE</code></a></dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getInt(java.lang.String)">
 <h3>getInt</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getInt</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</span></div>
+<div class="block">Returns the integer for the specified key.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - the key of the integer to be returned</dd>
+<dt>Returns:</dt>
+<dd>the integer to which the specified key is mapped</dd>
+<dt>Throws:</dt>
+<dd><code><a href="exception/JsonElementTypeException.html" title="class in technology.sola.json.exception">JsonElementTypeException</a></code> - if <a href="JsonElement.html" title="class in technology.sola.json"><code>JsonElement</code></a> at index is not of type <a href="JsonElementType.html#LONG"><code>JsonElementType.LONG</code></a></dd>
+</dl>
 </section>
 </li>
 <li>
@@ -370,12 +560,31 @@ loadScripts(document, 'script');</script>
 <h3>getInt</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a></span>&nbsp;<span class="element-name">getInt</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&nbsp;defaultValue)</span></div>
+<div class="block">Returns the integer for the specified key. Default value is returned if key is missing.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - the key of the integer to be returned</dd>
+<dd><code>defaultValue</code> - the default value to return if key is missing</dd>
+<dt>Returns:</dt>
+<dd>the integer to which the specified key is mapped</dd>
+<dt>Throws:</dt>
+<dd><code><a href="exception/JsonElementTypeException.html" title="class in technology.sola.json.exception">JsonElementTypeException</a></code> - if <a href="JsonElement.html" title="class in technology.sola.json"><code>JsonElement</code></a> at index is not of type <a href="JsonElementType.html#LONG"><code>JsonElementType.LONG</code></a></dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getLong(java.lang.String)">
 <h3>getLong</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">long</span>&nbsp;<span class="element-name">getLong</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</span></div>
+<div class="block">Returns the long for the specified key.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - the key of the long to be returned</dd>
+<dt>Returns:</dt>
+<dd>the long to which the specified key is mapped</dd>
+<dt>Throws:</dt>
+<dd><code><a href="exception/JsonElementTypeException.html" title="class in technology.sola.json.exception">JsonElementTypeException</a></code> - if <a href="JsonElement.html" title="class in technology.sola.json"><code>JsonElement</code></a> at index is not of type <a href="JsonElementType.html#LONG"><code>JsonElementType.LONG</code></a></dd>
+</dl>
 </section>
 </li>
 <li>
@@ -383,12 +592,31 @@ loadScripts(document, 'script');</script>
 <h3>getLong</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a></span>&nbsp;<span class="element-name">getLong</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;defaultValue)</span></div>
+<div class="block">Returns the long for the specified key. Default value is returned if key is missing.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - the key of the long to be returned</dd>
+<dd><code>defaultValue</code> - the default value to return if key is missing</dd>
+<dt>Returns:</dt>
+<dd>the long to which the specified key is mapped</dd>
+<dt>Throws:</dt>
+<dd><code><a href="exception/JsonElementTypeException.html" title="class in technology.sola.json.exception">JsonElementTypeException</a></code> - if <a href="JsonElement.html" title="class in technology.sola.json"><code>JsonElement</code></a> at index is not of type <a href="JsonElementType.html#LONG"><code>JsonElementType.LONG</code></a></dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getBoolean(java.lang.String)">
 <h3>getBoolean</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">getBoolean</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</span></div>
+<div class="block">Returns the boolean for the specified key.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - the key of the boolean to be returned</dd>
+<dt>Returns:</dt>
+<dd>the boolean to which the specified key is mapped</dd>
+<dt>Throws:</dt>
+<dd><code><a href="exception/JsonElementTypeException.html" title="class in technology.sola.json.exception">JsonElementTypeException</a></code> - if <a href="JsonElement.html" title="class in technology.sola.json"><code>JsonElement</code></a> at index is not of type <a href="JsonElementType.html#BOOLEAN"><code>JsonElementType.BOOLEAN</code></a></dd>
+</dl>
 </section>
 </li>
 <li>
@@ -396,80 +624,174 @@ loadScripts(document, 'script');</script>
 <h3>getBoolean</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a></span>&nbsp;<span class="element-name">getBoolean</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&nbsp;defaultValue)</span></div>
+<div class="block">Returns the boolean for the specified key. Default value is returned if key is missing.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - the key of the boolean to be returned</dd>
+<dd><code>defaultValue</code> - the default value to return if key is missing</dd>
+<dt>Returns:</dt>
+<dd>the boolean to which the specified key is mapped</dd>
+<dt>Throws:</dt>
+<dd><code><a href="exception/JsonElementTypeException.html" title="class in technology.sola.json.exception">JsonElementTypeException</a></code> - if <a href="JsonElement.html" title="class in technology.sola.json"><code>JsonElement</code></a> at index is not of type <a href="JsonElementType.html#BOOLEAN"><code>JsonElementType.BOOLEAN</code></a></dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="isNull(java.lang.String)">
 <h3>isNull</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isNull</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</span></div>
+<div class="block">Returns true if <a href="JsonElementType.html#NULL"><code>JsonElementType.NULL</code></a> is at specified key.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - the key to be checked</dd>
+<dt>Returns:</dt>
+<dd>true if <a href="JsonElementType.html#NULL"><code>JsonElementType.NULL</code></a> is at specified key</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="put(java.lang.String,technology.sola.json.JsonElement)">
+<h3>put</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="JsonElement.html" title="class in technology.sola.json">JsonElement</a></span>&nbsp;<span class="element-name">put</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
+ <a href="JsonElement.html" title="class in technology.sola.json">JsonElement</a>&nbsp;value)</span></div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html#put(K,V)" title="class or interface in java.util" class="external-link">put</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="JsonElement.html" title="class in technology.sola.json">JsonElement</a>&gt;</code></dd>
+<dt>Overrides:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html#put(K,V)" title="class or interface in java.util" class="external-link">put</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html" title="class or interface in java.util" class="external-link">HashMap</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="JsonElement.html" title="class in technology.sola.json">JsonElement</a>&gt;</code></dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="put(java.lang.String,technology.sola.json.JsonObject)">
 <h3>put</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="JsonElement.html" title="class in technology.sola.json">JsonElement</a></span>&nbsp;<span class="element-name">put</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a></span>&nbsp;<span class="element-name">put</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a>&nbsp;value)</span></div>
+<div class="block">Associates a <a href="JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a> with specified key.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - the key to associate the <a href="JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a> with</dd>
+<dd><code>value</code> - the <a href="JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a> to associate</dd>
+<dt>Returns:</dt>
+<dd>this</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="put(java.lang.String,technology.sola.json.JsonArray)">
 <h3>put</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="JsonElement.html" title="class in technology.sola.json">JsonElement</a></span>&nbsp;<span class="element-name">put</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a></span>&nbsp;<span class="element-name">put</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="JsonArray.html" title="class in technology.sola.json">JsonArray</a>&nbsp;value)</span></div>
+<div class="block">Associates a <a href="JsonArray.html" title="class in technology.sola.json"><code>JsonArray</code></a> with specified key.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - the key to associate the <a href="JsonArray.html" title="class in technology.sola.json"><code>JsonArray</code></a> with</dd>
+<dd><code>value</code> - the <a href="JsonArray.html" title="class in technology.sola.json"><code>JsonArray</code></a> to associate</dd>
+<dt>Returns:</dt>
+<dd>this</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="put(java.lang.String,java.lang.String)">
 <h3>put</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="JsonElement.html" title="class in technology.sola.json">JsonElement</a></span>&nbsp;<span class="element-name">put</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a></span>&nbsp;<span class="element-name">put</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;value)</span></div>
+<div class="block">Associates a string with specified key.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - the key to associate the string with</dd>
+<dd><code>value</code> - the string to associate</dd>
+<dt>Returns:</dt>
+<dd>this</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="put(java.lang.String,java.lang.Integer)">
 <h3>put</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="JsonElement.html" title="class in technology.sola.json">JsonElement</a></span>&nbsp;<span class="element-name">put</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a></span>&nbsp;<span class="element-name">put</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&nbsp;value)</span></div>
+<div class="block">Associates a integer with specified key.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - the key to associate the integer with</dd>
+<dd><code>value</code> - the integer to associate</dd>
+<dt>Returns:</dt>
+<dd>this</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="put(java.lang.String,java.lang.Long)">
 <h3>put</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="JsonElement.html" title="class in technology.sola.json">JsonElement</a></span>&nbsp;<span class="element-name">put</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a></span>&nbsp;<span class="element-name">put</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;value)</span></div>
+<div class="block">Associates a long with specified key.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - the key to associate the long with</dd>
+<dd><code>value</code> - the long to associate</dd>
+<dt>Returns:</dt>
+<dd>this</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="put(java.lang.String,java.lang.Double)">
 <h3>put</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="JsonElement.html" title="class in technology.sola.json">JsonElement</a></span>&nbsp;<span class="element-name">put</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a></span>&nbsp;<span class="element-name">put</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&nbsp;value)</span></div>
+<div class="block">Associates a double with specified key.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - the key to associate the double with</dd>
+<dd><code>value</code> - the double to associate</dd>
+<dt>Returns:</dt>
+<dd>this</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="put(java.lang.String,java.lang.Float)">
 <h3>put</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="JsonElement.html" title="class in technology.sola.json">JsonElement</a></span>&nbsp;<span class="element-name">put</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a></span>&nbsp;<span class="element-name">put</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Float.html" title="class or interface in java.lang" class="external-link">Float</a>&nbsp;value)</span></div>
+<div class="block">Associates a float with specified key.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - the key to associate the float with</dd>
+<dd><code>value</code> - the float to associate</dd>
+<dt>Returns:</dt>
+<dd>this</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="put(java.lang.String,java.lang.Boolean)">
 <h3>put</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="JsonElement.html" title="class in technology.sola.json">JsonElement</a></span>&nbsp;<span class="element-name">put</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a></span>&nbsp;<span class="element-name">put</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&nbsp;value)</span></div>
+<div class="block">Associates a boolean with specified key.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - the key to associate the boolean with</dd>
+<dd><code>value</code> - the boolean to associate</dd>
+<dt>Returns:</dt>
+<dd>this</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="putNull(java.lang.String)">
 <h3>putNull</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="JsonElement.html" title="class in technology.sola.json">JsonElement</a></span>&nbsp;<span class="element-name">putNull</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a></span>&nbsp;<span class="element-name">putNull</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</span></div>
 <div class="block">Puts <a href="JsonElement.html" title="class in technology.sola.json"><code>JsonElement</code></a> of type <a href="JsonElementType.html#NULL"><code>JsonElementType.NULL</code></a> into this <a href="JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a>.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>key</code> - the key to put a NULL JSON value into</dd>
 <dt>Returns:</dt>
-<dd>the previous <a href="JsonElement.html" title="class in technology.sola.json"><code>JsonElement</code></a> associated with this key</dd>
+<dd>this</dd>
 </dl>
 </section>
 </li>
