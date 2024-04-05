@@ -49,7 +49,7 @@ public interface JsonMapper<T> {
   T toObject(JsonObject jsonObject);
 
   /**
-   * Converts a {@link JsonArray} into a {@link List} of desired type T. This assumes that each child of {@code jsonArray}
+   * Converts a {@link JsonArray} into a {@link List} of specified type T. This assumes that each child of {@code jsonArray}
    * is a {@link JsonObject} and of type T.
    *
    * @param jsonArray the {@code JsonArray} to convert

@@ -208,13 +208,18 @@ public class JsonElement {
     return type;
   }
 
+  /**
+   * Formats this {@link JsonElement} as a string with no indentation.
+   *
+   * @return formatted JSON string
+   */
   @Override
   public String toString() {
     return toString(0);
   }
 
   /**
-   * Formats this {@link JsonElement} as a string with desired spaces for indentation.
+   * Formats this {@link JsonElement} as a string with specified spaces for indentation.
    *
    * @param spaces the spaces for each indentation
    * @return formatted JSON string with spaces for indentation
@@ -224,7 +229,8 @@ public class JsonElement {
 
     solaJsonSerializer.getConfig().setSpaces(spaces);
 
-    return solaJsonSerializer.serialize(this);  }
+    return solaJsonSerializer.serialize(this);
+  }
 
   private void assertType(JsonElementType assertionType) {
     if (type != assertionType) {

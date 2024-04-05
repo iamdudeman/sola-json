@@ -11,7 +11,7 @@ public class SolaJsonTokenizer {
   private int textIndex;
 
   /**
-   * Creates a {@link SolaJsonTokenizer} for the desired string.
+   * Creates a {@link SolaJsonTokenizer} for the specified string.
    *
    * @param text the string to tokenize
    */

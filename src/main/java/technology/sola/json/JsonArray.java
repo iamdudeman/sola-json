@@ -136,7 +136,7 @@ public class JsonArray extends ArrayList<JsonElement> {
   }
 
   public boolean add(JsonObject value) {
-    return add(new JsonElement(value));
+    return super.add(new JsonElement(value));
   }
 
   public boolean add(JsonArray value) {
@@ -171,13 +171,18 @@ public class JsonArray extends ArrayList<JsonElement> {
     return add(new JsonElement());
   }
 
+  /**
+   * Formats this {@link JsonArray} as a string with no indentation.
+   *
+   * @return formatted JSON string
+   */
   @Override
   public String toString() {
     return toString(0);
   }
 
   /**
-   * Formats this {@link JsonArray} as a string with desired spaces for indentation.
+   * Formats this {@link JsonArray} as a string with specified number of spaces for indentation.
    *
    * @param spaces the spaces for each indentation
    * @return formatted JSON string with spaces for indentation

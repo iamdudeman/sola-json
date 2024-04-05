@@ -218,13 +218,18 @@ public class JsonObject extends HashMap<String, JsonElement> {
     return result;
   }
 
+  /**
+   * Formats this {@link JsonObject} as a string with no indentation.
+   *
+   * @return formatted JSON string
+   */
   @Override
   public String toString() {
     return toString(0);
   }
 
   /**
-   * Formats this {@link JsonObject} as a string with desired spaces for indentation.
+   * Formats this {@link JsonObject} as a string with specified spaces for indentation.
    *
    * @param spaces the spaces for each indentation
    * @return formatted JSON string with spaces for indentation
