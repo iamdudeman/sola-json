@@ -1,5 +1,6 @@
 package technology.sola.json;
 
+import technology.sola.json.exception.JsonElementTypeException;
 import technology.sola.json.serializer.SolaJsonSerializer;
 
 import java.util.ArrayList;
@@ -9,45 +10,117 @@ import java.util.ArrayList;
  * Java types.
  */
 public class JsonArray extends ArrayList<JsonElement> {
+  /**
+   * Constructs an empty {@link JsonArray} with an initial capacity of ten.
+   */
   public JsonArray() {
+    super();
   }
 
+  /**
+   * Constructs an empty {@link JsonArray} with specified initial capacity.
+   *
+   * @param initialCapacity the initial capacity of the list
+   * @throws IllegalArgumentException if specified initial capacity is negative
+   */
   public JsonArray(int initialCapacity) {
     super(initialCapacity);
   }
 
+  /**
+   * Returns the {@link JsonObject} at the specified position in this {@link JsonArray}.
+   *
+   * @param index the index of the {@link JsonObject} to return
+   * @return the {@link JsonObject} at specified index
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#JSON_OBJECT}
+   */
   public JsonObject getObject(int index) {
     return get(index).asObject();
   }
 
+  /**
+   * Returns the {@link JsonArray} at the specified position in this {@link JsonArray}.
+   *
+   * @param index the index of the {@link JsonArray} to return
+   * @return the {@link JsonArray} at specified index
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#JSON_ARRAY}
+   */
   public JsonArray getArray(int index) {
     return get(index).asArray();
   }
 
+  /**
+   * Returns the String at the specified position in this {@link JsonArray}.
+   *
+   * @param index the index of the String to return
+   * @return the String at specified index
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#STRING}
+   */
   public String getString(int index) {
     return get(index).asString();
   }
 
+  /**
+   * Returns the integer at the specified position in this {@link JsonArray}.
+   *
+   * @param index the index of the integer to return
+   * @return the integer at specified index
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#LONG}
+   */
   public int getInt(int index) {
     return get(index).asInt();
   }
 
+  /**
+   * Returns the long at the specified position in this {@link JsonArray}.
+   *
+   * @param index the index of the long to return
+   * @return the long at specified index
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#LONG}
+   */
   public long getLong(int index) {
     return get(index).asLong();
   }
 
+  /**
+   * Returns the double at the specified position in this {@link JsonArray}.
+   *
+   * @param index the index of the double to return
+   * @return the double at specified index
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#DOUBLE}
+   */
   public double getDouble(int index) {
     return get(index).asDouble();
   }
 
+  /**
+   * Returns the float at the specified position in this {@link JsonArray}.
+   *
+   * @param index the index of the float to return
+   * @return the float at specified index
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#DOUBLE}
+   */
   public float getFloat(int index) {
     return get(index).asFloat();
   }
 
+  /**
+   * Returns the boolean at the specified position in this {@link JsonArray}.
+   *
+   * @param index the index of the boolean to return
+   * @return the boolean at specified index
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#BOOLEAN}
+   */
   public boolean getBoolean(int index) {
     return get(index).asBoolean();
   }
 
+  /**
+   * Returns true if the {@link JsonElement} at the specified position in this {@link JsonArray} as of type {@link JsonElementType#NULL}.
+   *
+   * @param index the index to check if {@link JsonElementType#NULL}
+   * @return the true if {@link JsonElementType#NULL} is at specified index
+   */
   public boolean isNull(int index) {
     return get(index).isNull();
   }
