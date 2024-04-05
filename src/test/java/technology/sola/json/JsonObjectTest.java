@@ -134,6 +134,30 @@ class JsonObjectTest {
       root.putNull(TEST_KEY);
       assertTrue(root.isNull(TEST_KEY));
     }
+
+    @Test
+    void putMethodsChaining() {
+      var result = new JsonObject()
+        .put("int", 2)
+        .put("long", 3L)
+        .put("float", 1.5f)
+        .put("double", 2.5)
+        .put("boolean", true)
+        .put("string", "value")
+        .putNull("null")
+        .put("array", new JsonArray().add("test"))
+        .put("object", new JsonObject().put("string", "value"));
+
+      assertEquals(2, result.getInt("int"));
+      assertEquals(3L, result.getLong("long"));
+      assertEquals(1.5f, result.getFloat("float"));
+      assertEquals(2.5, result.getDouble("double"));
+      assertEquals("value", result.getString("string"));
+      assertTrue(result.getBoolean("boolean"));
+      assertTrue(result.isNull("null"));
+      assertEquals("test", result.getArray("array").getString(0));
+      assertEquals("value", result.getObject("object").getString("string"));
+    }
   }
 
   @Nested
