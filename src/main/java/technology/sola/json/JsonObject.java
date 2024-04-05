@@ -1,5 +1,6 @@
 package technology.sola.json;
 
+import technology.sola.json.exception.JsonElementTypeException;
 import technology.sola.json.serializer.SolaJsonSerializer;
 
 import java.util.HashMap;
@@ -9,13 +10,41 @@ import java.util.HashMap;
  * Java types.
  */
 public class JsonObject extends HashMap<String, JsonElement> {
+  /**
+   * Constructs an empty {@link JsonObject} with the default initial capacity (16) and the default load factor (0.75).
+   */
   public JsonObject() {
+    super();
   }
 
+  /**
+   * Constructs an empty {@link JsonObject} with the specified initial capacity and the default load factor (0.75).
+   *
+   * @param initialCapacity the initial capacity
+   * @throws IllegalArgumentException if the initial capacity is negative.
+   */
   public JsonObject(int initialCapacity) {
     super(initialCapacity);
   }
 
+  /**
+   * Constructs an empty {@link JsonObject} with the specified initial capacity and the specified load factor.
+   *
+   * @param initialCapacity the initial capacity
+   * @param loadFactor      the load factor
+   * @throws IllegalArgumentException if the initial capacity is negative or the load factor is non-positive
+   */
+  public JsonObject(int initialCapacity, float loadFactor) {
+    super(initialCapacity, loadFactor);
+  }
+
+  /**
+   * Returns the {@link JsonObject} for the specified key.
+   *
+   * @param key the key of the {@link JsonObject} to be returned
+   * @return the {@link JsonObject} to which the specified key is mapped
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#JSON_OBJECT}
+   */
   public JsonObject getObject(String key) {
     return get(key).asObject();
   }
@@ -30,6 +59,13 @@ public class JsonObject extends HashMap<String, JsonElement> {
     return value.asObject();
   }
 
+  /**
+   * Returns the {@link JsonArray} for the specified key.
+   *
+   * @param key the key of the {@link JsonArray} to be returned
+   * @return the {@link JsonArray} to which the specified key is mapped
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#JSON_ARRAY}
+   */
   public JsonArray getArray(String key) {
     return get(key).asArray();
   }
@@ -44,6 +80,13 @@ public class JsonObject extends HashMap<String, JsonElement> {
     return value.asArray();
   }
 
+  /**
+   * Returns the string for the specified key.
+   *
+   * @param key the key of the string to be returned
+   * @return the string to which the specified key is mapped
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#STRING}
+   */
   public String getString(String key) {
     return get(key).asString();
   }
@@ -58,6 +101,13 @@ public class JsonObject extends HashMap<String, JsonElement> {
     return value.asString();
   }
 
+  /**
+   * Returns the double for the specified key.
+   *
+   * @param key the key of the double to be returned
+   * @return the double to which the specified key is mapped
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#DOUBLE}
+   */
   public double getDouble(String key) {
     return get(key).asDouble();
   }
@@ -72,6 +122,13 @@ public class JsonObject extends HashMap<String, JsonElement> {
     return value.asDouble();
   }
 
+  /**
+   * Returns the float for the specified key.
+   *
+   * @param key the key of the float to be returned
+   * @return the float to which the specified key is mapped
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#DOUBLE}
+   */
   public float getFloat(String key) {
     return get(key).asFloat();
   }
@@ -86,6 +143,13 @@ public class JsonObject extends HashMap<String, JsonElement> {
     return value.asFloat();
   }
 
+  /**
+   * Returns the integer for the specified key.
+   *
+   * @param key the key of the integer to be returned
+   * @return the integer to which the specified key is mapped
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#LONG}
+   */
   public int getInt(String key) {
     return get(key).asInt();
   }
@@ -100,6 +164,13 @@ public class JsonObject extends HashMap<String, JsonElement> {
     return value.asInt();
   }
 
+  /**
+   * Returns the long for the specified key.
+   *
+   * @param key the key of the long to be returned
+   * @return the long to which the specified key is mapped
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#LONG}
+   */
   public long getLong(String key) {
     return get(key).asLong();
   }
@@ -114,6 +185,13 @@ public class JsonObject extends HashMap<String, JsonElement> {
     return value.asLong();
   }
 
+  /**
+   * Returns the boolean for the specified key.
+   *
+   * @param key the key of the boolean to be returned
+   * @return the boolean to which the specified key is mapped
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#BOOLEAN}
+   */
   public boolean getBoolean(String key) {
     return get(key).asBoolean();
   }
@@ -128,6 +206,12 @@ public class JsonObject extends HashMap<String, JsonElement> {
     return value.asBoolean();
   }
 
+  /**
+   * Returns true if {@link JsonElementType#NULL} is at specified key.
+   *
+   * @param key the key to be checked
+   * @return true if {@link JsonElementType#NULL} is at specified key
+   */
   public boolean isNull(String key) {
     return get(key).isNull();
   }

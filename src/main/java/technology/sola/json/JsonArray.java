@@ -136,7 +136,7 @@ public class JsonArray extends ArrayList<JsonElement> {
   }
 
   /**
-   * Appends the specified {@link JsonObject} to the end of this {@link JsonArray}. If the specified value is null
+   * Appends the specified {@link JsonObject} to the end of this {@link JsonArray}. If the specified value is {@code null}
    * the {@link JsonElementType#NULL} will be appended.
    *
    * @param value the {@link JsonObject} to append
@@ -149,7 +149,7 @@ public class JsonArray extends ArrayList<JsonElement> {
   }
 
   /**
-   * Appends the specified {@link JsonArray} to the end of this {@link JsonArray}. If the specified value is null
+   * Appends the specified {@link JsonArray} to the end of this {@link JsonArray}. If the specified value is {@code null}
    * the {@link JsonElementType#NULL} will be appended.
    *
    * @param value the {@link JsonArray} to append
@@ -162,7 +162,7 @@ public class JsonArray extends ArrayList<JsonElement> {
   }
 
   /**
-   * Appends the specified string to the end of this {@link JsonArray}. If the specified value is null
+   * Appends the specified string to the end of this {@link JsonArray}. If the specified value is {@code null}
    * the {@link JsonElementType#NULL} will be appended.
    *
    * @param value the string to append
@@ -175,7 +175,7 @@ public class JsonArray extends ArrayList<JsonElement> {
   }
 
   /**
-   * Appends the specified integer to the end of this {@link JsonArray}. If the specified value is null
+   * Appends the specified integer to the end of this {@link JsonArray}. If the specified value is {@code null}
    * the {@link JsonElementType#NULL} will be appended.
    *
    * @param value the integer to append
@@ -188,7 +188,7 @@ public class JsonArray extends ArrayList<JsonElement> {
   }
 
   /**
-   * Appends the specified long to the end of this {@link JsonArray}. If the specified value is null
+   * Appends the specified long to the end of this {@link JsonArray}. If the specified value is {@code null}
    * the {@link JsonElementType#NULL} will be appended.
    *
    * @param value the long to append
@@ -201,7 +201,7 @@ public class JsonArray extends ArrayList<JsonElement> {
   }
 
   /**
-   * Appends the specified float to the end of this {@link JsonArray}. If the specified value is null
+   * Appends the specified float to the end of this {@link JsonArray}. If the specified value is {@code null}
    * the {@link JsonElementType#NULL} will be appended.
    *
    * @param value the float to append
@@ -214,7 +214,7 @@ public class JsonArray extends ArrayList<JsonElement> {
   }
 
   /**
-   * Appends the specified double to the end of this {@link JsonArray}. If the specified value is null
+   * Appends the specified double to the end of this {@link JsonArray}. If the specified value is {@code null}
    * the {@link JsonElementType#NULL} will be appended.
    *
    * @param value the double to append
@@ -227,7 +227,7 @@ public class JsonArray extends ArrayList<JsonElement> {
   }
 
   /**
-   * Appends the specified boolean to the end of this {@link JsonArray}. If the specified value is null
+   * Appends the specified boolean to the end of this {@link JsonArray}. If the specified value is {@code null}
    * the {@link JsonElementType#NULL} will be appended.
    *
    * @param value the boolean to append
