@@ -113,7 +113,7 @@ class JsonArrayTest {
     }
 
     @Test
-    void builder() {
+    void addMethodsChaining() {
       JsonArray result = new JsonArray()
         .add(2)
         .add(3L)

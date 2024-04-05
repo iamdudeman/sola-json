@@ -135,54 +135,115 @@ public class JsonArray extends ArrayList<JsonElement> {
     super.add(index, element == null ? new JsonElement() : element);
   }
 
+  /**
+   * Appends the specified {@link JsonObject} to the end of this {@link JsonArray}. If the specified value is null
+   * the {@link JsonElementType#NULL} will be appended.
+   *
+   * @param value the {@link JsonObject} to append
+   * @return this
+   */
   public JsonArray add(JsonObject value) {
-    super.add(new JsonElement(value));
+    add(new JsonElement(value));
 
     return this;
   }
 
+  /**
+   * Appends the specified {@link JsonArray} to the end of this {@link JsonArray}. If the specified value is null
+   * the {@link JsonElementType#NULL} will be appended.
+   *
+   * @param value the {@link JsonArray} to append
+   * @return this
+   */
   public JsonArray add(JsonArray value) {
     add(new JsonElement(value));
 
     return this;
   }
 
+  /**
+   * Appends the specified string to the end of this {@link JsonArray}. If the specified value is null
+   * the {@link JsonElementType#NULL} will be appended.
+   *
+   * @param value the string to append
+   * @return this
+   */
   public JsonArray add(String value) {
     add(new JsonElement(value));
 
     return this;
   }
 
+  /**
+   * Appends the specified integer to the end of this {@link JsonArray}. If the specified value is null
+   * the {@link JsonElementType#NULL} will be appended.
+   *
+   * @param value the integer to append
+   * @return this
+   */
   public JsonArray add(Integer value) {
     add(new JsonElement(value));
 
     return this;
   }
 
+  /**
+   * Appends the specified long to the end of this {@link JsonArray}. If the specified value is null
+   * the {@link JsonElementType#NULL} will be appended.
+   *
+   * @param value the long to append
+   * @return this
+   */
   public JsonArray add(Long value) {
     add(new JsonElement(value));
 
     return this;
   }
 
+  /**
+   * Appends the specified float to the end of this {@link JsonArray}. If the specified value is null
+   * the {@link JsonElementType#NULL} will be appended.
+   *
+   * @param value the float to append
+   * @return this
+   */
   public JsonArray add(Float value) {
     add(new JsonElement(value));
 
     return this;
   }
 
+  /**
+   * Appends the specified double to the end of this {@link JsonArray}. If the specified value is null
+   * the {@link JsonElementType#NULL} will be appended.
+   *
+   * @param value the double to append
+   * @return this
+   */
   public JsonArray add(Double value) {
     add(new JsonElement(value));
 
     return this;
   }
 
+  /**
+   * Appends the specified boolean to the end of this {@link JsonArray}. If the specified value is null
+   * the {@link JsonElementType#NULL} will be appended.
+   *
+   * @param value the boolean to append
+   * @return this
+   */
   public JsonArray add(Boolean value) {
     add(new JsonElement(value));
 
     return this;
   }
 
+  /**
+   * Appends {@link JsonElementType#NULL} to the end of this {@link JsonArray}.
+   *
+   * @return this
+   */
   public JsonArray addNull() {
     add(new JsonElement());
 
