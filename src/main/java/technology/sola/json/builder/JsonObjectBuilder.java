@@ -64,8 +64,8 @@ public class JsonObjectBuilder {
     return this;
   }
 
-  public JsonObjectBuilder addArray(String key, Function<JsonArrayBuilder, JsonArrayBuilder> consumer) {
-    return addArray(key, consumer.apply(new JsonArrayBuilder()).build());
+  public JsonObjectBuilder addArray(String key, Function<JsonArray, JsonArray> consumer) {
+    return addArray(key, consumer.apply(new JsonArray()));
   }
 
   public JsonObject build() {

@@ -16,7 +16,7 @@ class JsonObjectBuilderTest {
       .addBoolean("boolean", true)
       .addString("string", "value")
       .addNull("null")
-      .addArray("array", array -> array.addString("test"))
+      .addArray("array", array -> array.add("test"))
       .addObject("object", object -> object.addString("string", "value"))
       .build();
 
