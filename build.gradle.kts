@@ -4,7 +4,7 @@ plugins {
   id("maven-publish")
 }
 
-version = "2.1.3"
+version = "3.0.0"
 
 java {
   toolchain {
@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-  testImplementation(platform("org.junit:junit-bom:5.7.1"))
+  testImplementation(platform("org.junit:junit-bom:5.10.2"))
   testImplementation("org.junit.jupiter:junit-jupiter")
 }
 
