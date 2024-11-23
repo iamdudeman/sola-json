@@ -103,25 +103,25 @@ public class JsonMapperUsage {
 ## Terminals
 
 ```
-COLON      : :
-COMMA      : ,
-FALSE      : false
-L_BRACKET  : [
-L_CURLY    : {
-NULL       : null
-NUMBER     : ((-[1-9])|0)[0-9]+(.[0-9]+)?([eE][-+]?[0-9]+)
-R_BRACKET  : ]
-R_CURLY    : }
-STRING     : " (Any codepoint except " or \ or control characters) "
-TRUE       : true
+COLON      := :
+COMMA      := ,
+FALSE      := false
+L_BRACKET  := [
+L_CURLY    := {
+NULL       := null
+NUMBER     := ((-[1-9])|0)[0-9]+(.[0-9]+)?([eE][-+]?[0-9]+)
+R_BRACKET  := ]
+R_CURLY    := }
+STRING     := " (Any codepoint except " or \ or control characters) "
+TRUE       := true
 ```
 
 ## Rules
 
 ```
-root    : object|array
-object  : L_CURLY (pair (COMMA pair)*? R_BRACKET
-array   : L_BRACKET (value (COMMA value)*)? R_BRACKET
-pair    : STRING COLON value
-value   : STRING|NUMBER|object|array|TRUE|FALSE|NULL
+<root>    := <object> | <array>
+<object>  := L_CURLY (<pair> (COMMA <pair>)*)? R_BRACKET
+<array>   := L_BRACKET (<value> (COMMA <value>)*)? R_BRACKET
+<pair>    := STRING COLON <value>
+<value>   := STRING | NUMBER | <object> | <array> | TRUE | FALSE | NULL
 ```
