@@ -86,50 +86,36 @@ public class SolaJsonParser {
   }
 
   private AstNode rulePair() {
-    Token nameToken = currentToken;
-    eat(TokenType.STRING);
+    Token nameToken = eat(TokenType.STRING);
     eat(TokenType.COLON);
 
     return AstNode.pair(nameToken, ruleValue());
   }
 
   private AstNode ruleValue() {
-    Token token = currentToken;
-
     return switch (currentToken.type()) {
       case L_BRACKET -> ruleArray();
       case L_CURLY -> ruleObject();
-      case TRUE -> {
-        eat(TokenType.TRUE);
-        yield AstNode.value(token);
-      }
-      case FALSE -> {
-        eat(TokenType.FALSE);
-        yield AstNode.value(token);
-      }
-      case NULL -> {
-        eat(TokenType.NULL);
-        yield AstNode.value(token);
-      }
-      case STRING -> {
-        eat(TokenType.STRING);
-        yield AstNode.value(token);
-      }
-      case NUMBER -> {
-        eat(TokenType.NUMBER);
-        yield AstNode.value(token);
-      }
+      case TRUE -> AstNode.value(eat(TokenType.TRUE));
+      case FALSE -> AstNode.value(eat(TokenType.FALSE));
+      case NULL -> AstNode.value(eat(TokenType.NULL));
+      case STRING -> AstNode.value(eat(TokenType.STRING));
+      case NUMBER -> AstNode.value(eat(TokenType.NUMBER));
       default -> throw new InvalidSyntaxException(
-        token.type(), textIndex,
+        currentToken.type(), textIndex,
         TokenType.L_BRACKET, TokenType.L_CURLY, TokenType.TRUE, TokenType.FALSE, TokenType.NULL, TokenType.STRING, TokenType.NUMBER
       );
     };
   }
 
-  private void eat(TokenType tokenType) {
+  private Token eat(TokenType tokenType) {
+    var token = currentToken;
+
     if (currentToken.type() == tokenType) {
       textIndex = solaJsonTokenizer.getTextIndex();
       currentToken = solaJsonTokenizer.getNextToken();
+
+      return token;
     } else {
       throw new InvalidSyntaxException(currentToken.type(), textIndex, tokenType);
     }
