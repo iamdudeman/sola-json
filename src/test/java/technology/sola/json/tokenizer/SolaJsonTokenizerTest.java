@@ -140,7 +140,7 @@ class SolaJsonTokenizerTest {
     class string {
       @Test
       void whenValid_shouldRecognize() {
-        var input = " \"test_string\" \"test\" ";
+        var input = " \"test_string\" \"test\"";
 
         createTest(input)
           .assertNextToken(TokenType.STRING, "test_string")
@@ -170,6 +170,17 @@ class SolaJsonTokenizerTest {
             () -> createTest(input).assertNextToken(TokenType.STRING)
           );
           assertEquals(3, exception.getStartIndex());
+        }
+
+        @Test
+        void whenControlCharacterNotFinishedAtEndOfString_shouldThrowException() {
+          var input = "\"\\";
+
+          InvalidControlCharacterException exception = assertThrows(
+            InvalidControlCharacterException.class,
+            () -> createTest(input).assertNextToken(TokenType.STRING)
+          );
+          assertEquals(2, exception.getStartIndex());
         }
 
         @Test

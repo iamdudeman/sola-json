@@ -129,9 +129,8 @@ public class SolaJsonTokenizer {
       ? new String(buffer, start, localPos - start)
       : stringTokenWithEscapesBuilder.toString();
 
-    localPos++;
     textIndex = localPos;
-    currentChar = buffer[localPos];
+    advance();
 
     return new Token(TokenType.STRING, tokenValue);
   }
@@ -189,6 +188,11 @@ public class SolaJsonTokenizer {
 
   private int advanceEscapeCharacter(char[] buffer, int pos, StringBuilder stringBuilder) {
     int localPos = pos + 1;
+
+    if (localPos >= buffer.length) {
+      throw new InvalidControlCharacterException(localPos);
+    }
+
     currentChar = buffer[localPos];
 
     char result = switch (currentChar) {
