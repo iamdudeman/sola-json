@@ -14,12 +14,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class SolaJsonParserTest {
   @Test
   void whenInvalidRoot_shouldThrowException() {
-    String input = """
-      "test"
-      """;
+    String input = " \"test\" ";
 
     InvalidSyntaxException invalidSyntaxException = assertThrows(InvalidSyntaxException.class, () -> createTest(input));
-    assertEquals(0, invalidSyntaxException.getStartIndex());
+    assertEquals(1, invalidSyntaxException.getStartIndex());
     assertEquals(TokenType.STRING, invalidSyntaxException.getActual());
     var expectedList = List.of(invalidSyntaxException.getExpected());
     assertTrue(expectedList.contains(TokenType.L_BRACKET));

@@ -18,6 +18,10 @@ public class SolaJsonTokenizer {
   public SolaJsonTokenizer(String text) {
     characters = text.toCharArray();
     currentChar = characters[textIndex];
+
+    while (currentChar != null && Character.isWhitespace(currentChar)) {
+      advance();
+    }
   }
 
   /**
