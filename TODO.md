@@ -1,3 +1,5 @@
+* Line numbers in errors
+* Keep track of all syntax errors instead of just the first
 * Consider adding performance testing
     * https://github.com/clarkware/junitperf
     * compare vs GSON
