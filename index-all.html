@@ -192,7 +192,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Indicates whether some other object is "equal to" this one.</div>
 </dd>
-<dt><a href="technology.sola.json/technology/sola/json/serializer/SolaJsonSerializerConfig.html#equals(java.lang.Object)" class="member-name-link">equals(Object)</a> - Method in record class technology.sola.json.serializer.<a href="technology.sola.json/technology/sola/json/serializer/SolaJsonSerializerConfig.html" title="class in technology.sola.json.serializer">SolaJsonSerializerConfig</a></dt>
+<dt><a href="technology.sola.json/technology/sola/json/serializer/JsonSerializerConfig.html#equals(java.lang.Object)" class="member-name-link">equals(Object)</a> - Method in record class technology.sola.json.serializer.<a href="technology.sola.json/technology/sola/json/serializer/JsonSerializerConfig.html" title="class in technology.sola.json.serializer">JsonSerializerConfig</a></dt>
 <dd>
 <div class="block">Indicates whether some other object is "equal to" this one.</div>
 </dd>
@@ -292,7 +292,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the long for the specified key.</div>
 </dd>
-<dt><a href="technology.sola.json/technology/sola/json/tokenizer/SolaJsonTokenizer.html#getNextToken()" class="member-name-link">getNextToken()</a> - Method in class technology.sola.json.tokenizer.<a href="technology.sola.json/technology/sola/json/tokenizer/SolaJsonTokenizer.html" title="class in technology.sola.json.tokenizer">SolaJsonTokenizer</a></dt>
+<dt><a href="technology.sola.json/technology/sola/json/tokenizer/JsonTokenizer.html#getNextToken()" class="member-name-link">getNextToken()</a> - Method in class technology.sola.json.tokenizer.<a href="technology.sola.json/technology/sola/json/tokenizer/JsonTokenizer.html" title="class in technology.sola.json.tokenizer">JsonTokenizer</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="technology.sola.json/technology/sola/json/JsonArray.html#getObject(int)" class="member-name-link">getObject(int)</a> - Method in class technology.sola.json.<a href="technology.sola.json/technology/sola/json/JsonArray.html" title="class in technology.sola.json">JsonArray</a></dt>
 <dd>
@@ -336,7 +336,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the string for the specified key.</div>
 </dd>
-<dt><a href="technology.sola.json/technology/sola/json/tokenizer/SolaJsonTokenizer.html#getTextIndex()" class="member-name-link">getTextIndex()</a> - Method in class technology.sola.json.tokenizer.<a href="technology.sola.json/technology/sola/json/tokenizer/SolaJsonTokenizer.html" title="class in technology.sola.json.tokenizer">SolaJsonTokenizer</a></dt>
+<dt><a href="technology.sola.json/technology/sola/json/tokenizer/JsonTokenizer.html#getTextIndex()" class="member-name-link">getTextIndex()</a> - Method in class technology.sola.json.tokenizer.<a href="technology.sola.json/technology/sola/json/tokenizer/JsonTokenizer.html" title="class in technology.sola.json.tokenizer">JsonTokenizer</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="technology.sola.json/technology/sola/json/JsonElement.html#getType()" class="member-name-link">getType()</a> - Method in class technology.sola.json.<a href="technology.sola.json/technology/sola/json/JsonElement.html" title="class in technology.sola.json">JsonElement</a></dt>
 <dd>&nbsp;</dd>
@@ -347,7 +347,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns a hash code value for this object.</div>
 </dd>
-<dt><a href="technology.sola.json/technology/sola/json/serializer/SolaJsonSerializerConfig.html#hashCode()" class="member-name-link">hashCode()</a> - Method in record class technology.sola.json.serializer.<a href="technology.sola.json/technology/sola/json/serializer/SolaJsonSerializerConfig.html" title="class in technology.sola.json.serializer">SolaJsonSerializerConfig</a></dt>
+<dt><a href="technology.sola.json/technology/sola/json/serializer/JsonSerializerConfig.html#hashCode()" class="member-name-link">hashCode()</a> - Method in record class technology.sola.json.serializer.<a href="technology.sola.json/technology/sola/json/serializer/JsonSerializerConfig.html" title="class in technology.sola.json.serializer">JsonSerializerConfig</a></dt>
 <dd>
 <div class="block">Returns a hash code value for this object.</div>
 </dd>
@@ -533,6 +533,38 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Constructs an empty <a href="technology.sola.json/technology/sola/json/JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a> with the specified initial capacity and the specified load factor.</div>
 </dd>
+<dt><a href="technology.sola.json/technology/sola/json/parser/JsonParser.html" class="type-name-link" title="class in technology.sola.json.parser">JsonParser</a> - Class in <a href="technology.sola.json/technology/sola/json/parser/package-summary.html">technology.sola.json.parser</a></dt>
+<dd>
+<div class="block">A JSON parser implementation.</div>
+</dd>
+<dt><a href="technology.sola.json/technology/sola/json/parser/JsonParser.html#%3Cinit%3E(technology.sola.json.tokenizer.JsonTokenizer)" class="member-name-link">JsonParser(JsonTokenizer)</a> - Constructor for class technology.sola.json.parser.<a href="technology.sola.json/technology/sola/json/parser/JsonParser.html" title="class in technology.sola.json.parser">JsonParser</a></dt>
+<dd>
+<div class="block">Creates a new instance utilizing the provided <a href="technology.sola.json/technology/sola/json/tokenizer/JsonTokenizer.html" title="class in technology.sola.json.tokenizer"><code>JsonTokenizer</code></a>.</div>
+</dd>
+<dt><a href="technology.sola.json/technology/sola/json/serializer/JsonSerializer.html" class="type-name-link" title="class in technology.sola.json.serializer">JsonSerializer</a> - Class in <a href="technology.sola.json/technology/sola/json/serializer/package-summary.html">technology.sola.json.serializer</a></dt>
+<dd>
+<div class="block">JsonSerializer contains methods for serializing <a href="technology.sola.json/technology/sola/json/JsonElement.html" title="class in technology.sola.json"><code>JsonElement</code></a>s, <a href="technology.sola.json/technology/sola/json/JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a>s and <a href="technology.sola.json/technology/sola/json/JsonArray.html" title="class in technology.sola.json"><code>JsonArray</code></a>s.</div>
+</dd>
+<dt><a href="technology.sola.json/technology/sola/json/serializer/JsonSerializer.html#%3Cinit%3E(technology.sola.json.serializer.JsonSerializerConfig)" class="member-name-link">JsonSerializer(JsonSerializerConfig)</a> - Constructor for class technology.sola.json.serializer.<a href="technology.sola.json/technology/sola/json/serializer/JsonSerializer.html" title="class in technology.sola.json.serializer">JsonSerializer</a></dt>
+<dd>
+<div class="block">Creates an instance of JsonSerializer with desired <a href="technology.sola.json/technology/sola/json/serializer/JsonSerializerConfig.html" title="class in technology.sola.json.serializer"><code>JsonSerializerConfig</code></a>.</div>
+</dd>
+<dt><a href="technology.sola.json/technology/sola/json/serializer/JsonSerializerConfig.html" class="type-name-link" title="class in technology.sola.json.serializer">JsonSerializerConfig</a> - Record Class in <a href="technology.sola.json/technology/sola/json/serializer/package-summary.html">technology.sola.json.serializer</a></dt>
+<dd>
+<div class="block">Holds configuration properties for <a href="technology.sola.json/technology/sola/json/serializer/JsonSerializer.html" title="class in technology.sola.json.serializer"><code>JsonSerializer</code></a>.</div>
+</dd>
+<dt><a href="technology.sola.json/technology/sola/json/serializer/JsonSerializerConfig.html#%3Cinit%3E(int)" class="member-name-link">JsonSerializerConfig(int)</a> - Constructor for record class technology.sola.json.serializer.<a href="technology.sola.json/technology/sola/json/serializer/JsonSerializerConfig.html" title="class in technology.sola.json.serializer">JsonSerializerConfig</a></dt>
+<dd>
+<div class="block">Creates an instance of a <code>JsonSerializerConfig</code> record class.</div>
+</dd>
+<dt><a href="technology.sola.json/technology/sola/json/tokenizer/JsonTokenizer.html" class="type-name-link" title="class in technology.sola.json.tokenizer">JsonTokenizer</a> - Class in <a href="technology.sola.json/technology/sola/json/tokenizer/package-summary.html">technology.sola.json.tokenizer</a></dt>
+<dd>
+<div class="block">A JSON tokenizer implementation.</div>
+</dd>
+<dt><a href="technology.sola.json/technology/sola/json/tokenizer/JsonTokenizer.html#%3Cinit%3E(java.lang.String)" class="member-name-link">JsonTokenizer(String)</a> - Constructor for class technology.sola.json.tokenizer.<a href="technology.sola.json/technology/sola/json/tokenizer/JsonTokenizer.html" title="class in technology.sola.json.tokenizer">JsonTokenizer</a></dt>
+<dd>
+<div class="block">Creates a <a href="technology.sola.json/technology/sola/json/tokenizer/JsonTokenizer.html" title="class in technology.sola.json.tokenizer"><code>JsonTokenizer</code></a> for the specified string.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:L">L</h2>
 <dl class="index">
@@ -592,9 +624,9 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Represents a JSON pair.</div>
 </dd>
-<dt><a href="technology.sola.json/technology/sola/json/parser/SolaJsonParser.html#parse()" class="member-name-link">parse()</a> - Method in class technology.sola.json.parser.<a href="technology.sola.json/technology/sola/json/parser/SolaJsonParser.html" title="class in technology.sola.json.parser">SolaJsonParser</a></dt>
+<dt><a href="technology.sola.json/technology/sola/json/parser/JsonParser.html#parse()" class="member-name-link">parse()</a> - Method in class technology.sola.json.parser.<a href="technology.sola.json/technology/sola/json/parser/JsonParser.html" title="class in technology.sola.json.parser">JsonParser</a></dt>
 <dd>
-<div class="block">Parses utilizing the provided <a href="technology.sola.json/technology/sola/json/tokenizer/SolaJsonTokenizer.html" title="class in technology.sola.json.tokenizer"><code>SolaJsonTokenizer</code></a>.</div>
+<div class="block">Parses utilizing the provided <a href="technology.sola.json/technology/sola/json/tokenizer/JsonTokenizer.html" title="class in technology.sola.json.tokenizer"><code>JsonTokenizer</code></a>.</div>
 </dd>
 <dt><a href="technology.sola.json/technology/sola/json/SolaJson.html#parse(java.lang.String)" class="member-name-link">parse(String)</a> - Method in class technology.sola.json.<a href="technology.sola.json/technology/sola/json/SolaJson.html" title="class in technology.sola.json">SolaJson</a></dt>
 <dd>
@@ -660,17 +692,17 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:S">S</h2>
 <dl class="index">
-<dt><a href="technology.sola.json/technology/sola/json/serializer/SolaJsonSerializer.html#serialize(technology.sola.json.JsonArray)" class="member-name-link">serialize(JsonArray)</a> - Method in class technology.sola.json.serializer.<a href="technology.sola.json/technology/sola/json/serializer/SolaJsonSerializer.html" title="class in technology.sola.json.serializer">SolaJsonSerializer</a></dt>
+<dt><a href="technology.sola.json/technology/sola/json/serializer/JsonSerializer.html#serialize(technology.sola.json.JsonArray)" class="member-name-link">serialize(JsonArray)</a> - Method in class technology.sola.json.serializer.<a href="technology.sola.json/technology/sola/json/serializer/JsonSerializer.html" title="class in technology.sola.json.serializer">JsonSerializer</a></dt>
 <dd>
-<div class="block">Serializes a <a href="technology.sola.json/technology/sola/json/JsonArray.html" title="class in technology.sola.json"><code>JsonArray</code></a> to a String utilizing the current <a href="technology.sola.json/technology/sola/json/serializer/SolaJsonSerializerConfig.html" title="class in technology.sola.json.serializer"><code>SolaJsonSerializerConfig</code></a>.</div>
+<div class="block">Serializes a <a href="technology.sola.json/technology/sola/json/JsonArray.html" title="class in technology.sola.json"><code>JsonArray</code></a> to a String utilizing the current <a href="technology.sola.json/technology/sola/json/serializer/JsonSerializerConfig.html" title="class in technology.sola.json.serializer"><code>JsonSerializerConfig</code></a>.</div>
 </dd>
-<dt><a href="technology.sola.json/technology/sola/json/serializer/SolaJsonSerializer.html#serialize(technology.sola.json.JsonElement)" class="member-name-link">serialize(JsonElement)</a> - Method in class technology.sola.json.serializer.<a href="technology.sola.json/technology/sola/json/serializer/SolaJsonSerializer.html" title="class in technology.sola.json.serializer">SolaJsonSerializer</a></dt>
+<dt><a href="technology.sola.json/technology/sola/json/serializer/JsonSerializer.html#serialize(technology.sola.json.JsonElement)" class="member-name-link">serialize(JsonElement)</a> - Method in class technology.sola.json.serializer.<a href="technology.sola.json/technology/sola/json/serializer/JsonSerializer.html" title="class in technology.sola.json.serializer">JsonSerializer</a></dt>
 <dd>
-<div class="block">Serializes a <a href="technology.sola.json/technology/sola/json/JsonElement.html" title="class in technology.sola.json"><code>JsonElement</code></a> to a String utilizing the current <a href="technology.sola.json/technology/sola/json/serializer/SolaJsonSerializerConfig.html" title="class in technology.sola.json.serializer"><code>SolaJsonSerializerConfig</code></a>.</div>
+<div class="block">Serializes a <a href="technology.sola.json/technology/sola/json/JsonElement.html" title="class in technology.sola.json"><code>JsonElement</code></a> to a String utilizing the current <a href="technology.sola.json/technology/sola/json/serializer/JsonSerializerConfig.html" title="class in technology.sola.json.serializer"><code>JsonSerializerConfig</code></a>.</div>
 </dd>
-<dt><a href="technology.sola.json/technology/sola/json/serializer/SolaJsonSerializer.html#serialize(technology.sola.json.JsonObject)" class="member-name-link">serialize(JsonObject)</a> - Method in class technology.sola.json.serializer.<a href="technology.sola.json/technology/sola/json/serializer/SolaJsonSerializer.html" title="class in technology.sola.json.serializer">SolaJsonSerializer</a></dt>
+<dt><a href="technology.sola.json/technology/sola/json/serializer/JsonSerializer.html#serialize(technology.sola.json.JsonObject)" class="member-name-link">serialize(JsonObject)</a> - Method in class technology.sola.json.serializer.<a href="technology.sola.json/technology/sola/json/serializer/JsonSerializer.html" title="class in technology.sola.json.serializer">JsonSerializer</a></dt>
 <dd>
-<div class="block">Serializes a <a href="technology.sola.json/technology/sola/json/JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a> to a String utilizing the current <a href="technology.sola.json/technology/sola/json/serializer/SolaJsonSerializerConfig.html" title="class in technology.sola.json.serializer"><code>SolaJsonSerializerConfig</code></a>.</div>
+<div class="block">Serializes a <a href="technology.sola.json/technology/sola/json/JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a> to a String utilizing the current <a href="technology.sola.json/technology/sola/json/serializer/JsonSerializerConfig.html" title="class in technology.sola.json.serializer"><code>JsonSerializerConfig</code></a>.</div>
 </dd>
 <dt><a href="technology.sola.json/technology/sola/json/SolaJson.html" class="type-name-link" title="class in technology.sola.json">SolaJson</a> - Class in <a href="technology.sola.json/technology/sola/json/package-summary.html">technology.sola.json</a></dt>
 <dd>
@@ -678,47 +710,15 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="technology.sola.json/technology/sola/json/SolaJson.html#%3Cinit%3E()" class="member-name-link">SolaJson()</a> - Constructor for class technology.sola.json.<a href="technology.sola.json/technology/sola/json/SolaJson.html" title="class in technology.sola.json">SolaJson</a></dt>
 <dd>
-<div class="block">Creates a new SolaJson instance with default <a href="technology.sola.json/technology/sola/json/serializer/SolaJsonSerializerConfig.html" title="class in technology.sola.json.serializer"><code>SolaJsonSerializerConfig</code></a>.</div>
+<div class="block">Creates a new SolaJson instance with default <a href="technology.sola.json/technology/sola/json/serializer/JsonSerializerConfig.html" title="class in technology.sola.json.serializer"><code>JsonSerializerConfig</code></a>.</div>
 </dd>
-<dt><a href="technology.sola.json/technology/sola/json/SolaJson.html#%3Cinit%3E(technology.sola.json.serializer.SolaJsonSerializerConfig)" class="member-name-link">SolaJson(SolaJsonSerializerConfig)</a> - Constructor for class technology.sola.json.<a href="technology.sola.json/technology/sola/json/SolaJson.html" title="class in technology.sola.json">SolaJson</a></dt>
+<dt><a href="technology.sola.json/technology/sola/json/SolaJson.html#%3Cinit%3E(technology.sola.json.serializer.JsonSerializerConfig)" class="member-name-link">SolaJson(JsonSerializerConfig)</a> - Constructor for class technology.sola.json.<a href="technology.sola.json/technology/sola/json/SolaJson.html" title="class in technology.sola.json">SolaJson</a></dt>
 <dd>
-<div class="block">Creates a new SolaJson instance with desired <a href="technology.sola.json/technology/sola/json/serializer/SolaJsonSerializerConfig.html" title="class in technology.sola.json.serializer"><code>SolaJsonSerializerConfig</code></a>.</div>
+<div class="block">Creates a new SolaJson instance with desired <a href="technology.sola.json/technology/sola/json/serializer/JsonSerializerConfig.html" title="class in technology.sola.json.serializer"><code>JsonSerializerConfig</code></a>.</div>
 </dd>
-<dt><a href="technology.sola.json/technology/sola/json/parser/SolaJsonParser.html" class="type-name-link" title="class in technology.sola.json.parser">SolaJsonParser</a> - Class in <a href="technology.sola.json/technology/sola/json/parser/package-summary.html">technology.sola.json.parser</a></dt>
+<dt><a href="technology.sola.json/technology/sola/json/serializer/JsonSerializerConfig.html#spaces()" class="member-name-link">spaces()</a> - Method in record class technology.sola.json.serializer.<a href="technology.sola.json/technology/sola/json/serializer/JsonSerializerConfig.html" title="class in technology.sola.json.serializer">JsonSerializerConfig</a></dt>
 <dd>
-<div class="block">A JSON parser implementation.</div>
-</dd>
-<dt><a href="technology.sola.json/technology/sola/json/parser/SolaJsonParser.html#%3Cinit%3E(technology.sola.json.tokenizer.SolaJsonTokenizer)" class="member-name-link">SolaJsonParser(SolaJsonTokenizer)</a> - Constructor for class technology.sola.json.parser.<a href="technology.sola.json/technology/sola/json/parser/SolaJsonParser.html" title="class in technology.sola.json.parser">SolaJsonParser</a></dt>
-<dd>
-<div class="block">Creates a new instance utilizing the provided <a href="technology.sola.json/technology/sola/json/tokenizer/SolaJsonTokenizer.html" title="class in technology.sola.json.tokenizer"><code>SolaJsonTokenizer</code></a>.</div>
-</dd>
-<dt><a href="technology.sola.json/technology/sola/json/serializer/SolaJsonSerializer.html" class="type-name-link" title="class in technology.sola.json.serializer">SolaJsonSerializer</a> - Class in <a href="technology.sola.json/technology/sola/json/serializer/package-summary.html">technology.sola.json.serializer</a></dt>
-<dd>
-<div class="block">SolaJsonSerializer contains methods for serializing <a href="technology.sola.json/technology/sola/json/JsonElement.html" title="class in technology.sola.json"><code>JsonElement</code></a>s, <a href="technology.sola.json/technology/sola/json/JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a>s and <a href="technology.sola.json/technology/sola/json/JsonArray.html" title="class in technology.sola.json"><code>JsonArray</code></a>s.</div>
-</dd>
-<dt><a href="technology.sola.json/technology/sola/json/serializer/SolaJsonSerializer.html#%3Cinit%3E(technology.sola.json.serializer.SolaJsonSerializerConfig)" class="member-name-link">SolaJsonSerializer(SolaJsonSerializerConfig)</a> - Constructor for class technology.sola.json.serializer.<a href="technology.sola.json/technology/sola/json/serializer/SolaJsonSerializer.html" title="class in technology.sola.json.serializer">SolaJsonSerializer</a></dt>
-<dd>
-<div class="block">Creates an instance of SolaJsonSerializer with desired <a href="technology.sola.json/technology/sola/json/serializer/SolaJsonSerializerConfig.html" title="class in technology.sola.json.serializer"><code>SolaJsonSerializerConfig</code></a>.</div>
-</dd>
-<dt><a href="technology.sola.json/technology/sola/json/serializer/SolaJsonSerializerConfig.html" class="type-name-link" title="class in technology.sola.json.serializer">SolaJsonSerializerConfig</a> - Record Class in <a href="technology.sola.json/technology/sola/json/serializer/package-summary.html">technology.sola.json.serializer</a></dt>
-<dd>
-<div class="block">Holds configuration properties for <a href="technology.sola.json/technology/sola/json/serializer/SolaJsonSerializer.html" title="class in technology.sola.json.serializer"><code>SolaJsonSerializer</code></a>.</div>
-</dd>
-<dt><a href="technology.sola.json/technology/sola/json/serializer/SolaJsonSerializerConfig.html#%3Cinit%3E(int)" class="member-name-link">SolaJsonSerializerConfig(int)</a> - Constructor for record class technology.sola.json.serializer.<a href="technology.sola.json/technology/sola/json/serializer/SolaJsonSerializerConfig.html" title="class in technology.sola.json.serializer">SolaJsonSerializerConfig</a></dt>
-<dd>
-<div class="block">Creates an instance of a <code>SolaJsonSerializerConfig</code> record class.</div>
-</dd>
-<dt><a href="technology.sola.json/technology/sola/json/tokenizer/SolaJsonTokenizer.html" class="type-name-link" title="class in technology.sola.json.tokenizer">SolaJsonTokenizer</a> - Class in <a href="technology.sola.json/technology/sola/json/tokenizer/package-summary.html">technology.sola.json.tokenizer</a></dt>
-<dd>
-<div class="block">A JSON tokenizer implementation.</div>
-</dd>
-<dt><a href="technology.sola.json/technology/sola/json/tokenizer/SolaJsonTokenizer.html#%3Cinit%3E(java.lang.String)" class="member-name-link">SolaJsonTokenizer(String)</a> - Constructor for class technology.sola.json.tokenizer.<a href="technology.sola.json/technology/sola/json/tokenizer/SolaJsonTokenizer.html" title="class in technology.sola.json.tokenizer">SolaJsonTokenizer</a></dt>
-<dd>
-<div class="block">Creates a <a href="technology.sola.json/technology/sola/json/tokenizer/SolaJsonTokenizer.html" title="class in technology.sola.json.tokenizer"><code>SolaJsonTokenizer</code></a> for the specified string.</div>
-</dd>
-<dt><a href="technology.sola.json/technology/sola/json/serializer/SolaJsonSerializerConfig.html#spaces()" class="member-name-link">spaces()</a> - Method in record class technology.sola.json.serializer.<a href="technology.sola.json/technology/sola/json/serializer/SolaJsonSerializerConfig.html" title="class in technology.sola.json.serializer">SolaJsonSerializerConfig</a></dt>
-<dd>
-<div class="block">Returns the value of the <a href="./technology.sola.json/technology/sola/json/serializer/SolaJsonSerializerConfig.html#param-spaces"><code>spaces</code></a> record component.</div>
+<div class="block">Returns the value of the <a href="./technology.sola.json/technology/sola/json/serializer/JsonSerializerConfig.html#param-spaces"><code>spaces</code></a> record component.</div>
 </dd>
 <dt><a href="technology.sola.json/technology/sola/json/JsonElementType.html#STRING" class="member-name-link">STRING</a> - Enum constant in enum class technology.sola.json.<a href="technology.sola.json/technology/sola/json/JsonElementType.html" title="enum class in technology.sola.json">JsonElementType</a></dt>
 <dd>
@@ -773,12 +773,12 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="technology.sola.json/technology/sola/json/parser/package-summary.html">technology.sola.json.parser</a> - package technology.sola.json.parser</dt>
 <dd>
-<div class="block">This package provides functionality for parsing JSON utilizing a <a href="technology.sola.json/technology/sola/json/tokenizer/SolaJsonTokenizer.html" title="class in technology.sola.json.tokenizer"><code>SolaJsonTokenizer</code></a>.</div>
+<div class="block">This package provides functionality for parsing JSON utilizing a <a href="technology.sola.json/technology/sola/json/tokenizer/JsonTokenizer.html" title="class in technology.sola.json.tokenizer"><code>JsonTokenizer</code></a>.</div>
 </dd>
 <dt><a href="technology.sola.json/technology/sola/json/serializer/package-summary.html">technology.sola.json.serializer</a> - package technology.sola.json.serializer</dt>
 <dd>
-<div class="block">This package provides functionality for serializing <a href="technology.sola.json/technology/sola/json/JsonElement.html" title="class in technology.sola.json"><code>JsonElement</code></a>, <a href="technology.sola.json/technology/sola/json/JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a>
- and <a href="technology.sola.json/technology/sola/json/JsonArray.html" title="class in technology.sola.json"><code>JsonArray</code></a>.</div>
+<div class="block">This package provides functionality for serializing <a href="technology.sola.json/technology/sola/json/JsonElement.html" title="class in technology.sola.json"><code>JsonElement</code></a>,
+ <a href="technology.sola.json/technology/sola/json/JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a> and <a href="technology.sola.json/technology/sola/json/JsonArray.html" title="class in technology.sola.json"><code>JsonArray</code></a>.</div>
 </dd>
 <dt><a href="technology.sola.json/technology/sola/json/tokenizer/package-summary.html">technology.sola.json.tokenizer</a> - package technology.sola.json.tokenizer</dt>
 <dd>
@@ -810,7 +810,7 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="technology.sola.json/technology/sola/json/tokenizer/TokenType.html" class="type-name-link" title="enum class in technology.sola.json.tokenizer">TokenType</a> - Enum Class in <a href="technology.sola.json/technology/sola/json/tokenizer/package-summary.html">technology.sola.json.tokenizer</a></dt>
 <dd>
-<div class="block">Tokens that <a href="technology.sola.json/technology/sola/json/tokenizer/SolaJsonTokenizer.html" title="class in technology.sola.json.tokenizer"><code>SolaJsonTokenizer</code></a> will recognize.</div>
+<div class="block">Tokens that <a href="technology.sola.json/technology/sola/json/tokenizer/JsonTokenizer.html" title="class in technology.sola.json.tokenizer"><code>JsonTokenizer</code></a> will recognize.</div>
 </dd>
 <dt><a href="technology.sola.json/technology/sola/json/mapper/JsonMapper.html#toList(technology.sola.json.JsonArray)" class="member-name-link">toList(JsonArray)</a> - Method in interface technology.sola.json.mapper.<a href="technology.sola.json/technology/sola/json/mapper/JsonMapper.html" title="interface in technology.sola.json.mapper">JsonMapper</a></dt>
 <dd>
@@ -836,7 +836,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns a string representation of this record class.</div>
 </dd>
-<dt><a href="technology.sola.json/technology/sola/json/serializer/SolaJsonSerializerConfig.html#toString()" class="member-name-link">toString()</a> - Method in record class technology.sola.json.serializer.<a href="technology.sola.json/technology/sola/json/serializer/SolaJsonSerializerConfig.html" title="class in technology.sola.json.serializer">SolaJsonSerializerConfig</a></dt>
+<dt><a href="technology.sola.json/technology/sola/json/serializer/JsonSerializerConfig.html#toString()" class="member-name-link">toString()</a> - Method in record class technology.sola.json.serializer.<a href="technology.sola.json/technology/sola/json/serializer/JsonSerializerConfig.html" title="class in technology.sola.json.serializer">JsonSerializerConfig</a></dt>
 <dd>
 <div class="block">Returns a string representation of this record class.</div>
 </dd>
