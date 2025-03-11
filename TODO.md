@@ -7,7 +7,6 @@
 ## Improvements
 
 * Use charAt instead of toCharacterArray for tokenizer
-* Manually check isDigit (0-9) instead of using Character.isDigit
 * Allow SolaJsonSerializerConfig to be passed into SolaJson
 * Line numbers in errors (and tokens)
 * Consider renaming "SolaJsonXYZ" classes to just "XYZ"

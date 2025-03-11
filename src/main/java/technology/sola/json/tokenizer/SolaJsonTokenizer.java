@@ -78,7 +78,7 @@ public class SolaJsonTokenizer {
       return tokenString();
     }
 
-    if (currentChar == '-' || Character.isDigit(currentChar)) {
+    if (currentChar == '-' || isDigit(currentChar)) {
       return tokenNumber();
     }
 
@@ -233,7 +233,7 @@ public class SolaJsonTokenizer {
   private void advanceNumber() {
     advance();
 
-    while (currentChar != null && Character.isDigit(currentChar)) {
+    while (currentChar != null && isDigit(currentChar)) {
       advance();
     }
   }
@@ -243,7 +243,7 @@ public class SolaJsonTokenizer {
     if (currentChar != null && currentChar == '.') {
       advance();
 
-      while (currentChar != null && Character.isDigit(currentChar)) {
+      while (currentChar != null && isDigit(currentChar)) {
         advance();
       }
     }
@@ -260,7 +260,7 @@ public class SolaJsonTokenizer {
         advance();
       }
 
-      while (currentChar != null && Character.isDigit(currentChar)) {
+      while (currentChar != null && isDigit(currentChar)) {
         advance();
       }
     }
@@ -269,5 +269,9 @@ public class SolaJsonTokenizer {
   private void advance() {
     textIndex++;
     currentChar = textIndex < characters.length ? characters[textIndex] : null;
+  }
+
+  private boolean isDigit(char c) {
+    return c >= '0' && c <= '9';
   }
 }
