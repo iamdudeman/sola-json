@@ -100,7 +100,9 @@ public class JsonMapperUsage {
 {"value":1}
 ```
 
-## Terminals
+## Grammar
+
+### Terminals
 
 ```
 COLON      := :
@@ -116,7 +118,7 @@ STRING     := " (Any codepoint except " or \ or control characters) "
 TRUE       := true
 ```
 
-## Rules
+### Rules
 
 ```
 <root>    := <object> | <array>
@@ -125,3 +127,13 @@ TRUE       := true
 <pair>    := STRING COLON <value>
 <value>   := STRING | NUMBER | <object> | <array> | TRUE | FALSE | NULL
 ```
+
+## Testing
+
+### Validity
+
+Used test files from [JSON.org](https://www.json.org/JSON_checker/) to verify parsers functionality.
+
+### Performance
+
+Tested against [Google gson](https://github.com/google/gson) for performance.
