@@ -136,4 +136,6 @@ Used test files from [JSON.org](https://www.json.org/JSON_checker/) to verify pa
 
 ### Performance
 
+Used data from [JSON placeholder](https://jsonplaceholder.typicode.com/) for performance testing.
+
 Tested against [Google gson](https://github.com/google/gson) for performance.
