@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import technology.sola.json.exception.InvalidSyntaxException;
 import technology.sola.json.tokenizer.TokenType;
-import technology.sola.json.tokenizer.SolaJsonTokenizer;
+import technology.sola.json.tokenizer.JsonTokenizer;
 
 import java.util.List;
 
@@ -177,8 +177,8 @@ class JsonParserTest {
   }
 
   private AstTester createTest(String input) {
-    SolaJsonTokenizer solaJsonTokenizer = new SolaJsonTokenizer(input);
-    JsonParser jsonParser = new JsonParser(solaJsonTokenizer);
+    JsonTokenizer jsonTokenizer = new JsonTokenizer(input);
+    JsonParser jsonParser = new JsonParser(jsonTokenizer);
 
     return new AstTester(jsonParser.parse());
   }

@@ -5,17 +5,17 @@ import technology.sola.json.exception.*;
 /**
  * A JSON tokenizer implementation.
  */
-public class SolaJsonTokenizer {
+public class JsonTokenizer {
   private final char[] characters;
   private Character currentChar;
   private int textIndex;
 
   /**
-   * Creates a {@link SolaJsonTokenizer} for the specified string.
+   * Creates a {@link JsonTokenizer} for the specified string.
    *
    * @param text the string to tokenize
    */
-  public SolaJsonTokenizer(String text) {
+  public JsonTokenizer(String text) {
     characters = text.toCharArray();
     currentChar = characters[textIndex];
 

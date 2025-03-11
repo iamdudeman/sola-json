@@ -7,7 +7,7 @@ import technology.sola.json.parser.AstNodeType;
 import technology.sola.json.parser.JsonParser;
 import technology.sola.json.serializer.JsonSerializer;
 import technology.sola.json.serializer.JsonSerializerConfig;
-import technology.sola.json.tokenizer.SolaJsonTokenizer;
+import technology.sola.json.tokenizer.JsonTokenizer;
 
 import java.util.List;
 
@@ -40,8 +40,8 @@ public class SolaJson {
    * @return the parsed {@code JsonElement}
    */
   public JsonElement parse(String jsonString) {
-    SolaJsonTokenizer solaJsonTokenizer = new SolaJsonTokenizer(jsonString);
-    JsonParser jsonParser = new JsonParser(solaJsonTokenizer);
+    JsonTokenizer jsonTokenizer = new JsonTokenizer(jsonString);
+    JsonParser jsonParser = new JsonParser(jsonTokenizer);
     AstNode root = jsonParser.parse();
 
     return visit(root);
