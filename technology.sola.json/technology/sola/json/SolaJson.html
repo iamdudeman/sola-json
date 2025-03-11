@@ -91,7 +91,13 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">SolaJson</a>()</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Creates a new SolaJson instance with default <a href="serializer/SolaJsonSerializerConfig.html" title="class in technology.sola.json.serializer"><code>SolaJsonSerializerConfig</code></a>.</div>
+</div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(technology.sola.json.serializer.SolaJsonSerializerConfig)" class="member-name-link">SolaJson</a><wbr>(<a href="serializer/SolaJsonSerializerConfig.html" title="class in technology.sola.json.serializer">SolaJsonSerializerConfig</a>&nbsp;config)</code></div>
+<div class="col-last odd-row-color">
+<div class="block">Creates a new SolaJson instance with desired <a href="serializer/SolaJsonSerializerConfig.html" title="class in technology.sola.json.serializer"><code>SolaJsonSerializerConfig</code></a>.</div>
+</div>
 </div>
 </section>
 </li>
@@ -106,46 +112,43 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="serializer/SolaJsonSerializerConfig.html" title="class in technology.sola.json.serializer">SolaJsonSerializerConfig</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSerializerConfig()" class="member-name-link">getSerializerConfig</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="JsonElement.html" title="class in technology.sola.json">JsonElement</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#parse(java.lang.String)" class="member-name-link">parse</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;jsonString)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="JsonElement.html" title="class in technology.sola.json">JsonElement</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#parse(java.lang.String)" class="member-name-link">parse</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;jsonString)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Parses a JSON string into a <a href="JsonElement.html" title="class in technology.sola.json"><code>JsonElement</code></a>.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>&lt;T&gt;&nbsp;T</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#parse(java.lang.String,technology.sola.json.mapper.JsonMapper)" class="member-name-link">parse</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;jsonString,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>&lt;T&gt;&nbsp;T</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#parse(java.lang.String,technology.sola.json.mapper.JsonMapper)" class="member-name-link">parse</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;jsonString,
  <a href="mapper/JsonMapper.html" title="interface in technology.sola.json.mapper">JsonMapper</a>&lt;T&gt;&nbsp;jsonMapper)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Parses a JSON string into an object of type T using a <a href="mapper/JsonMapper.html" title="interface in technology.sola.json.mapper"><code>JsonMapper</code></a>.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>&lt;T&gt;&nbsp;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;T&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#parseList(java.lang.String,technology.sola.json.mapper.JsonMapper)" class="member-name-link">parseList</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;jsonString,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>&lt;T&gt;&nbsp;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;T&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#parseList(java.lang.String,technology.sola.json.mapper.JsonMapper)" class="member-name-link">parseList</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;jsonString,
  <a href="mapper/JsonMapper.html" title="interface in technology.sola.json.mapper">JsonMapper</a>&lt;T&gt;&nbsp;jsonMapper)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Parses a JSON string into a <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link"><code>List</code></a> of type T using a <a href="mapper/JsonMapper.html" title="interface in technology.sola.json.mapper"><code>JsonMapper</code></a>.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>&lt;T&gt;&nbsp;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#stringify(java.util.List,technology.sola.json.mapper.JsonMapper)" class="member-name-link">stringify</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;T&gt;&nbsp;list,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>&lt;T&gt;&nbsp;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#stringify(java.util.List,technology.sola.json.mapper.JsonMapper)" class="member-name-link">stringify</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;T&gt;&nbsp;list,
  <a href="mapper/JsonMapper.html" title="interface in technology.sola.json.mapper">JsonMapper</a>&lt;T&gt;&nbsp;jsonMapper)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Serializes a list of objects of type T to a string using a <a href="mapper/JsonMapper.html" title="interface in technology.sola.json.mapper"><code>JsonMapper</code></a>.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#stringify(technology.sola.json.JsonArray)" class="member-name-link">stringify</a><wbr>(<a href="JsonArray.html" title="class in technology.sola.json">JsonArray</a>&nbsp;jsonArray)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#stringify(technology.sola.json.JsonArray)" class="member-name-link">stringify</a><wbr>(<a href="JsonArray.html" title="class in technology.sola.json">JsonArray</a>&nbsp;jsonArray)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Serializes a <a href="JsonArray.html" title="class in technology.sola.json"><code>JsonArray</code></a>.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#stringify(technology.sola.json.JsonObject)" class="member-name-link">stringify</a><wbr>(<a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a>&nbsp;jsonObject)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#stringify(technology.sola.json.JsonObject)" class="member-name-link">stringify</a><wbr>(<a href="JsonObject.html" title="class in technology.sola.json">JsonObject</a>&nbsp;jsonObject)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Serializes a <a href="JsonObject.html" title="class in technology.sola.json"><code>JsonObject</code></a>.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>&lt;T&gt;&nbsp;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#stringify(T,technology.sola.json.mapper.JsonMapper)" class="member-name-link">stringify</a><wbr>(T&nbsp;object,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>&lt;T&gt;&nbsp;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#stringify(T,technology.sola.json.mapper.JsonMapper)" class="member-name-link">stringify</a><wbr>(T&nbsp;object,
  <a href="mapper/JsonMapper.html" title="interface in technology.sola.json.mapper">JsonMapper</a>&lt;T&gt;&nbsp;jsonMapper)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Serializes an object of type T to a string using a <a href="mapper/JsonMapper.html" title="interface in technology.sola.json.mapper"><code>JsonMapper</code></a>.</div>
 </div>
 </div>
@@ -169,6 +172,18 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;()">
 <h3>SolaJson</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">SolaJson</span>()</div>
+<div class="block">Creates a new SolaJson instance with default <a href="serializer/SolaJsonSerializerConfig.html" title="class in technology.sola.json.serializer"><code>SolaJsonSerializerConfig</code></a>.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="&lt;init&gt;(technology.sola.json.serializer.SolaJsonSerializerConfig)">
+<h3>SolaJson</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">SolaJson</span><wbr><span class="parameters">(<a href="serializer/SolaJsonSerializerConfig.html" title="class in technology.sola.json.serializer">SolaJsonSerializerConfig</a>&nbsp;config)</span></div>
+<div class="block">Creates a new SolaJson instance with desired <a href="serializer/SolaJsonSerializerConfig.html" title="class in technology.sola.json.serializer"><code>SolaJsonSerializerConfig</code></a>.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>config</code> - the serializer configuration</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -223,16 +238,6 @@ loadScripts(document, 'script');</script>
 <dd><code>jsonMapper</code> - the <code>JsonMapper</code> to use during conversion</dd>
 <dt>Returns:</dt>
 <dd>the converted List of Java object of type T</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getSerializerConfig()">
-<h3>getSerializerConfig</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="serializer/SolaJsonSerializerConfig.html" title="class in technology.sola.json.serializer">SolaJsonSerializerConfig</a></span>&nbsp;<span class="element-name">getSerializerConfig</span>()</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>the <a href="serializer/SolaJsonSerializerConfig.html" title="class in technology.sola.json.serializer"><code>SolaJsonSerializerConfig</code></a> used for serialization</dd>
 </dl>
 </section>
 </li>
