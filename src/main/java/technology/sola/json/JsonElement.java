@@ -1,8 +1,8 @@
 package technology.sola.json;
 
 import technology.sola.json.exception.JsonElementTypeException;
-import technology.sola.json.serializer.SolaJsonSerializer;
-import technology.sola.json.serializer.SolaJsonSerializerConfig;
+import technology.sola.json.serializer.JsonSerializer;
+import technology.sola.json.serializer.JsonSerializerConfig;
 
 /**
  * JsonElement represents any valid JSON value. Valid JSON values include {@link JsonObject}, {@link JsonArray}, string,
@@ -226,11 +226,11 @@ public class JsonElement {
    * @return formatted JSON string with spaces for indentation
    */
   public String toString(int spaces) {
-    SolaJsonSerializer solaJsonSerializer = new SolaJsonSerializer(
-      new SolaJsonSerializerConfig(spaces)
+    JsonSerializer jsonSerializer = new JsonSerializer(
+      new JsonSerializerConfig(spaces)
     );
 
-    return solaJsonSerializer.serialize(this);
+    return jsonSerializer.serialize(this);
   }
 
   private void assertType(JsonElementType assertionType) {

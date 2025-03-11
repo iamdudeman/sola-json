@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import technology.sola.json.exception.InvalidSyntaxException;
 import technology.sola.json.tokenizer.TokenType;
-import technology.sola.json.tokenizer.SolaJsonTokenizer;
+import technology.sola.json.tokenizer.JsonTokenizer;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SolaJsonParserTest {
+class JsonParserTest {
   @Test
   void whenInvalidRoot_shouldThrowException() {
     String input = " \"test\" ";
@@ -177,10 +177,10 @@ class SolaJsonParserTest {
   }
 
   private AstTester createTest(String input) {
-    SolaJsonTokenizer solaJsonTokenizer = new SolaJsonTokenizer(input);
-    SolaJsonParser solaJsonParser = new SolaJsonParser(solaJsonTokenizer);
+    JsonTokenizer jsonTokenizer = new JsonTokenizer(input);
+    JsonParser jsonParser = new JsonParser(jsonTokenizer);
 
-    return new AstTester(solaJsonParser.parse());
+    return new AstTester(jsonParser.parse());
   }
 
   private static class AstTester {

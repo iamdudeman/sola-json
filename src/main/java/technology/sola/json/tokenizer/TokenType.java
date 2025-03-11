@@ -1,7 +1,7 @@
 package technology.sola.json.tokenizer;
 
 /**
- * Tokens that {@link SolaJsonTokenizer} will recognize.
+ * Tokens that {@link JsonTokenizer} will recognize.
  */
 public enum TokenType {
   /**

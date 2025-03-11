@@ -5,22 +5,22 @@ import technology.sola.json.JsonElement;
 import technology.sola.json.JsonObject;
 
 /**
- * SolaJsonSerializer contains methods for serializing {@link JsonElement}s, {@link JsonObject}s and {@link JsonArray}s.
+ * JsonSerializer contains methods for serializing {@link JsonElement}s, {@link JsonObject}s and {@link JsonArray}s.
  */
-public class SolaJsonSerializer {
-  private final SolaJsonSerializerConfig config;
+public class JsonSerializer {
+  private final JsonSerializerConfig config;
 
   /**
-   * Creates an instance of SolaJsonSerializer with desired {@link SolaJsonSerializerConfig}.
+   * Creates an instance of JsonSerializer with desired {@link JsonSerializerConfig}.
    *
    * @param config the configuration for the serializer
    */
-  public SolaJsonSerializer(SolaJsonSerializerConfig config) {
+  public JsonSerializer(JsonSerializerConfig config) {
     this.config = config;
   }
 
   /**
-   * Serializes a {@link JsonElement} to a String utilizing the current {@link SolaJsonSerializerConfig}.
+   * Serializes a {@link JsonElement} to a String utilizing the current {@link JsonSerializerConfig}.
    *
    * @param jsonElement the {@code JsonElement} to serialize
    * @return the serialized JSON string
@@ -34,7 +34,7 @@ public class SolaJsonSerializer {
   }
 
   /**
-   * Serializes a {@link JsonObject} to a String utilizing the current {@link SolaJsonSerializerConfig}.
+   * Serializes a {@link JsonObject} to a String utilizing the current {@link JsonSerializerConfig}.
    *
    * @param jsonObject the {@code JsonObject} to serialize
    * @return the serialized JSON string
@@ -48,7 +48,7 @@ public class SolaJsonSerializer {
   }
 
   /**
-   * Serializes a {@link JsonArray} to a String utilizing the current {@link SolaJsonSerializerConfig}.
+   * Serializes a {@link JsonArray} to a String utilizing the current {@link JsonSerializerConfig}.
    *
    * @param jsonArray the {@code JsonArray} to serialize
    * @return the serialized JSON string

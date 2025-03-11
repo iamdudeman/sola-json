@@ -4,10 +4,10 @@ import technology.sola.json.exception.InvalidAbstractSyntaxTreeException;
 import technology.sola.json.mapper.JsonMapper;
 import technology.sola.json.parser.AstNode;
 import technology.sola.json.parser.AstNodeType;
-import technology.sola.json.parser.SolaJsonParser;
-import technology.sola.json.serializer.SolaJsonSerializer;
-import technology.sola.json.serializer.SolaJsonSerializerConfig;
-import technology.sola.json.tokenizer.SolaJsonTokenizer;
+import technology.sola.json.parser.JsonParser;
+import technology.sola.json.serializer.JsonSerializer;
+import technology.sola.json.serializer.JsonSerializerConfig;
+import technology.sola.json.tokenizer.JsonTokenizer;
 
 import java.util.List;
 
@@ -15,22 +15,22 @@ import java.util.List;
  * SolaJson contains methods for parsing strings into {@link JsonElement}s and serializing {@code JsonElement}s into strings.
  */
 public class SolaJson {
-  private final SolaJsonSerializer solaJsonSerializer;
+  private final JsonSerializer jsonSerializer;
 
   /**
-   * Creates a new SolaJson instance with default {@link SolaJsonSerializerConfig}.
+   * Creates a new SolaJson instance with default {@link JsonSerializerConfig}.
    */
   public SolaJson() {
-    this(new SolaJsonSerializerConfig(0));
+    this(new JsonSerializerConfig(0));
   }
 
   /**
-   * Creates a new SolaJson instance with desired {@link SolaJsonSerializerConfig}.
+   * Creates a new SolaJson instance with desired {@link JsonSerializerConfig}.
    *
    * @param config the serializer configuration
    */
-  public SolaJson(SolaJsonSerializerConfig config) {
-    solaJsonSerializer = new SolaJsonSerializer(config);
+  public SolaJson(JsonSerializerConfig config) {
+    jsonSerializer = new JsonSerializer(config);
   }
 
   /**
@@ -40,9 +40,9 @@ public class SolaJson {
    * @return the parsed {@code JsonElement}
    */
   public JsonElement parse(String jsonString) {
-    SolaJsonTokenizer solaJsonTokenizer = new SolaJsonTokenizer(jsonString);
-    SolaJsonParser solaJsonParser = new SolaJsonParser(solaJsonTokenizer);
-    AstNode root = solaJsonParser.parse();
+    JsonTokenizer jsonTokenizer = new JsonTokenizer(jsonString);
+    JsonParser jsonParser = new JsonParser(jsonTokenizer);
+    AstNode root = jsonParser.parse();
 
     return visit(root);
   }
@@ -78,7 +78,7 @@ public class SolaJson {
    * @return serialized JSON string
    */
   public String stringify(JsonObject jsonObject) {
-    return solaJsonSerializer.serialize(jsonObject);
+    return jsonSerializer.serialize(jsonObject);
   }
 
   /**
@@ -88,7 +88,7 @@ public class SolaJson {
    * @return serialized JSON string
    */
   public String stringify(JsonArray jsonArray) {
-    return solaJsonSerializer.serialize(jsonArray);
+    return jsonSerializer.serialize(jsonArray);
   }
 
   /**

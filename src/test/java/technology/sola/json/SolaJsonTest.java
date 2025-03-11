@@ -3,7 +3,7 @@ package technology.sola.json;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import technology.sola.json.serializer.SolaJsonSerializerConfig;
+import technology.sola.json.serializer.JsonSerializerConfig;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ class SolaJsonTest {
   @BeforeEach
   void setup() {
     solaJson = new SolaJson();
-    solaJsonWithSpaces = new SolaJson(new SolaJsonSerializerConfig(2));
+    solaJsonWithSpaces = new SolaJson(new JsonSerializerConfig(2));
   }
 
   @Test

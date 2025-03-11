@@ -3,7 +3,7 @@ package technology.sola.json.parser;
 import technology.sola.json.exception.InvalidSyntaxException;
 import technology.sola.json.tokenizer.Token;
 import technology.sola.json.tokenizer.TokenType;
-import technology.sola.json.tokenizer.SolaJsonTokenizer;
+import technology.sola.json.tokenizer.JsonTokenizer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,24 +11,24 @@ import java.util.List;
 /**
  * A JSON parser implementation.
  */
-public class SolaJsonParser {
-  private final SolaJsonTokenizer solaJsonTokenizer;
+public class JsonParser {
+  private final JsonTokenizer jsonTokenizer;
   private Token currentToken;
   private int textIndex;
 
   /**
-   * Creates a new instance utilizing the provided {@link SolaJsonTokenizer}.
+   * Creates a new instance utilizing the provided {@link JsonTokenizer}.
    *
-   * @param solaJsonTokenizer the tokenizer to use for parsing
+   * @param jsonTokenizer the tokenizer to use for parsing
    */
-  public SolaJsonParser(SolaJsonTokenizer solaJsonTokenizer) {
-    this.solaJsonTokenizer = solaJsonTokenizer;
-    textIndex = solaJsonTokenizer.getTextIndex();
-    currentToken = solaJsonTokenizer.getNextToken();
+  public JsonParser(JsonTokenizer jsonTokenizer) {
+    this.jsonTokenizer = jsonTokenizer;
+    textIndex = jsonTokenizer.getTextIndex();
+    currentToken = jsonTokenizer.getNextToken();
   }
 
   /**
-   * Parses utilizing the provided {@link SolaJsonTokenizer}.
+   * Parses utilizing the provided {@link JsonTokenizer}.
    *
    * @return the root {@link AstNode}
    */
@@ -112,8 +112,8 @@ public class SolaJsonParser {
     var token = currentToken;
 
     if (currentToken.type() == tokenType) {
-      textIndex = solaJsonTokenizer.getTextIndex();
-      currentToken = solaJsonTokenizer.getNextToken();
+      textIndex = jsonTokenizer.getTextIndex();
+      currentToken = jsonTokenizer.getNextToken();
 
       return token;
     } else {
