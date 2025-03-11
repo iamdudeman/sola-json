@@ -11,7 +11,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SolaJsonParserTest {
+class JsonParserTest {
   @Test
   void whenInvalidRoot_shouldThrowException() {
     String input = " \"test\" ";
@@ -178,9 +178,9 @@ class SolaJsonParserTest {
 
   private AstTester createTest(String input) {
     SolaJsonTokenizer solaJsonTokenizer = new SolaJsonTokenizer(input);
-    SolaJsonParser solaJsonParser = new SolaJsonParser(solaJsonTokenizer);
+    JsonParser jsonParser = new JsonParser(solaJsonTokenizer);
 
-    return new AstTester(solaJsonParser.parse());
+    return new AstTester(jsonParser.parse());
   }
 
   private static class AstTester {

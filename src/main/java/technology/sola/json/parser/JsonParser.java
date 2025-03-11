@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * A JSON parser implementation.
  */
-public class SolaJsonParser {
+public class JsonParser {
   private final SolaJsonTokenizer solaJsonTokenizer;
   private Token currentToken;
   private int textIndex;
@@ -21,7 +21,7 @@ public class SolaJsonParser {
    *
    * @param solaJsonTokenizer the tokenizer to use for parsing
    */
-  public SolaJsonParser(SolaJsonTokenizer solaJsonTokenizer) {
+  public JsonParser(SolaJsonTokenizer solaJsonTokenizer) {
     this.solaJsonTokenizer = solaJsonTokenizer;
     textIndex = solaJsonTokenizer.getTextIndex();
     currentToken = solaJsonTokenizer.getNextToken();

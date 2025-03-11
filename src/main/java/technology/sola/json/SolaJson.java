@@ -4,7 +4,7 @@ import technology.sola.json.exception.InvalidAbstractSyntaxTreeException;
 import technology.sola.json.mapper.JsonMapper;
 import technology.sola.json.parser.AstNode;
 import technology.sola.json.parser.AstNodeType;
-import technology.sola.json.parser.SolaJsonParser;
+import technology.sola.json.parser.JsonParser;
 import technology.sola.json.serializer.JsonSerializer;
 import technology.sola.json.serializer.JsonSerializerConfig;
 import technology.sola.json.tokenizer.SolaJsonTokenizer;
@@ -41,8 +41,8 @@ public class SolaJson {
    */
   public JsonElement parse(String jsonString) {
     SolaJsonTokenizer solaJsonTokenizer = new SolaJsonTokenizer(jsonString);
-    SolaJsonParser solaJsonParser = new SolaJsonParser(solaJsonTokenizer);
-    AstNode root = solaJsonParser.parse();
+    JsonParser jsonParser = new JsonParser(solaJsonTokenizer);
+    AstNode root = jsonParser.parse();
 
     return visit(root);
   }
