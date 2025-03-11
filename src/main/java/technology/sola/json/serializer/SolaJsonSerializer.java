@@ -8,13 +8,15 @@ import technology.sola.json.JsonObject;
  * SolaJsonSerializer contains methods for serializing {@link JsonElement}s, {@link JsonObject}s and {@link JsonArray}s.
  */
 public class SolaJsonSerializer {
-  private final SolaJsonSerializerConfig config = new SolaJsonSerializerConfig();
+  private final SolaJsonSerializerConfig config;
 
   /**
-   * @return current {@link SolaJsonSerializerConfig} for this {@link SolaJsonSerializer}
+   * Creates an instance of SolaJsonSerializer with desired {@link SolaJsonSerializerConfig}.
+   *
+   * @param config the configuration for the serializer
    */
-  public SolaJsonSerializerConfig getConfig() {
-    return config;
+  public SolaJsonSerializer(SolaJsonSerializerConfig config) {
+    this.config = config;
   }
 
   /**
@@ -89,7 +91,7 @@ public class SolaJsonSerializer {
   private void appendJsonObject(StringBuilder stringBuilder, JsonObject jsonObject, int depth) {
     stringBuilder.append("{");
 
-    String separator = config.getSpaces() > 0 ? ": " : ":";
+    String separator = config.spaces() > 0 ? ": " : ":";
 
     jsonObject.forEach((key, value) -> {
       appendNewLine(stringBuilder, depth);
@@ -115,9 +117,9 @@ public class SolaJsonSerializer {
   }
 
   private void appendNewLine(StringBuilder stringBuilder, int depth) {
-    if (config.getSpaces() > 0) {
+    if (config.spaces() > 0) {
       stringBuilder.append("\n");
-      stringBuilder.append(" ".repeat(config.getSpaces() * (depth + 1)));
+      stringBuilder.append(" ".repeat(config.spaces() * (depth + 1)));
     }
   }
 
@@ -125,9 +127,9 @@ public class SolaJsonSerializer {
     if (stringBuilder.charAt(stringBuilder.length() - 1) == ',') {
       stringBuilder.deleteCharAt(stringBuilder.length() - 1);
     }
-    if (config.getSpaces() > 0 && size > 0) {
+    if (config.spaces() > 0 && size > 0) {
       stringBuilder.append("\n");
-      stringBuilder.append(" ".repeat(config.getSpaces() * depth));
+      stringBuilder.append(" ".repeat(config.spaces() * depth));
     }
     stringBuilder.append(closeCharacter);
   }

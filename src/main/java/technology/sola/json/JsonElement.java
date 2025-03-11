@@ -2,6 +2,7 @@ package technology.sola.json;
 
 import technology.sola.json.exception.JsonElementTypeException;
 import technology.sola.json.serializer.SolaJsonSerializer;
+import technology.sola.json.serializer.SolaJsonSerializerConfig;
 
 /**
  * JsonElement represents any valid JSON value. Valid JSON values include {@link JsonObject}, {@link JsonArray}, string,
@@ -225,9 +226,9 @@ public class JsonElement {
    * @return formatted JSON string with spaces for indentation
    */
   public String toString(int spaces) {
-    SolaJsonSerializer solaJsonSerializer = new SolaJsonSerializer();
-
-    solaJsonSerializer.getConfig().setSpaces(spaces);
+    SolaJsonSerializer solaJsonSerializer = new SolaJsonSerializer(
+      new SolaJsonSerializerConfig(spaces)
+    );
 
     return solaJsonSerializer.serialize(this);
   }

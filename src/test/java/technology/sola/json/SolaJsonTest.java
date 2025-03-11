@@ -3,6 +3,7 @@ package technology.sola.json;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import technology.sola.json.serializer.SolaJsonSerializerConfig;
 
 import java.util.List;
 
@@ -10,10 +11,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SolaJsonTest {
   private SolaJson solaJson;
+  private SolaJson solaJsonWithSpaces;
 
   @BeforeEach
   void setup() {
     solaJson = new SolaJson();
+    solaJsonWithSpaces = new SolaJson(new SolaJsonSerializerConfig(2));
   }
 
   @Test
@@ -81,9 +84,7 @@ class SolaJsonTest {
     jsonObject.put("key3", new JsonObject());
     jsonObject.put("key4", new JsonArray());
 
-    solaJson.getSerializerConfig().setSpaces(2);
-
-    String serialized = solaJson.stringify(jsonObject);
+    String serialized = solaJsonWithSpaces.stringify(jsonObject);
 
     assertEquals(
         """
@@ -151,8 +152,7 @@ class SolaJsonTest {
     void stringify_withSpaces() {
       TestPojo testPojo = new TestPojo(1, "test");
 
-      solaJson.getSerializerConfig().setSpaces(2);
-      String result = solaJson.stringify(testPojo, TestPojo.JSON_MAPPER);
+      String result = solaJsonWithSpaces.stringify(testPojo, TestPojo.JSON_MAPPER);
 
       assertEquals("""
         {
@@ -174,8 +174,7 @@ class SolaJsonTest {
     void stringifyList_withSpaces() {
       List<TestPojo> list = List.of(new TestPojo(1, "test"));
 
-      solaJson.getSerializerConfig().setSpaces(2);
-      String result = solaJson.stringify(list, TestPojo.JSON_MAPPER);
+      String result = solaJsonWithSpaces.stringify(list, TestPojo.JSON_MAPPER);
 
       assertEquals("""
         [

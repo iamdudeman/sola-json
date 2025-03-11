@@ -2,6 +2,7 @@ package technology.sola.json;
 
 import technology.sola.json.exception.JsonElementTypeException;
 import technology.sola.json.serializer.SolaJsonSerializer;
+import technology.sola.json.serializer.SolaJsonSerializerConfig;
 
 import java.util.HashMap;
 
@@ -462,9 +463,9 @@ public class JsonObject extends HashMap<String, JsonElement> {
    * @return formatted JSON string with spaces for indentation
    */
   public String toString(int spaces) {
-    SolaJsonSerializer solaJsonSerializer = new SolaJsonSerializer();
-
-    solaJsonSerializer.getConfig().setSpaces(spaces);
+    SolaJsonSerializer solaJsonSerializer = new SolaJsonSerializer(
+      new SolaJsonSerializerConfig(spaces)
+    );
 
     return solaJsonSerializer.serialize(this);
   }

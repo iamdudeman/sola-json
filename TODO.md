@@ -7,7 +7,6 @@
 ## Improvements
 
 * Use charAt instead of toCharacterArray for tokenizer
-* Allow SolaJsonSerializerConfig to be passed into SolaJson
 * Line numbers in errors (and tokens)
 * Consider renaming "SolaJsonXYZ" classes to just "XYZ"
 * Consider switching tokenizer getNextToken() to getTokens()
