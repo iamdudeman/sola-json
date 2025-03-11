@@ -15,7 +15,23 @@ import java.util.List;
  * SolaJson contains methods for parsing strings into {@link JsonElement}s and serializing {@code JsonElement}s into strings.
  */
 public class SolaJson {
-  private final SolaJsonSerializer solaJsonSerializer = new SolaJsonSerializer();
+  private final SolaJsonSerializer solaJsonSerializer;
+
+  /**
+   * Creates a new SolaJson instance with default {@link SolaJsonSerializerConfig}.
+   */
+  public SolaJson() {
+    this(new SolaJsonSerializerConfig(0));
+  }
+
+  /**
+   * Creates a new SolaJson instance with desired {@link SolaJsonSerializerConfig}.
+   *
+   * @param config the serializer configuration
+   */
+  public SolaJson(SolaJsonSerializerConfig config) {
+    solaJsonSerializer = new SolaJsonSerializer(config);
+  }
 
   /**
    * Parses a JSON string into a {@link JsonElement}.
@@ -53,13 +69,6 @@ public class SolaJson {
    */
   public <T> List<T> parseList(String jsonString, JsonMapper<T> jsonMapper) {
     return jsonMapper.toList(parse(jsonString).asArray());
-  }
-
-  /**
-   * @return the {@link SolaJsonSerializerConfig} used for serialization
-   */
-  public SolaJsonSerializerConfig getSerializerConfig() {
-    return solaJsonSerializer.getConfig();
   }
 
   /**
