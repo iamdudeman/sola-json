@@ -22,6 +22,11 @@ repositories {
 dependencies {
   testImplementation(platform("org.junit:junit-bom:5.10.2"))
   testImplementation("org.junit.jupiter:junit-jupiter")
+
+  // performance testing dependencies
+  testImplementation("org.openjdk.jmh:jmh-core:1.37")
+  testAnnotationProcessor("org.openjdk.jmh:jmh-generator-annprocess:1.37")
+  testImplementation("com.google.code.gson:gson:2.8.9")
 }
 
 tasks.test {
@@ -52,4 +57,12 @@ idea {
     isDownloadJavadoc = true
     isDownloadSources = true
   }
+}
+
+tasks.register("benchmark", JavaExec::class) {
+  group = "verification"
+  description = "Execute benchmark comparisons"
+  mainClass = "org.openjdk.jmh.Main"
+
+  classpath = sourceSets.test.get().runtimeClasspath
 }
