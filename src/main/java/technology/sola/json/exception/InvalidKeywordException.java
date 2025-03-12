@@ -3,7 +3,7 @@ package technology.sola.json.exception;
 /**
  * Exception for when an invalid keyword is found during tokenization.
  */
-public class InvalidKeywordException extends RuntimeException {
+public class InvalidKeywordException extends RuntimeException implements SolaJsonError {
   /**
    * The expected keyword.
    */

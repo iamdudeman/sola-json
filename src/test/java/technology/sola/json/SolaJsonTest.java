@@ -1,10 +1,16 @@
 package technology.sola.json;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import technology.sola.json.exception.SolaJsonError;
 import technology.sola.json.serializer.JsonSerializerConfig;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,6 +23,66 @@ class SolaJsonTest {
   void setup() {
     solaJson = new SolaJson();
     solaJsonWithSpaces = new SolaJson(new JsonSerializerConfig(2));
+  }
+
+  /**
+   * This test suite verifies parser functionality using test files from [JSON.org](https://www.json.org/JSON_checker/).
+   */
+  @Nested
+  class JsonStandardValidity {
+    @Test
+    void expectedPasses() throws IOException {
+      List<String> failedTestFiles = new ArrayList<>();
+
+      for (var file : getResourceFiles("/validity/pass")) {
+        var fileContents = Files.readString(file.toPath());
+
+        try {
+          solaJson.parse(fileContents);
+        } catch (Exception e) {
+          failedTestFiles.add(file.getName());
+        }
+      }
+
+      if (!failedTestFiles.isEmpty()) {
+        fail("File(s) that are valid failed to parse [" + String.join(", ", failedTestFiles) + "]");
+      }
+    }
+
+    // todo improve this test and fix bugs it has found
+    @Test
+    @Disabled("Work in progress")
+    void expectedFailures() throws IOException {
+      List<String> failedTestFiles = new ArrayList<>();
+
+      for (var file : getResourceFiles("/validity/fail")) {
+        var fileContents = Files.readString(file.toPath());
+
+        try {
+          solaJson.parse(fileContents);
+          failedTestFiles.add(file.getName());
+        } catch (Exception ex) {
+          if (ex instanceof SolaJsonError) {
+            System.out.println(file.getName() + " " + ex.getClass() + ": " + ex.getMessage());
+
+          } else {
+            fail("Expected a SolaJsonError for test file [" + file.getName() + "]", ex);
+          }
+        }
+      }
+
+      if (!failedTestFiles.isEmpty()) {
+        fail("File(s) parsed successfully but should be considered invalid [" + String.join(", ", failedTestFiles) + "]");
+      }
+    }
+
+    private File[] getResourceFiles(String path) {
+      var url = getClass().getResource(path);
+
+      assert url != null;
+
+      return new File(url.getFile()).listFiles();
+    }
   }
 
   @Test

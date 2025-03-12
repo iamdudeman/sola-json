@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 /**
  * Exception thrown when invalid syntax is discovered during parsing.
  */
-public class InvalidSyntaxException extends RuntimeException {
+public class InvalidSyntaxException extends RuntimeException implements SolaJsonError {
   /**
    * Index where the error was found.
    */

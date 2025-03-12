@@ -3,7 +3,7 @@ package technology.sola.json.exception;
 /**
  * Exception thrown when an invalid decimal number is found during tokenization.
  */
-public class InvalidDecimalNumberException extends RuntimeException {
+public class InvalidDecimalNumberException extends RuntimeException implements SolaJsonError {
   /**
    * Index where the error was found.
    */

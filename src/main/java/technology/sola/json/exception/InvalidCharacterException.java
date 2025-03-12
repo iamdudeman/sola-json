@@ -3,7 +3,7 @@ package technology.sola.json.exception;
 /**
  * Exception for when an invalid character is found during tokenization.
  */
-public class InvalidCharacterException extends RuntimeException {
+public class InvalidCharacterException extends RuntimeException implements SolaJsonError {
   /**
    * The character that is invalid.
    */
