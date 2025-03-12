@@ -2,7 +2,7 @@
 
 ## Bugs
 
-*
+* fix bugs found by new `JsonStandardValidity > validity > expectedFailures` test
 
 ## Improvements
 
