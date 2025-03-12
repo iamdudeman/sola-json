@@ -30,6 +30,7 @@ class SolaJsonTest {
         "null": null,
         "true": true,
         "false": false,
+        "number": 10E2,
         "testArray": [
           {
             "test": "value"
@@ -44,6 +45,7 @@ class SolaJsonTest {
     assertTrue(root.isNull("null"));
     assertTrue(root.getBoolean("true"));
     assertFalse(root.getBoolean("false"));
+    assertEquals(1000, root.getDouble("number"));
     assertEquals("value", root.getObject("testObject").getString("test"));
     assertEquals("value", root.getArray("testArray").getObject(0).getString("test"));
   }
