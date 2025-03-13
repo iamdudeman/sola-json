@@ -278,7 +278,8 @@ class JsonTokenizerTest {
           InvalidDecimalNumberException.class,
           () -> createTest(input).assertNextToken(TokenType.NUMBER)
         );
-        assertEquals(2, exception.getStartIndex());
+        assertEquals(1, exception.getLine());
+        assertEquals(3, exception.getColumn());
       }
 
       @Test

@@ -247,6 +247,7 @@ public class JsonTokenizer {
   }
 
   private void advanceFraction() {
+    int startColumn = column;
     int startFraction = textIndex;
     if (currentChar != null && currentChar == '.') {
       advance();
@@ -256,7 +257,7 @@ public class JsonTokenizer {
       }
     }
     if (textIndex - startFraction == 1) {
-      throw new InvalidDecimalNumberException(startFraction);
+      throw new InvalidDecimalNumberException(line, startColumn);
     }
   }
 
