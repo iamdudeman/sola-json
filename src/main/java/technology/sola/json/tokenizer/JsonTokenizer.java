@@ -235,9 +235,16 @@ public class JsonTokenizer {
   }
 
   private void advanceNumber() {
+    int startColumn = column;
+    boolean hasLeadingZero = currentChar == '0';
+
     advance();
 
     while (currentChar != null && isDigit(currentChar)) {
+      if (hasLeadingZero) {
+        throw new InvalidLeadingZeroNumberException(line, startColumn);
+      }
+
       advance();
     }
   }

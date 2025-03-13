@@ -293,6 +293,18 @@ class JsonTokenizerTest {
       }
 
       @Test
+      void whenLeadingZero_ShouldThrow() {
+        var input = " 02";
+
+        InvalidLeadingZeroNumberException exception = assertThrows(
+          InvalidLeadingZeroNumberException.class,
+          () -> createTest(input).assertNextToken(TokenType.NUMBER)
+        );
+        assertEquals(1, exception.getLine());
+        assertEquals(2, exception.getColumn());
+      }
+
+      @Test
       void whenNegative_ShouldRecognize() {
         var input = " -2 -3 ";
 
