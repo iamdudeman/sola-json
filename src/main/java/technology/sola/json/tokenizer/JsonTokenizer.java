@@ -217,7 +217,7 @@ public class JsonTokenizer {
         localPos++;
 
         if (localPos + 4 > buffer.length) {
-          throw new InvalidUnicodeCharacterException(localPos);
+          throw new InvalidUnicodeCharacterException(line, column);
         }
 
         try {
@@ -225,7 +225,7 @@ public class JsonTokenizer {
           localPos += 3;
           yield (char) codePoint;
         } catch (NumberFormatException ex) {
-          throw new InvalidUnicodeCharacterException(localPos);
+          throw new InvalidUnicodeCharacterException(line, column);
         }
       }
       default -> throw new InvalidControlCharacterException(localPos);

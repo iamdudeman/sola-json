@@ -199,7 +199,8 @@ class JsonTokenizerTest {
             InvalidUnicodeCharacterException.class,
             () -> createTest(input).assertNextToken(TokenType.STRING)
           );
-          assertEquals(3, exception.getStartIndex());
+          assertEquals(1, exception.getLine());
+          assertEquals(1, exception.getColumn());
         }
 
         @Test
@@ -212,7 +213,8 @@ class JsonTokenizerTest {
             InvalidUnicodeCharacterException.class,
             () -> createTest(input).assertNextToken(TokenType.STRING)
           );
-          assertEquals(3, exception.getStartIndex());
+          assertEquals(1, exception.getLine());
+          assertEquals(1, exception.getColumn());
         }
 
         @Test
