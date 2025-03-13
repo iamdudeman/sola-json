@@ -1,9 +1,5 @@
 # todo list
 
-## Bugs
-
-* fix bugs found by new `JsonStandardValidity > validity > expectedFailures` test
-
 ## Performance
 
 * Research possible performance improvements
