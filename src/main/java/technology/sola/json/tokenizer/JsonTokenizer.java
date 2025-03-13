@@ -113,6 +113,10 @@ public class JsonTokenizer {
     int start = localPos;
 
     while (localChar != '\"') {
+      if (localChar == '\t' || localChar == '\n') {
+        throw new InvalidUnicodeCharacterException(line, initialColumn);
+      }
+
       if (localChar == '\\') {
         if (stringTokenWithEscapesBuilder == null) {
           stringTokenWithEscapesBuilder = new StringBuilder();

@@ -153,6 +153,32 @@ class JsonTokenizerTest {
       }
 
       @Test
+      void shouldNotAllowTabCharacter() {
+        var input = " \"\t\"";
+
+        InvalidUnicodeCharacterException exception = assertThrows(
+          InvalidUnicodeCharacterException.class,
+          () -> createTest(input).assertNextToken(TokenType.STRING)
+        );
+
+        assertEquals(1, exception.getLine());
+        assertEquals(2, exception.getColumn());
+      }
+
+      @Test
+      void shouldNotAllowNewLineCharacter() {
+        var input = " \"\n\"";
+
+        InvalidUnicodeCharacterException exception = assertThrows(
+          InvalidUnicodeCharacterException.class,
+          () -> createTest(input).assertNextToken(TokenType.STRING)
+        );
+
+        assertEquals(1, exception.getLine());
+        assertEquals(2, exception.getColumn());
+      }
+
+      @Test
       void whenNotClosed_shouldThrowException() {
         var input = " \"test ";
 
