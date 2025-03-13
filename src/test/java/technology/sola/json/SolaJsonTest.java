@@ -1,7 +1,6 @@
 package technology.sola.json;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import technology.sola.json.exception.SolaJsonParsingError;
@@ -49,9 +48,7 @@ class SolaJsonTest {
       }
     }
 
-    // todo improve this test and fix bugs it has found
     @Test
-    @Disabled("Work in progress")
     void expectedFailures() throws IOException {
       List<String> failedTestFiles = new ArrayList<>();
 

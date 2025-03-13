@@ -265,6 +265,10 @@ public class JsonTokenizer {
         advance();
       }
 
+      if (currentChar == null || !isDigit(currentChar)) {
+        throw new InvalidExponentNumberException(line, textIndex);
+      }
+
       while (currentChar != null && isDigit(currentChar)) {
         advance();
       }

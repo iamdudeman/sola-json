@@ -326,6 +326,18 @@ class JsonTokenizerTest {
       }
 
       @Test
+      void whenInvalidExponent_ShouldThrow() {
+        var input = " 2e ";
+
+        InvalidExponentNumberException exception = assertThrows(
+          InvalidExponentNumberException.class,
+          () -> createTest(input).assertNextToken(TokenType.NUMBER)
+        );
+        assertEquals(1, exception.getLine());
+        assertEquals(3, exception.getColumn());
+      }
+
+      @Test
       void whenFractionAndExponent_ShouldRecognize() {
         var input = " 2.3e5 -3.2e-3";
 
