@@ -144,6 +144,8 @@ performance.
 [jmh](https://github.com/openjdk/jmh) benchmark file can be
 viewed [here](src/test/java/technology/sola/json/jmh/SolaJsonBenchmark.java)
 
+Execute benchmark view gradle task `jmhBenchmark` in verification category.
+
 Results:
 ```
 SolaJsonBenchmark.gson      avgt    3  2.883 ± 0.217  ms/op

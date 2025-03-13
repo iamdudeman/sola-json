@@ -13,10 +13,6 @@
 
 ## Performance
 
-* Consider adding performance testing
-    * https://github.com/clarkware/junitperf
-        * or maybe https://www.baeldung.com/java-microbenchmark-harness
-    * compare vs GSON
 * Research possible performance improvements
     * Tokenizer#tokenString method
     * Tokenizer#tokenNumber method

@@ -60,9 +60,9 @@ idea {
   }
 }
 
-tasks.register("benchmark", JavaExec::class) {
+tasks.register("jmhBenchmark", JavaExec::class) {
   group = "verification"
-  description = "Execute benchmark comparisons"
+  description = "Execute jmh benchmark comparisons"
   mainClass = "org.openjdk.jmh.Main"
 
   classpath = sourceSets.test.get().runtimeClasspath
