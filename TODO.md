@@ -6,9 +6,7 @@
 
 ## Improvements
 
-* Line numbers in errors (and tokens)
-* Consider switching tokenizer getNextToken() to getTokens()
-* Consider keeping track of all syntax errors instead of just the first
+* Line numbers in errors
 
 ## Performance
 

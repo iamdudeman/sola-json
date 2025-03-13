@@ -9,6 +9,8 @@ public class JsonTokenizer {
   private final char[] characters;
   private Character currentChar;
   private int textIndex;
+  private int column = 1;
+  private int line = 1;
 
   /**
    * Creates a {@link JsonTokenizer} for the specified string.
@@ -18,10 +20,6 @@ public class JsonTokenizer {
   public JsonTokenizer(String text) {
     characters = text.toCharArray();
     currentChar = characters[textIndex];
-
-    while (currentChar != null && Character.isWhitespace(currentChar)) {
-      advance();
-    }
   }
 
   /**
@@ -35,8 +33,18 @@ public class JsonTokenizer {
    * @return finds and returns the next valid token in the string
    */
   public Token getNextToken() {
+    int line = this.line;
+    int column = this.column;
+
     if (currentChar == null) {
-      return new Token(TokenType.EOF);
+      return new Token(TokenType.EOF, line, column);
+    }
+
+    if (currentChar == '\n') {
+      this.line++;
+      this.column = 1;
+      advance();
+      return getNextToken();
     }
 
     if (Character.isWhitespace(currentChar)) {
@@ -46,32 +54,32 @@ public class JsonTokenizer {
 
     if (currentChar == ':') {
       advance();
-      return new Token(TokenType.COLON);
+      return new Token(TokenType.COLON, line, column);
     }
 
     if (currentChar == ',') {
       advance();
-      return new Token(TokenType.COMMA);
+      return new Token(TokenType.COMMA, line, column);
     }
 
     if (currentChar == '[') {
       advance();
-      return new Token(TokenType.L_BRACKET);
+      return new Token(TokenType.L_BRACKET, line, column);
     }
 
     if (currentChar == ']') {
       advance();
-      return new Token(TokenType.R_BRACKET);
+      return new Token(TokenType.R_BRACKET, line, column);
     }
 
     if (currentChar == '{') {
       advance();
-      return new Token(TokenType.L_CURLY);
+      return new Token(TokenType.L_CURLY, line, column);
     }
 
     if (currentChar == '}') {
       advance();
-      return new Token(TokenType.R_CURLY);
+      return new Token(TokenType.R_CURLY, line, column);
     }
 
     if (currentChar == '"') {
@@ -84,23 +92,25 @@ public class JsonTokenizer {
 
     if (currentChar == 't') {
       advanceKeywordTrue();
-      return new Token(TokenType.TRUE);
+      return new Token(TokenType.TRUE, line, column);
     }
 
     if (currentChar == 'f') {
       advanceKeywordFalse();
-      return new Token(TokenType.FALSE);
+      return new Token(TokenType.FALSE, line, column);
     }
 
     if (currentChar == 'n') {
       advanceKeywordNull();
-      return new Token(TokenType.NULL);
+      return new Token(TokenType.NULL, line, column);
     }
 
+    // todo replace with line + column
     throw new InvalidCharacterException(currentChar, textIndex);
   }
 
   private Token tokenString() {
+    int initialColumn = column;
     // StringBuilder required if escaped character is present
     StringBuilder stringTokenWithEscapesBuilder = null;
 
@@ -134,12 +144,14 @@ public class JsonTokenizer {
       : stringTokenWithEscapesBuilder.toString();
 
     textIndex = localPos;
+    column += localPos - start;
     advance();
 
-    return new Token(TokenType.STRING, tokenValue);
+    return new Token(TokenType.STRING, tokenValue, line, initialColumn);
   }
 
   private Token tokenNumber() {
+    int startColumn = column;
     int startIndex = textIndex;
 
     advanceNumber();
@@ -152,7 +164,7 @@ public class JsonTokenizer {
       throw new InvalidNegativeNumberException(startIndex);
     }
 
-    return new Token(TokenType.NUMBER, new String(characters, startIndex, characterCount));
+    return new Token(TokenType.NUMBER, new String(characters, startIndex, characterCount), line, startColumn);
   }
 
   private void advanceKeywordTrue() {
@@ -268,6 +280,7 @@ public class JsonTokenizer {
 
   private void advance() {
     textIndex++;
+    column++;
     currentChar = textIndex < characters.length ? characters[textIndex] : null;
   }
 

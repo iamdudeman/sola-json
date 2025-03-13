@@ -1,5 +1,6 @@
 package technology.sola.json.exception;
 
+import technology.sola.json.tokenizer.Token;
 import technology.sola.json.tokenizer.TokenType;
 
 import java.util.Arrays;
@@ -10,13 +11,9 @@ import java.util.stream.Collectors;
  */
 public class InvalidSyntaxException extends RuntimeException implements SolaJsonError {
   /**
-   * Index where the error was found.
+   * The actual {@link Token} seen.
    */
-  private final int startIndex;
-  /**
-   * The actual {@link TokenType} seen.
-   */
-  private final TokenType actual;
+  private final Token actual;
   /**
    * The expected {@link TokenType}.
    */
@@ -25,30 +22,38 @@ public class InvalidSyntaxException extends RuntimeException implements SolaJson
   /**
    * Creates a new instance of this exception.
    *
-   * @param actual     the {@link TokenType} that was received
-   * @param startIndex the index where the syntax error began
-   * @param expected   the possible {@link TokenType}s that were expected
+   * @param actual   the {@link Token} that was received
+   * @param expected the possible {@link TokenType}s that were expected
    */
-  public InvalidSyntaxException(TokenType actual, int startIndex, TokenType... expected) {
-    super(String.format("Expected [%s] but received [%s] at [%s]", formatExpectedTokens(expected), actual.name(), startIndex));
+  public InvalidSyntaxException(Token actual, TokenType... expected) {
+    super(
+      String.format("Expected [%s] but received [%s] at [%s:%s]",
+        formatExpectedTokens(expected), actual.type().name(), actual.line(), actual.column())
+    );
 
     this.actual = actual;
-    this.startIndex = startIndex;
     this.expected = expected;
   }
 
   /**
-   * @return the index where the syntax error began
+   * @return the line where the syntax error began
    */
-  public int getStartIndex() {
-    return startIndex;
+  public int getLine() {
+    return actual.line();
+  }
+
+  /**
+   * @return the column where the syntax error began
+   */
+  public int getColumn() {
+    return actual.column();
   }
 
   /**
    * @return the received {@link TokenType}
    */
   public TokenType getActual() {
-    return actual;
+    return actual.type();
   }
 
   /**
