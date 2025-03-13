@@ -98,7 +98,7 @@ public class SolaJsonBenchmark {
       commentsJsonString = readFileToString("/performance/comments.json");
       photosJsonString = readFileToString("/performance/photos.json");
       usersJsonString = readFileToString("/performance/users.json");
-      bigJsonString = readFileToString("/performance/big.json");
+      bigJsonString = readFileToString("/performance/big-file.json");
     }
 
     private String readFileToString(String resourcePath) throws IOException {
