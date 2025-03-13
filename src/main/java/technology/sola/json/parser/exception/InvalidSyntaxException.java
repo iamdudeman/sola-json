@@ -1,5 +1,6 @@
-package technology.sola.json.exception;
+package technology.sola.json.parser.exception;
 
+import technology.sola.json.exception.SolaJsonError;
 import technology.sola.json.tokenizer.Token;
 import technology.sola.json.tokenizer.TokenType;
 

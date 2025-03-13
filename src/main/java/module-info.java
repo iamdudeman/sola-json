@@ -8,4 +8,6 @@ module technology.sola.json {
   exports technology.sola.json.parser;
   exports technology.sola.json.serializer;
   exports technology.sola.json.tokenizer;
+    exports technology.sola.json.parser.exception;
+  exports technology.sola.json.tokenizer.exception;
 }

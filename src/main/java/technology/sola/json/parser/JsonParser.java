@@ -1,6 +1,6 @@
 package technology.sola.json.parser;
 
-import technology.sola.json.exception.InvalidSyntaxException;
+import technology.sola.json.parser.exception.InvalidSyntaxException;
 import technology.sola.json.tokenizer.Token;
 import technology.sola.json.tokenizer.TokenType;
 import technology.sola.json.tokenizer.JsonTokenizer;

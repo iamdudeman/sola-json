@@ -3,7 +3,7 @@ package technology.sola.json.parser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import technology.sola.json.exception.InvalidSyntaxException;
+import technology.sola.json.parser.exception.InvalidSyntaxException;
 import technology.sola.json.tokenizer.TokenType;
 import technology.sola.json.tokenizer.JsonTokenizer;
 

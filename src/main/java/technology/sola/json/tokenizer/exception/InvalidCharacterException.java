@@ -1,4 +1,6 @@
-package technology.sola.json.exception;
+package technology.sola.json.tokenizer.exception;
+
+import technology.sola.json.exception.SolaJsonError;
 
 /**
  * Exception for when an invalid character is found during tokenization.

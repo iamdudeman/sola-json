@@ -3,6 +3,7 @@ package technology.sola.json.tokenizer;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import technology.sola.json.exception.*;
+import technology.sola.json.tokenizer.exception.InvalidCharacterException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
