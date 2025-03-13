@@ -1,6 +1,6 @@
 package technology.sola.json.parser;
 
-import technology.sola.json.exception.InvalidSyntaxException;
+import technology.sola.json.parser.exception.InvalidSyntaxException;
 import technology.sola.json.tokenizer.Token;
 import technology.sola.json.tokenizer.TokenType;
 import technology.sola.json.tokenizer.JsonTokenizer;
@@ -14,7 +14,6 @@ import java.util.List;
 public class JsonParser {
   private final JsonTokenizer jsonTokenizer;
   private Token currentToken;
-  private int textIndex;
 
   /**
    * Creates a new instance utilizing the provided {@link JsonTokenizer}.
@@ -23,7 +22,6 @@ public class JsonParser {
    */
   public JsonParser(JsonTokenizer jsonTokenizer) {
     this.jsonTokenizer = jsonTokenizer;
-    textIndex = jsonTokenizer.getTextIndex();
     currentToken = jsonTokenizer.getNextToken();
   }
 
@@ -36,7 +34,7 @@ public class JsonParser {
     AstNode node = ruleRoot();
 
     if (currentToken.type() != TokenType.EOF) {
-      throw new InvalidSyntaxException(currentToken.type(), textIndex, TokenType.EOF);
+      throw new InvalidSyntaxException(currentToken, TokenType.EOF);
     }
 
     return node;
@@ -47,7 +45,7 @@ public class JsonParser {
       case L_BRACKET -> ruleArray();
       case L_CURLY -> ruleObject();
       default ->
-        throw new InvalidSyntaxException(currentToken.type(), textIndex, TokenType.L_BRACKET, TokenType.L_CURLY);
+        throw new InvalidSyntaxException(currentToken, TokenType.L_BRACKET, TokenType.L_CURLY);
     };
   }
 
@@ -102,7 +100,7 @@ public class JsonParser {
       case STRING -> AstNode.value(eat(TokenType.STRING));
       case NUMBER -> AstNode.value(eat(TokenType.NUMBER));
       default -> throw new InvalidSyntaxException(
-        currentToken.type(), textIndex,
+        currentToken,
         TokenType.L_BRACKET, TokenType.L_CURLY, TokenType.TRUE, TokenType.FALSE, TokenType.NULL, TokenType.STRING, TokenType.NUMBER
       );
     };
@@ -112,12 +110,11 @@ public class JsonParser {
     var token = currentToken;
 
     if (currentToken.type() == tokenType) {
-      textIndex = jsonTokenizer.getTextIndex();
       currentToken = jsonTokenizer.getNextToken();
 
       return token;
     } else {
-      throw new InvalidSyntaxException(currentToken.type(), textIndex, tokenType);
+      throw new InvalidSyntaxException(currentToken, tokenType);
     }
   }
 }

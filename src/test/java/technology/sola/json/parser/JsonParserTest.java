@@ -3,7 +3,7 @@ package technology.sola.json.parser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import technology.sola.json.exception.InvalidSyntaxException;
+import technology.sola.json.parser.exception.InvalidSyntaxException;
 import technology.sola.json.tokenizer.TokenType;
 import technology.sola.json.tokenizer.JsonTokenizer;
 
@@ -17,7 +17,7 @@ class JsonParserTest {
     String input = " \"test\" ";
 
     InvalidSyntaxException invalidSyntaxException = assertThrows(InvalidSyntaxException.class, () -> createTest(input));
-    assertEquals(1, invalidSyntaxException.getStartIndex());
+    assertEquals(2, invalidSyntaxException.getColumn());
     assertEquals(TokenType.STRING, invalidSyntaxException.getActual());
     var expectedList = List.of(invalidSyntaxException.getExpected());
     assertTrue(expectedList.contains(TokenType.L_BRACKET));
@@ -33,7 +33,8 @@ class JsonParserTest {
       """;
 
     InvalidSyntaxException invalidSyntaxException = assertThrows(InvalidSyntaxException.class, () -> createTest(input));
-    assertEquals(10, invalidSyntaxException.getStartIndex());
+    assertEquals(2, invalidSyntaxException.getLine());
+    assertEquals(10, invalidSyntaxException.getColumn());
     assertEquals(TokenType.R_CURLY, invalidSyntaxException.getActual());
     var expectedList = List.of(invalidSyntaxException.getExpected());
     assertTrue(expectedList.contains(TokenType.L_BRACKET));

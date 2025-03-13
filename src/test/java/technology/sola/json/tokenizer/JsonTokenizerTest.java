@@ -2,7 +2,7 @@ package technology.sola.json.tokenizer;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import technology.sola.json.exception.*;
+import technology.sola.json.tokenizer.exception.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -17,7 +17,8 @@ class JsonTokenizerTest {
       InvalidCharacterException exception = assertThrows(InvalidCharacterException.class, () -> new JsonTokenizer(input).getNextToken());
 
       assertEquals('i', exception.getInvalidCharacter());
-      assertEquals(1, exception.getStartIndex());
+      assertEquals(1, exception.getLine());
+      assertEquals(2, exception.getColumn());
     }
 
     @Test
@@ -92,7 +93,8 @@ class JsonTokenizerTest {
         InvalidKeywordException exception = assertThrows(InvalidKeywordException.class, () -> new JsonTokenizer(input).getNextToken());
         assertEquals("true", exception.getExpected());
         assertEquals("tru ", exception.getActual());
-        assertEquals(1, exception.getStartIndex());
+        assertEquals(1, exception.getLine());
+        assertEquals(2, exception.getColumn());
       }
 
       @Test
@@ -112,7 +114,8 @@ class JsonTokenizerTest {
         InvalidKeywordException exception = assertThrows(InvalidKeywordException.class, () -> new JsonTokenizer(input).getNextToken());
         assertEquals("false", exception.getExpected());
         assertEquals("fals ", exception.getActual());
-        assertEquals(1, exception.getStartIndex());
+        assertEquals(1, exception.getLine());
+        assertEquals(2, exception.getColumn());
       }
 
       @Test
@@ -132,7 +135,8 @@ class JsonTokenizerTest {
         InvalidKeywordException exception = assertThrows(InvalidKeywordException.class, () -> new JsonTokenizer(input).getNextToken());
         assertEquals("null", exception.getExpected());
         assertEquals("nul ", exception.getActual());
-        assertEquals(1, exception.getStartIndex());
+        assertEquals(1, exception.getLine());
+        assertEquals(2, exception.getColumn());
       }
     }
 
@@ -154,7 +158,8 @@ class JsonTokenizerTest {
 
         StringNotClosedException exception = assertThrows(StringNotClosedException.class, () -> createTest(input).assertNextToken(TokenType.STRING));
 
-        assertEquals(2, exception.getStartIndex());
+        assertEquals(1, exception.getLine());
+        assertEquals(2, exception.getColumn());
       }
 
       @Nested
@@ -169,7 +174,8 @@ class JsonTokenizerTest {
             InvalidControlCharacterException.class,
             () -> createTest(input).assertNextToken(TokenType.STRING)
           );
-          assertEquals(3, exception.getStartIndex());
+          assertEquals(1, exception.getLine());
+          assertEquals(3, exception.getColumn());
         }
 
         @Test
@@ -180,7 +186,8 @@ class JsonTokenizerTest {
             InvalidControlCharacterException.class,
             () -> createTest(input).assertNextToken(TokenType.STRING)
           );
-          assertEquals(2, exception.getStartIndex());
+          assertEquals(1, exception.getLine());
+          assertEquals(2, exception.getColumn());
         }
 
         @Test
@@ -193,7 +200,8 @@ class JsonTokenizerTest {
             InvalidUnicodeCharacterException.class,
             () -> createTest(input).assertNextToken(TokenType.STRING)
           );
-          assertEquals(3, exception.getStartIndex());
+          assertEquals(1, exception.getLine());
+          assertEquals(2, exception.getColumn());
         }
 
         @Test
@@ -206,7 +214,8 @@ class JsonTokenizerTest {
             InvalidUnicodeCharacterException.class,
             () -> createTest(input).assertNextToken(TokenType.STRING)
           );
-          assertEquals(3, exception.getStartIndex());
+          assertEquals(1, exception.getLine());
+          assertEquals(2, exception.getColumn());
         }
 
         @Test
@@ -257,7 +266,8 @@ class JsonTokenizerTest {
           InvalidNegativeNumberException.class,
           () -> createTest(input).assertNextToken(TokenType.NUMBER)
         );
-        assertEquals(1, exception.getStartIndex());
+        assertEquals(1, exception.getLine());
+        assertEquals(2, exception.getColumn());
       }
 
       @Test
@@ -268,7 +278,8 @@ class JsonTokenizerTest {
           InvalidDecimalNumberException.class,
           () -> createTest(input).assertNextToken(TokenType.NUMBER)
         );
-        assertEquals(2, exception.getStartIndex());
+        assertEquals(1, exception.getLine());
+        assertEquals(3, exception.getColumn());
       }
 
       @Test
