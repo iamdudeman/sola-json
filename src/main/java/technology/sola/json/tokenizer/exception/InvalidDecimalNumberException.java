@@ -1,4 +1,6 @@
-package technology.sola.json.exception;
+package technology.sola.json.tokenizer.exception;
+
+import technology.sola.json.exception.SolaJsonError;
 
 /**
  * Exception thrown when an invalid decimal number is found during tokenization.

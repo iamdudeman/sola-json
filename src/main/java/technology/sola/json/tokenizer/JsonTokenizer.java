@@ -1,10 +1,7 @@
 package technology.sola.json.tokenizer;
 
 import technology.sola.json.exception.*;
-import technology.sola.json.tokenizer.exception.InvalidCharacterException;
-import technology.sola.json.tokenizer.exception.InvalidKeywordException;
-import technology.sola.json.tokenizer.exception.InvalidNegativeNumberException;
-import technology.sola.json.tokenizer.exception.StringNotClosedException;
+import technology.sola.json.tokenizer.exception.*;
 
 /**
  * A JSON tokenizer implementation.
