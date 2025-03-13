@@ -148,10 +148,10 @@ Execute benchmark view gradle task `jmhBenchmark` in verification category.
 
 Results:
 ```
-SolaJsonBenchmark.gsonBig        avgt    6  16.783 ± 0.153  ms/op
-SolaJsonBenchmark.gsonSmall      avgt    6   2.824 ± 0.051  ms/op
-SolaJsonBenchmark.jacksonBig     avgt    6  12.823 ± 0.462  ms/op
-SolaJsonBenchmark.jacksonSmall   avgt    6   1.602 ± 0.175  ms/op
-SolaJsonBenchmark.solaJsonBig    avgt    6  30.719 ± 0.419  ms/op
-SolaJsonBenchmark.solaJsonSmall  avgt    6   2.993 ± 0.020  ms/op
+SolaJsonBenchmark.gsonBig          ss   50  20.953 ± 1.065  ms/op
+SolaJsonBenchmark.gsonSmall        ss   50   3.271 ± 0.242  ms/op
+SolaJsonBenchmark.jacksonBig       ss   50  17.882 ± 1.405  ms/op
+SolaJsonBenchmark.jacksonSmall     ss   50   3.789 ± 0.449  ms/op
+SolaJsonBenchmark.solaJsonBig      ss   50  36.022 ± 2.219  ms/op
+SolaJsonBenchmark.solaJsonSmall    ss   50   5.628 ± 0.646  ms/op
 ```

@@ -13,11 +13,11 @@ import java.nio.file.Files;
 import java.util.concurrent.TimeUnit;
 
 @State(Scope.Benchmark)
-@BenchmarkMode(Mode.AverageTime)
+@BenchmarkMode(Mode.SingleShotTime)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
-@Fork(value = 2, warmups = 1)
-@Warmup(iterations = 2, time = 3, timeUnit = TimeUnit.SECONDS)
-@Measurement(iterations = 3, time = 3, timeUnit = TimeUnit.SECONDS)
+@Fork(value = 5, warmups = 2)
+@Warmup(iterations = 5)
+@Measurement(iterations = 10)
 public class SolaJsonBenchmark {
   @Benchmark
   public void solaJsonSmall(BenchmarkState benchmarkState, Blackhole blackhole) {
