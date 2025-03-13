@@ -4,10 +4,6 @@
 
 * fix bugs found by new `JsonStandardValidity > validity > expectedFailures` test
 
-## Improvements
-
-* Line numbers in errors
-
 ## Performance
 
 * Research possible performance improvements
