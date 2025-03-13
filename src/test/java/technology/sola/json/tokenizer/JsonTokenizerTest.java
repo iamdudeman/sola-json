@@ -153,6 +153,32 @@ class JsonTokenizerTest {
       }
 
       @Test
+      void shouldNotAllowTabCharacter() {
+        var input = " \"\t\"";
+
+        InvalidUnicodeCharacterException exception = assertThrows(
+          InvalidUnicodeCharacterException.class,
+          () -> createTest(input).assertNextToken(TokenType.STRING)
+        );
+
+        assertEquals(1, exception.getLine());
+        assertEquals(2, exception.getColumn());
+      }
+
+      @Test
+      void shouldNotAllowNewLineCharacter() {
+        var input = " \"\n\"";
+
+        InvalidUnicodeCharacterException exception = assertThrows(
+          InvalidUnicodeCharacterException.class,
+          () -> createTest(input).assertNextToken(TokenType.STRING)
+        );
+
+        assertEquals(1, exception.getLine());
+        assertEquals(2, exception.getColumn());
+      }
+
+      @Test
       void whenNotClosed_shouldThrowException() {
         var input = " \"test ";
 
@@ -293,6 +319,18 @@ class JsonTokenizerTest {
       }
 
       @Test
+      void whenLeadingZero_ShouldThrow() {
+        var input = " 02";
+
+        InvalidLeadingZeroNumberException exception = assertThrows(
+          InvalidLeadingZeroNumberException.class,
+          () -> createTest(input).assertNextToken(TokenType.NUMBER)
+        );
+        assertEquals(1, exception.getLine());
+        assertEquals(2, exception.getColumn());
+      }
+
+      @Test
       void whenNegative_ShouldRecognize() {
         var input = " -2 -3 ";
 
@@ -323,6 +361,18 @@ class JsonTokenizerTest {
           .assertNextToken(TokenType.NUMBER, "2e+3")
           .assertNextToken(TokenType.NUMBER, "2e-3")
           .assertNextToken(TokenType.EOF);
+      }
+
+      @Test
+      void whenInvalidExponent_ShouldThrow() {
+        var input = " 2e ";
+
+        InvalidExponentNumberException exception = assertThrows(
+          InvalidExponentNumberException.class,
+          () -> createTest(input).assertNextToken(TokenType.NUMBER)
+        );
+        assertEquals(1, exception.getLine());
+        assertEquals(3, exception.getColumn());
       }
 
       @Test

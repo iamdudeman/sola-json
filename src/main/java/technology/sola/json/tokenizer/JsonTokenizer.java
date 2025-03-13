@@ -113,6 +113,10 @@ public class JsonTokenizer {
     int start = localPos;
 
     while (localChar != '\"') {
+      if (localChar == '\t' || localChar == '\n') {
+        throw new InvalidUnicodeCharacterException(line, initialColumn);
+      }
+
       if (localChar == '\\') {
         if (stringTokenWithEscapesBuilder == null) {
           stringTokenWithEscapesBuilder = new StringBuilder();
@@ -235,9 +239,16 @@ public class JsonTokenizer {
   }
 
   private void advanceNumber() {
+    int startColumn = column;
+    boolean hasLeadingZero = currentChar == '0';
+
     advance();
 
     while (currentChar != null && isDigit(currentChar)) {
+      if (hasLeadingZero) {
+        throw new InvalidLeadingZeroNumberException(line, startColumn);
+      }
+
       advance();
     }
   }
@@ -263,6 +274,10 @@ public class JsonTokenizer {
 
       if (currentChar == '+' || currentChar == '-') {
         advance();
+      }
+
+      if (currentChar == null || !isDigit(currentChar)) {
+        throw new InvalidExponentNumberException(line, textIndex);
       }
 
       while (currentChar != null && isDigit(currentChar)) {
