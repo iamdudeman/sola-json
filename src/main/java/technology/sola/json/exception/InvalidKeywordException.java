@@ -4,18 +4,9 @@ package technology.sola.json.exception;
  * Exception for when an invalid keyword is found during tokenization.
  */
 public class InvalidKeywordException extends RuntimeException implements SolaJsonError {
-  /**
-   * The expected keyword.
-   */
-  private final String expected;
-  /**
-   * The keyword actually seen.
-   */
-  private final String actual;
-  /**
-   * Index where the error was found.
-   */
-  private final int startIndex;
+  private transient final String expected;
+  private transient final String actual;
+  private transient final int startIndex;
 
   /**
    * Creates a new instance of this exception.
@@ -30,6 +21,18 @@ public class InvalidKeywordException extends RuntimeException implements SolaJso
     this.expected = keyword;
     this.actual = current + invalidChar;
     this.startIndex = startIndex;
+  }
+
+  @Override
+  public int getLine() {
+    // todo
+    throw new RuntimeException("not yet implemented");
+  }
+
+  @Override
+  public int getColumn() {
+    // todo
+    throw new RuntimeException("not yet implemented");
   }
 
   /**

@@ -105,8 +105,7 @@ public class JsonTokenizer {
       return new Token(TokenType.NULL, line, column);
     }
 
-    // todo replace with line + column
-    throw new InvalidCharacterException(currentChar, textIndex);
+    throw new InvalidCharacterException(currentChar, line, column);
   }
 
   private Token tokenString() {

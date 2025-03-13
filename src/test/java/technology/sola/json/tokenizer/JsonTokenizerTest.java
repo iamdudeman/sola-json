@@ -17,7 +17,8 @@ class JsonTokenizerTest {
       InvalidCharacterException exception = assertThrows(InvalidCharacterException.class, () -> new JsonTokenizer(input).getNextToken());
 
       assertEquals('i', exception.getInvalidCharacter());
-      assertEquals(1, exception.getStartIndex());
+      assertEquals(1, exception.getLine());
+      assertEquals(2, exception.getColumn());
     }
 
     @Test

@@ -10,14 +10,8 @@ import java.util.stream.Collectors;
  * Exception thrown when invalid syntax is discovered during parsing.
  */
 public class InvalidSyntaxException extends RuntimeException implements SolaJsonError {
-  /**
-   * The actual {@link Token} seen.
-   */
-  private final Token actual;
-  /**
-   * The expected {@link TokenType}.
-   */
-  private final TokenType[] expected;
+  private transient final Token actual;
+  private transient final TokenType[] expected;
 
   /**
    * Creates a new instance of this exception.
@@ -35,16 +29,12 @@ public class InvalidSyntaxException extends RuntimeException implements SolaJson
     this.expected = expected;
   }
 
-  /**
-   * @return the line where the syntax error began
-   */
+  @Override
   public int getLine() {
     return actual.line();
   }
 
-  /**
-   * @return the column where the syntax error began
-   */
+  @Override
   public int getColumn() {
     return actual.column();
   }

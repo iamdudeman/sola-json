@@ -4,10 +4,7 @@ package technology.sola.json.exception;
  * Exception thrown when an invalid decimal number is found during tokenization.
  */
 public class InvalidDecimalNumberException extends RuntimeException implements SolaJsonError {
-  /**
-   * Index where the error was found.
-   */
-  private final int startIndex;
+  private transient final int startIndex;
 
   /**
    * Creates a new instance of this exception.
@@ -17,6 +14,18 @@ public class InvalidDecimalNumberException extends RuntimeException implements S
   public InvalidDecimalNumberException(int startIndex) {
     super("Number for decimal expected starting at [" + startIndex + "]");
     this.startIndex = startIndex;
+  }
+
+  @Override
+  public int getLine() {
+    // todo
+    throw new RuntimeException("not yet implemented");
+  }
+
+  @Override
+  public int getColumn() {
+    // todo
+    throw new RuntimeException("not yet implemented");
   }
 
   /**

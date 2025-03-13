@@ -4,26 +4,23 @@ package technology.sola.json.exception;
  * Exception for when an invalid character is found during tokenization.
  */
 public class InvalidCharacterException extends RuntimeException implements SolaJsonError {
-  /**
-   * The character that is invalid.
-   */
-  private final char invalidCharacter;
-  /**
-   * Index where the error was found.
-   */
-  private final int startIndex;
+  private transient final char invalidCharacter;
+  private transient final int line;
+  private transient final int column;
 
   /**
    * Creates a new instance of this exception.
    *
    * @param invalidCharacter the invalid character
-   * @param startIndex       index where the invalid character was found
+   * @param line       line where the invalid character was found
+   * @param column       column where the invalid character was found
    */
-  public InvalidCharacterException(char invalidCharacter, int startIndex) {
-    super(String.format("Invalid character [%s] at [%s]", invalidCharacter, startIndex));
+  public InvalidCharacterException(char invalidCharacter, int line, int column) {
+    super(String.format("Invalid character [%s] at [%s:%s]", invalidCharacter, line, column));
 
     this.invalidCharacter = invalidCharacter;
-    this.startIndex = startIndex;
+    this.line = line;
+    this.column = column;
   }
 
   /**
@@ -33,10 +30,13 @@ public class InvalidCharacterException extends RuntimeException implements SolaJ
     return invalidCharacter;
   }
 
-  /**
-   * @return index where the invalid character was found
-   */
-  public int getStartIndex() {
-    return startIndex;
+  @Override
+  public int getLine() {
+    return line;
+  }
+
+  @Override
+  public int getColumn() {
+    return column;
   }
 }
