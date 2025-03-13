@@ -3,7 +3,7 @@ package technology.sola.json.exception;
 /**
  * Exception thrown when {@link technology.sola.json.JsonElement} is used in an unexpected way.
  */
-public class JsonElementTypeException extends RuntimeException {
+public class JsonElementTypeException extends RuntimeException implements SolaJsonError {
   /**
    * Creates a new instance of this exception.
    *

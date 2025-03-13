@@ -2,7 +2,7 @@
 
 ## Bugs
 
-*
+* fix bugs found by new `JsonStandardValidity > validity > expectedFailures` test
 
 ## Improvements
 
@@ -13,9 +13,6 @@
 
 ## Performance
 
-* Consider adding performance testing
-    * https://github.com/clarkware/junitperf
-    * compare vs GSON
 * Research possible performance improvements
     * Tokenizer#tokenString method
     * Tokenizer#tokenNumber method

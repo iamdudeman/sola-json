@@ -3,7 +3,7 @@ package technology.sola.json.exception;
 /**
  * Exception thrown when an invalid control character is found during tokenization.
  */
-public class InvalidControlCharacterException extends RuntimeException {
+public class InvalidControlCharacterException extends RuntimeException implements SolaJsonError {
   /**
    * Index where the error was found.
    */

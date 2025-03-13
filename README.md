@@ -100,7 +100,9 @@ public class JsonMapperUsage {
 {"value":1}
 ```
 
-## Terminals
+## Grammar
+
+### Terminals
 
 ```
 COLON      := :
@@ -116,7 +118,7 @@ STRING     := " (Any codepoint except " or \ or control characters) "
 TRUE       := true
 ```
 
-## Rules
+### Rules
 
 ```
 <root>    := <object> | <array>
@@ -124,4 +126,29 @@ TRUE       := true
 <array>   := L_BRACKET (<value> (COMMA <value>)*)? R_BRACKET
 <pair>    := STRING COLON <value>
 <value>   := STRING | NUMBER | <object> | <array> | TRUE | FALSE | NULL
+```
+
+## Testing
+
+### Validity
+
+Used test files from [JSON.org](https://www.json.org/JSON_checker/) to verify parsers functionality.
+
+### Performance
+
+Used data from [JSON placeholder](https://jsonplaceholder.typicode.com/) for performance testing.
+
+Tested against [Google gson](https://github.com/google/gson) and [Jackson](https://github.com/FasterXML/jackson) for
+performance.
+
+[jmh](https://github.com/openjdk/jmh) benchmark file can be
+viewed [here](src/test/java/technology/sola/json/jmh/SolaJsonBenchmark.java)
+
+Execute benchmark view gradle task `jmhBenchmark` in verification category.
+
+Results:
+```
+SolaJsonBenchmark.gson      avgt    3  2.883 ± 0.217  ms/op
+SolaJsonBenchmark.jackson   avgt    3  1.661 ± 0.228  ms/op
+SolaJsonBenchmark.solaJson  avgt    3  3.030 ± 0.419  ms/op
 ```

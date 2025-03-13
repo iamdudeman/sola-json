@@ -3,7 +3,7 @@ package technology.sola.json.exception;
 /**
  * Exception thrown when an invalid negative number is found during tokenization.
  */
-public class InvalidNegativeNumberException extends RuntimeException {
+public class InvalidNegativeNumberException extends RuntimeException implements SolaJsonError {
   /**
    * Index where the error was found.
    */

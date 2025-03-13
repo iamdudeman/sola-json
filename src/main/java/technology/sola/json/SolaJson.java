@@ -161,7 +161,7 @@ public class SolaJson {
       case NUMBER -> {
         String value = astNode.token().value();
 
-        if (value.contains(".")) {
+        if (value.contains(".") || value.contains("e") || value.contains("E")) {
           yield new JsonElement(Double.parseDouble(value));
         } else {
           yield new JsonElement(Long.parseLong(value));
