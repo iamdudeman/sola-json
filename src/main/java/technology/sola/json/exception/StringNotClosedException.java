@@ -4,35 +4,29 @@ package technology.sola.json.exception;
  * Exception thrown when a string was discovered to be not closed during tokenization.
  */
 public class StringNotClosedException extends RuntimeException implements SolaJsonError {
-  private transient final int startIndex;
+  private transient final int line;
+  private transient final int column;
 
   /**
    * Creates a new instance of this exception.
    *
-   * @param startIndex index where the unclosed string was started
+   * @param line line where the unclosed string was started
+   * @param column column where the unclosed string was started
    */
-  public StringNotClosedException(int startIndex) {
-    super("String starting at [" + startIndex + "] not closed");
+  public StringNotClosedException(int line, int column) {
+    super("String starting at [" + line + ":" + column + "] not closed");
 
-    this.startIndex = startIndex;
+    this.line = line;
+    this.column = column;
   }
 
   @Override
   public int getLine() {
-    // todo
-    throw new RuntimeException("not yet implemented");
+    return line;
   }
 
   @Override
   public int getColumn() {
-    // todo
-    throw new RuntimeException("not yet implemented");
-  }
-
-  /**
-   * @return index where the unclosed string was started
-   */
-  public int getStartIndex() {
-    return startIndex;
+    return column;
   }
 }

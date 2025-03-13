@@ -24,13 +24,6 @@ public class JsonTokenizer {
   }
 
   /**
-   * @return the current index the tokenizer is at
-   */
-  public int getTextIndex() {
-    return textIndex;
-  }
-
-  /**
    * @return finds and returns the next valid token in the string
    */
   public Token getNextToken() {
@@ -134,7 +127,7 @@ public class JsonTokenizer {
 
       localPos++;
       if (localPos >= buffer.length) {
-        throw new StringNotClosedException(start);
+        throw new StringNotClosedException(line, initialColumn);
       }
       localChar = buffer[localPos];
     }

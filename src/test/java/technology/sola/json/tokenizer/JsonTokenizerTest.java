@@ -156,7 +156,8 @@ class JsonTokenizerTest {
 
         StringNotClosedException exception = assertThrows(StringNotClosedException.class, () -> createTest(input).assertNextToken(TokenType.STRING));
 
-        assertEquals(2, exception.getStartIndex());
+        assertEquals(1, exception.getLine());
+        assertEquals(2, exception.getColumn());
       }
 
       @Nested
