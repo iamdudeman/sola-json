@@ -49,9 +49,7 @@ class SolaJsonTest {
       }
     }
 
-    // todo improve this test and fix bugs it has found
     @Test
-    @Disabled("Work in progress")
     void expectedFailures() throws IOException {
       List<String> failedTestFiles = new ArrayList<>();
 
@@ -63,8 +61,8 @@ class SolaJsonTest {
           failedTestFiles.add(file.getName());
         } catch (Exception ex) {
           if (ex instanceof SolaJsonError) {
+            // todo remove this later
             System.out.println(file.getName() + " " + ex.getClass() + ": " + ex.getMessage());
-
           } else {
             fail("Expected a SolaJsonError for test file [" + file.getName() + "]", ex);
           }
