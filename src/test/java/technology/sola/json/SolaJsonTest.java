@@ -60,8 +60,7 @@ class SolaJsonTest {
           failedTestFiles.add(file.getName());
         } catch (Exception ex) {
           if (ex instanceof SolaJsonParsingError) {
-            // todo remove this later
-            System.out.println(file.getName() + " " + ex.getClass() + ": " + ex.getMessage());
+            // success
           } else {
             fail("Expected a SolaJsonError for test file [" + file.getName() + "]", ex);
           }
