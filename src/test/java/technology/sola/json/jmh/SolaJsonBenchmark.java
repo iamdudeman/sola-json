@@ -15,67 +15,94 @@ import java.util.concurrent.TimeUnit;
 @State(Scope.Benchmark)
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
-@Fork(value = 1, warmups = 1)
-@Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.SECONDS)
-@Measurement(iterations = 3, time = 5, timeUnit = TimeUnit.SECONDS)
+@Fork(value = 2, warmups = 1)
+@Warmup(iterations = 2, time = 3, timeUnit = TimeUnit.SECONDS)
+@Measurement(iterations = 3, time = 3, timeUnit = TimeUnit.SECONDS)
 public class SolaJsonBenchmark {
-  private String commentsJsonString;
-  private String photosJsonString;
-  private String usersJsonString;
-
-  @Setup(Level.Trial)
-  public void loadFiles() throws IOException {
-    commentsJsonString = readFileToString("/performance/comments.json");
-    photosJsonString = readFileToString("/performance/photos.json");
-    usersJsonString = readFileToString("/performance/users.json");
-  }
-
   @Benchmark
-  public void solaJson(Blackhole blackhole) {
+  public void solaJsonSmall(BenchmarkState benchmarkState, Blackhole blackhole) {
     blackhole.consume(
-      new SolaJson().parse(commentsJsonString)
+      new SolaJson().parse(benchmarkState.commentsJsonString)
     );
 
     blackhole.consume(
-      new SolaJson().parse(photosJsonString)
+      new SolaJson().parse(benchmarkState.photosJsonString)
     );
 
     blackhole.consume(
-      new SolaJson().parse(usersJsonString)
+      new SolaJson().parse(benchmarkState.usersJsonString)
     );
   }
 
   @Benchmark
-  public void gson(Blackhole blackhole) {
+  public void solaJsonBig(BenchmarkState benchmarkState, Blackhole blackhole) {
     blackhole.consume(
-      JsonParser.parseString(commentsJsonString)
-    );
-
-    blackhole.consume(
-      JsonParser.parseString(photosJsonString)
-    );
-
-    blackhole.consume(
-      JsonParser.parseString(usersJsonString)
+      new SolaJson().parse(benchmarkState.bigJsonString)
     );
   }
 
   @Benchmark
-  public void jackson(Blackhole blackhole) throws JsonProcessingException {
+  public void gsonSmall(BenchmarkState benchmarkState, Blackhole blackhole) {
     blackhole.consume(
-      new ObjectMapper().readTree(commentsJsonString)
+      JsonParser.parseString(benchmarkState.commentsJsonString)
     );
 
     blackhole.consume(
-      new ObjectMapper().readTree(photosJsonString)
+      JsonParser.parseString(benchmarkState.photosJsonString)
     );
 
     blackhole.consume(
-      new ObjectMapper().readTree(usersJsonString)
+      JsonParser.parseString(benchmarkState.usersJsonString)
     );
   }
 
-  private String readFileToString(String resourcePath) throws IOException {
-    return Files.readString(new File(getClass().getResource(resourcePath).getFile()).toPath());
+  @Benchmark
+  public void gsonBig(BenchmarkState benchmarkState, Blackhole blackhole) {
+    blackhole.consume(
+      JsonParser.parseString(benchmarkState.bigJsonString)
+    );
+  }
+
+  @Benchmark
+  public void jacksonSmall(BenchmarkState benchmarkState, Blackhole blackhole) throws JsonProcessingException {
+    blackhole.consume(
+      new ObjectMapper().readTree(benchmarkState.commentsJsonString)
+    );
+
+    blackhole.consume(
+      new ObjectMapper().readTree(benchmarkState.photosJsonString)
+    );
+
+    blackhole.consume(
+      new ObjectMapper().readTree(benchmarkState.usersJsonString)
+    );
+  }
+
+  @Benchmark
+  public void jacksonBig(BenchmarkState benchmarkState, Blackhole blackhole) throws JsonProcessingException {
+    blackhole.consume(
+      new ObjectMapper().readTree(benchmarkState.bigJsonString)
+    );
+  }
+
+  @State(Scope.Thread)
+  public static class BenchmarkState {
+    private String commentsJsonString;
+    private String photosJsonString;
+    private String usersJsonString;
+    private String bigJsonString;
+
+    @Setup
+    public void prepare() throws IOException {
+      System.out.println("\nLoading files for benchmark...");
+      commentsJsonString = readFileToString("/performance/comments.json");
+      photosJsonString = readFileToString("/performance/photos.json");
+      usersJsonString = readFileToString("/performance/users.json");
+      bigJsonString = readFileToString("/performance/big.json");
+    }
+
+    private String readFileToString(String resourcePath) throws IOException {
+      return Files.readString(new File(getClass().getResource(resourcePath).getFile()).toPath());
+    }
   }
 }
