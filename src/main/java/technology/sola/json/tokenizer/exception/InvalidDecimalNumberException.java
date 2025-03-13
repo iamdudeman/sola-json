@@ -1,11 +1,11 @@
 package technology.sola.json.tokenizer.exception;
 
-import technology.sola.json.exception.SolaJsonError;
+import technology.sola.json.exception.SolaJsonParsingError;
 
 /**
  * Exception thrown when an invalid decimal number is found during tokenization.
  */
-public class InvalidDecimalNumberException extends RuntimeException implements SolaJsonError {
+public class InvalidDecimalNumberException extends RuntimeException implements SolaJsonParsingError {
   private transient final int line;
   private transient final int column;
 

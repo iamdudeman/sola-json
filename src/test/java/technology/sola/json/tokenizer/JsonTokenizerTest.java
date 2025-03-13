@@ -2,7 +2,6 @@ package technology.sola.json.tokenizer;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import technology.sola.json.exception.*;
 import technology.sola.json.tokenizer.exception.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -175,7 +174,8 @@ class JsonTokenizerTest {
             InvalidControlCharacterException.class,
             () -> createTest(input).assertNextToken(TokenType.STRING)
           );
-          assertEquals(3, exception.getStartIndex());
+          assertEquals(1, exception.getLine());
+          assertEquals(3, exception.getColumn());
         }
 
         @Test
@@ -186,7 +186,8 @@ class JsonTokenizerTest {
             InvalidControlCharacterException.class,
             () -> createTest(input).assertNextToken(TokenType.STRING)
           );
-          assertEquals(2, exception.getStartIndex());
+          assertEquals(1, exception.getLine());
+          assertEquals(2, exception.getColumn());
         }
 
         @Test
@@ -200,7 +201,7 @@ class JsonTokenizerTest {
             () -> createTest(input).assertNextToken(TokenType.STRING)
           );
           assertEquals(1, exception.getLine());
-          assertEquals(1, exception.getColumn());
+          assertEquals(2, exception.getColumn());
         }
 
         @Test
@@ -214,7 +215,7 @@ class JsonTokenizerTest {
             () -> createTest(input).assertNextToken(TokenType.STRING)
           );
           assertEquals(1, exception.getLine());
-          assertEquals(1, exception.getColumn());
+          assertEquals(2, exception.getColumn());
         }
 
         @Test

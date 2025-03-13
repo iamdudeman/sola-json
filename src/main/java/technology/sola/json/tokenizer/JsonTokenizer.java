@@ -1,6 +1,5 @@
 package technology.sola.json.tokenizer;
 
-import technology.sola.json.exception.*;
 import technology.sola.json.tokenizer.exception.*;
 
 /**
@@ -199,7 +198,7 @@ public class JsonTokenizer {
     int localPos = pos + 1;
 
     if (localPos >= buffer.length) {
-      throw new InvalidControlCharacterException(localPos);
+      throw new InvalidControlCharacterException(line, column + pos - textIndex);
     }
 
     currentChar = buffer[localPos];
@@ -217,7 +216,7 @@ public class JsonTokenizer {
         localPos++;
 
         if (localPos + 4 > buffer.length) {
-          throw new InvalidUnicodeCharacterException(line, column);
+          throw new InvalidUnicodeCharacterException(line, column + pos - textIndex);
         }
 
         try {
@@ -225,10 +224,10 @@ public class JsonTokenizer {
           localPos += 3;
           yield (char) codePoint;
         } catch (NumberFormatException ex) {
-          throw new InvalidUnicodeCharacterException(line, column);
+          throw new InvalidUnicodeCharacterException(line, column + pos - textIndex);
         }
       }
-      default -> throw new InvalidControlCharacterException(localPos);
+      default -> throw new InvalidControlCharacterException(line, column + pos - textIndex);
     };
 
     stringBuilder.append(result);

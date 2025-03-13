@@ -1,11 +1,11 @@
 package technology.sola.json.tokenizer.exception;
 
-import technology.sola.json.exception.SolaJsonError;
+import technology.sola.json.exception.SolaJsonParsingError;
 
 /**
  * Exception for when an invalid keyword is found during tokenization.
  */
-public class InvalidKeywordException extends RuntimeException implements SolaJsonError {
+public class InvalidKeywordException extends RuntimeException implements SolaJsonParsingError {
   private transient final String expected;
   private transient final String actual;
   private transient final int line;
