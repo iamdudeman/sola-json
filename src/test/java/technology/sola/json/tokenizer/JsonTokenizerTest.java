@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import technology.sola.json.exception.*;
 import technology.sola.json.tokenizer.exception.InvalidCharacterException;
+import technology.sola.json.tokenizer.exception.InvalidKeywordException;
 import technology.sola.json.tokenizer.exception.InvalidNegativeNumberException;
 import technology.sola.json.tokenizer.exception.StringNotClosedException;
 
@@ -96,7 +97,8 @@ class JsonTokenizerTest {
         InvalidKeywordException exception = assertThrows(InvalidKeywordException.class, () -> new JsonTokenizer(input).getNextToken());
         assertEquals("true", exception.getExpected());
         assertEquals("tru ", exception.getActual());
-        assertEquals(1, exception.getStartIndex());
+        assertEquals(1, exception.getLine());
+        assertEquals(2, exception.getColumn());
       }
 
       @Test
@@ -116,7 +118,8 @@ class JsonTokenizerTest {
         InvalidKeywordException exception = assertThrows(InvalidKeywordException.class, () -> new JsonTokenizer(input).getNextToken());
         assertEquals("false", exception.getExpected());
         assertEquals("fals ", exception.getActual());
-        assertEquals(1, exception.getStartIndex());
+        assertEquals(1, exception.getLine());
+        assertEquals(2, exception.getColumn());
       }
 
       @Test
@@ -136,7 +139,8 @@ class JsonTokenizerTest {
         InvalidKeywordException exception = assertThrows(InvalidKeywordException.class, () -> new JsonTokenizer(input).getNextToken());
         assertEquals("null", exception.getExpected());
         assertEquals("nul ", exception.getActual());
-        assertEquals(1, exception.getStartIndex());
+        assertEquals(1, exception.getLine());
+        assertEquals(2, exception.getColumn());
       }
     }
 

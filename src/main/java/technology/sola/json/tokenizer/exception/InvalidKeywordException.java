@@ -1,4 +1,6 @@
-package technology.sola.json.exception;
+package technology.sola.json.tokenizer.exception;
+
+import technology.sola.json.exception.SolaJsonError;
 
 /**
  * Exception for when an invalid keyword is found during tokenization.
@@ -6,7 +8,8 @@ package technology.sola.json.exception;
 public class InvalidKeywordException extends RuntimeException implements SolaJsonError {
   private transient final String expected;
   private transient final String actual;
-  private transient final int startIndex;
+  private transient final int line;
+  private transient final int column;
 
   /**
    * Creates a new instance of this exception.
@@ -14,25 +17,25 @@ public class InvalidKeywordException extends RuntimeException implements SolaJso
    * @param keyword     the expected keyword
    * @param current     the keyword currently read
    * @param invalidChar the invalid character for the expected keyword
-   * @param startIndex  index where the invalid character was found
+   * @param line        line where the invalid character was found
+   * @param column      column where the invalid character was found
    */
-  public InvalidKeywordException(String keyword, String current, char invalidChar, int startIndex) {
-    super("Expected keyword [" + keyword + "] but received [" + current + invalidChar + "] at [" + startIndex + "]");
+  public InvalidKeywordException(String keyword, String current, char invalidChar, int line, int column) {
+    super("Expected keyword [" + keyword + "] but received [" + current + invalidChar + "] at [" + line + ":" + column + "]");
     this.expected = keyword;
     this.actual = current + invalidChar;
-    this.startIndex = startIndex;
+    this.line = line;
+    this.column = column;
   }
 
   @Override
   public int getLine() {
-    // todo
-    throw new RuntimeException("not yet implemented");
+    return line;
   }
 
   @Override
   public int getColumn() {
-    // todo
-    throw new RuntimeException("not yet implemented");
+    return column;
   }
 
   /**
@@ -47,12 +50,5 @@ public class InvalidKeywordException extends RuntimeException implements SolaJso
    */
   public String getActual() {
     return actual;
-  }
-
-  /**
-   * @return index where the invalid character was found
-   */
-  public int getStartIndex() {
-    return startIndex;
   }
 }

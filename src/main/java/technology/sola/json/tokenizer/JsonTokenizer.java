@@ -2,6 +2,7 @@ package technology.sola.json.tokenizer;
 
 import technology.sola.json.exception.*;
 import technology.sola.json.tokenizer.exception.InvalidCharacterException;
+import technology.sola.json.tokenizer.exception.InvalidKeywordException;
 import technology.sola.json.tokenizer.exception.InvalidNegativeNumberException;
 import technology.sola.json.tokenizer.exception.StringNotClosedException;
 
@@ -163,37 +164,37 @@ public class JsonTokenizer {
   }
 
   private void advanceKeywordTrue() {
-    int keywordStartIndex = textIndex;
+    int keywordStartColumn = column;
     advance();
-    if (currentChar != 'r') throw new InvalidKeywordException("true", "t", currentChar, keywordStartIndex);
+    if (currentChar != 'r') throw new InvalidKeywordException("true", "t", currentChar, line, keywordStartColumn);
     advance();
-    if (currentChar != 'u') throw new InvalidKeywordException("true", "tr", currentChar, keywordStartIndex);
+    if (currentChar != 'u') throw new InvalidKeywordException("true", "tr", currentChar, line, keywordStartColumn);
     advance();
-    if (currentChar != 'e') throw new InvalidKeywordException("true", "tru", currentChar, keywordStartIndex);
+    if (currentChar != 'e') throw new InvalidKeywordException("true", "tru", currentChar, line, keywordStartColumn);
     advance();
   }
 
   private void advanceKeywordNull() {
-    int keywordStartIndex = textIndex;
+    int keywordStartColumn = column;
     advance();
-    if (currentChar != 'u') throw new InvalidKeywordException("null", "n", currentChar, keywordStartIndex);
+    if (currentChar != 'u') throw new InvalidKeywordException("null", "n", currentChar, line, keywordStartColumn);
     advance();
-    if (currentChar != 'l') throw new InvalidKeywordException("null", "nu", currentChar, keywordStartIndex);
+    if (currentChar != 'l') throw new InvalidKeywordException("null", "nu", currentChar, line, keywordStartColumn);
     advance();
-    if (currentChar != 'l') throw new InvalidKeywordException("null", "nul", currentChar, keywordStartIndex);
+    if (currentChar != 'l') throw new InvalidKeywordException("null", "nul", currentChar, line, keywordStartColumn);
     advance();
   }
 
   private void advanceKeywordFalse() {
-    int keywordStartIndex = textIndex;
+    int keywordStartColumn = column;
     advance();
-    if (currentChar != 'a') throw new InvalidKeywordException("false", "f", currentChar, keywordStartIndex);
+    if (currentChar != 'a') throw new InvalidKeywordException("false", "f", currentChar, line, keywordStartColumn);
     advance();
-    if (currentChar != 'l') throw new InvalidKeywordException("false", "fa", currentChar, keywordStartIndex);
+    if (currentChar != 'l') throw new InvalidKeywordException("false", "fa", currentChar, line, keywordStartColumn);
     advance();
-    if (currentChar != 's') throw new InvalidKeywordException("false", "fal", currentChar, keywordStartIndex);
+    if (currentChar != 's') throw new InvalidKeywordException("false", "fal", currentChar, line, keywordStartColumn);
     advance();
-    if (currentChar != 'e') throw new InvalidKeywordException("false", "fals", currentChar, keywordStartIndex);
+    if (currentChar != 'e') throw new InvalidKeywordException("false", "fals", currentChar, line, keywordStartColumn);
     advance();
   }
 
