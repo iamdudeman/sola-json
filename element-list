@@ -3,5 +3,7 @@ technology.sola.json
 technology.sola.json.exception
 technology.sola.json.mapper
 technology.sola.json.parser
+technology.sola.json.parser.exception
 technology.sola.json.serializer
 technology.sola.json.tokenizer
+technology.sola.json.tokenizer.exception

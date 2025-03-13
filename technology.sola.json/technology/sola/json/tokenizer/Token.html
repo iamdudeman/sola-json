@@ -81,9 +81,11 @@ loadScripts(document, 'script');</script>
 <dt>Record Components:</dt>
 <dd><code><span id="param-type">type</span></code> - the <code>TokenType</code></dd>
 <dd><code><span id="param-value">value</span></code> - the value of the token</dd>
+<dd><code><span id="param-line">line</span></code> - the line number where the token was found</dd>
+<dd><code><span id="param-column">column</span></code> - the column number where the token was found</dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public record </span><span class="element-name type-name-label">Token</span>(<a href="TokenType.html" title="enum class in technology.sola.json.tokenizer">TokenType</a>&nbsp;type, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;value)
+<div class="type-signature"><span class="modifiers">public record </span><span class="element-name type-name-label">Token</span>(<a href="TokenType.html" title="enum class in technology.sola.json.tokenizer">TokenType</a>&nbsp;type, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;value, int&nbsp;line, int&nbsp;column)
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Record.html" title="class or interface in java.lang" class="external-link">Record</a></span></div>
 <div class="block">Creates a new token instance of <a href="TokenType.html" title="enum class in technology.sola.json.tokenizer"><code>TokenType</code></a> with value.</div>
 </section>
@@ -97,12 +99,16 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(technology.sola.json.tokenizer.TokenType)" class="member-name-link">Token</a><wbr>(<a href="TokenType.html" title="enum class in technology.sola.json.tokenizer">TokenType</a>&nbsp;type)</code></div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(technology.sola.json.tokenizer.TokenType,int,int)" class="member-name-link">Token</a><wbr>(<a href="TokenType.html" title="enum class in technology.sola.json.tokenizer">TokenType</a>&nbsp;type,
+ int&nbsp;line,
+ int&nbsp;column)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Creates a new token instance of <a href="TokenType.html" title="enum class in technology.sola.json.tokenizer"><code>TokenType</code></a> that does not have a value.</div>
 </div>
-<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(technology.sola.json.tokenizer.TokenType,java.lang.String)" class="member-name-link">Token</a><wbr>(<a href="TokenType.html" title="enum class in technology.sola.json.tokenizer">TokenType</a>&nbsp;type,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;value)</code></div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(technology.sola.json.tokenizer.TokenType,java.lang.String,int,int)" class="member-name-link">Token</a><wbr>(<a href="TokenType.html" title="enum class in technology.sola.json.tokenizer">TokenType</a>&nbsp;type,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;value,
+ int&nbsp;line,
+ int&nbsp;column)</code></div>
 <div class="col-last odd-row-color">
 <div class="block">Creates an instance of a <code>Token</code> record class.</div>
 </div>
@@ -120,15 +126,25 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#equals(java.lang.Object)" class="member-name-link">equals</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;o)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#column()" class="member-name-link">column</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the value of the <a href="#param-column"><code>column</code></a> record component.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#equals(java.lang.Object)" class="member-name-link">equals</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;o)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Indicates whether some other object is "equal to" this one.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hashCode()" class="member-name-link">hashCode</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hashCode()" class="member-name-link">hashCode</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns a hash code value for this object.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#line()" class="member-name-link">line</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the value of the <a href="#param-line"><code>line</code></a> record component.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
@@ -163,26 +179,34 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(technology.sola.json.tokenizer.TokenType)">
+<section class="detail" id="&lt;init&gt;(technology.sola.json.tokenizer.TokenType,int,int)">
 <h3>Token</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Token</span><wbr><span class="parameters">(<a href="TokenType.html" title="enum class in technology.sola.json.tokenizer">TokenType</a>&nbsp;type)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Token</span><wbr><span class="parameters">(<a href="TokenType.html" title="enum class in technology.sola.json.tokenizer">TokenType</a>&nbsp;type,
+ int&nbsp;line,
+ int&nbsp;column)</span></div>
 <div class="block">Creates a new token instance of <a href="TokenType.html" title="enum class in technology.sola.json.tokenizer"><code>TokenType</code></a> that does not have a value.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>type</code> - the <code>TokenType</code></dd>
+<dd><code>line</code> - the line number where the token was found</dd>
+<dd><code>column</code> - the column number where the token was found</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="&lt;init&gt;(technology.sola.json.tokenizer.TokenType,java.lang.String)">
+<section class="detail" id="&lt;init&gt;(technology.sola.json.tokenizer.TokenType,java.lang.String,int,int)">
 <h3>Token</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Token</span><wbr><span class="parameters">(<a href="TokenType.html" title="enum class in technology.sola.json.tokenizer">TokenType</a>&nbsp;type,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;value)</span></div>
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;value,
+ int&nbsp;line,
+ int&nbsp;column)</span></div>
 <div class="block">Creates an instance of a <code>Token</code> record class.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>type</code> - the value for the <a href="#param-type"><code>type</code></a> record component</dd>
 <dd><code>value</code> - the value for the <a href="#param-value"><code>value</code></a> record component</dd>
+<dd><code>line</code> - the value for the <a href="#param-line"><code>line</code></a> record component</dd>
+<dd><code>column</code> - the value for the <a href="#param-column"><code>column</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -224,7 +248,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="equals(java.lang.Object)">
 <h3>equals</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">equals</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;o)</span></div>
-<div class="block">Indicates whether some other object is "equal to" this one. The objects are equal if the other object is of the same class and if all the record components are equal. All components in this record class are compared with <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Objects.html#equals(java.lang.Object,java.lang.Object)" title="class or interface in java.util" class="external-link"><code>Objects::equals(Object,Object)</code></a>.</div>
+<div class="block">Indicates whether some other object is "equal to" this one. The objects are equal if the other object is of the same class and if all the record components are equal. Reference components are compared with <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Objects.html#equals(java.lang.Object,java.lang.Object)" title="class or interface in java.util" class="external-link"><code>Objects::equals(Object,Object)</code></a>; primitive components are compared with '=='.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Record.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Record.html" title="class or interface in java.lang" class="external-link">Record</a></code></dd>
@@ -254,6 +278,28 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the value of the <a href="#param-value"><code>value</code></a> record component</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="line()">
+<h3>line</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">line</span>()</div>
+<div class="block">Returns the value of the <a href="#param-line"><code>line</code></a> record component.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the value of the <a href="#param-line"><code>line</code></a> record component</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="column()">
+<h3>column</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">column</span>()</div>
+<div class="block">Returns the value of the <a href="#param-column"><code>column</code></a> record component.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the value of the <a href="#param-column"><code>column</code></a> record component</dd>
 </dl>
 </section>
 </li>
