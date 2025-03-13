@@ -2,6 +2,8 @@ package technology.sola.json.tokenizer;
 
 import technology.sola.json.exception.*;
 import technology.sola.json.tokenizer.exception.InvalidCharacterException;
+import technology.sola.json.tokenizer.exception.InvalidNegativeNumberException;
+import technology.sola.json.tokenizer.exception.StringNotClosedException;
 
 /**
  * A JSON tokenizer implementation.
@@ -154,7 +156,7 @@ public class JsonTokenizer {
     int characterCount = textIndex - startIndex;
 
     if (characterCount == 1 && characters[startIndex] == '-') {
-      throw new InvalidNegativeNumberException(startIndex);
+      throw new InvalidNegativeNumberException(line, startColumn);
     }
 
     return new Token(TokenType.NUMBER, new String(characters, startIndex, characterCount), line, startColumn);

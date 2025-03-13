@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import technology.sola.json.exception.*;
 import technology.sola.json.tokenizer.exception.InvalidCharacterException;
+import technology.sola.json.tokenizer.exception.InvalidNegativeNumberException;
+import technology.sola.json.tokenizer.exception.StringNotClosedException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -260,7 +262,8 @@ class JsonTokenizerTest {
           InvalidNegativeNumberException.class,
           () -> createTest(input).assertNextToken(TokenType.NUMBER)
         );
-        assertEquals(1, exception.getStartIndex());
+        assertEquals(1, exception.getLine());
+        assertEquals(2, exception.getColumn());
       }
 
       @Test
