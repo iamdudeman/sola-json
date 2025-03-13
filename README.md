@@ -138,4 +138,15 @@ Used test files from [JSON.org](https://www.json.org/JSON_checker/) to verify pa
 
 Used data from [JSON placeholder](https://jsonplaceholder.typicode.com/) for performance testing.
 
-Tested against [Google gson](https://github.com/google/gson) for performance.
+Tested against [Google gson](https://github.com/google/gson) and [Jackson](https://github.com/FasterXML/jackson) for
+performance.
+
+[jmh](https://github.com/openjdk/jmh) benchmark file can be
+viewed [here](src/test/java/technology/sola/json/jmh/SolaJsonBenchmark.java)
+
+Results:
+```
+SolaJsonBenchmark.gson      avgt    3  2.883 ± 0.217  ms/op
+SolaJsonBenchmark.jackson   avgt    3  1.661 ± 0.228  ms/op
+SolaJsonBenchmark.solaJson  avgt    3  3.030 ± 0.419  ms/op
+```

@@ -1,11 +1,10 @@
 package technology.sola.json.jmh;
 
-import com.google.gson.Gson;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonParser;
-import com.google.gson.JsonPrimitive;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
-import technology.sola.json.JsonElement;
 import technology.sola.json.SolaJson;
 
 import java.io.File;
@@ -58,6 +57,21 @@ public class SolaJsonBenchmark {
 
     blackhole.consume(
       JsonParser.parseString(usersJsonString)
+    );
+  }
+
+  @Benchmark
+  public void jackson(Blackhole blackhole) throws JsonProcessingException {
+    blackhole.consume(
+      new ObjectMapper().readTree(commentsJsonString)
+    );
+
+    blackhole.consume(
+      new ObjectMapper().readTree(photosJsonString)
+    );
+
+    blackhole.consume(
+      new ObjectMapper().readTree(usersJsonString)
     );
   }
 
