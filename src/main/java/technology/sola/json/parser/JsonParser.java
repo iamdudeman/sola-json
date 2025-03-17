@@ -1,5 +1,8 @@
 package technology.sola.json.parser;
 
+import technology.sola.json.JsonArray;
+import technology.sola.json.JsonElement;
+import technology.sola.json.JsonObject;
 import technology.sola.json.parser.exception.InvalidSyntaxException;
 import technology.sola.json.tokenizer.Token;
 import technology.sola.json.tokenizer.TokenType;
@@ -28,10 +31,10 @@ public class JsonParser {
   /**
    * Parses utilizing the provided {@link JsonTokenizer}.
    *
-   * @return the root {@link AstNode}
+   * @return the root {@link JsonElement}
    */
-  public AstNode parse() {
-    AstNode node = ruleRoot();
+  public JsonElement parse() {
+    JsonElement node = ruleRoot();
 
     if (currentToken.type() != TokenType.EOF) {
       throw new InvalidSyntaxException(currentToken, TokenType.EOF);
@@ -40,35 +43,40 @@ public class JsonParser {
     return node;
   }
 
-  private AstNode ruleRoot() {
+  private JsonElement ruleRoot() {
     return switch (currentToken.type()) {
-      case L_BRACKET -> ruleArray();
-      case L_CURLY -> ruleObject();
+      case L_BRACKET -> new JsonElement(ruleArray());
+      case L_CURLY -> new JsonElement(ruleObject());
       default ->
         throw new InvalidSyntaxException(currentToken, TokenType.L_BRACKET, TokenType.L_CURLY);
     };
   }
 
-  private AstNode ruleObject() {
+  private JsonObject ruleObject() {
     eat(TokenType.L_CURLY);
-    List<AstNode> pairs = new ArrayList<>();
+    JsonObject jsonObject = new JsonObject();
 
     if (currentToken.type() != TokenType.R_CURLY) {
-      pairs.add(rulePair());
+      var pair = rulePair();
+
+      jsonObject.put(pair.key.value(), pair.value);
     }
 
     while (currentToken.type() == TokenType.COMMA) {
       eat(TokenType.COMMA);
-      pairs.add(rulePair());
+
+      var pair = rulePair();
+
+      jsonObject.put(pair.key.value(), pair.value);
     }
 
     eat(TokenType.R_CURLY);
-    return AstNode.object(pairs);
+    return jsonObject;
   }
 
-  private AstNode ruleArray() {
+  private JsonArray ruleArray() {
     eat(TokenType.L_BRACKET);
-    List<AstNode> children = new ArrayList<>();
+    List<JsonElement> children = new ArrayList<>();
 
     if (currentToken.type() != TokenType.R_BRACKET) {
       children.add(ruleValue());
@@ -80,25 +88,45 @@ public class JsonParser {
     }
 
     eat(TokenType.R_BRACKET);
-    return AstNode.array(children);
+    return new JsonArray(children);
   }
 
-  private AstNode rulePair() {
+  private JsonObjectPair rulePair() {
     Token nameToken = eat(TokenType.STRING);
     eat(TokenType.COLON);
 
-    return AstNode.pair(nameToken, ruleValue());
+    return new JsonObjectPair(nameToken, ruleValue());
   }
 
-  private AstNode ruleValue() {
+  private record JsonObjectPair(Token key, JsonElement value) {
+  }
+
+  private JsonElement ruleValue() {
     return switch (currentToken.type()) {
-      case L_BRACKET -> ruleArray();
-      case L_CURLY -> ruleObject();
-      case TRUE -> AstNode.value(eat(TokenType.TRUE));
-      case FALSE -> AstNode.value(eat(TokenType.FALSE));
-      case NULL -> AstNode.value(eat(TokenType.NULL));
-      case STRING -> AstNode.value(eat(TokenType.STRING));
-      case NUMBER -> AstNode.value(eat(TokenType.NUMBER));
+      case L_BRACKET -> new JsonElement(ruleArray());
+      case L_CURLY -> new JsonElement(ruleObject());
+      case TRUE -> {
+        eat(TokenType.TRUE);
+        yield new JsonElement(true);
+      }
+      case FALSE -> {
+        eat(TokenType.FALSE);
+        yield new JsonElement(false);
+      }
+      case NULL -> {
+        eat(TokenType.NULL);
+        yield new JsonElement();
+      }
+      case STRING -> new JsonElement(eat(TokenType.STRING).value());
+      case NUMBER -> {
+        String value = eat(TokenType.NUMBER).value();
+
+        if (value.contains(".") || value.contains("e") || value.contains("E")) {
+          yield new JsonElement(Double.parseDouble(value));
+        } else {
+          yield new JsonElement(Long.parseLong(value));
+        }
+      }
       default -> throw new InvalidSyntaxException(
         currentToken,
         TokenType.L_BRACKET, TokenType.L_CURLY, TokenType.TRUE, TokenType.FALSE, TokenType.NULL, TokenType.STRING, TokenType.NUMBER

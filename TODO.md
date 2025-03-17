@@ -1,7 +1,5 @@
 # todo list
 
-* Bypass need for AstNode structure and go straight to JsonElement
-
 ## Performance
 
 * Research possible performance improvements

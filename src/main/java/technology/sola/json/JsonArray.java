@@ -5,6 +5,7 @@ import technology.sola.json.serializer.JsonSerializer;
 import technology.sola.json.serializer.JsonSerializerConfig;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * JsonArray is an array of {@link JsonElement}s. It includes methods for accessing members as various
@@ -26,6 +27,17 @@ public class JsonArray extends ArrayList<JsonElement> {
    */
   public JsonArray(int initialCapacity) {
     super(initialCapacity);
+  }
+
+  /**
+   * Constructs a list containing the elements of the specified collection, in the order they are returned by the
+   * collection's iterator.
+   *
+   * @param jsonElements the collection whose elements are to be placed into this list
+   * @throws NullPointerException – if the specified collection is null
+   */
+  public JsonArray(Collection<? extends JsonElement> jsonElements) {
+    super(jsonElements);
   }
 
   /**

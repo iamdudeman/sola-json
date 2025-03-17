@@ -50,16 +50,6 @@ public class SolaJsonBenchmark {
   }
 
   @Benchmark
-  public void solaJsonBigAstOnly(BenchmarkState benchmarkState, Blackhole blackhole) {
-    var tokenizer = new JsonTokenizer(benchmarkState.bigJsonString);
-    var parser = new technology.sola.json.parser.JsonParser(tokenizer);
-
-    blackhole.consume(
-      parser.parse()
-    );
-  }
-
-  @Benchmark
   public void solaJsonBig(BenchmarkState benchmarkState, Blackhole blackhole) {
     blackhole.consume(
       new SolaJson().parse(benchmarkState.bigJsonString)
