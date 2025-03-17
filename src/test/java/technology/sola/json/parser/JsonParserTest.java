@@ -11,6 +11,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// todo update these tests
 class JsonParserTest {
   @Test
   void whenInvalidRoot_shouldThrowException() {
@@ -181,7 +182,8 @@ class JsonParserTest {
     JsonTokenizer jsonTokenizer = new JsonTokenizer(input);
     JsonParser jsonParser = new JsonParser(jsonTokenizer);
 
-    return new AstTester(jsonParser.parse());
+//    return new AstTester(jsonParser.parse());
+    throw new RuntimeException("not yet implemented");
   }
 
   private static class AstTester {

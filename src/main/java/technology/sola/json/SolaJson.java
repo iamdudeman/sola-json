@@ -42,9 +42,9 @@ public class SolaJson {
   public JsonElement parse(String jsonString) {
     JsonTokenizer jsonTokenizer = new JsonTokenizer(jsonString);
     JsonParser jsonParser = new JsonParser(jsonTokenizer);
-    AstNode root = jsonParser.parse();
+//    AstNode root = jsonParser.parse();
 
-    return visit(root);
+    return jsonParser.parse();
   }
 
   /**

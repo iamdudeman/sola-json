@@ -3,6 +3,7 @@ package technology.sola.json.parser;
 /**
  * Represents the type for an {@link AstNode}.
  */
+@Deprecated
 public enum AstNodeType {
   /**
    * Represents a JSON array.

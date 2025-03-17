@@ -12,6 +12,7 @@ import java.util.List;
  * @param token    the {@link Token} for this node
  * @param children the children nodes or empty array
  */
+@Deprecated
 public record AstNode(AstNodeType type, Token token, List<AstNode> children) {
   /**
    * Creates a new {@link AstNode} of type {@link AstNodeType#ARRAY}.

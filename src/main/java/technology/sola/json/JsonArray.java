@@ -5,6 +5,7 @@ import technology.sola.json.serializer.JsonSerializer;
 import technology.sola.json.serializer.JsonSerializerConfig;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * JsonArray is an array of {@link JsonElement}s. It includes methods for accessing members as various
@@ -26,6 +27,11 @@ public class JsonArray extends ArrayList<JsonElement> {
    */
   public JsonArray(int initialCapacity) {
     super(initialCapacity);
+  }
+
+  // todo document
+  public JsonArray(Collection<? extends JsonElement> jsonElements) {
+    super(jsonElements);
   }
 
   /**
