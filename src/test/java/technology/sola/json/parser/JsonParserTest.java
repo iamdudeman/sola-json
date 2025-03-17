@@ -1,8 +1,10 @@
 package technology.sola.json.parser;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import technology.sola.json.JsonArray;
+import technology.sola.json.JsonElement;
+import technology.sola.json.JsonObject;
 import technology.sola.json.parser.exception.InvalidSyntaxException;
 import technology.sola.json.tokenizer.TokenType;
 import technology.sola.json.tokenizer.JsonTokenizer;
@@ -11,13 +13,12 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-// todo update these tests
 class JsonParserTest {
   @Test
   void whenInvalidRoot_shouldThrowException() {
     String input = " \"test\" ";
 
-    InvalidSyntaxException invalidSyntaxException = assertThrows(InvalidSyntaxException.class, () -> createTest(input));
+    InvalidSyntaxException invalidSyntaxException = assertThrows(InvalidSyntaxException.class, () -> parse(input));
     assertEquals(2, invalidSyntaxException.getColumn());
     assertEquals(TokenType.STRING, invalidSyntaxException.getActual());
     var expectedList = List.of(invalidSyntaxException.getExpected());
@@ -33,7 +34,7 @@ class JsonParserTest {
       }
       """;
 
-    InvalidSyntaxException invalidSyntaxException = assertThrows(InvalidSyntaxException.class, () -> createTest(input));
+    InvalidSyntaxException invalidSyntaxException = assertThrows(InvalidSyntaxException.class, () -> parse(input));
     assertEquals(2, invalidSyntaxException.getLine());
     assertEquals(10, invalidSyntaxException.getColumn());
     assertEquals(TokenType.R_CURLY, invalidSyntaxException.getActual());
@@ -59,11 +60,9 @@ class JsonParserTest {
           }
           """;
 
-        createTest(input)
-          .assertCurrentNode(AstNodeType.OBJECT)
-          .child(0).assertCurrentNode(AstNodeType.PAIR, TokenType.STRING, "test")
-          .child(0, 0).assertCurrentNode(AstNodeType.VALUE, TokenType.STRING, "value")
-          ;
+        JsonObject result = parse(input).asObject();
+
+        assertEquals("value", result.getString("test"));
       }
 
       @Test
@@ -76,13 +75,9 @@ class JsonParserTest {
           }
           """;
 
-        createTest(input)
-          .assertCurrentNode(AstNodeType.OBJECT)
-          .child(0).assertCurrentNode(AstNodeType.PAIR, TokenType.STRING, "test")
-          .child(0, 0).assertCurrentNode(AstNodeType.OBJECT)
-          .child(0, 0, 0).assertCurrentNode(AstNodeType.PAIR, TokenType.STRING, "test2")
-          .child(0, 0, 0, 0).assertCurrentNode(AstNodeType.VALUE, TokenType.STRING, "value")
-        ;
+        JsonObject result = parse(input).asObject();
+
+        assertEquals("value", result.getObject("test").getString("test2"));
       }
 
       @Test
@@ -99,23 +94,15 @@ class JsonParserTest {
           }
           """;
 
-        createTest(input)
-          .assertCurrentNode(AstNodeType.OBJECT)
-          .child(0).assertCurrentNode(AstNodeType.PAIR, TokenType.STRING, "string")
-          .child(0, 0).assertCurrentNode(AstNodeType.VALUE, TokenType.STRING, "test")
-          .child(1).assertCurrentNode(AstNodeType.PAIR, TokenType.STRING, "object")
-          .child(1, 0).assertCurrentNode(AstNodeType.OBJECT)
-          .child(2).assertCurrentNode(AstNodeType.PAIR, TokenType.STRING, "array")
-          .child(2, 0).assertCurrentNode(AstNodeType.ARRAY)
-          .child(3).assertCurrentNode(AstNodeType.PAIR, TokenType.STRING, "true")
-          .child(3, 0).assertCurrentNode(AstNodeType.VALUE, TokenType.TRUE)
-          .child(4).assertCurrentNode(AstNodeType.PAIR, TokenType.STRING, "false")
-          .child(4, 0).assertCurrentNode(AstNodeType.VALUE, TokenType.FALSE)
-          .child(5).assertCurrentNode(AstNodeType.PAIR, TokenType.STRING, "null")
-          .child(5, 0).assertCurrentNode(AstNodeType.VALUE, TokenType.NULL)
-          .child(6).assertCurrentNode(AstNodeType.PAIR, TokenType.STRING, "number")
-          .child(6, 0).assertCurrentNode(AstNodeType.VALUE, TokenType.NUMBER, "-2.3e2")
-          ;
+        JsonObject result = parse(input).asObject();
+
+        assertEquals("test", result.getString("string"));
+        assertEquals(new JsonObject(), result.getObject("object"));
+        assertEquals(new JsonArray(), result.getArray("array"));
+        assertTrue(result.getBoolean("true"));
+        assertFalse(result.getBoolean("false"));
+        assertTrue(result.isNull("null"));
+        assertEquals(-2.3e2f, result.getFloat("number"));
       }
     }
 
@@ -127,7 +114,9 @@ class JsonParserTest {
           []
           """;
 
-        createTest(input).assertCurrentNode(AstNodeType.ARRAY);
+        JsonArray result = parse(input).asArray();
+
+        assertEquals(0, result.size());
       }
 
       @Test
@@ -136,12 +125,11 @@ class JsonParserTest {
             [true, null, false]
             """;
 
-        createTest(input)
-          .assertCurrentNode(AstNodeType.ARRAY)
-          .child(0).assertCurrentNode(AstNodeType.VALUE, TokenType.TRUE)
-          .child(1).assertCurrentNode(AstNodeType.VALUE, TokenType.NULL)
-          .child(2).assertCurrentNode(AstNodeType.VALUE, TokenType.FALSE)
-          ;
+        JsonArray result = parse(input).asArray();
+
+        assertTrue(result.getBoolean(0));
+        assertTrue(result.isNull(1));
+        assertFalse(result.getBoolean(2));
       }
 
       @Test
@@ -150,12 +138,10 @@ class JsonParserTest {
             [true, [false]]
             """;
 
-        createTest(input)
-          .assertCurrentNode(AstNodeType.ARRAY)
-          .child(0).assertCurrentNode(AstNodeType.VALUE, TokenType.TRUE)
-          .child(1).assertCurrentNode(AstNodeType.ARRAY)
-          .child(1, 0).assertCurrentNode(AstNodeType.VALUE, TokenType.FALSE)
-          ;
+        JsonArray result = parse(input).asArray();
+
+        assertTrue(result.getBoolean(0));
+        assertFalse(result.getArray(1).getBoolean(0));
       }
 
       @Test
@@ -164,67 +150,23 @@ class JsonParserTest {
             ["testString", {}, [], true, false, null, -2.3e2]
             """;
 
-        createTest(input)
-          .assertCurrentNode(AstNodeType.ARRAY)
-          .child(0).assertCurrentNode(AstNodeType.VALUE, TokenType.STRING, "testString")
-          .child(1).assertCurrentNode(AstNodeType.OBJECT)
-          .child(2).assertCurrentNode(AstNodeType.ARRAY)
-          .child(3).assertCurrentNode(AstNodeType.VALUE, TokenType.TRUE)
-          .child(4).assertCurrentNode(AstNodeType.VALUE, TokenType.FALSE)
-          .child(5).assertCurrentNode(AstNodeType.VALUE, TokenType.NULL)
-          .child(6).assertCurrentNode(AstNodeType.VALUE, TokenType.NUMBER, "-2.3e2")
-        ;
+        JsonArray result = parse(input).asArray();
+
+        assertEquals("testString", result.getString(0));
+        assertEquals(new JsonObject(), result.getObject(1));
+        assertEquals(new JsonArray(), result.getArray(2));
+        assertTrue(result.getBoolean(3));
+        assertFalse(result.getBoolean(4));
+        assertTrue(result.isNull(5));
+        assertEquals(-2.3e2f, result.getFloat(6));
       }
     }
   }
 
-  private AstTester createTest(String input) {
+  private JsonElement parse(String input) {
     JsonTokenizer jsonTokenizer = new JsonTokenizer(input);
     JsonParser jsonParser = new JsonParser(jsonTokenizer);
 
-//    return new AstTester(jsonParser.parse());
-    throw new RuntimeException("not yet implemented");
-  }
-
-  private static class AstTester {
-    private final AstNode root;
-    private AstNode currentNode;
-
-    public AstTester(AstNode root) {
-      this.root = root;
-      this.currentNode = root;
-    }
-
-    public AstTester child(int... pathToChild) {
-      currentNode = root;
-
-      for (int childIndex : pathToChild) {
-        currentNode = currentNode.children().get(childIndex);
-      }
-
-      return this;
-    }
-
-    public AstTester assertCurrentNode(AstNodeType expectedNodeType) {
-      return assertCurrentNode(expectedNodeType, null, null);
-    }
-
-    public AstTester assertCurrentNode(AstNodeType expectedNodeType, TokenType expectedTokenType) {
-      return assertCurrentNode(expectedNodeType, expectedTokenType, null);
-    }
-
-    public AstTester assertCurrentNode(AstNodeType expectedNodeType, TokenType expectedTokenType, String expectedValue) {
-      Assertions.assertEquals(expectedNodeType, currentNode.type(), "" + currentNode);
-
-      if (expectedTokenType != null) {
-        Assertions.assertEquals(expectedTokenType, currentNode.token().type(), "" + currentNode.token());
-      }
-
-      if (expectedValue != null) {
-        Assertions.assertEquals(expectedValue, currentNode.token().value(), "" + currentNode.token());
-      }
-
-      return this;
-    }
+    return jsonParser.parse();
   }
 }
