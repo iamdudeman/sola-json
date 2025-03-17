@@ -197,7 +197,7 @@ class JsonParserTest {
       currentNode = root;
 
       for (int childIndex : pathToChild) {
-        currentNode = currentNode.children()[childIndex];
+        currentNode = currentNode.children().get(childIndex);
       }
 
       return this;
