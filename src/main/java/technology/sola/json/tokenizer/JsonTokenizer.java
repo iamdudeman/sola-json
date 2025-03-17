@@ -84,21 +84,63 @@ public class JsonTokenizer {
     }
 
     if (currentChar == 't') {
-      advanceKeywordTrue();
-      return new Token(TokenType.TRUE, line, column);
+      return tokenTrue();
     }
 
     if (currentChar == 'f') {
-      advanceKeywordFalse();
-      return new Token(TokenType.FALSE, line, column);
+      return tokenFalse();
     }
 
     if (currentChar == 'n') {
-      advanceKeywordNull();
-      return new Token(TokenType.NULL, line, column);
+      return tokenNull();
     }
 
     throw new InvalidCharacterException(currentChar, line, column);
+  }
+
+  private Token tokenTrue() {
+    int line = this.line;
+    int column = this.column;
+
+    advance();
+    if (currentChar != 'r') throw new InvalidKeywordException("true", "t", currentChar, line, column);
+    advance();
+    if (currentChar != 'u') throw new InvalidKeywordException("true", "tr", currentChar, line, column);
+    advance();
+    if (currentChar != 'e') throw new InvalidKeywordException("true", "tru", currentChar, line, column);
+    advance();
+
+    return new Token(TokenType.TRUE, line, column);
+  }
+
+  private Token tokenNull() {
+    int line = this.line;
+    int column = this.column;
+    advance();
+    if (currentChar != 'u') throw new InvalidKeywordException("null", "n", currentChar, line, column);
+    advance();
+    if (currentChar != 'l') throw new InvalidKeywordException("null", "nu", currentChar, line, column);
+    advance();
+    if (currentChar != 'l') throw new InvalidKeywordException("null", "nul", currentChar, line, column);
+    advance();
+
+    return new Token(TokenType.NULL, line, column);
+  }
+
+  private Token tokenFalse() {
+    int line = this.line;
+    int column = this.column;
+    advance();
+    if (currentChar != 'a') throw new InvalidKeywordException("false", "f", currentChar, line, column);
+    advance();
+    if (currentChar != 'l') throw new InvalidKeywordException("false", "fa", currentChar, line, column);
+    advance();
+    if (currentChar != 's') throw new InvalidKeywordException("false", "fal", currentChar, line, column);
+    advance();
+    if (currentChar != 'e') throw new InvalidKeywordException("false", "fals", currentChar, line, column);
+    advance();
+
+    return new Token(TokenType.FALSE, line, column);
   }
 
   private Token tokenString() {
@@ -147,6 +189,7 @@ public class JsonTokenizer {
   }
 
   private Token tokenNumber() {
+    char[] characters = this.characters;
     int startColumn = column;
     int startIndex = textIndex;
 
@@ -161,41 +204,6 @@ public class JsonTokenizer {
     }
 
     return new Token(TokenType.NUMBER, new String(characters, startIndex, characterCount), line, startColumn);
-  }
-
-  private void advanceKeywordTrue() {
-    int keywordStartColumn = column;
-    advance();
-    if (currentChar != 'r') throw new InvalidKeywordException("true", "t", currentChar, line, keywordStartColumn);
-    advance();
-    if (currentChar != 'u') throw new InvalidKeywordException("true", "tr", currentChar, line, keywordStartColumn);
-    advance();
-    if (currentChar != 'e') throw new InvalidKeywordException("true", "tru", currentChar, line, keywordStartColumn);
-    advance();
-  }
-
-  private void advanceKeywordNull() {
-    int keywordStartColumn = column;
-    advance();
-    if (currentChar != 'u') throw new InvalidKeywordException("null", "n", currentChar, line, keywordStartColumn);
-    advance();
-    if (currentChar != 'l') throw new InvalidKeywordException("null", "nu", currentChar, line, keywordStartColumn);
-    advance();
-    if (currentChar != 'l') throw new InvalidKeywordException("null", "nul", currentChar, line, keywordStartColumn);
-    advance();
-  }
-
-  private void advanceKeywordFalse() {
-    int keywordStartColumn = column;
-    advance();
-    if (currentChar != 'a') throw new InvalidKeywordException("false", "f", currentChar, line, keywordStartColumn);
-    advance();
-    if (currentChar != 'l') throw new InvalidKeywordException("false", "fa", currentChar, line, keywordStartColumn);
-    advance();
-    if (currentChar != 's') throw new InvalidKeywordException("false", "fal", currentChar, line, keywordStartColumn);
-    advance();
-    if (currentChar != 'e') throw new InvalidKeywordException("false", "fals", currentChar, line, keywordStartColumn);
-    advance();
   }
 
   private int advanceEscapeCharacter(char[] buffer, int pos, StringBuilder stringBuilder) {
@@ -256,13 +264,13 @@ public class JsonTokenizer {
   private void advanceFraction() {
     int startColumn = column;
     int startFraction = textIndex;
-    if (currentChar != null && currentChar == '.') {
-      advance();
 
-      while (currentChar != null && isDigit(currentChar)) {
+    if (currentChar != null && currentChar == '.') {
+      do {
         advance();
-      }
+      } while (currentChar != null && isDigit(currentChar));
     }
+
     if (textIndex - startFraction == 1) {
       throw new InvalidDecimalNumberException(line, startColumn);
     }
@@ -287,6 +295,8 @@ public class JsonTokenizer {
   }
 
   private void advance() {
+    char[] characters = this.characters;
+
     textIndex++;
     column++;
     currentChar = textIndex < characters.length ? characters[textIndex] : null;
