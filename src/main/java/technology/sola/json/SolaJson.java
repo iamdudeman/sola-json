@@ -1,9 +1,6 @@
 package technology.sola.json;
 
-import technology.sola.json.exception.InvalidAbstractSyntaxTreeException;
 import technology.sola.json.mapper.JsonMapper;
-import technology.sola.json.parser.AstNode;
-import technology.sola.json.parser.AstNodeType;
 import technology.sola.json.parser.JsonParser;
 import technology.sola.json.serializer.JsonSerializer;
 import technology.sola.json.serializer.JsonSerializerConfig;
@@ -42,7 +39,6 @@ public class SolaJson {
   public JsonElement parse(String jsonString) {
     JsonTokenizer jsonTokenizer = new JsonTokenizer(jsonString);
     JsonParser jsonParser = new JsonParser(jsonTokenizer);
-//    AstNode root = jsonParser.parse();
 
     return jsonParser.parse();
   }
@@ -114,60 +110,5 @@ public class SolaJson {
    */
   public <T> String stringify(List<T> list, JsonMapper<T> jsonMapper) {
     return stringify(jsonMapper.toJson(list));
-  }
-
-  private JsonElement visit(AstNode astNode) {
-    return switch (astNode.type()) {
-      case OBJECT -> visitObject(astNode);
-      case ARRAY -> visitArray(astNode);
-      case VALUE -> visitValue(astNode);
-      default -> throw new InvalidAbstractSyntaxTreeException();
-    };
-  }
-
-  private JsonElement visitObject(AstNode astNode) {
-    JsonObject jsonObject = new JsonObject(astNode.children().size());
-
-    for (AstNode pairNode : astNode.children()) {
-      if (pairNode.type() != AstNodeType.PAIR) {
-        throw new InvalidAbstractSyntaxTreeException();
-      }
-
-      String key = pairNode.token().value();
-      JsonElement value = visit(pairNode.children().get(0));
-
-      jsonObject.put(key, value);
-    }
-
-    return new JsonElement(jsonObject);
-  }
-
-  private JsonElement visitArray(AstNode astNode) {
-    JsonArray jsonArray = new JsonArray(astNode.children().size());
-
-    for (AstNode childNode : astNode.children()) {
-      jsonArray.add(visit(childNode));
-    }
-
-    return new JsonElement(jsonArray);
-  }
-
-  private JsonElement visitValue(AstNode astNode) {
-    return switch (astNode.token().type()) {
-      case STRING -> new JsonElement(astNode.token().value());
-      case TRUE -> new JsonElement(true);
-      case FALSE -> new JsonElement(false);
-      case NULL -> new JsonElement();
-      case NUMBER -> {
-        String value = astNode.token().value();
-
-        if (value.contains(".") || value.contains("e") || value.contains("E")) {
-          yield new JsonElement(Double.parseDouble(value));
-        } else {
-          yield new JsonElement(Long.parseLong(value));
-        }
-      }
-      default -> throw new InvalidAbstractSyntaxTreeException();
-    };
   }
 }
