@@ -126,7 +126,7 @@ public class SolaJson {
   }
 
   private JsonElement visitObject(AstNode astNode) {
-    JsonObject jsonObject = new JsonObject(astNode.children().length);
+    JsonObject jsonObject = new JsonObject(astNode.children().size());
 
     for (AstNode pairNode : astNode.children()) {
       if (pairNode.type() != AstNodeType.PAIR) {
@@ -134,7 +134,7 @@ public class SolaJson {
       }
 
       String key = pairNode.token().value();
-      JsonElement value = visit(pairNode.children()[0]);
+      JsonElement value = visit(pairNode.children().get(0));
 
       jsonObject.put(key, value);
     }
@@ -143,7 +143,7 @@ public class SolaJson {
   }
 
   private JsonElement visitArray(AstNode astNode) {
-    JsonArray jsonArray = new JsonArray(astNode.children().length);
+    JsonArray jsonArray = new JsonArray(astNode.children().size());
 
     for (AstNode childNode : astNode.children()) {
       jsonArray.add(visit(childNode));

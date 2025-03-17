@@ -63,7 +63,7 @@ public class JsonParser {
     }
 
     eat(TokenType.R_CURLY);
-    return AstNode.object(pairs.toArray(new AstNode[0]));
+    return AstNode.object(pairs);
   }
 
   private AstNode ruleArray() {
@@ -80,7 +80,7 @@ public class JsonParser {
     }
 
     eat(TokenType.R_BRACKET);
-    return AstNode.array(children.toArray(new AstNode[0]));
+    return AstNode.array(children);
   }
 
   private AstNode rulePair() {
