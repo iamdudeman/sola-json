@@ -126,6 +126,11 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color">
 <div class="block">Constructs an empty <a href="JsonArray.html" title="class in technology.sola.json"><code>JsonArray</code></a> with specified initial capacity.</div>
 </div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.util.Collection)" class="member-name-link">JsonArray</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;? extends <a href="JsonElement.html" title="class in technology.sola.json">JsonElement</a>&gt;&nbsp;jsonElements)</code></div>
+<div class="col-last even-row-color">
+<div class="block">Constructs a list containing the elements of the specified collection, in the order they are returned by the
+ collection's iterator.</div>
+</div>
 </div>
 </section>
 </li>
@@ -293,6 +298,20 @@ loadScripts(document, 'script');</script>
 <dd><code>initialCapacity</code> - the initial capacity of the list</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - if specified initial capacity is negative</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="&lt;init&gt;(java.util.Collection)">
+<h3>JsonArray</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">JsonArray</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;? extends <a href="JsonElement.html" title="class in technology.sola.json">JsonElement</a>&gt;&nbsp;jsonElements)</span></div>
+<div class="block">Constructs a list containing the elements of the specified collection, in the order they are returned by the
+ collection's iterator.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>jsonElements</code> - the collection whose elements are to be placed into this list</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NullPointerException.html" title="class or interface in java.lang" class="external-link">NullPointerException</a></code> - – if the specified collection is null</dd>
 </dl>
 </section>
 </li>
