@@ -6,6 +6,8 @@ import com.google.gson.JsonParser;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 import technology.sola.json.SolaJson;
+import technology.sola.json.tokenizer.JsonTokenizer;
+import technology.sola.json.tokenizer.TokenType;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,6 +33,29 @@ public class SolaJsonBenchmark {
 
     blackhole.consume(
       new SolaJson().parse(benchmarkState.usersJsonString)
+    );
+  }
+
+  @Benchmark
+  public void solaJsonBigTokenizeOnly(BenchmarkState benchmarkState, Blackhole blackhole) {
+    var tokenizer = new JsonTokenizer(benchmarkState.bigJsonString);
+
+    while (tokenizer.getNextToken().type() != TokenType.EOF) {
+      blackhole.consume("");
+    }
+
+    blackhole.consume(
+      tokenizer
+    );
+  }
+
+  @Benchmark
+  public void solaJsonBigAstOnly(BenchmarkState benchmarkState, Blackhole blackhole) {
+    var tokenizer = new JsonTokenizer(benchmarkState.bigJsonString);
+    var parser = new technology.sola.json.parser.JsonParser(tokenizer);
+
+    blackhole.consume(
+      parser.parse()
     );
   }
 
