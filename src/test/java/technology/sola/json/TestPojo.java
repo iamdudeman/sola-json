@@ -13,8 +13,8 @@ public record TestPojo(int value, String value2) {
     public JsonObject toJson(TestPojo testPojo) {
       JsonObject jsonObject = new JsonObject();
 
-      jsonObject.put("value", testPojo.value());
       jsonObject.put("value2", testPojo.value2());
+      jsonObject.put("value", testPojo.value());
 
       return jsonObject;
     }

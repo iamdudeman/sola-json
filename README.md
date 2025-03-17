@@ -149,12 +149,12 @@ Execute benchmark view gradle task `jmhBenchmark` in verification category.
 Results:
 ```
 Benchmark                                  Mode  Cnt   Score   Error  Units
-SolaJsonBenchmark.gsonBig                    ss   50  21.899 ± 2.572  ms/op
-SolaJsonBenchmark.gsonSmall                  ss   50   3.338 ± 0.292  ms/op
-SolaJsonBenchmark.jacksonBig                 ss   50  17.564 ± 1.356  ms/op
-SolaJsonBenchmark.jacksonSmall               ss   50   3.798 ± 0.566  ms/op
-SolaJsonBenchmark.solaJsonBig                ss   50  36.902 ± 3.048  ms/op
-SolaJsonBenchmark.solaJsonBigAstOnly         ss   50  25.493 ± 1.494  ms/op
-SolaJsonBenchmark.solaJsonBigTokenizeOnly    ss   50  20.355 ± 1.060  ms/op
-SolaJsonBenchmark.solaJsonSmall              ss   50   6.111 ± 0.450  ms/op
+SolaJsonBenchmark.gsonBig                    ss   50  21.333 ± 2.193  ms/op
+SolaJsonBenchmark.gsonSmall                  ss   50   3.366 ± 0.269  ms/op
+SolaJsonBenchmark.jacksonBig                 ss   50  17.150 ± 1.439  ms/op
+SolaJsonBenchmark.jacksonSmall               ss   50   3.904 ± 0.710  ms/op
+SolaJsonBenchmark.solaJsonBig                ss   50  37.840 ± 3.556  ms/op
+SolaJsonBenchmark.solaJsonBigAstOnly         ss   50  25.419 ± 1.540  ms/op
+SolaJsonBenchmark.solaJsonBigTokenizeOnly    ss   50  19.434 ± 0.914  ms/op
+SolaJsonBenchmark.solaJsonSmall              ss   50   6.019 ± 0.401  ms/op
 ```

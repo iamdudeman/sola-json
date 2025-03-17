@@ -5,12 +5,13 @@ import technology.sola.json.serializer.JsonSerializer;
 import technology.sola.json.serializer.JsonSerializerConfig;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
  * JsonObject is a {@link java.util.Map} of {@link JsonElement}. It includes methods for accessing members as various
  * Java types.
  */
-public class JsonObject extends HashMap<String, JsonElement> {
+public class JsonObject extends LinkedHashMap<String, JsonElement> {
   /**
    * Constructs an empty {@link JsonObject} with the default initial capacity (16) and the default load factor (0.75).
    */

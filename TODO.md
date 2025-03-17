@@ -1,6 +1,5 @@
 # todo list
 
-* JsonObject extend LinkedHashMap
 * Bypass need for AstNode structure and go straight to JsonElement
 
 ## Performance

@@ -120,9 +120,9 @@ class SolaJsonTest {
     jsonArray.add(new JsonObject());
 
     JsonObject jsonObject = new JsonObject();
-    jsonObject.put("key", "value");
     jsonObject.put("key2", false);
     jsonObject.put("array", jsonArray);
+    jsonObject.put("key", "value");
 
     String serialized = solaJson.stringify(jsonObject);
 
@@ -142,11 +142,11 @@ class SolaJsonTest {
     jsonArray.add(nestedObject);
 
     JsonObject jsonObject = new JsonObject();
-    jsonObject.put("key", "value");
     jsonObject.put("key2", false);
     jsonObject.put("array", jsonArray);
     jsonObject.put("key3", new JsonObject());
     jsonObject.put("key4", new JsonArray());
+    jsonObject.put("key", "value");
 
     String serialized = solaJsonWithSpaces.stringify(jsonObject);
 
