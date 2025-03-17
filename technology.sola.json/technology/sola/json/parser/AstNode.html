@@ -84,7 +84,7 @@ loadScripts(document, 'script');</script>
 <dd><code><span id="param-children">children</span></code> - the children nodes or empty array</dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public record </span><span class="element-name type-name-label">AstNode</span>(<a href="AstNodeType.html" title="enum class in technology.sola.json.parser">AstNodeType</a>&nbsp;type, <a href="../tokenizer/Token.html" title="class in technology.sola.json.tokenizer">Token</a>&nbsp;token, <a href="AstNode.html" title="class in technology.sola.json.parser">AstNode</a>[]&nbsp;children)
+<div class="type-signature"><span class="modifiers">public record </span><span class="element-name type-name-label">AstNode</span>(<a href="AstNodeType.html" title="enum class in technology.sola.json.parser">AstNodeType</a>&nbsp;type, <a href="../tokenizer/Token.html" title="class in technology.sola.json.tokenizer">Token</a>&nbsp;token, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="AstNode.html" title="class in technology.sola.json.parser">AstNode</a>&gt;&nbsp;children)
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Record.html" title="class or interface in java.lang" class="external-link">Record</a></span></div>
 <div class="block">Represents a node in the JSON syntax tree.</div>
 </section>
@@ -98,9 +98,9 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(technology.sola.json.parser.AstNodeType,technology.sola.json.tokenizer.Token,technology.sola.json.parser.AstNode...)" class="member-name-link">AstNode</a><wbr>(<a href="AstNodeType.html" title="enum class in technology.sola.json.parser">AstNodeType</a>&nbsp;type,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(technology.sola.json.parser.AstNodeType,technology.sola.json.tokenizer.Token,java.util.List)" class="member-name-link">AstNode</a><wbr>(<a href="AstNodeType.html" title="enum class in technology.sola.json.parser">AstNodeType</a>&nbsp;type,
  <a href="../tokenizer/Token.html" title="class in technology.sola.json.tokenizer">Token</a>&nbsp;token,
- <a href="AstNode.html" title="class in technology.sola.json.parser">AstNode</a>...&nbsp;children)</code></div>
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="AstNode.html" title="class in technology.sola.json.parser">AstNode</a>&gt;&nbsp;children)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Creates an instance of a <code>AstNode</code> record class.</div>
 </div>
@@ -119,11 +119,11 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="AstNode.html" title="class in technology.sola.json.parser">AstNode</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#array(technology.sola.json.parser.AstNode...)" class="member-name-link">array</a><wbr>(<a href="AstNode.html" title="class in technology.sola.json.parser">AstNode</a>...&nbsp;children)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#array(java.util.List)" class="member-name-link">array</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="AstNode.html" title="class in technology.sola.json.parser">AstNode</a>&gt;&nbsp;children)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Creates a new <a href="AstNode.html" title="class in technology.sola.json.parser"><code>AstNode</code></a> of type <a href="AstNodeType.html#ARRAY"><code>AstNodeType.ARRAY</code></a>.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="AstNode.html" title="class in technology.sola.json.parser">AstNode</a>[]</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="AstNode.html" title="class in technology.sola.json.parser">AstNode</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#children()" class="member-name-link">children</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the value of the <a href="#param-children"><code>children</code></a> record component.</div>
@@ -139,7 +139,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Returns a hash code value for this object.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="AstNode.html" title="class in technology.sola.json.parser">AstNode</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#object(technology.sola.json.parser.AstNode...)" class="member-name-link">object</a><wbr>(<a href="AstNode.html" title="class in technology.sola.json.parser">AstNode</a>...&nbsp;pairs)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#object(java.util.List)" class="member-name-link">object</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="AstNode.html" title="class in technology.sola.json.parser">AstNode</a>&gt;&nbsp;pairs)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Creates a new <a href="AstNode.html" title="class in technology.sola.json.parser"><code>AstNode</code></a> of type <a href="AstNodeType.html#OBJECT"><code>AstNodeType.OBJECT</code></a>.</div>
 </div>
@@ -187,11 +187,11 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(technology.sola.json.parser.AstNodeType,technology.sola.json.tokenizer.Token,technology.sola.json.parser.AstNode...)">
+<section class="detail" id="&lt;init&gt;(technology.sola.json.parser.AstNodeType,technology.sola.json.tokenizer.Token,java.util.List)">
 <h3>AstNode</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">AstNode</span><wbr><span class="parameters">(<a href="AstNodeType.html" title="enum class in technology.sola.json.parser">AstNodeType</a>&nbsp;type,
  <a href="../tokenizer/Token.html" title="class in technology.sola.json.tokenizer">Token</a>&nbsp;token,
- <a href="AstNode.html" title="class in technology.sola.json.parser">AstNode</a>...&nbsp;children)</span></div>
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="AstNode.html" title="class in technology.sola.json.parser">AstNode</a>&gt;&nbsp;children)</span></div>
 <div class="block">Creates an instance of a <code>AstNode</code> record class.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -210,9 +210,9 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="array(technology.sola.json.parser.AstNode...)">
+<section class="detail" id="array(java.util.List)">
 <h3>array</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="AstNode.html" title="class in technology.sola.json.parser">AstNode</a></span>&nbsp;<span class="element-name">array</span><wbr><span class="parameters">(<a href="AstNode.html" title="class in technology.sola.json.parser">AstNode</a>...&nbsp;children)</span></div>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="AstNode.html" title="class in technology.sola.json.parser">AstNode</a></span>&nbsp;<span class="element-name">array</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="AstNode.html" title="class in technology.sola.json.parser">AstNode</a>&gt;&nbsp;children)</span></div>
 <div class="block">Creates a new <a href="AstNode.html" title="class in technology.sola.json.parser"><code>AstNode</code></a> of type <a href="AstNodeType.html#ARRAY"><code>AstNodeType.ARRAY</code></a>.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -238,9 +238,9 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="object(technology.sola.json.parser.AstNode...)">
+<section class="detail" id="object(java.util.List)">
 <h3>object</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="AstNode.html" title="class in technology.sola.json.parser">AstNode</a></span>&nbsp;<span class="element-name">object</span><wbr><span class="parameters">(<a href="AstNode.html" title="class in technology.sola.json.parser">AstNode</a>...&nbsp;pairs)</span></div>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="AstNode.html" title="class in technology.sola.json.parser">AstNode</a></span>&nbsp;<span class="element-name">object</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="AstNode.html" title="class in technology.sola.json.parser">AstNode</a>&gt;&nbsp;pairs)</span></div>
 <div class="block">Creates a new <a href="AstNode.html" title="class in technology.sola.json.parser"><code>AstNode</code></a> of type <a href="AstNodeType.html#OBJECT"><code>AstNodeType.OBJECT</code></a>.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -329,7 +329,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="children()">
 <h3>children</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="AstNode.html" title="class in technology.sola.json.parser">AstNode</a>[]</span>&nbsp;<span class="element-name">children</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="AstNode.html" title="class in technology.sola.json.parser">AstNode</a>&gt;</span>&nbsp;<span class="element-name">children</span>()</div>
 <div class="block">Returns the value of the <a href="#param-children"><code>children</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
