@@ -29,7 +29,13 @@ public class JsonArray extends ArrayList<JsonElement> {
     super(initialCapacity);
   }
 
-  // todo document
+  /**
+   * Constructs a list containing the elements of the specified collection, in the order they are returned by the
+   * collection's iterator.
+   *
+   * @param jsonElements the collection whose elements are to be placed into this list
+   * @throws NullPointerException – if the specified collection is null
+   */
   public JsonArray(Collection<? extends JsonElement> jsonElements) {
     super(jsonElements);
   }
