@@ -154,7 +154,6 @@ SolaJsonBenchmark.gsonSmall                  ss   50   3.268 ± 0.248  ms/op
 SolaJsonBenchmark.jacksonBig                 ss   50  17.017 ± 1.466  ms/op
 SolaJsonBenchmark.jacksonSmall               ss   50   3.994 ± 0.831  ms/op
 SolaJsonBenchmark.solaJsonBig                ss   50  27.763 ± 1.768  ms/op
-SolaJsonBenchmark.solaJsonBigAstOnly         ss   50  27.655 ± 1.934  ms/op
 SolaJsonBenchmark.solaJsonBigTokenizeOnly    ss   50  19.692 ± 0.925  ms/op
 SolaJsonBenchmark.solaJsonSmall              ss   50   4.597 ± 0.213  ms/op
 ```
