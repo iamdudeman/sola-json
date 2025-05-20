@@ -1,5 +1,7 @@
 package technology.sola.json;
 
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 import technology.sola.json.exception.JsonElementTypeException;
 import technology.sola.json.serializer.JsonSerializer;
 import technology.sola.json.serializer.JsonSerializerConfig;
@@ -11,6 +13,7 @@ import java.util.Collection;
  * JsonArray is an array of {@link JsonElement}s. It includes methods for accessing members as various
  * Java types.
  */
+@NullMarked
 public class JsonArray extends ArrayList<JsonElement> {
   /**
    * Constructs an empty {@link JsonArray} with an initial capacity of ten.
@@ -139,12 +142,12 @@ public class JsonArray extends ArrayList<JsonElement> {
   }
 
   @Override
-  public boolean add(JsonElement jsonElement) {
+  public boolean add(@Nullable JsonElement jsonElement) {
     return super.add(jsonElement == null ? new JsonElement() : jsonElement);
   }
 
   @Override
-  public void add(int index, JsonElement element) {
+  public void add(int index, @Nullable JsonElement element) {
     super.add(index, element == null ? new JsonElement() : element);
   }
 

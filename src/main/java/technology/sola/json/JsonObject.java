@@ -1,16 +1,18 @@
 package technology.sola.json;
 
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 import technology.sola.json.exception.JsonElementTypeException;
 import technology.sola.json.serializer.JsonSerializer;
 import technology.sola.json.serializer.JsonSerializerConfig;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 /**
  * JsonObject is a {@link java.util.Map} of {@link JsonElement}. It includes methods for accessing members as various
  * Java types.
  */
+@NullMarked
 public class JsonObject extends LinkedHashMap<String, JsonElement> {
   /**
    * Constructs an empty {@link JsonObject} with the default initial capacity (16) and the default load factor (0.75).
@@ -283,7 +285,8 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
   }
 
   @Override
-  public JsonElement put(String key, JsonElement value) {
+  @Nullable
+  public JsonElement put(String key, @Nullable JsonElement value) {
     return super.put(key, value == null ? new JsonElement() : value);
   }
 
