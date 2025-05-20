@@ -1,5 +1,6 @@
 package technology.sola.json.serializer;
 
+import org.jspecify.annotations.NullMarked;
 import technology.sola.json.JsonArray;
 import technology.sola.json.JsonElement;
 import technology.sola.json.JsonObject;
@@ -7,6 +8,7 @@ import technology.sola.json.JsonObject;
 /**
  * JsonSerializer contains methods for serializing {@link JsonElement}s, {@link JsonObject}s and {@link JsonArray}s.
  */
+@NullMarked
 public class JsonSerializer {
   private final JsonSerializerConfig config;
 

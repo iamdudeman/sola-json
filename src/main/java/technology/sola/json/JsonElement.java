@@ -238,7 +238,7 @@ public class JsonElement {
 
   private void assertType(JsonElementType assertionType) {
     if (type != assertionType) {
-      throw new JsonElementTypeException(assertionType.name(), type.name());
+      throw new JsonElementTypeException(assertionType, type);
     }
   }
 }
