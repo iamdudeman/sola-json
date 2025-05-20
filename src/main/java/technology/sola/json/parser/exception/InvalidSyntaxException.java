@@ -1,5 +1,6 @@
 package technology.sola.json.parser.exception;
 
+import org.jspecify.annotations.NullMarked;
 import technology.sola.json.exception.SolaJsonParsingError;
 import technology.sola.json.tokenizer.Token;
 import technology.sola.json.tokenizer.TokenType;
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 /**
  * Exception thrown when invalid syntax is discovered during parsing.
  */
+@NullMarked
 public class InvalidSyntaxException extends RuntimeException implements SolaJsonParsingError {
   private transient final Token actual;
   private transient final TokenType[] expected;
