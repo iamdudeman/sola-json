@@ -158,7 +158,7 @@ public class JsonArray extends ArrayList<JsonElement> {
    * @param value the {@link JsonObject} to append
    * @return this
    */
-  public JsonArray add(JsonObject value) {
+  public JsonArray add(@Nullable JsonObject value) {
     add(new JsonElement(value));
 
     return this;
@@ -171,7 +171,7 @@ public class JsonArray extends ArrayList<JsonElement> {
    * @param value the {@link JsonArray} to append
    * @return this
    */
-  public JsonArray add(JsonArray value) {
+  public JsonArray add(@Nullable JsonArray value) {
     add(new JsonElement(value));
 
     return this;
@@ -184,7 +184,7 @@ public class JsonArray extends ArrayList<JsonElement> {
    * @param value the string to append
    * @return this
    */
-  public JsonArray add(String value) {
+  public JsonArray add(@Nullable String value) {
     add(new JsonElement(value));
 
     return this;
@@ -197,7 +197,7 @@ public class JsonArray extends ArrayList<JsonElement> {
    * @param value the integer to append
    * @return this
    */
-  public JsonArray add(Integer value) {
+  public JsonArray add(@Nullable Integer value) {
     add(new JsonElement(value));
 
     return this;
@@ -210,7 +210,7 @@ public class JsonArray extends ArrayList<JsonElement> {
    * @param value the long to append
    * @return this
    */
-  public JsonArray add(Long value) {
+  public JsonArray add(@Nullable Long value) {
     add(new JsonElement(value));
 
     return this;
@@ -223,7 +223,7 @@ public class JsonArray extends ArrayList<JsonElement> {
    * @param value the float to append
    * @return this
    */
-  public JsonArray add(Float value) {
+  public JsonArray add(@Nullable Float value) {
     add(new JsonElement(value));
 
     return this;
@@ -236,7 +236,7 @@ public class JsonArray extends ArrayList<JsonElement> {
    * @param value the double to append
    * @return this
    */
-  public JsonArray add(Double value) {
+  public JsonArray add(@Nullable Double value) {
     add(new JsonElement(value));
 
     return this;
@@ -249,7 +249,7 @@ public class JsonArray extends ArrayList<JsonElement> {
    * @param value the boolean to append
    * @return this
    */
-  public JsonArray add(Boolean value) {
+  public JsonArray add(@Nullable Boolean value) {
     add(new JsonElement(value));
 
     return this;

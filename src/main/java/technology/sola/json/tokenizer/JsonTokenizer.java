@@ -1,7 +1,6 @@
 package technology.sola.json.tokenizer;
 
 import org.jspecify.annotations.NullMarked;
-import org.jspecify.annotations.Nullable;
 import technology.sola.json.tokenizer.exception.*;
 
 /**
@@ -10,7 +9,8 @@ import technology.sola.json.tokenizer.exception.*;
 @NullMarked
 public class JsonTokenizer {
   private final char[] characters;
-  @Nullable private Character currentChar;
+  private boolean isDone = false;
+  private char currentChar;
   private int textIndex;
   private int column = 1;
   private int line = 1;
@@ -32,7 +32,7 @@ public class JsonTokenizer {
     int line = this.line;
     int column = this.column;
 
-    if (currentChar == null) {
+    if (isDone) {
       return new Token(TokenType.EOF, line, column);
     }
 
@@ -108,11 +108,11 @@ public class JsonTokenizer {
     int column = this.column;
 
     advance();
-    if (currentChar == null || currentChar != 'r') throw new InvalidKeywordException("true", "t", currentChar, line, column);
+    if (currentChar != 'r') throw new InvalidKeywordException("true", "t", currentChar, line, column);
     advance();
-    if (currentChar == null || currentChar != 'u') throw new InvalidKeywordException("true", "tr", currentChar, line, column);
+    if (currentChar != 'u') throw new InvalidKeywordException("true", "tr", currentChar, line, column);
     advance();
-    if (currentChar == null || currentChar != 'e') throw new InvalidKeywordException("true", "tru", currentChar, line, column);
+    if (currentChar != 'e') throw new InvalidKeywordException("true", "tru", currentChar, line, column);
     advance();
 
     return new Token(TokenType.TRUE, line, column);
@@ -122,11 +122,11 @@ public class JsonTokenizer {
     int line = this.line;
     int column = this.column;
     advance();
-    if (currentChar == null || currentChar != 'u') throw new InvalidKeywordException("null", "n", currentChar, line, column);
+    if (currentChar != 'u') throw new InvalidKeywordException("null", "n", currentChar, line, column);
     advance();
-    if (currentChar == null || currentChar != 'l') throw new InvalidKeywordException("null", "nu", currentChar, line, column);
+    if (currentChar != 'l') throw new InvalidKeywordException("null", "nu", currentChar, line, column);
     advance();
-    if (currentChar == null || currentChar != 'l') throw new InvalidKeywordException("null", "nul", currentChar, line, column);
+    if (currentChar != 'l') throw new InvalidKeywordException("null", "nul", currentChar, line, column);
     advance();
 
     return new Token(TokenType.NULL, line, column);
@@ -136,13 +136,13 @@ public class JsonTokenizer {
     int line = this.line;
     int column = this.column;
     advance();
-    if (currentChar == null || currentChar != 'a') throw new InvalidKeywordException("false", "f", currentChar, line, column);
+    if (currentChar != 'a') throw new InvalidKeywordException("false", "f", currentChar, line, column);
     advance();
-    if (currentChar == null || currentChar != 'l') throw new InvalidKeywordException("false", "fa", currentChar, line, column);
+    if (currentChar != 'l') throw new InvalidKeywordException("false", "fa", currentChar, line, column);
     advance();
-    if (currentChar == null || currentChar != 's') throw new InvalidKeywordException("false", "fal", currentChar, line, column);
+    if (currentChar != 's') throw new InvalidKeywordException("false", "fal", currentChar, line, column);
     advance();
-    if (currentChar == null || currentChar != 'e') throw new InvalidKeywordException("false", "fals", currentChar, line, column);
+    if (currentChar != 'e') throw new InvalidKeywordException("false", "fals", currentChar, line, column);
     advance();
 
     return new Token(TokenType.FALSE, line, column);
@@ -253,11 +253,11 @@ public class JsonTokenizer {
 
   private void advanceNumber() {
     int startColumn = column;
-    boolean hasLeadingZero = currentChar == null || currentChar == '0';
+    boolean hasLeadingZero = currentChar == '0';
 
     advance();
 
-    while (currentChar != null && isDigit(currentChar)) {
+    while (isDigit(currentChar)) {
       if (hasLeadingZero) {
         throw new InvalidLeadingZeroNumberException(line, startColumn);
       }
@@ -270,10 +270,10 @@ public class JsonTokenizer {
     int startColumn = column;
     int startFraction = textIndex;
 
-    if (currentChar != null && currentChar == '.') {
+    if (currentChar == '.') {
       do {
         advance();
-      } while (currentChar != null && isDigit(currentChar));
+      } while (isDigit(currentChar));
     }
 
     if (textIndex - startFraction == 1) {
@@ -282,18 +282,18 @@ public class JsonTokenizer {
   }
 
   private void advanceExponent() {
-    if (currentChar != null && (currentChar == 'e' || currentChar == 'E')) {
+    if (currentChar == 'e' || currentChar == 'E') {
       advance();
 
       if (currentChar == '+' || currentChar == '-') {
         advance();
       }
 
-      if (currentChar == null || !isDigit(currentChar)) {
+      if (!isDigit(currentChar)) {
         throw new InvalidExponentNumberException(line, textIndex);
       }
 
-      while (currentChar != null && isDigit(currentChar)) {
+      while (isDigit(currentChar)) {
         advance();
       }
     }
@@ -304,7 +304,13 @@ public class JsonTokenizer {
 
     textIndex++;
     column++;
-    currentChar = textIndex < characters.length ? characters[textIndex] : null;
+
+    if (textIndex < characters.length) {
+      currentChar = characters[textIndex];
+    } else {
+      currentChar = '\0';
+      isDone = true;
+    }
   }
 
   private boolean isDigit(char c) {
