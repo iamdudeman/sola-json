@@ -1,13 +1,16 @@
 package technology.sola.json.tokenizer;
 
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 import technology.sola.json.tokenizer.exception.*;
 
 /**
  * A JSON tokenizer implementation.
  */
+@NullMarked
 public class JsonTokenizer {
   private final char[] characters;
-  private Character currentChar;
+  @Nullable private Character currentChar;
   private int textIndex;
   private int column = 1;
   private int line = 1;
@@ -33,69 +36,71 @@ public class JsonTokenizer {
       return new Token(TokenType.EOF, line, column);
     }
 
-    if (currentChar == '\n') {
+    char unboxedCurrentChar = currentChar;
+
+    if (unboxedCurrentChar == '\n') {
       this.line++;
       this.column = 1;
       advance();
       return getNextToken();
     }
 
-    if (Character.isWhitespace(currentChar)) {
+    if (Character.isWhitespace(unboxedCurrentChar)) {
       advance();
       return getNextToken();
     }
 
-    if (currentChar == ':') {
+    if (unboxedCurrentChar == ':') {
       advance();
       return new Token(TokenType.COLON, line, column);
     }
 
-    if (currentChar == ',') {
+    if (unboxedCurrentChar == ',') {
       advance();
       return new Token(TokenType.COMMA, line, column);
     }
 
-    if (currentChar == '[') {
+    if (unboxedCurrentChar == '[') {
       advance();
       return new Token(TokenType.L_BRACKET, line, column);
     }
 
-    if (currentChar == ']') {
+    if (unboxedCurrentChar == ']') {
       advance();
       return new Token(TokenType.R_BRACKET, line, column);
     }
 
-    if (currentChar == '{') {
+    if (unboxedCurrentChar == '{') {
       advance();
       return new Token(TokenType.L_CURLY, line, column);
     }
 
-    if (currentChar == '}') {
+    if (unboxedCurrentChar == '}') {
       advance();
       return new Token(TokenType.R_CURLY, line, column);
     }
 
-    if (currentChar == '"') {
+    if (unboxedCurrentChar == '"') {
       return tokenString();
     }
 
-    if (currentChar == '-' || isDigit(currentChar)) {
+    if (unboxedCurrentChar == '-' || isDigit(unboxedCurrentChar)) {
       return tokenNumber();
     }
 
-    if (currentChar == 't') {
+    if (unboxedCurrentChar == 't') {
       return tokenTrue();
     }
 
-    if (currentChar == 'f') {
+    if (unboxedCurrentChar == 'f') {
       return tokenFalse();
     }
 
-    if (currentChar == 'n') {
+    if (unboxedCurrentChar == 'n') {
       return tokenNull();
     }
 
-    throw new InvalidCharacterException(currentChar, line, column);
+    throw new InvalidCharacterException(unboxedCurrentChar, line, column);
   }
 
   private Token tokenTrue() {
@@ -103,11 +108,11 @@ public class JsonTokenizer {
     int column = this.column;
 
     advance();
-    if (currentChar != 'r') throw new InvalidKeywordException("true", "t", currentChar, line, column);
+    if (currentChar == null || currentChar != 'r') throw new InvalidKeywordException("true", "t", currentChar, line, column);
     advance();
-    if (currentChar != 'u') throw new InvalidKeywordException("true", "tr", currentChar, line, column);
+    if (currentChar == null || currentChar != 'u') throw new InvalidKeywordException("true", "tr", currentChar, line, column);
     advance();
-    if (currentChar != 'e') throw new InvalidKeywordException("true", "tru", currentChar, line, column);
+    if (currentChar == null || currentChar != 'e') throw new InvalidKeywordException("true", "tru", currentChar, line, column);
     advance();
 
     return new Token(TokenType.TRUE, line, column);
@@ -117,11 +122,11 @@ public class JsonTokenizer {
     int line = this.line;
     int column = this.column;
     advance();
-    if (currentChar != 'u') throw new InvalidKeywordException("null", "n", currentChar, line, column);
+    if (currentChar == null || currentChar != 'u') throw new InvalidKeywordException("null", "n", currentChar, line, column);
     advance();
-    if (currentChar != 'l') throw new InvalidKeywordException("null", "nu", currentChar, line, column);
+    if (currentChar == null || currentChar != 'l') throw new InvalidKeywordException("null", "nu", currentChar, line, column);
     advance();
-    if (currentChar != 'l') throw new InvalidKeywordException("null", "nul", currentChar, line, column);
+    if (currentChar == null || currentChar != 'l') throw new InvalidKeywordException("null", "nul", currentChar, line, column);
     advance();
 
     return new Token(TokenType.NULL, line, column);
@@ -131,13 +136,13 @@ public class JsonTokenizer {
     int line = this.line;
     int column = this.column;
     advance();
-    if (currentChar != 'a') throw new InvalidKeywordException("false", "f", currentChar, line, column);
+    if (currentChar == null || currentChar != 'a') throw new InvalidKeywordException("false", "f", currentChar, line, column);
     advance();
-    if (currentChar != 'l') throw new InvalidKeywordException("false", "fa", currentChar, line, column);
+    if (currentChar == null || currentChar != 'l') throw new InvalidKeywordException("false", "fa", currentChar, line, column);
     advance();
-    if (currentChar != 's') throw new InvalidKeywordException("false", "fal", currentChar, line, column);
+    if (currentChar == null || currentChar != 's') throw new InvalidKeywordException("false", "fal", currentChar, line, column);
     advance();
-    if (currentChar != 'e') throw new InvalidKeywordException("false", "fals", currentChar, line, column);
+    if (currentChar == null || currentChar != 'e') throw new InvalidKeywordException("false", "fals", currentChar, line, column);
     advance();
 
     return new Token(TokenType.FALSE, line, column);
@@ -248,7 +253,7 @@ public class JsonTokenizer {
 
   private void advanceNumber() {
     int startColumn = column;
-    boolean hasLeadingZero = currentChar == '0';
+    boolean hasLeadingZero = currentChar == null || currentChar == '0';
 
     advance();
 

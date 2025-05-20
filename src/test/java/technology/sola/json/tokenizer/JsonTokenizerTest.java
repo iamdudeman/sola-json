@@ -88,11 +88,11 @@ class JsonTokenizerTest {
 
       @Test
       void whenInvalidTrue_shouldThrowException() {
-        var input = " tru ";
+        var input = " tru";
 
         InvalidKeywordException exception = assertThrows(InvalidKeywordException.class, () -> new JsonTokenizer(input).getNextToken());
         assertEquals("true", exception.getExpected());
-        assertEquals("tru ", exception.getActual());
+        assertEquals("tru", exception.getActual());
         assertEquals(1, exception.getLine());
         assertEquals(2, exception.getColumn());
       }
@@ -109,11 +109,11 @@ class JsonTokenizerTest {
 
       @Test
       void whenInvalidFalse_shouldThrowException() {
-        var input = " fals ";
+        var input = " fals";
 
         InvalidKeywordException exception = assertThrows(InvalidKeywordException.class, () -> new JsonTokenizer(input).getNextToken());
         assertEquals("false", exception.getExpected());
-        assertEquals("fals ", exception.getActual());
+        assertEquals("fals", exception.getActual());
         assertEquals(1, exception.getLine());
         assertEquals(2, exception.getColumn());
       }
@@ -130,11 +130,11 @@ class JsonTokenizerTest {
 
       @Test
       void whenInvalidNull_shouldThrowException() {
-        var input = " nul ";
+        var input = " nul";
 
         InvalidKeywordException exception = assertThrows(InvalidKeywordException.class, () -> new JsonTokenizer(input).getNextToken());
         assertEquals("null", exception.getExpected());
-        assertEquals("nul ", exception.getActual());
+        assertEquals("nul", exception.getActual());
         assertEquals(1, exception.getLine());
         assertEquals(2, exception.getColumn());
       }

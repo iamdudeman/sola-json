@@ -1,5 +1,6 @@
 package technology.sola.json.tokenizer.exception;
 
+import org.jspecify.annotations.Nullable;
 import technology.sola.json.exception.SolaJsonParsingError;
 
 /**
@@ -20,10 +21,10 @@ public class InvalidKeywordException extends RuntimeException implements SolaJso
    * @param line        line where the invalid character was found
    * @param column      column where the invalid character was found
    */
-  public InvalidKeywordException(String keyword, String current, char invalidChar, int line, int column) {
-    super("Expected keyword [" + keyword + "] but received [" + current + invalidChar + "] at [" + line + ":" + column + "]");
+  public InvalidKeywordException(String keyword, String current, @Nullable Character invalidChar, int line, int column) {
+    super("Expected keyword [" + keyword + "] but received [" + current + (invalidChar == null ? "" : invalidChar) + "] at [" + line + ":" + column + "]");
     this.expected = keyword;
-    this.actual = current + invalidChar;
+    this.actual = current + (invalidChar == null ? "" : invalidChar);
     this.line = line;
     this.column = column;
   }

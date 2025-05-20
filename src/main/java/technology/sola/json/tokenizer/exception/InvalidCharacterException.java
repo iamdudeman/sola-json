@@ -1,10 +1,12 @@
 package technology.sola.json.tokenizer.exception;
 
+import org.jspecify.annotations.NullMarked;
 import technology.sola.json.exception.SolaJsonParsingError;
 
 /**
  * Exception for when an invalid character is found during tokenization.
  */
+@NullMarked
 public class InvalidCharacterException extends RuntimeException implements SolaJsonParsingError {
   private transient final char invalidCharacter;
   private transient final int line;

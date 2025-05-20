@@ -1,5 +1,8 @@
 package technology.sola.json.tokenizer;
 
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
+
 /**
  * Creates a new token instance of {@link TokenType} with value.
  *
@@ -8,7 +11,13 @@ package technology.sola.json.tokenizer;
  * @param line   the line number where the token was found
  * @param column the column number where the token was found
  */
-public record Token(TokenType type, String value, int line, int column) {
+@NullMarked
+public record Token(
+  TokenType type,
+  @Nullable String value,
+  int line,
+  int column
+) {
   /**
    * Creates a new token instance of {@link TokenType} that does not have a value.
    *
