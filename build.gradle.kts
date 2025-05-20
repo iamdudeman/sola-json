@@ -20,14 +20,18 @@ repositories {
 }
 
 dependencies {
+  // nullability annotations
+  api("org.jspecify:jspecify:1.0.0")
+
+  // unit testing
   testImplementation(platform("org.junit:junit-bom:5.10.2"))
   testImplementation("org.junit.jupiter:junit-jupiter")
 
   // performance testing dependencies
   testImplementation("org.openjdk.jmh:jmh-core:1.37")
   testAnnotationProcessor("org.openjdk.jmh:jmh-generator-annprocess:1.37")
-  testImplementation("com.google.code.gson:gson:2.8.9")
-  testImplementation("com.fasterxml.jackson.core:jackson-databind:2.18.3")
+  testImplementation("com.google.code.gson:gson:2.8.9") // for comparison
+  testImplementation("com.fasterxml.jackson.core:jackson-databind:2.18.3") // for comparison
 }
 
 tasks.test {
