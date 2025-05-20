@@ -1,5 +1,7 @@
 package technology.sola.json;
 
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 import technology.sola.json.exception.JsonElementTypeException;
 import technology.sola.json.serializer.JsonSerializer;
 import technology.sola.json.serializer.JsonSerializerConfig;
@@ -8,9 +10,10 @@ import technology.sola.json.serializer.JsonSerializerConfig;
  * JsonElement represents any valid JSON value. Valid JSON values include {@link JsonObject}, {@link JsonArray}, string,
  * number, true, false and null.
  */
+@NullMarked
 public class JsonElement {
   private final JsonElementType type;
-  private Object value;
+  @Nullable private Object value;
 
   /**
    * Creates a JsonElement with type {@link JsonElementType#NULL}.
@@ -25,7 +28,7 @@ public class JsonElement {
    *
    * @param value the value of the JsonElement
    */
-  public JsonElement(Integer value) {
+  public JsonElement(@Nullable Integer value) {
     type = value == null ? JsonElementType.NULL : JsonElementType.LONG;
     this.value = value;
   }
@@ -36,7 +39,7 @@ public class JsonElement {
    *
    * @param value the value of the JsonElement
    */
-  public JsonElement(Long value) {
+  public JsonElement(@Nullable Long value) {
     type = value == null ? JsonElementType.NULL : JsonElementType.LONG;
     this.value = value;
   }
@@ -47,7 +50,7 @@ public class JsonElement {
    *
    * @param value the value of the JsonElement
    */
-  public JsonElement(Float value) {
+  public JsonElement(@Nullable Float value) {
     type = value == null ? JsonElementType.NULL : JsonElementType.DOUBLE;
     this.value = value;
   }
@@ -58,7 +61,7 @@ public class JsonElement {
    *
    * @param value the value of the JsonElement
    */
-  public JsonElement(Double value) {
+  public JsonElement(@Nullable Double value) {
     type = value == null ? JsonElementType.NULL : JsonElementType.DOUBLE;
     this.value = value;
   }
@@ -69,7 +72,7 @@ public class JsonElement {
    *
    * @param value the value of the JsonElement
    */
-  public JsonElement(String value) {
+  public JsonElement(@Nullable String value) {
     type = value == null ? JsonElementType.NULL : JsonElementType.STRING;
     this.value = value;
   }
@@ -80,7 +83,7 @@ public class JsonElement {
    *
    * @param value the value of the JsonElement
    */
-  public JsonElement(JsonObject value) {
+  public JsonElement(@Nullable JsonObject value) {
     type = value == null ? JsonElementType.NULL : JsonElementType.JSON_OBJECT;
     this.value = value;
   }
@@ -91,7 +94,7 @@ public class JsonElement {
    *
    * @param value the value of the JsonElement
    */
-  public JsonElement(JsonArray value) {
+  public JsonElement(@Nullable JsonArray value) {
     type = value == null ? JsonElementType.NULL : JsonElementType.JSON_ARRAY;
     this.value = value;
   }
@@ -102,7 +105,7 @@ public class JsonElement {
    *
    * @param value the value of the JsonElement
    */
-  public JsonElement(Boolean value) {
+  public JsonElement(@Nullable Boolean value) {
     type = value == null ? JsonElementType.NULL : JsonElementType.BOOLEAN;
     this.value = value;
   }
@@ -235,7 +238,7 @@ public class JsonElement {
 
   private void assertType(JsonElementType assertionType) {
     if (type != assertionType) {
-      throw new JsonElementTypeException(assertionType.name(), type.name());
+      throw new JsonElementTypeException(assertionType, type);
     }
   }
 }

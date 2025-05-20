@@ -1,10 +1,12 @@
 package technology.sola.json.tokenizer.exception;
 
+import org.jspecify.annotations.NullMarked;
 import technology.sola.json.exception.SolaJsonParsingError;
 
 /**
- * Exception thrown when an invalid unicode character is found during tokenization.
+ * Exception thrown when an invalid Unicode character is found during tokenization.
  */
+@NullMarked
 public class InvalidUnicodeCharacterException extends RuntimeException implements SolaJsonParsingError {
   private transient final int line;
   private transient final int column;

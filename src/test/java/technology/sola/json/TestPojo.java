@@ -1,7 +1,9 @@
 package technology.sola.json;
 
+import org.jspecify.annotations.NullMarked;
 import technology.sola.json.mapper.JsonMapper;
 
+@NullMarked
 public record TestPojo(int value, String value2) {
   public static JsonMapper<TestPojo> JSON_MAPPER = new JsonMapper<>() {
     @Override

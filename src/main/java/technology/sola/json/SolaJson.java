@@ -1,5 +1,6 @@
 package technology.sola.json;
 
+import org.jspecify.annotations.NullMarked;
 import technology.sola.json.mapper.JsonMapper;
 import technology.sola.json.parser.JsonParser;
 import technology.sola.json.serializer.JsonSerializer;
@@ -11,6 +12,7 @@ import java.util.List;
 /**
  * SolaJson contains methods for parsing strings into {@link JsonElement}s and serializing {@code JsonElement}s into strings.
  */
+@NullMarked
 public class SolaJson {
   private final JsonSerializer jsonSerializer;
 

@@ -1,13 +1,16 @@
 package technology.sola.json.tokenizer;
 
+import org.jspecify.annotations.NullMarked;
 import technology.sola.json.tokenizer.exception.*;
 
 /**
  * A JSON tokenizer implementation.
  */
+@NullMarked
 public class JsonTokenizer {
   private final char[] characters;
-  private Character currentChar;
+  private boolean isDone = false;
+  private char currentChar;
   private int textIndex;
   private int column = 1;
   private int line = 1;
@@ -29,73 +32,75 @@ public class JsonTokenizer {
     int line = this.line;
     int column = this.column;
 
-    if (currentChar == null) {
+    if (isDone) {
       return new Token(TokenType.EOF, line, column);
     }
 
-    if (currentChar == '\n') {
+    char unboxedCurrentChar = currentChar;
+
+    if (unboxedCurrentChar == '\n') {
       this.line++;
       this.column = 1;
       advance();
       return getNextToken();
     }
 
-    if (Character.isWhitespace(currentChar)) {
+    if (Character.isWhitespace(unboxedCurrentChar)) {
       advance();
       return getNextToken();
     }
 
-    if (currentChar == ':') {
+    if (unboxedCurrentChar == ':') {
       advance();
       return new Token(TokenType.COLON, line, column);
     }
 
-    if (currentChar == ',') {
+    if (unboxedCurrentChar == ',') {
       advance();
       return new Token(TokenType.COMMA, line, column);
     }
 
-    if (currentChar == '[') {
+    if (unboxedCurrentChar == '[') {
       advance();
       return new Token(TokenType.L_BRACKET, line, column);
     }
 
-    if (currentChar == ']') {
+    if (unboxedCurrentChar == ']') {
       advance();
       return new Token(TokenType.R_BRACKET, line, column);
     }
 
-    if (currentChar == '{') {
+    if (unboxedCurrentChar == '{') {
       advance();
       return new Token(TokenType.L_CURLY, line, column);
     }
 
-    if (currentChar == '}') {
+    if (unboxedCurrentChar == '}') {
       advance();
       return new Token(TokenType.R_CURLY, line, column);
     }
 
-    if (currentChar == '"') {
+    if (unboxedCurrentChar == '"') {
       return tokenString();
     }
 
-    if (currentChar == '-' || isDigit(currentChar)) {
+    if (unboxedCurrentChar == '-' || isDigit(unboxedCurrentChar)) {
       return tokenNumber();
     }
 
-    if (currentChar == 't') {
+    if (unboxedCurrentChar == 't') {
       return tokenTrue();
     }
 
-    if (currentChar == 'f') {
+    if (unboxedCurrentChar == 'f') {
       return tokenFalse();
     }
 
-    if (currentChar == 'n') {
+    if (unboxedCurrentChar == 'n') {
       return tokenNull();
     }
 
-    throw new InvalidCharacterException(currentChar, line, column);
+    throw new InvalidCharacterException(unboxedCurrentChar, line, column);
   }
 
   private Token tokenTrue() {
@@ -252,7 +257,7 @@ public class JsonTokenizer {
 
     advance();
 
-    while (currentChar != null && isDigit(currentChar)) {
+    while (isDigit(currentChar)) {
       if (hasLeadingZero) {
         throw new InvalidLeadingZeroNumberException(line, startColumn);
       }
@@ -265,10 +270,10 @@ public class JsonTokenizer {
     int startColumn = column;
     int startFraction = textIndex;
 
-    if (currentChar != null && currentChar == '.') {
+    if (currentChar == '.') {
       do {
         advance();
-      } while (currentChar != null && isDigit(currentChar));
+      } while (isDigit(currentChar));
     }
 
     if (textIndex - startFraction == 1) {
@@ -277,18 +282,18 @@ public class JsonTokenizer {
   }
 
   private void advanceExponent() {
-    if (currentChar != null && (currentChar == 'e' || currentChar == 'E')) {
+    if (currentChar == 'e' || currentChar == 'E') {
       advance();
 
       if (currentChar == '+' || currentChar == '-') {
         advance();
       }
 
-      if (currentChar == null || !isDigit(currentChar)) {
+      if (!isDigit(currentChar)) {
         throw new InvalidExponentNumberException(line, textIndex);
       }
 
-      while (currentChar != null && isDigit(currentChar)) {
+      while (isDigit(currentChar)) {
         advance();
       }
     }
@@ -299,7 +304,13 @@ public class JsonTokenizer {
 
     textIndex++;
     column++;
-    currentChar = textIndex < characters.length ? characters[textIndex] : null;
+
+    if (textIndex < characters.length) {
+      currentChar = characters[textIndex];
+    } else {
+      currentChar = '\0';
+      isDone = true;
+    }
   }
 
   private boolean isDigit(char c) {

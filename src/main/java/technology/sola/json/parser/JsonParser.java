@@ -1,5 +1,6 @@
 package technology.sola.json.parser;
 
+import org.jspecify.annotations.NullMarked;
 import technology.sola.json.JsonArray;
 import technology.sola.json.JsonElement;
 import technology.sola.json.JsonObject;
@@ -14,6 +15,7 @@ import java.util.List;
 /**
  * A JSON parser implementation.
  */
+@NullMarked
 public class JsonParser {
   private final JsonTokenizer jsonTokenizer;
   private Token currentToken;

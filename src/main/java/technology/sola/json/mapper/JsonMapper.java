@@ -1,5 +1,6 @@
 package technology.sola.json.mapper;
 
+import org.jspecify.annotations.NullMarked;
 import technology.sola.json.JsonArray;
 import technology.sola.json.JsonElement;
 import technology.sola.json.JsonObject;
@@ -12,6 +13,7 @@ import java.util.List;
  *
  * @param <T> the type to define a JSON mapping for
  */
+@NullMarked
 public interface JsonMapper<T> {
   /**
    * @return the {@link Class} that will be converted to and from {@link JsonObject}s

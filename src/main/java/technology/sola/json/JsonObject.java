@@ -1,16 +1,18 @@
 package technology.sola.json;
 
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 import technology.sola.json.exception.JsonElementTypeException;
 import technology.sola.json.serializer.JsonSerializer;
 import technology.sola.json.serializer.JsonSerializerConfig;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 /**
  * JsonObject is a {@link java.util.Map} of {@link JsonElement}. It includes methods for accessing members as various
  * Java types.
  */
+@NullMarked
 public class JsonObject extends LinkedHashMap<String, JsonElement> {
   /**
    * Constructs an empty {@link JsonObject} with the default initial capacity (16) and the default load factor (0.75).
@@ -283,7 +285,8 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
   }
 
   @Override
-  public JsonElement put(String key, JsonElement value) {
+  @Nullable
+  public JsonElement put(String key, @Nullable JsonElement value) {
     return super.put(key, value == null ? new JsonElement() : value);
   }
 
@@ -294,7 +297,7 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
    * @param value the {@link JsonObject} to associate
    * @return this
    */
-  public JsonObject put(String key, JsonObject value) {
+  public JsonObject put(String key, @Nullable JsonObject value) {
     put(key, new JsonElement(value));
 
     return this;
@@ -307,7 +310,7 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
    * @param value the {@link JsonArray} to associate
    * @return this
    */
-  public JsonObject put(String key, JsonArray value) {
+  public JsonObject put(String key, @Nullable JsonArray value) {
     put(key, new JsonElement(value));
 
     return this;
@@ -320,7 +323,7 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
    * @param value the string to associate
    * @return this
    */
-  public JsonObject put(String key, String value) {
+  public JsonObject put(String key, @Nullable String value) {
     put(key, new JsonElement(value));
 
     return this;
@@ -333,7 +336,7 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
    * @param value the integer to associate
    * @return this
    */
-  public JsonObject put(String key, Integer value) {
+  public JsonObject put(String key, @Nullable Integer value) {
     put(key, new JsonElement(value));
 
     return this;
@@ -346,7 +349,7 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
    * @param value the long to associate
    * @return this
    */
-  public JsonObject put(String key, Long value) {
+  public JsonObject put(String key, @Nullable Long value) {
     put(key, new JsonElement(value));
 
     return this;
@@ -359,7 +362,7 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
    * @param value the double to associate
    * @return this
    */
-  public JsonObject put(String key, Double value) {
+  public JsonObject put(String key, @Nullable Double value) {
     put(key, new JsonElement(value));
 
     return this;
@@ -372,7 +375,7 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
    * @param value the float to associate
    * @return this
    */
-  public JsonObject put(String key, Float value) {
+  public JsonObject put(String key, @Nullable Float value) {
     put(key, new JsonElement(value));
 
     return this;
@@ -385,7 +388,7 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
    * @param value the boolean to associate
    * @return this
    */
-  public JsonObject put(String key, Boolean value) {
+  public JsonObject put(String key, @Nullable Boolean value) {
     put(key, new JsonElement(value));
 
     return this;
