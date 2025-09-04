@@ -11,6 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class JsonMapperTest {
   @Test
+  void shouldHaveCorrectClass() {
+    assertEquals(TestPojo.class, TestPojo.JSON_MAPPER.getObjectClass());
+  }
+
+  @Test
   void toJson_shouldHandleLists() {
     List<TestPojo> list = List.of(
       new TestPojo(1, "test"),

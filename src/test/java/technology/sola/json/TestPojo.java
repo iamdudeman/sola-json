@@ -7,6 +7,11 @@ import technology.sola.json.mapper.JsonMapper;
 public record TestPojo(int value, String value2) {
   public static JsonMapper<TestPojo> JSON_MAPPER = new JsonMapper<>() {
     @Override
+    public Class<TestPojo> getObjectClass() {
+      return TestPojo.class;
+    }
+
+    @Override
     public JsonObject toJson(TestPojo testPojo) {
       JsonObject jsonObject = new JsonObject();
 
