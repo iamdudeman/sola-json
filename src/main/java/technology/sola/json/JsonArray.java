@@ -26,7 +26,7 @@ public class JsonArray extends ArrayList<JsonElement> {
    * Constructs an empty {@link JsonArray} with specified initial capacity.
    *
    * @param initialCapacity the initial capacity of the list
-   * @throws IllegalArgumentException if specified initial capacity is negative
+   * @throws IllegalArgumentException if specified, initial capacity is negative
    */
   public JsonArray(int initialCapacity) {
     super(initialCapacity);
@@ -80,7 +80,7 @@ public class JsonArray extends ArrayList<JsonElement> {
    * Returns the integer at the specified position in this {@link JsonArray}.
    *
    * @param index the index of the integer to return
-   * @return the integer at specified index
+   * @return the integer at the specified index
    * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#LONG}
    */
   public int getInt(int index) {
@@ -113,7 +113,7 @@ public class JsonArray extends ArrayList<JsonElement> {
    * Returns the float at the specified position in this {@link JsonArray}.
    *
    * @param index the index of the float to return
-   * @return the float at specified index
+   * @return the float at a specified index
    * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#DOUBLE}
    */
   public float getFloat(int index) {
@@ -124,7 +124,7 @@ public class JsonArray extends ArrayList<JsonElement> {
    * Returns the boolean at the specified position in this {@link JsonArray}.
    *
    * @param index the index of the boolean to return
-   * @return the boolean at specified index
+   * @return the boolean at a specified index
    * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#BOOLEAN}
    */
   public boolean getBoolean(int index) {

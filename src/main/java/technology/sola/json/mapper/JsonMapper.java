@@ -16,12 +16,7 @@ import java.util.List;
 @NullMarked
 public interface JsonMapper<T> {
   /**
-   * @return the {@link Class} that will be converted to and from {@link JsonObject}s
-   */
-  Class<T> getObjectClass();
-
-  /**
-   * Converts object of type T into a {@link JsonObject}.
+   * Converts an object of type T into a {@link JsonObject}.
    *
    * @param object the object to convert
    * @return the {@code JsonObject} representing the converted object

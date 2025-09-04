@@ -4,7 +4,7 @@ import org.jspecify.annotations.NullMarked;
 import technology.sola.json.JsonElementType;
 
 /**
- * Exception thrown when {@link technology.sola.json.JsonElement} is used in an unexpected way.
+ * Exception thrown when {@link technology.sola.json.JsonElement} is used unexpectedly.
  */
 @NullMarked
 public class JsonElementTypeException extends RuntimeException {

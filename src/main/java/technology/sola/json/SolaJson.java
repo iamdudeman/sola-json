@@ -63,7 +63,7 @@ public class SolaJson {
    * @param jsonString the JSON string to parse
    * @param jsonMapper the {@code JsonMapper} to use during conversion
    * @param <T>        the type of the object to convert to
-   * @return the converted List of Java object of type T
+   * @return the converted List of type T
    */
   public <T> List<T> parseList(String jsonString, JsonMapper<T> jsonMapper) {
     return jsonMapper.toList(parse(jsonString).asArray());
@@ -103,7 +103,7 @@ public class SolaJson {
 
 
   /**
-   * Serializes a list of objects of type T to a string using a {@link JsonMapper}.
+   * Serializes a list of type T objects to a string using a {@link JsonMapper}.
    *
    * @param list       the list of objects to serialize
    * @param jsonMapper the {@code JsonMapper} to use during conversion

@@ -22,7 +22,7 @@ public class JsonSerializer {
   }
 
   /**
-   * Serializes a {@link JsonElement} to a String utilizing the current {@link JsonSerializerConfig}.
+   * Serializes a {@link JsonElement} to a String using the current {@link JsonSerializerConfig}.
    *
    * @param jsonElement the {@code JsonElement} to serialize
    * @return the serialized JSON string
@@ -36,7 +36,7 @@ public class JsonSerializer {
   }
 
   /**
-   * Serializes a {@link JsonObject} to a String utilizing the current {@link JsonSerializerConfig}.
+   * Serializes a {@link JsonObject} to a String using the current {@link JsonSerializerConfig}.
    *
    * @param jsonObject the {@code JsonObject} to serialize
    * @return the serialized JSON string
@@ -50,7 +50,7 @@ public class JsonSerializer {
   }
 
   /**
-   * Serializes a {@link JsonArray} to a String utilizing the current {@link JsonSerializerConfig}.
+   * Serializes a {@link JsonArray} to a String using the current {@link JsonSerializerConfig}.
    *
    * @param jsonArray the {@code JsonArray} to serialize
    * @return the serialized JSON string

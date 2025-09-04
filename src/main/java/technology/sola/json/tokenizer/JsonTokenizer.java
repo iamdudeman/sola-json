@@ -150,7 +150,7 @@ public class JsonTokenizer {
 
   private Token tokenString() {
     int initialColumn = column;
-    // StringBuilder required if escaped character is present
+    // StringBuilder required if the escaped character is present
     StringBuilder stringTokenWithEscapesBuilder = null;
 
     // These local fields save a lot of time from field lookups
