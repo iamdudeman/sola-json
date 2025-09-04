@@ -132,7 +132,7 @@ TRUE       := true
 
 ### Validity
 
-Used test files from [JSON.org](https://www.json.org/JSON_checker/) to verify parsers functionality.
+Used test files from [JSON.org](https://www.json.org/JSON_checker/) to verify parser functionality.
 
 ### Performance
 

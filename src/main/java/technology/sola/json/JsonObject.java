@@ -54,10 +54,10 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
   }
 
   /**
-   * Returns the {@link JsonObject} for the specified key. Default value is returned if key is missing.
+   * Returns the {@link JsonObject} for the specified key. The default value is returned if the key is missing.
    *
    * @param key          the key of the {@link JsonObject} to be returned
-   * @param defaultValue the default value to return if key is missing
+   * @param defaultValue the default value to return if the key is missing
    * @return the {@link JsonObject} to which the specified key is mapped
    * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#JSON_OBJECT}
    */
@@ -83,10 +83,10 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
   }
 
   /**
-   * Returns the {@link JsonArray} for the specified key. Default value is returned if key is missing.
+   * Returns the {@link JsonArray} for the specified key. The default value is returned if the key is missing.
    *
    * @param key the key of the {@link JsonArray} to be returned
-   * @param defaultValue the default value to return if key is missing
+   * @param defaultValue the default value to return if the key is missing
    * @return the {@link JsonArray} to which the specified key is mapped
    * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#JSON_ARRAY}
    */
@@ -112,10 +112,10 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
   }
 
   /**
-   * Returns the string for the specified key. Default value is returned if key is missing.
+   * Returns the string for the specified key. The default value is returned if the key is missing.
    *
    * @param key the key of the string to be returned
-   * @param defaultValue the default value to return if key is missing
+   * @param defaultValue the default value to return if the key is missing
    * @return the string to which the specified key is mapped
    * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#STRING}
    */
@@ -141,10 +141,10 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
   }
 
   /**
-   * Returns the double for the specified key. Default value is returned if key is missing.
+   * Returns the double for the specified key. The default value is returned if the key is missing.
    *
    * @param key the key of the double to be returned
-   * @param defaultValue the default value to return if key is missing
+   * @param defaultValue the default value to return if the key is missing
    * @return the double to which the specified key is mapped
    * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#DOUBLE}
    */
@@ -170,10 +170,10 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
   }
 
   /**
-   * Returns the float for the specified key. Default value is returned if key is missing.
+   * Returns the float for the specified key. The default value is returned if the key is missing.
    *
    * @param key the key of the float to be returned
-   * @param defaultValue the default value to return if key is missing
+   * @param defaultValue the default value to return if the key is missing
    * @return the float to which the specified key is mapped
    * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#DOUBLE}
    */
@@ -199,10 +199,10 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
   }
 
   /**
-   * Returns the integer for the specified key. Default value is returned if key is missing.
+   * Returns the integer for the specified key. The default value is returned if the key is missing.
    *
    * @param key the key of the integer to be returned
-   * @param defaultValue the default value to return if key is missing
+   * @param defaultValue the default value to return if the key is missing
    * @return the integer to which the specified key is mapped
    * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#LONG}
    */
@@ -228,10 +228,10 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
   }
 
   /**
-   * Returns the long for the specified key. Default value is returned if key is missing.
+   * Returns the long for the specified key. The default value is returned if the key is missing.
    *
    * @param key the key of the long to be returned
-   * @param defaultValue the default value to return if key is missing
+   * @param defaultValue the default value to return if the key is missing
    * @return the long to which the specified key is mapped
    * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#LONG}
    */
@@ -257,10 +257,10 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
   }
 
   /**
-   * Returns the boolean for the specified key. Default value is returned if key is missing.
+   * Returns the boolean for the specified key. The default value is returned if the key is missing.
    *
    * @param key the key of the boolean to be returned
-   * @param defaultValue the default value to return if key is missing
+   * @param defaultValue the default value to return if the key is missing
    * @return the boolean to which the specified key is mapped
    * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#BOOLEAN}
    */
@@ -275,10 +275,10 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
   }
 
   /**
-   * Returns true if {@link JsonElementType#NULL} is at specified key.
+   * Returns true if {@link JsonElementType#NULL} is at a specified key.
    *
    * @param key the key to be checked
-   * @return true if {@link JsonElementType#NULL} is at specified key
+   * @return true if {@link JsonElementType#NULL} is at a specified key
    */
   public boolean isNull(String key) {
     return get(key).isNull();
@@ -291,7 +291,7 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
   }
 
   /**
-   * Associates a {@link JsonObject} with specified key.
+   * Associates a {@link JsonObject} with a specified key.
    *
    * @param key   the key to associate the {@link JsonObject} with
    * @param value the {@link JsonObject} to associate
@@ -304,7 +304,7 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
   }
 
   /**
-   * Associates a {@link JsonArray} with specified key.
+   * Associates a {@link JsonArray} with a specified key.
    *
    * @param key   the key to associate the {@link JsonArray} with
    * @param value the {@link JsonArray} to associate
@@ -317,7 +317,7 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
   }
 
   /**
-   * Associates a string with specified key.
+   * Associates a string with a specified key.
    *
    * @param key   the key to associate the string with
    * @param value the string to associate
@@ -330,7 +330,7 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
   }
 
   /**
-   * Associates a integer with specified key.
+   * Associates an integer with a specified key.
    *
    * @param key   the key to associate the integer with
    * @param value the integer to associate
@@ -343,7 +343,7 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
   }
 
   /**
-   * Associates a long with specified key.
+   * Associates a {@code long} with a specified key.
    *
    * @param key   the key to associate the long with
    * @param value the long to associate
@@ -356,7 +356,7 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
   }
 
   /**
-   * Associates a double with specified key.
+   * Associates a double with a specified key.
    *
    * @param key   the key to associate the double with
    * @param value the double to associate
@@ -369,7 +369,7 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
   }
 
   /**
-   * Associates a float with specified key.
+   * Associates a float with a specified key.
    *
    * @param key   the key to associate the float with
    * @param value the float to associate
@@ -382,7 +382,7 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
   }
 
   /**
-   * Associates a boolean with specified key.
+   * Associates a boolean with a specified key.
    *
    * @param key   the key to associate the boolean with
    * @param value the boolean to associate
@@ -409,10 +409,10 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
   /**
    * Merges this {@link JsonObject} with another resulting in a new {@code JsonObject}.
    * <ol>
-   *   <li>If key in both and each value is an object then it will recursively merge and add to result</li>
-   *   <li>If key in both and each value is not an object, value from the right is added to the result</li>
-   *   <li>If key in this only, then this value is added to result</li>
-   *   <li>If key in other only, then other value is added to result</li>
+   *   <li>If the key in both and each value is an object, then it will recursively merge and add to the result</li>
+   *   <li>If the key in both and each value is not an object, a value from the right is added to the result</li>
+   *   <li>If the key is in this only, then this value is added to the result</li>
+   *   <li>If the key is in other only, then other value is added to the result</li>
    * </ol>
    * This does not create a deep copy of nested arrays and objects.
    *

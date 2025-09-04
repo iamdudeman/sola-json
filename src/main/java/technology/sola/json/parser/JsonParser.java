@@ -21,7 +21,7 @@ public class JsonParser {
   private Token currentToken;
 
   /**
-   * Creates a new instance utilizing the provided {@link JsonTokenizer}.
+   * Creates a new instance using the provided {@link JsonTokenizer}.
    *
    * @param jsonTokenizer the tokenizer to use for parsing
    */
@@ -31,7 +31,7 @@ public class JsonParser {
   }
 
   /**
-   * Parses utilizing the provided {@link JsonTokenizer}.
+   * Parses using the provided {@link JsonTokenizer}.
    *
    * @return the root {@link JsonElement}
    */
