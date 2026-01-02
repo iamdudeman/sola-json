@@ -144,7 +144,7 @@ Benchmarked against [Google gson](https://github.com/google/gson) and [Jackson](
 [jmh](https://github.com/openjdk/jmh) benchmark file can be
 viewed [here](src/test/java/technology/sola/json/jmh/SolaJsonBenchmark.java)
 
-Execute benchmark view gradle task `jmhBenchmark` in verification category.
+Execute benchmark view Gradle task `jmhBenchmark` in verification category.
 
 Results:
 ```

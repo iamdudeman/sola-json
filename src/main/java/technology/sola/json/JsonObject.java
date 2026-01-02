@@ -72,6 +72,25 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
   }
 
   /**
+   * Returns the {@link JsonObject} for the specified key. Returns null if the key is missing or if the value
+   * is {@link JsonElementType#NULL}.
+   *
+   * @param key the key of the {@link JsonObject} to be returned
+   * @return the {@link JsonObject} to which the specified key is mapped or null if the key is missing or if the value is {@link JsonElementType#NULL}
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#JSON_OBJECT}
+   */
+  @Nullable
+  public JsonObject getObjectOrNull(String key) {
+    var value = get(key);
+
+    if (value == null || value.isNull()) {
+      return null;
+    }
+
+    return value.asObject();
+  }
+
+  /**
    * Returns the {@link JsonArray} for the specified key.
    *
    * @param key the key of the {@link JsonArray} to be returned
@@ -95,6 +114,25 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
 
     if (value == null || value.isNull()) {
       return defaultValue;
+    }
+
+    return value.asArray();
+  }
+
+  /**
+   * Returns the {@link JsonArray} for the specified key. Returns null if the key is missing or if the value
+   * is {@link JsonElementType#NULL}.
+   *
+   * @param key the key of the {@link JsonArray} to be returned
+   * @return the {@link JsonArray} to which the specified key is mapped or null if the key is missing or if the value is {@link JsonElementType#NULL}
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#JSON_ARRAY}
+   */
+  @Nullable
+  public JsonArray getArrayOrNull(String key) {
+    var value = get(key);
+
+    if (value == null || value.isNull()) {
+      return null;
     }
 
     return value.asArray();
@@ -130,6 +168,25 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
   }
 
   /**
+   * Returns the string for the specified key. Returns null if the key is missing or if the value
+   * is {@link JsonElementType#NULL}.
+   *
+   * @param key the key of the string to be returned
+   * @return the string to which the specified key is mapped or null if the key is missing or if the value is {@link JsonElementType#NULL}
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#STRING}
+   */
+  @Nullable
+  public String getStringOrNull(String key) {
+    var value = get(key);
+
+    if (value == null || value.isNull()) {
+      return null;
+    }
+
+    return value.asString();
+  }
+
+  /**
    * Returns the double for the specified key.
    *
    * @param key the key of the double to be returned
@@ -148,11 +205,30 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
    * @return the double to which the specified key is mapped
    * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#DOUBLE}
    */
-  public Double getDouble(String key, Double defaultValue) {
+  public double getDouble(String key, double defaultValue) {
     var value = get(key);
 
     if (value == null || value.isNull()) {
       return defaultValue;
+    }
+
+    return value.asDouble();
+  }
+
+  /**
+   * Returns the double for the specified key. Returns null if the key is missing or if the value
+   * is {@link JsonElementType#NULL}.
+   *
+   * @param key the key of the double to be returned
+   * @return the double to which the specified key is mapped or null if the key is missing or if the value is {@link JsonElementType#NULL}
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#DOUBLE}
+   */
+  @Nullable
+  public Double getDoubleOrNull(String key) {
+    var value = get(key);
+
+    if (value == null || value.isNull()) {
+      return null;
     }
 
     return value.asDouble();
@@ -177,11 +253,30 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
    * @return the float to which the specified key is mapped
    * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#DOUBLE}
    */
-  public Float getFloat(String key, Float defaultValue) {
+  public float getFloat(String key, float defaultValue) {
     var value = get(key);
 
     if (value == null || value.isNull()) {
       return defaultValue;
+    }
+
+    return value.asFloat();
+  }
+
+  /**
+   * Returns the float for the specified key. Returns null if the key is missing or if the value
+   * is {@link JsonElementType#NULL}.
+   *
+   * @param key the key of the float to be returned
+   * @return the float to which the specified key is mapped or null if the key is missing or if the value is {@link JsonElementType#NULL}
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#DOUBLE}
+   */
+  @Nullable
+  public Float getFloatOrNull(String key) {
+    var value = get(key);
+
+    if (value == null || value.isNull()) {
+      return null;
     }
 
     return value.asFloat();
@@ -206,11 +301,30 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
    * @return the integer to which the specified key is mapped
    * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#LONG}
    */
-  public Integer getInt(String key, Integer defaultValue) {
+  public int getInt(String key, int defaultValue) {
     var value = get(key);
 
     if (value == null || value.isNull()) {
       return defaultValue;
+    }
+
+    return value.asInt();
+  }
+
+  /**
+   * Returns the integer for the specified key. Returns null if the key is missing or if the value
+   * is {@link JsonElementType#NULL}.
+   *
+   * @param key the key of the integer to be returned
+   * @return the integer to which the specified key is mapped or null if the key is missing or if the value is {@link JsonElementType#NULL}
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#LONG}
+   */
+  @Nullable
+  public Integer getIntOrNull(String key) {
+    var value = get(key);
+
+    if (value == null || value.isNull()) {
+      return null;
     }
 
     return value.asInt();
@@ -235,11 +349,30 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
    * @return the long to which the specified key is mapped
    * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#LONG}
    */
-  public Long getLong(String key, Long defaultValue) {
+  public long getLong(String key, long defaultValue) {
     var value = get(key);
 
     if (value == null || value.isNull()) {
       return defaultValue;
+    }
+
+    return value.asLong();
+  }
+
+  /**
+   * Returns the long for the specified key. Returns null if the key is missing or if the value
+   * is {@link JsonElementType#NULL}.
+   *
+   * @param key the key of the long to be returned
+   * @return the long to which the specified key is mapped or null if the key is missing or if the value is {@link JsonElementType#NULL}
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#LONG}
+   */
+  @Nullable
+  public Long getLongOrNull(String key) {
+    var value = get(key);
+
+    if (value == null || value.isNull()) {
+      return null;
     }
 
     return value.asLong();
@@ -264,11 +397,30 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
    * @return the boolean to which the specified key is mapped
    * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#BOOLEAN}
    */
-  public Boolean getBoolean(String key, Boolean defaultValue) {
+  public boolean getBoolean(String key, boolean defaultValue) {
     var value = get(key);
 
     if (value == null || value.isNull()) {
       return defaultValue;
+    }
+
+    return value.asBoolean();
+  }
+
+  /**
+   * Returns the boolean for the specified key. Returns null if the key is missing or if the value
+   * is {@link JsonElementType#NULL}.
+   *
+   * @param key the key of the boolean to be returned
+   * @return the boolean to which the specified key is mapped or null if the key is missing or if the value is {@link JsonElementType#NULL}
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#BOOLEAN}
+   */
+  @Nullable
+  public Boolean getBooleanOrNull(String key) {
+    var value = get(key);
+
+    if (value == null || value.isNull()) {
+      return null;
     }
 
     return value.asBoolean();
@@ -287,7 +439,7 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
   @Override
   @Nullable
   public JsonElement put(String key, @Nullable JsonElement value) {
-    return super.put(key, value == null ? new JsonElement() : value);
+    return super.put(key, value == null ? JsonElement.NULL : value);
   }
 
   /**
@@ -298,7 +450,7 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
    * @return this
    */
   public JsonObject put(String key, @Nullable JsonObject value) {
-    put(key, new JsonElement(value));
+    put(key, value == null ? JsonElement.NULL : new JsonElement(value));
 
     return this;
   }
@@ -311,7 +463,7 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
    * @return this
    */
   public JsonObject put(String key, @Nullable JsonArray value) {
-    put(key, new JsonElement(value));
+    put(key, value == null ? JsonElement.NULL :  new JsonElement(value));
 
     return this;
   }
@@ -324,6 +476,19 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
    * @return this
    */
   public JsonObject put(String key, @Nullable String value) {
+    put(key, value == null ? JsonElement.NULL : new JsonElement(value));
+
+    return this;
+  }
+
+  /**
+   * Associates an integer with a specified key.
+   *
+   * @param key the key to associate the integer with
+   * @param value the integer to associate
+   * @return this
+   */
+  public JsonObject put(String key, int value) {
     put(key, new JsonElement(value));
 
     return this;
@@ -337,6 +502,19 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
    * @return this
    */
   public JsonObject put(String key, @Nullable Integer value) {
+    put(key, value == null ? JsonElement.NULL : new JsonElement(value));
+
+    return this;
+  }
+
+  /**
+   * Associates a {@code long} with a specified key.
+   *
+   * @param key the key to associate the long with
+   * @param value the long to associate
+   * @return this
+   */
+  public JsonObject put(String key, long value) {
     put(key, new JsonElement(value));
 
     return this;
@@ -350,6 +528,19 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
    * @return this
    */
   public JsonObject put(String key, @Nullable Long value) {
+    put(key, value == null ? JsonElement.NULL : new JsonElement(value));
+
+    return this;
+  }
+
+  /**
+   * Associates a double with a specified key.
+   *
+   * @param key the key to associate the double with
+   * @param value the double to associate
+   * @return this
+   */
+  public JsonObject put(String key, double value) {
     put(key, new JsonElement(value));
 
     return this;
@@ -363,6 +554,19 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
    * @return this
    */
   public JsonObject put(String key, @Nullable Double value) {
+    put(key, value == null ? JsonElement.NULL : new JsonElement(value));
+
+    return this;
+  }
+
+  /**
+   * Associates a float with a specified key.
+   *
+   * @param key the key to associate the float with
+   * @param value the float to associate
+   * @return this
+   */
+  public JsonObject put(String key, float value) {
     put(key, new JsonElement(value));
 
     return this;
@@ -376,6 +580,19 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
    * @return this
    */
   public JsonObject put(String key, @Nullable Float value) {
+    put(key, value == null ? JsonElement.NULL : new JsonElement(value));
+
+    return this;
+  }
+
+  /**
+   * Associates a boolean with a specified key.
+   *
+   * @param key the key to associate the boolean with
+   * @param value the boolean to associate
+   * @return this
+   */
+  public JsonObject put(String key, boolean value) {
     put(key, new JsonElement(value));
 
     return this;
@@ -389,7 +606,7 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
    * @return this
    */
   public JsonObject put(String key, @Nullable Boolean value) {
-    put(key, new JsonElement(value));
+    put(key, value == null ? JsonElement.NULL : new JsonElement(value));
 
     return this;
   }
@@ -401,7 +618,7 @@ public class JsonObject extends LinkedHashMap<String, JsonElement> {
    * @return this
    */
   public JsonObject putNull(String key) {
-    put(key, new JsonElement());
+    put(key, JsonElement.NULL);
 
     return this;
   }

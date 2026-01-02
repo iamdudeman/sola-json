@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class JsonObjectTest {
   private static final String TEST_KEY = "testKey";
+  private static final String TEST_MISSING_KEY = "testMissingKey";
   private JsonObject root;
 
   @BeforeEach
@@ -25,10 +26,15 @@ class JsonObjectTest {
       root.put(TEST_KEY, expected);
       assertEquals(expected, root.getObject(TEST_KEY));
       assertEquals(expected, root.getObject(TEST_KEY, defaultValue));
+      assertEquals(expected, root.getObjectOrNull(TEST_KEY));
 
       root.put(TEST_KEY, (JsonObject) null);
       assertTrue(root.isNull(TEST_KEY));
       assertEquals(defaultValue, root.getObject(TEST_KEY, defaultValue));
+      assertNull(root.getObjectOrNull(TEST_KEY));
+
+      assertEquals(defaultValue, root.getObject(TEST_MISSING_KEY, defaultValue));
+      assertNull(root.getObjectOrNull(TEST_MISSING_KEY));
     }
 
     @Test
@@ -39,10 +45,15 @@ class JsonObjectTest {
       root.put(TEST_KEY, expected);
       assertEquals(expected, root.getArray(TEST_KEY));
       assertEquals(expected, root.getArray(TEST_KEY, defaultValue));
+      assertEquals(expected, root.getArrayOrNull(TEST_KEY));
 
       root.put(TEST_KEY, (JsonArray) null);
       assertTrue(root.isNull(TEST_KEY));
       assertEquals(defaultValue, root.getArray(TEST_KEY, defaultValue));
+      assertNull(root.getArrayOrNull(TEST_KEY));
+
+      assertEquals(defaultValue, root.getArray(TEST_MISSING_KEY, defaultValue));
+      assertNull(root.getArrayOrNull(TEST_MISSING_KEY));
     }
 
     @Test
@@ -53,10 +64,15 @@ class JsonObjectTest {
       root.put(TEST_KEY, expected);
       assertEquals(expected, root.getString(TEST_KEY));
       assertEquals(expected, root.getString(TEST_KEY, defaultValue));
+      assertEquals(expected, root.getStringOrNull(TEST_KEY));
 
       root.put(TEST_KEY, (String) null);
       assertTrue(root.isNull(TEST_KEY));
       assertEquals(defaultValue, root.getString(TEST_KEY, defaultValue));
+      assertNull(root.getStringOrNull(TEST_KEY));
+
+      assertEquals(defaultValue, root.getString(TEST_MISSING_KEY, defaultValue));
+      assertNull(root.getStringOrNull(TEST_MISSING_KEY));
     }
 
     @Test
@@ -67,10 +83,15 @@ class JsonObjectTest {
       root.put(TEST_KEY, expected);
       assertEquals(expected, root.getDouble(TEST_KEY));
       assertEquals(expected, root.getDouble(TEST_KEY, defaultValue));
+      assertEquals(expected, root.getDoubleOrNull(TEST_KEY));
 
       root.put(TEST_KEY, (Double) null);
       assertTrue(root.isNull(TEST_KEY));
       assertEquals(defaultValue, root.getDouble(TEST_KEY, defaultValue));
+      assertNull(root.getDoubleOrNull(TEST_KEY));
+
+      assertEquals(defaultValue, root.getDouble(TEST_MISSING_KEY, defaultValue));
+      assertNull(root.getDoubleOrNull(TEST_MISSING_KEY));
     }
 
     @Test
@@ -81,10 +102,15 @@ class JsonObjectTest {
       root.put(TEST_KEY, expected);
       assertEquals(expected, root.getFloat(TEST_KEY));
       assertEquals(expected, root.getFloat(TEST_KEY, defaultValue));
+      assertEquals(expected, root.getFloatOrNull(TEST_KEY));
 
       root.put(TEST_KEY, (Float) null);
       assertTrue(root.isNull(TEST_KEY));
       assertEquals(defaultValue, root.getFloat(TEST_KEY, defaultValue));
+      assertNull(root.getFloatOrNull(TEST_KEY));
+
+      assertEquals(defaultValue, root.getFloat(TEST_MISSING_KEY, defaultValue));
+      assertNull(root.getFloatOrNull(TEST_MISSING_KEY));
     }
 
     @Test
@@ -95,10 +121,15 @@ class JsonObjectTest {
       root.put(TEST_KEY, expected);
       assertEquals(expected, root.getInt(TEST_KEY));
       assertEquals(expected, root.getInt(TEST_KEY, defaultValue));
+      assertEquals(expected, root.getIntOrNull(TEST_KEY));
 
       root.put(TEST_KEY, (Integer) null);
       assertTrue(root.isNull(TEST_KEY));
       assertEquals(defaultValue, root.getInt(TEST_KEY, defaultValue));
+      assertNull(root.getIntOrNull(TEST_KEY));
+
+      assertEquals(defaultValue, root.getInt(TEST_MISSING_KEY, defaultValue));
+      assertNull(root.getIntOrNull(TEST_MISSING_KEY));
     }
 
     @Test
@@ -109,10 +140,15 @@ class JsonObjectTest {
       root.put(TEST_KEY, expected);
       assertEquals(expected, root.getLong(TEST_KEY));
       assertEquals(expected, root.getLong(TEST_KEY, defaultValue));
+      assertEquals(expected, root.getLongOrNull(TEST_KEY));
 
       root.put(TEST_KEY, (Long) null);
       assertTrue(root.isNull(TEST_KEY));
       assertEquals(defaultValue, root.getLong(TEST_KEY, defaultValue));
+      assertNull(root.getLongOrNull(TEST_KEY));
+
+      assertEquals(defaultValue, root.getLong(TEST_MISSING_KEY, defaultValue));
+      assertNull(root.getLongOrNull(TEST_MISSING_KEY));
     }
 
     @Test
@@ -123,10 +159,15 @@ class JsonObjectTest {
       root.put(TEST_KEY, expected);
       assertEquals(expected, root.getBoolean(TEST_KEY));
       assertEquals(expected, root.getBoolean(TEST_KEY, defaultValue));
+      assertEquals(expected, root.getBooleanOrNull(TEST_KEY));
 
       root.put(TEST_KEY, (Boolean) null);
       assertTrue(root.isNull(TEST_KEY));
       assertEquals(defaultValue, root.getBoolean(TEST_KEY, defaultValue));
+      assertNull(root.getBooleanOrNull(TEST_KEY));
+
+      assertEquals(defaultValue, root.getBoolean(TEST_MISSING_KEY, defaultValue));
+      assertNull(root.getBooleanOrNull(TEST_MISSING_KEY));
     }
 
     @Test
@@ -146,7 +187,12 @@ class JsonObjectTest {
         .put("string", "value")
         .putNull("null")
         .put("array", new JsonArray().add("test"))
-        .put("object", new JsonObject().put("string", "value"));
+        .put("object", new JsonObject().put("string", "value"))
+        .put("nullInt", (Integer) null)
+        .put("nullLong", (Long) null)
+        .put("nullFloat", (Float) null)
+        .put("nullDouble", (Double) null)
+        .put("nullBoolean", (Boolean) null);
 
       assertEquals(2, result.getInt("int"));
       assertEquals(3L, result.getLong("long"));
@@ -157,6 +203,11 @@ class JsonObjectTest {
       assertTrue(result.isNull("null"));
       assertEquals("test", result.getArray("array").getString(0));
       assertEquals("value", result.getObject("object").getString("string"));
+      assertTrue(result.isNull("nullInt"));
+      assertTrue(result.isNull("nullLong"));
+      assertTrue(result.isNull("nullFloat"));
+      assertTrue(result.isNull("nullDouble"));
+      assertTrue(result.isNull("nullBoolean"));
     }
   }
 

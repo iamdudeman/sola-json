@@ -12,6 +12,7 @@ import technology.sola.json.tokenizer.TokenType;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 @State(Scope.Benchmark)
@@ -117,7 +118,9 @@ public class SolaJsonBenchmark {
     }
 
     private String readFileToString(String resourcePath) throws IOException {
-      return Files.readString(new File(getClass().getResource(resourcePath).getFile()).toPath());
+      return Files.readString(new File(
+        Objects.requireNonNull(getClass().getResource(resourcePath)).getFile()
+      ).toPath());
     }
   }
 }
