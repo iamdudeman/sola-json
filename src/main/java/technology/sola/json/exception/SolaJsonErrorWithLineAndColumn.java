@@ -1,9 +1,9 @@
 package technology.sola.json.exception;
 
 /**
- * SolaJsonParsingError contains general information about an error that happened while parsing JSON.
+ * SolaJsonErrorWithLineAndColumn contains general information about an error that happened during JSON operations.
  */
-public interface SolaJsonParsingError {
+public interface SolaJsonErrorWithLineAndColumn {
   /**
    * @return the line where the syntax error began
    */

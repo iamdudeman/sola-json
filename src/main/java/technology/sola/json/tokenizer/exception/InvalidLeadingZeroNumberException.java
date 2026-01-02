@@ -1,13 +1,13 @@
 package technology.sola.json.tokenizer.exception;
 
 import org.jspecify.annotations.NullMarked;
-import technology.sola.json.exception.SolaJsonParsingError;
+import technology.sola.json.exception.SolaJsonErrorWithLineAndColumn;
 
 /**
  * Exception thrown when an invalid number starts with a leading zero is found during tokenization.
  */
 @NullMarked
-public class InvalidLeadingZeroNumberException extends RuntimeException implements SolaJsonParsingError {
+public class InvalidLeadingZeroNumberException extends RuntimeException implements SolaJsonErrorWithLineAndColumn {
   private transient final int line;
   private transient final int column;
 

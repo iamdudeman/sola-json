@@ -1,13 +1,13 @@
 package technology.sola.json.tokenizer.exception;
 
 import org.jspecify.annotations.NullMarked;
-import technology.sola.json.exception.SolaJsonParsingError;
+import technology.sola.json.exception.SolaJsonErrorWithLineAndColumn;
 
 /**
  * Exception thrown when a string was discovered to be not closed during tokenization.
  */
 @NullMarked
-public class StringNotClosedException extends RuntimeException implements SolaJsonParsingError {
+public class StringNotClosedException extends RuntimeException implements SolaJsonErrorWithLineAndColumn {
   private transient final int line;
   private transient final int column;
 

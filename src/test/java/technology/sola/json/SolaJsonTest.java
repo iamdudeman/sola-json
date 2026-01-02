@@ -3,7 +3,7 @@ package technology.sola.json;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import technology.sola.json.exception.SolaJsonParsingError;
+import technology.sola.json.exception.SolaJsonErrorWithLineAndColumn;
 import technology.sola.json.serializer.JsonSerializerConfig;
 
 import java.io.File;
@@ -59,7 +59,7 @@ class SolaJsonTest {
           solaJson.parse(fileContents);
           failedTestFiles.add(file.getName());
         } catch (Exception ex) {
-          if (!(ex instanceof SolaJsonParsingError)) {
+          if (!(ex instanceof SolaJsonErrorWithLineAndColumn)) {
             fail("Expected a SolaJsonError for test file [" + file.getName() + "]", ex);
           }
         }
