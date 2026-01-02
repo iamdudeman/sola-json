@@ -4,8 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class JsonArrayTest {
   private JsonArray root;
@@ -23,9 +22,11 @@ class JsonArrayTest {
 
       root.add(expected);
       assertEquals(expected, root.getObject(0));
+      assertEquals(expected, root.getObjectOrNull(0));
 
       root.add((JsonObject) null);
       assertTrue(root.isNull(1));
+      assertNull(root.getObjectOrNull(1));
     }
 
     @Test
@@ -34,9 +35,11 @@ class JsonArrayTest {
 
       root.add(expected);
       assertEquals(expected, root.getArray(0));
+      assertEquals(expected, root.getArrayOrNull(0));
 
       root.add((JsonArray) null);
       assertTrue(root.isNull(1));
+      assertNull(root.getArrayOrNull(1));
     }
 
     @Test
@@ -45,9 +48,11 @@ class JsonArrayTest {
 
       root.add(expected);
       assertEquals(expected, root.getString(0));
+      assertEquals(expected, root.getStringOrNull(0));
 
       root.add((String) null);
       assertTrue(root.isNull(1));
+      assertNull(root.getStringOrNull(1));
     }
 
     @Test
@@ -56,9 +61,11 @@ class JsonArrayTest {
 
       root.add(expected);
       assertEquals(expected, root.getDouble(0));
+      assertEquals(expected, root.getDoubleOrNull(0));
 
       root.add((Double) null);
       assertTrue(root.isNull(1));
+      assertNull(root.getDoubleOrNull(1));
     }
 
     @Test
@@ -67,9 +74,11 @@ class JsonArrayTest {
 
       root.add(expected);
       assertEquals(expected, root.getFloat(0));
+      assertEquals(expected, root.getFloatOrNull(0));
 
       root.add((Float) null);
       assertTrue(root.isNull(1));
+      assertNull(root.getFloatOrNull(1));
     }
 
     @Test
@@ -78,9 +87,11 @@ class JsonArrayTest {
 
       root.add(expected);
       assertEquals(expected, root.getLong(0));
+      assertEquals(expected, root.getLongOrNull(0));
 
       root.add((Long) null);
       assertTrue(root.isNull(1));
+      assertNull(root.getLongOrNull(1));
     }
 
     @Test
@@ -89,9 +100,11 @@ class JsonArrayTest {
 
       root.add(expected);
       assertEquals(expected, root.getInt(0));
+      assertEquals(expected, root.getIntOrNull(0));
 
       root.add((Integer) null);
       assertTrue(root.isNull(1));
+      assertNull(root.getIntOrNull(1));
     }
 
     @Test
@@ -100,9 +113,11 @@ class JsonArrayTest {
 
       root.add(expected);
       assertEquals(expected, root.getBoolean(0));
+      assertEquals(expected, root.getBooleanOrNull(0));
 
       root.add((Boolean) null);
       assertTrue(root.isNull(1));
+      assertNull(root.getBooleanOrNull(1));
     }
 
     @Test
@@ -122,7 +137,13 @@ class JsonArrayTest {
         .add("value")
         .addNull()
         .add(new JsonArray().add("test"))
-        .add(new JsonObject().put("string", "value"));
+        .add(new JsonObject().put("string", "value"))
+        .add((Integer) null)
+        .add((Long) null)
+        .add((Float) null)
+        .add((Double) null)
+        .add((Boolean) null)
+        ;
 
       assertEquals(2, result.getInt(0));
       assertEquals(3L, result.getLong(1));
@@ -133,6 +154,11 @@ class JsonArrayTest {
       assertTrue(result.isNull(6));
       assertEquals("test", result.getArray(7).getString(0));
       assertEquals("value", result.getObject(8).getString("string"));
+      assertTrue(result.isNull(9));
+      assertTrue(result.isNull(10));
+      assertTrue(result.isNull(11));
+      assertTrue(result.isNull(12));
+      assertTrue(result.isNull(13));
     }
   }
 }

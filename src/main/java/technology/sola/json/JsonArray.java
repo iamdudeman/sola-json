@@ -55,6 +55,25 @@ public class JsonArray extends ArrayList<JsonElement> {
   }
 
   /**
+   * Returns the {@link JsonObject} at the specified position in this {@link JsonArray}. If the {@link JsonElement} at
+   * index is {@link JsonElementType#NULL} then {@code null} is returned.
+   *
+   * @param index the index of the {@link JsonObject} to return
+   * @return the {@link JsonObject} at specified index
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#JSON_OBJECT}
+   */
+  @Nullable
+  public JsonObject getObjectOrNull(int index) {
+    var item = get(index);
+
+    if (item.isNull()) {
+      return null;
+    }
+
+    return item.asObject();
+  }
+
+  /**
    * Returns the {@link JsonArray} at the specified position in this {@link JsonArray}.
    *
    * @param index the index of the {@link JsonArray} to return
@@ -63,6 +82,25 @@ public class JsonArray extends ArrayList<JsonElement> {
    */
   public JsonArray getArray(int index) {
     return get(index).asArray();
+  }
+
+  /**
+   * Returns the {@link JsonArray} at the specified position in this {@link JsonArray}. If the {@link JsonElement} at
+   * index is {@link JsonElementType#NULL} then {@code null} is returned.
+   *
+   * @param index the index of the {@link JsonArray} to return
+   * @return the {@link JsonArray} at specified index
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#JSON_ARRAY}
+   */
+  @Nullable
+  public JsonArray getArrayOrNull(int index) {
+    var item = get(index);
+
+    if (item.isNull()) {
+      return null;
+    }
+
+    return item.asArray();
   }
 
   /**
@@ -77,6 +115,25 @@ public class JsonArray extends ArrayList<JsonElement> {
   }
 
   /**
+   * Returns the String at the specified position in this {@link JsonArray}. If the {@link JsonElement} at index is
+   * {@link JsonElementType#NULL} then {@code null} is returned.
+   *
+   * @param index the index of the String to return
+   * @return the String at specified index or {@code null} if {@link JsonElementType#NULL}
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#STRING}
+   */
+  @Nullable
+  public String getStringOrNull(int index) {
+    var item = get(index);
+
+    if (item.isNull()) {
+      return null;
+    }
+
+    return item.asString();
+  }
+
+  /**
    * Returns the integer at the specified position in this {@link JsonArray}.
    *
    * @param index the index of the integer to return
@@ -85,6 +142,25 @@ public class JsonArray extends ArrayList<JsonElement> {
    */
   public int getInt(int index) {
     return get(index).asInt();
+  }
+
+  /**
+   * Returns the integer at the specified position in this {@link JsonArray}. If the {@link JsonElement} at index is
+   * {@link JsonElementType#NULL} then {@code null} is returned.
+   *
+   * @param index the index of the integer to return
+   * @return the integer at specified index or {@code null} if {@link JsonElementType#NULL}
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#LONG}
+   */
+  @Nullable
+  public Integer getIntOrNull(int index) {
+    var item = get(index);
+
+    if (item.isNull()) {
+      return null;
+    }
+
+    return item.asInt();
   }
 
   /**
@@ -99,6 +175,25 @@ public class JsonArray extends ArrayList<JsonElement> {
   }
 
   /**
+   * Returns the long at the specified position in this {@link JsonArray}. If the {@link JsonElement} at index is
+   * {@link JsonElementType#NULL} then {@code null} is returned.
+   *
+   * @param index the index of the long to return
+   * @return the long at specified index or {@code null} if {@link JsonElementType#NULL}
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#LONG}
+   */
+  @Nullable
+  public Long getLongOrNull(int index) {
+    var item = get(index);
+
+    if (item.isNull()) {
+      return null;
+    }
+
+    return item.asLong();
+  }
+
+  /**
    * Returns the double at the specified position in this {@link JsonArray}.
    *
    * @param index the index of the double to return
@@ -107,6 +202,25 @@ public class JsonArray extends ArrayList<JsonElement> {
    */
   public double getDouble(int index) {
     return get(index).asDouble();
+  }
+
+  /**
+   * Returns the double at the specified position in this {@link JsonArray}. If the {@link JsonElement} at index is
+   * {@link JsonElementType#NULL} then {@code null} is returned.
+   *
+   * @param index the index of the double to return
+   * @return the double at specified index or {@code null} if {@link JsonElementType#NULL}
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#DOUBLE}
+   */
+  @Nullable
+  public Double getDoubleOrNull(int index) {
+    var item = get(index);
+
+    if (item.isNull()) {
+      return null;
+    }
+
+    return item.asDouble();
   }
 
   /**
@@ -121,6 +235,25 @@ public class JsonArray extends ArrayList<JsonElement> {
   }
 
   /**
+   * Returns the float at the specified position in this {@link JsonArray}. If the {@link JsonElement} at index is
+   * {@link JsonElementType#NULL} then {@code null} is returned.
+   *
+   * @param index the index of the float to return
+   * @return the float at a specified index or {@code null} if {@link JsonElementType#NULL}
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#DOUBLE}
+   */
+  @Nullable
+  public Float getFloatOrNull(int index) {
+    var item = get(index);
+
+    if (item.isNull()) {
+      return null;
+    }
+
+    return item.asFloat();
+  }
+
+  /**
    * Returns the boolean at the specified position in this {@link JsonArray}.
    *
    * @param index the index of the boolean to return
@@ -129,6 +262,25 @@ public class JsonArray extends ArrayList<JsonElement> {
    */
   public boolean getBoolean(int index) {
     return get(index).asBoolean();
+  }
+
+  /**
+   * Returns the boolean at the specified position in this {@link JsonArray}. If the {@link JsonElement} at index is
+   * {@link JsonElementType#NULL} then {@code null} is returned.
+   *
+   * @param index the index of the boolean to return
+   * @return the boolean at a specified index or {@code null} if {@link JsonElementType#NULL}
+   * @throws JsonElementTypeException if {@link JsonElement} at index is not of type {@link JsonElementType#BOOLEAN}
+   */
+  @Nullable
+  public Boolean getBooleanOrNull(int index) {
+    var item = get(index);
+
+    if (item.isNull()) {
+      return null;
+    }
+
+    return item.asBoolean();
   }
 
   /**
@@ -143,12 +295,12 @@ public class JsonArray extends ArrayList<JsonElement> {
 
   @Override
   public boolean add(@Nullable JsonElement jsonElement) {
-    return super.add(jsonElement == null ? new JsonElement() : jsonElement);
+    return super.add(jsonElement == null ? JsonElement.NULL : jsonElement);
   }
 
   @Override
   public void add(int index, @Nullable JsonElement element) {
-    super.add(index, element == null ? new JsonElement() : element);
+    super.add(index, element == null ? JsonElement.NULL : element);
   }
 
   /**
@@ -159,7 +311,7 @@ public class JsonArray extends ArrayList<JsonElement> {
    * @return this
    */
   public JsonArray add(@Nullable JsonObject value) {
-    add(new JsonElement(value));
+    add(value == null ? JsonElement.NULL : new JsonElement(value));
 
     return this;
   }
@@ -172,7 +324,7 @@ public class JsonArray extends ArrayList<JsonElement> {
    * @return this
    */
   public JsonArray add(@Nullable JsonArray value) {
-    add(new JsonElement(value));
+    add(value == null ? JsonElement.NULL : new JsonElement(value));
 
     return this;
   }
@@ -185,6 +337,18 @@ public class JsonArray extends ArrayList<JsonElement> {
    * @return this
    */
   public JsonArray add(@Nullable String value) {
+    add(value == null ? JsonElement.NULL : new JsonElement(value));
+
+    return this;
+  }
+
+  /**
+   * Appends the specified integer to the end of this {@link JsonArray}.
+   *
+   * @param value the integer to append
+   * @return this
+   */
+  public JsonArray add(int value) {
     add(new JsonElement(value));
 
     return this;
@@ -198,6 +362,18 @@ public class JsonArray extends ArrayList<JsonElement> {
    * @return this
    */
   public JsonArray add(@Nullable Integer value) {
+    add(value == null ? JsonElement.NULL : new JsonElement(value));
+
+    return this;
+  }
+
+  /**
+   * Appends the specified long to the end of this {@link JsonArray}.
+   *
+   * @param value the long to append
+   * @return this
+   */
+  public JsonArray add(long value) {
     add(new JsonElement(value));
 
     return this;
@@ -211,6 +387,18 @@ public class JsonArray extends ArrayList<JsonElement> {
    * @return this
    */
   public JsonArray add(@Nullable Long value) {
+    add(value == null ? JsonElement.NULL : new JsonElement(value));
+
+    return this;
+  }
+
+  /**
+   * Appends the specified float to the end of this {@link JsonArray}.
+   *
+   * @param value the float to append
+   * @return this
+   */
+  public JsonArray add(float value) {
     add(new JsonElement(value));
 
     return this;
@@ -224,6 +412,18 @@ public class JsonArray extends ArrayList<JsonElement> {
    * @return this
    */
   public JsonArray add(@Nullable Float value) {
+    add(value == null ? JsonElement.NULL : new JsonElement(value));
+
+    return this;
+  }
+
+  /**
+   * Appends the specified double to the end of this {@link JsonArray}.
+   *
+   * @param value the double to append
+   * @return this
+   */
+  public JsonArray add(double value) {
     add(new JsonElement(value));
 
     return this;
@@ -237,6 +437,18 @@ public class JsonArray extends ArrayList<JsonElement> {
    * @return this
    */
   public JsonArray add(@Nullable Double value) {
+    add(value == null ? JsonElement.NULL : new JsonElement(value));
+
+    return this;
+  }
+
+  /**
+   * Appends the specified boolean to the end of this {@link JsonArray}.
+   *
+   * @param value the boolean to append
+   * @return this
+   */
+  public JsonArray add(boolean value) {
     add(new JsonElement(value));
 
     return this;
@@ -250,7 +462,7 @@ public class JsonArray extends ArrayList<JsonElement> {
    * @return this
    */
   public JsonArray add(@Nullable Boolean value) {
-    add(new JsonElement(value));
+    add(value == null ? JsonElement.NULL : new JsonElement(value));
 
     return this;
   }
@@ -261,7 +473,7 @@ public class JsonArray extends ArrayList<JsonElement> {
    * @return this
    */
   public JsonArray addNull() {
-    add(new JsonElement());
+    add(JsonElement.NULL);
 
     return this;
   }

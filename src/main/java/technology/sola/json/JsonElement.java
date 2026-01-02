@@ -12,6 +12,10 @@ import technology.sola.json.serializer.JsonSerializerConfig;
  */
 @NullMarked
 public class JsonElement {
+  /**
+   * Represents the JSON null value.
+   */
+  public static final JsonElement NULL = new JsonElement();
   private final JsonElementType type;
   @Nullable private Object value;
 
