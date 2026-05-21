@@ -117,7 +117,7 @@ public class JsonParser {
       }
       case NULL -> {
         eat(TokenType.NULL);
-        yield new JsonElement();
+        yield JsonElement.NULL;
       }
       case STRING -> new JsonElement(eat(TokenType.STRING).value());
       case NUMBER -> {
