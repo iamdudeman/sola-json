@@ -8,9 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class JsonElementTest {
   @Test
   void whenAccessingIncorrectType_shouldThrowException() {
-    JsonElement jsonElement = new JsonElement();
-
-    assertThrows(JsonElementTypeException.class, jsonElement::asArray);
+    assertThrows(JsonElementTypeException.class, JsonElement.NULL::asArray);
   }
 
   @Test

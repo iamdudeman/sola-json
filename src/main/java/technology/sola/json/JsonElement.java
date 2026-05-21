@@ -8,7 +8,7 @@ import technology.sola.json.serializer.JsonSerializerConfig;
 
 /**
  * JsonElement represents any valid JSON value. Valid JSON values include {@link JsonObject}, {@link JsonArray}, string,
- * number, true, false and null.
+ * number, true, false, and null.
  */
 @NullMarked
 public class JsonElement {
@@ -18,13 +18,6 @@ public class JsonElement {
   public static final JsonElement NULL = new JsonElement();
   private final JsonElementType type;
   @Nullable private Object value;
-
-  /**
-   * Creates a JsonElement with type {@link JsonElementType#NULL}.
-   */
-  public JsonElement() {
-    type = JsonElementType.NULL;
-  }
 
   /**
    * Creates a JsonElement with type {@link JsonElementType#LONG} if value is non-null or {@link JsonElementType#NULL}
@@ -244,5 +237,12 @@ public class JsonElement {
     if (type != assertionType) {
       throw new JsonElementTypeException(assertionType, type);
     }
+  }
+
+  /**
+   * Creates a JsonElement with type {@link JsonElementType#NULL}.
+   */
+  private JsonElement() {
+    type = JsonElementType.NULL;
   }
 }
