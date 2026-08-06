@@ -32,7 +32,7 @@ dependencies {
   testAnnotationProcessor("org.openjdk.jmh:jmh-generator-annprocess:1.37")
   // for performance testing comparisons
   testImplementation("com.google.code.gson:gson:2.8.9")
-  testImplementation("com.fasterxml.jackson.core:jackson-databind:2.18.3")
+  testImplementation("com.fasterxml.jackson.core:jackson-databind:2.22.1")
 }
 
 tasks.test {
